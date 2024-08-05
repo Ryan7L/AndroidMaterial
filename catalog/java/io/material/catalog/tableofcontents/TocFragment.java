@@ -287,7 +287,7 @@ public class TocFragment extends DaggerFragment {
     String defaultDemoLanding = FeatureDemoUtils.getDefaultDemoLanding(requireContext());
     if (!defaultDemoLanding.isEmpty()) {
       for (FeatureDemo demo : featureDemos) {
-        Fragment fragment = demo.createFragment();
+        Fragment fragment = demo.getFragment();
         String key = fragment.getClass().getName();
         if (key.equals(defaultDemoLanding)) {
           Bundle args = fragment.getArguments() != null ? fragment.getArguments() : new Bundle();

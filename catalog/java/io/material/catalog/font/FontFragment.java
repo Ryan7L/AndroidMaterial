@@ -45,7 +45,7 @@ public class FontFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new FontMainDemoFragment();
       }
     };
@@ -65,7 +65,7 @@ public class FontFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_font_title, R.drawable.ic_fonts) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new FontFragment();
         }
       };

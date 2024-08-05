@@ -50,7 +50,7 @@ public class AdaptiveFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo(R.string.cat_list_view_title) {
       @Override
-      public Intent createActivityIntent() {
+      public Intent getActivityIntent() {
         return new Intent(getContext(), AdaptiveListViewDemoActivity.class);
       }
     };
@@ -63,21 +63,21 @@ public class AdaptiveFragment extends DemoLandingFragment {
     additionalDemos.add(
         new Demo(R.string.cat_feed_title) {
           @Override
-          public Intent createActivityIntent() {
+          public Intent getActivityIntent() {
             return new Intent(getContext(), AdaptiveFeedDemoActivity.class);
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_hero_title) {
           @Override
-          public Intent createActivityIntent() {
+          public Intent getActivityIntent() {
             return new Intent(getContext(), AdaptiveHeroDemoActivity.class);
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_supporting_panel_title) {
           @Override
-          public Intent createActivityIntent() {
+          public Intent getActivityIntent() {
             return new Intent(getContext(), AdaptiveSupportingPanelDemoActivity.class);
           }
         });
@@ -98,7 +98,7 @@ public class AdaptiveFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_adaptive_title, R.drawable.ic_side_drawer) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new AdaptiveFragment();
         }
       };

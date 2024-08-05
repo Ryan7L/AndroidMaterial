@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="ThemeOverlay.Font.Default" parent="">
+    <item name="fontFamily">sans-serif</item>
+  </style>
+
+  <style name="ThemeOverlay.Font.Custom_1" parent="">
+    <item name="fontFamily">@font/custom_1</item>
+  </style>
+
+  <style name="ThemeOverlay.Font.Custom_2" parent="">
+    <item name="fontFamily">@font/custom_2</item>
+  </style>
+
+  <style name="ThemeOverlay.Font.Custom_3" parent="">
+    <item name="fontFamily">@font/custom_3</item>
+  </style>
+</resources>

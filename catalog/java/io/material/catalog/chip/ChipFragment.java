@@ -49,7 +49,7 @@ public class ChipFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new ChipMainDemoFragment();
       }
     };
@@ -61,14 +61,14 @@ public class ChipFragment extends DemoLandingFragment {
     additionalDemos.add(
         new Demo(R.string.cat_chip_group_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new ChipGroupDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_chip_recyclerview_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new ChipRecyclerviewDemoFragment();
           }
         });
@@ -104,7 +104,7 @@ public class ChipFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(getDemoTitleResId(), getDemoDrawableResId()) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new ChipFragment();
         }
       };

@@ -47,7 +47,7 @@ public class BottomNavigationFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new BottomNavigationMainDemoFragment();
       }
     };
@@ -59,14 +59,14 @@ public class BottomNavigationFragment extends DemoLandingFragment {
     additionalDemos.add(
         new Demo(R.string.cat_bottom_nav_label_visibility_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new BottomNavigationLabelVisibilityDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_bottom_nav_animated_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new BottomNavigationAnimatedDemoFragment();
           }
         });
@@ -86,7 +86,7 @@ public class BottomNavigationFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_bottom_nav_title, R.drawable.ic_bottomnavigation) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new BottomNavigationFragment();
         }
       };

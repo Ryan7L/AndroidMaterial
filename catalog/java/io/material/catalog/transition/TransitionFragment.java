@@ -57,7 +57,7 @@ public class TransitionFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Intent createActivityIntent() {
+      public Intent getActivityIntent() {
         return new Intent(getContext(), MusicPlayerDemoActivity.class);
       }
     };
@@ -70,7 +70,7 @@ public class TransitionFragment extends DemoLandingFragment {
       demos.add(
           new Demo(R.string.cat_transition_container_transform_activity_title) {
             @Override
-            public Intent createActivityIntent() {
+            public Intent getActivityIntent() {
               return new Intent(getContext(), TransitionContainerTransformStartDemoActivity.class);
             }
           });
@@ -79,13 +79,13 @@ public class TransitionFragment extends DemoLandingFragment {
         Arrays.asList(
             new Demo(R.string.cat_transition_container_transform_fragment_title) {
               @Override
-              public Fragment createFragment() {
+              public Fragment getFragment() {
                 return new TransitionContainerTransformDemoFragment();
               }
             },
             new Demo(R.string.cat_transition_container_transform_view_title) {
               @Override
-              public Fragment createFragment() {
+              public Fragment getFragment() {
                 return new TransitionContainerTransformViewDemoFragment();
               }
             }));
@@ -94,7 +94,7 @@ public class TransitionFragment extends DemoLandingFragment {
       demos.add(
           new Demo(R.string.cat_transition_shared_axis_activity_title) {
             @Override
-            public Intent createActivityIntent() {
+            public Intent getActivityIntent() {
               return new Intent(getContext(), TransitionSharedAxisStartDemoActivity.class);
             }
           }
@@ -104,25 +104,25 @@ public class TransitionFragment extends DemoLandingFragment {
         Arrays.asList(
             new Demo(R.string.cat_transition_shared_axis_fragment_title) {
               @Override
-              public Fragment createFragment() {
+              public Fragment getFragment() {
                 return new TransitionSharedAxisDemoFragment();
               }
             },
             new Demo(R.string.cat_transition_shared_axis_view_title) {
               @Override
-              public Fragment createFragment() {
+              public Fragment getFragment() {
                 return new TransitionSharedAxisViewDemoFragment();
               }
             },
             new Demo(R.string.cat_transition_fade_through_title) {
               @Override
-              public Fragment createFragment() {
+              public Fragment getFragment() {
                 return new TransitionFadeThroughDemoFragment();
               }
             },
             new Demo(R.string.cat_transition_fade_title) {
               @Override
-              public Fragment createFragment() {
+              public Fragment getFragment() {
                 return new TransitionFadeDemoFragment();
               }
             }));
@@ -143,7 +143,7 @@ public class TransitionFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_transition_title, R.drawable.ic_transition) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new TransitionFragment();
         }
       };

@@ -71,11 +71,11 @@ public class TopAppBarPreferencesFragment extends DemoFragment {
 
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-    return DemoUtils.showSnackbar(getActivity(), item) || super.onOptionsItemSelected(item);
+    return DemoUtils.showSnackBar(getActivity(), item) || super.onOptionsItemSelected(item);
   }
 
   @Override
-  public boolean shouldShowDefaultDemoActionBar() {
+  public boolean isShouldShowDefaultDemoActionBar() {
     return false;
   }
 

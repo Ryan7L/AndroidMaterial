@@ -50,7 +50,7 @@ public class NavigationDrawerFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Intent createActivityIntent() {
+      public Intent getActivityIntent() {
         return new Intent(requireContext(), NavigationDrawerDemoActivity.class);
       }
     };
@@ -61,7 +61,7 @@ public class NavigationDrawerFragment extends DemoLandingFragment {
   public List<Demo> getAdditionalDemos() {
     return Arrays.asList(new Demo(R.string.cat_navigationdrawer_custom_title) {
       @Override
-      public Intent createActivityIntent() {
+      public Intent getActivityIntent() {
         return new Intent(requireContext(), CustomNavigationDrawerDemoActivity.class);
       }
     });
@@ -80,7 +80,7 @@ public class NavigationDrawerFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_navigationdrawer_title, R.drawable.ic_side_drawer) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new NavigationDrawerFragment();
         }
       };

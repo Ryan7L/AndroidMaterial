@@ -47,7 +47,7 @@ public class ShapeThemingFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new ShapeThemingMainDemoFragment();
       }
     };
@@ -59,21 +59,21 @@ public class ShapeThemingFragment extends DemoLandingFragment {
     additionalDemos.add(
         new Demo(R.string.cat_shape_theming_crane_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new ShapeThemingCraneDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_shape_theming_fortnightly_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new ShapeThemingFortnightlyDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_shape_theming_shrine_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new ShapeThemingShrineDemoFragment();
           }
         });
@@ -94,7 +94,7 @@ public class ShapeThemingFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_shape_theming_title, R.drawable.ic_shape) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new ShapeThemingFragment();
         }
       };

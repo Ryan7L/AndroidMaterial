@@ -53,7 +53,7 @@ public class ColorsFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new ColorMainDemoFragment();
       }
     };
@@ -63,7 +63,7 @@ public class ColorsFragment extends DemoLandingFragment {
   public Demo getColorHarmonizationDemo() {
     return new Demo(R.string.cat_color_harmonization) {
       @Override
-      public Intent createActivityIntent() {
+      public Intent getActivityIntent() {
         return new Intent(getContext(), ColorHarmonizationDemoActivity.class);
       }
     };
@@ -77,7 +77,7 @@ public class ColorsFragment extends DemoLandingFragment {
       additionalDemos.add(
           new Demo(R.string.cat_color_dynamic_palette) {
             @Override
-            public Fragment createFragment() {
+            public Fragment getFragment() {
               return new ColorDynamicDemoFragment();
             }
           });
@@ -102,7 +102,7 @@ public class ColorsFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_colors_title, R.drawable.ic_placeholder) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new ColorsFragment();
         }
       };

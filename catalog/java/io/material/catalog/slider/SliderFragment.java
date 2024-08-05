@@ -47,7 +47,7 @@ public class SliderFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new SliderMainDemoFragment();
       }
     };
@@ -59,28 +59,28 @@ public class SliderFragment extends DemoLandingFragment {
     additionalDemos.add(
         new Demo(R.string.cat_slider_demo_continuous_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new SliderContinuousDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_slider_demo_discrete_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new SliderDiscreteDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_slider_demo_scroll_container_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new SliderScrollContainerDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_slider_demo_label_behavior_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new SliderLabelBehaviorDemoFragment();
           }
         });
@@ -101,7 +101,7 @@ public class SliderFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_slider_title, R.drawable.ic_sliders_24px) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new SliderFragment();
         }
       };

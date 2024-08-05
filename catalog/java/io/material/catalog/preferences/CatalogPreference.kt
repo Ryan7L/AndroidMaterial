@@ -1,168 +1,112 @@
-/*
- * Copyright 2021 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.preferences
 
-package io.material.catalog.preferences;
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
-import com.google.android.material.internal.ContextUtils;
-import com.google.common.collect.ImmutableList;
+import android.content.Context
+import androidx.annotation.StringRes
+import com.google.android.material.internal.ContextUtils
 
 /**
- * An interface to implement a customizable preference.
+ * SharedPreferences Name
  */
-public abstract class CatalogPreference {
-  private static final String SHARED_PREFERENCES_NAME = "catalog.preferences";
-  private static final int INVALID_OPTION_ID = 0;
+private const val SHARED_PREFERENCES_NAME = "catalog.preferences"
+
+/**
+ * 非法的OptionID
+ */
+private const val INVALID_OPTION_ID = 0
+
+/**
+ * Preference 的接口,可实现此接口实现自定义设置项
+ * @property preferenceDescription Int 配置类别的描述的资源id
+ * @property sharedPreferencesKey [@EnhancedForWarnings(String)] 用于SharedPreferences保存数据的 Key
+ * @property options List<Option> 可用的配置集合
+ * @property defaultOption Option 默认配置
+ * @property isEnabled Boolean 该选项类别是否可以更改
+ * @property isShouldRecreateActivityOnOptionChanged Boolean 是否在配置改变时重新创建Activity
+ */
+abstract class CatalogPreference(@StringRes var preferenceDescription: Int) {
+
+  private val sharedPreferencesKey = this.javaClass.simpleName
+
+  abstract val options: List<Option>
+
+  abstract val defaultOption: Option
+
+  open val isEnabled = true
+
+  open val isShouldRecreateActivityOnOptionChanged = false
 
   /**
-   * The string resources ID of a human readable description of the preference when showing in the
-   * preference settings screen.
+   * 当配置改变时重新创建Activity
+   * @param context Context
    */
-  @StringRes public final int description;
-
-  private final String id = getClass().getSimpleName();
-
-  protected CatalogPreference(int description) {
-    this.description = description;
+  private fun recreateActivityIfPossible(context: Context) {
+    ContextUtils.getActivity(context)?.recreate()
   }
 
   /**
-   * Sets the selected option of the preference. The selected option ID will be saved to
-   * {@link SharedPreferences} and the selected option will be applied.
+   * 获取SharedPreferences
+   * @param context Context
+   * @return (SharedPreferences..SharedPreferences?)
    */
-  public final void setSelectedOption(Context context, int optionId) {
-    if (optionId == getSelectedOptionId(context)) {
-      return;
+  private fun getSharedPreferences(context: Context) = context.getSharedPreferences(
+    SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE
+  )
+
+  /**
+   * 获取已选择的配置的OptionID
+   * @param context Context
+   * @return Int
+   */
+  private fun getSelectedOptionId(context: Context) = getSharedPreferences(context).getInt(
+    sharedPreferencesKey,
+    INVALID_OPTION_ID
+  )
+
+  /**
+   * 获取已选择的配置
+   * @param context Context
+   * @return Option
+   */
+  fun getSelectedOption(context: Context): Option {
+    val selectedOptionId = getSelectedOptionId(context)
+    return options.find { it.optionId == selectedOptionId } ?: run {
+      setSelectedOption(context, defaultOption.optionId)
+      defaultOption
     }
-    for (Option option : getOptions()) {
-      if (option.id == optionId) {
-        getSharedPreferences(context).edit().putInt(id, optionId).apply();
-        apply(context, option);
-        if (shouldRecreateActivityOnOptionChanged()) {
-          recreateActivityIfPossible(context);
-        }
-        return;
+  }
+
+  /**
+   * 设置选项并应用
+   * @param context Context
+   * @param optionId Int
+   */
+  fun setSelectedOption(context: Context, optionId: Int) {
+    if (optionId == getSelectedOptionId(context)) return
+    options.find { it.optionId == optionId }?.let {
+      getSharedPreferences(context).edit().putInt(sharedPreferencesKey, optionId).apply()
+      apply(context, it)
+      if (isShouldRecreateActivityOnOptionChanged) {
+        recreateActivityIfPossible(context)
       }
     }
   }
 
   /**
-   * Returns the currently selected option.
+   * 应用选项
+   * @param context Context
    */
-  public final Option getSelectedOption(Context context) {
-    int selectedOptionId = getSelectedOptionId(context);
-    if (selectedOptionId != INVALID_OPTION_ID) {
-      for (Option option : getOptions()) {
-        if (option.id == selectedOptionId) {
-          return option;
-        }
-      }
-    }
-    Option defaultOption = getDefaultOption();
-    setSelectedOption(context, defaultOption.id);
-    return defaultOption;
+  fun apply(context: Context) {
+    apply(context, getSelectedOption(context))
   }
 
   /**
-   * Applies the currently selected option.
+   * 应用选项
+   * @param context Context
+   * @param selectedOption Option
    */
-  public final void apply(@NonNull Context context) {
-    apply(context, getSelectedOption(context));
-  }
+  protected abstract fun apply(context: Context, selectedOption: Option)
 
-  /**
-   * Applies the selected option to take effect on the app.
-   */
-  protected abstract void apply(@NonNull Context context, @NonNull Option selectedOption);
 
-  private int getSelectedOptionId(Context context) {
-    return getSharedPreferences(context).getInt(id, INVALID_OPTION_ID);
-  }
-
-  private SharedPreferences getSharedPreferences(Context context) {
-    return context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-  }
-
-  @SuppressWarnings("RestrictTo") // To use ContextUtils
-  private void recreateActivityIfPossible(Context context) {
-    Activity activity = ContextUtils.getActivity(context);
-    if (activity != null) {
-      activity.recreate();
-    }
-  }
-
-  /**
-   * Override this method and return {@code false} when the preferences settings is not changeable.
-   */
-  protected boolean isEnabled() {
-    return true;
-  }
-
-  /**
-   * Override this method and return {@code true} if the current activity should be restarted after
-   * the selected option is changed.
-   */
-  protected boolean shouldRecreateActivityOnOptionChanged() {
-    return false;
-  }
-
-  /**
-   * Returns all available options of the preference.
-   */
-  @NonNull
-  protected abstract ImmutableList<Option> getOptions();
-
-  /**
-   * Returns the default option.
-   */
-  @NonNull
-  protected abstract Option getDefaultOption();
-
-  /**
-   * A preference option that can be selected.
-   */
-  protected static class Option {
-
-    /**
-     * ID of the option. Will be used as the saved value in {@link SharedPreferences}.
-     */
-    public final int id;
-
-    /**
-     * The drawable resource ID of the icon of the option to show in the preferences screen.
-     */
-    @DrawableRes
-    public final int icon;
-
-    /**
-     * The string resource ID of the human readable description of the option to show in the
-     * preferences screen.
-     */
-    @StringRes
-    public final int description;
-
-    public Option(int id, @DrawableRes int icon, @StringRes int description) {
-      this.id = id;
-      this.icon = icon;
-      this.description = description;
-    }
-  }
 }
+
+data class Option(val optionId: Int, val optionIcon: Int, val optionDescription: Int)

@@ -47,7 +47,7 @@ public class TabsFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new TabsMainDemoFragment();
       }
     };
@@ -59,28 +59,28 @@ public class TabsFragment extends DemoLandingFragment {
     additionalDemos.add(
         new Demo(R.string.cat_tabs_controllable_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new TabsControllableDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_tabs_scrollable_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new TabsScrollableDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_tabs_auto_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new TabsAutoDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_tabs_viewpager_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new TabsViewPagerDemoFragment();
           }
         });
@@ -101,7 +101,7 @@ public class TabsFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_tabs_title, R.drawable.ic_tabs) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new TabsFragment();
         }
       };

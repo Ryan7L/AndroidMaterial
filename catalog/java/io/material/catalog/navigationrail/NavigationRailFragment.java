@@ -59,7 +59,7 @@ public class NavigationRailFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new NavigationRailDemoFragment();
       }
     };
@@ -71,14 +71,14 @@ public class NavigationRailFragment extends DemoLandingFragment {
     additionalDemos.add(
         new Demo(R.string.cat_navigation_rail_additional_controls_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new NavigationRailDemoControlsFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_navigation_rail_animated_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new NavigationRailAnimatedDemoFragment();
           }
         });
@@ -98,7 +98,7 @@ public class NavigationRailFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(getDemoTitleResId(), getDemoDrawableResId()) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new NavigationRailFragment();
         }
       };

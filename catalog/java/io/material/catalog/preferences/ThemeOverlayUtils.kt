@@ -1,61 +1,67 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.preferences
 
-package io.material.catalog.preferences;
+import android.app.Activity
+import android.util.SparseIntArray
+import androidx.annotation.IdRes
+import androidx.annotation.StyleRes
+import androidx.core.util.forEach
+import com.google.android.material.color.ThemeUtils
 
-import android.app.Activity;
-import android.util.SparseIntArray;
-import androidx.annotation.IdRes;
-import androidx.annotation.StyleRes;
-import com.google.android.material.color.ThemeUtils;
+private val themeOverlays = SparseIntArray()
 
-/** Utils for theme themeOverlays. */
-public class ThemeOverlayUtils {
+object ThemeOverlayUtils {
+  const val NO_THEME_OVERLAY: Int = 0
 
-  public static final int NO_THEME_OVERLAY = 0;
-
-  private ThemeOverlayUtils() { }
-
-  private static final SparseIntArray themeOverlays = new SparseIntArray();
-
-  public static void setThemeOverlay(@IdRes int id, @StyleRes int themeOverlay) {
+  /**
+   * 设置主题覆盖
+   * @param id Int 主题的标识ID
+   * @param themeOverlay Int 主题的样式的Id
+   */
+  @JvmStatic
+  fun setThemeOverlay(@IdRes id: Int, @StyleRes themeOverlay: Int) {
     if (themeOverlay == NO_THEME_OVERLAY) {
-      themeOverlays.delete(id);
+      themeOverlays.delete(id)
     } else {
-      themeOverlays.put(id, themeOverlay);
+      themeOverlays.put(id, themeOverlay)
     }
   }
 
-  public static void clearThemeOverlay(@IdRes int id) {
-    themeOverlays.delete(id);
+  /**
+   * 删除主题覆盖
+   * @param id Int 主题的标识ID
+   */
+  @JvmStatic
+  fun deleteThemeOverlay(@IdRes id: Int) {
+    themeOverlays.delete(id)
   }
 
-  public static void clearThemeOverlays(Activity activity) {
-    themeOverlays.clear();
-    activity.recreate();
+  /**
+   * 清空主题覆盖
+   * @param activity Activity 当前Activity
+   */
+  @JvmStatic
+  fun clearThemeOverlays(activity: Activity) {
+    themeOverlays.clear()
+    activity.recreate()
   }
 
-  public static int getThemeOverlay(@IdRes int id) {
-    return themeOverlays.get(id);
-  }
+  /**
+   * 获取主题覆盖
+   * @param id Int 主题的标识ID
+   * @return Int 主题的样式的Id
+   */
+  @JvmStatic
+  fun getThemeOverlay(@IdRes id: Int) = themeOverlays.get(id)
 
-  @SuppressWarnings("RestrictTo")
-  public static void applyThemeOverlays(Activity activity) {
-    for (int i = 0; i < themeOverlays.size(); ++i) {
-      ThemeUtils.applyThemeOverlay(activity, themeOverlays.valueAt(i));
+  /**
+   * 应用主题覆盖
+   * @param activity Activity 当前Activity
+   */
+  @JvmStatic
+  fun applyThemeOverlays(activity: Activity) {
+    themeOverlays.forEach { key, value ->
+      ThemeUtils.applyThemeOverlay(activity, value)
     }
   }
+
 }

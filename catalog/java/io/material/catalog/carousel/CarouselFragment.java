@@ -51,7 +51,7 @@ public class CarouselFragment extends DemoLandingFragment {
     return new Demo() {
       @Nullable
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new CarouselMainDemoFragment();
       }
     };
@@ -63,25 +63,25 @@ public class CarouselFragment extends DemoLandingFragment {
     return Arrays.asList(
         new Demo(R.string.cat_carousel_multi_browse_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new MultiBrowseCarouselDemoFragment();
           }
         },
         new Demo(R.string.cat_carousel_hero_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new HeroCarouselDemoFragment();
           }
         },
         new Demo(R.string.cat_carousel_fullscreen_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new FullScreenStrategyDemoFragment();
           }
         },
         new Demo(R.string.cat_carousel_uncontained_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new UncontainedCarouselDemoFragment();
           }
         });
@@ -101,7 +101,7 @@ public class CarouselFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_carousel_title, R.drawable.ic_lists) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new CarouselFragment();
         }
       };

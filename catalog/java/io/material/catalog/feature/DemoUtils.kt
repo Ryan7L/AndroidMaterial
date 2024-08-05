@@ -1,139 +1,128 @@
-/*
- * Copyright 2018 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.feature
 
-package io.material.catalog.feature;
+import android.app.Activity
+import android.view.MenuItem
+import android.view.View
+import android.view.View.OnLayoutChangeListener
+import android.view.ViewGroup
+import android.widget.ScrollView
+import androidx.core.view.ViewCompat
+import androidx.core.view.children
+import androidx.core.widget.NestedScrollView
+import com.google.android.material.internal.ContextUtils
+import com.google.android.material.snackbar.Snackbar
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnLayoutChangeListener;
-import android.view.ViewGroup;
-import android.widget.ScrollView;
-import androidx.core.view.ViewCompat;
-import androidx.core.widget.NestedScrollView;
-import com.google.android.material.internal.ContextUtils;
-import com.google.android.material.snackbar.Snackbar;
-import java.util.ArrayList;
-import java.util.List;
 
-/** Utils for demos. */
-public class DemoUtils {
-
-  public static <T extends View> List<T> findViewsWithType(View root, Class<T> type) {
-    List<T> views = new ArrayList<>();
-    findViewsWithType(root, type, views);
-    return views;
+object DemoUtils {
+  @JvmStatic
+  fun <T : View> findViewsWithType(view: View, type: Class<T>): List<T> {
+    val views = mutableListOf<T>()
+    findViewsWithType(view, type, views)
+    return views
   }
 
-  private static <T extends View> void findViewsWithType(View view, Class<T> type, List<T> views) {
-    if (type.isInstance(view)) {
-      views.add(type.cast(view));
-    }
+  @JvmStatic
+  private fun <T : View> findViewsWithType(view: View, type: Class<T>, views: MutableList<T>) {
 
-    if (view instanceof ViewGroup) {
-      ViewGroup viewGroup = (ViewGroup) view;
-      for (int i = 0; i < viewGroup.getChildCount(); i++) {
-        findViewsWithType(viewGroup.getChildAt(i), type, views);
+    if (type.isInstance(view)) {
+      views.add(type.cast(view)!!)
+    }
+    if (view is ViewGroup) {
+      view.children.forEach {
+        findViewsWithType(it, type, views)
       }
     }
   }
 
-  public static boolean showSnackbar(Activity activity, MenuItem menuItem) {
-    if (menuItem.getItemId() == android.R.id.home) {
-      return false;
+  @JvmStatic
+  fun showSnackBar(activity: Activity, item: MenuItem) =
+    if (item.itemId == android.R.id.home) false else {
+      Snackbar.make(
+        activity.findViewById(android.R.id.content),
+        item.title.toString(),
+        Snackbar.LENGTH_SHORT
+      ).show()
+      true
     }
 
-    Snackbar.make(
-            activity.findViewById(android.R.id.content), menuItem.getTitle(), Snackbar.LENGTH_SHORT)
-        .show();
-    return true;
-  }
+  @JvmStatic
+  fun addBottomSpaceInsetsIfNeeded(scrollableViewAncestor: ViewGroup, demoContainer: ViewGroup) {
+    val scrollViews = findViewsWithType(scrollableViewAncestor, ScrollView::class.java)
 
-  public static void addBottomSpaceInsetsIfNeeded(
-      ViewGroup scrollableViewAncestor, ViewGroup demoContainer) {
-    List<? extends ViewGroup> scrollViews =
-        DemoUtils.findViewsWithType(scrollableViewAncestor, ScrollView.class);
+    val nestedScrollViews = findViewsWithType(scrollableViewAncestor, NestedScrollView::class.java)
 
-    List<? extends ViewGroup> nestedScrollViews = DemoUtils
-        .findViewsWithType(scrollableViewAncestor, NestedScrollView.class);
-
-    ArrayList<ViewGroup> scrollingViews = new ArrayList<>();
-    scrollingViews.addAll(scrollViews);
-    scrollingViews.addAll(nestedScrollViews);
-    ViewCompat.setOnApplyWindowInsetsListener(
-        demoContainer,
-        (view, insets) -> {
-          for (ViewGroup scrollView : scrollingViews) {
-            scrollView.addOnLayoutChangeListener(
-                new OnLayoutChangeListener() {
-                  @Override
-                  public void onLayoutChange(
-                      View v,
-                      int left,
-                      int top,
-                      int right,
-                      int bottom,
-                      int oldLeft,
-                      int oldTop,
-                      int oldRight,
-                      int oldBottom) {
-                    scrollView.removeOnLayoutChangeListener(this);
-                    int systemWindowInsetBottom = insets.getSystemWindowInsetBottom();
-                    if (!shouldApplyBottomInset(scrollView, systemWindowInsetBottom)) {
-                      return;
-                    }
-
-                    int insetBottom = calculateBottomInset(scrollView, systemWindowInsetBottom);
-                    View scrollableContent = scrollView.getChildAt(0);
-                    scrollableContent.setPadding(
-                        scrollableContent.getPaddingLeft(),
-                        scrollableContent.getPaddingTop(),
-                        scrollableContent.getPaddingRight(),
-                        insetBottom);
-                  }
-                });
+    val scrollingViews = ArrayList<ViewGroup>(scrollViews + nestedScrollViews)
+    ViewCompat.setOnApplyWindowInsetsListener(demoContainer) { v, insets ->
+      scrollingViews.forEach {
+        object : OnLayoutChangeListener {
+          /**
+           * 当视图的布局边界由于布局处理而发生变化时调用。
+           *
+           * @param v 边界已更改的视图。
+           * @param left 视图的 left 属性的新值。
+           * @param top 视图顶部属性的新值。
+           * @param right 视图右部属性的新值。
+           * @param bottom 视图底部属性的新值。
+           * @param oldLeft 视图的 left 属性的前
+           * @param oldTop 视图顶部属性的先前值。
+           * @param oldRight 视图右侧属性的前一个值。
+           * @param oldBottom 视图底部属性的先前值。
+           */
+          override fun onLayoutChange(
+            v: View?,
+            left: Int,
+            top: Int,
+            right: Int,
+            bottom: Int,
+            oldLeft: Int,
+            oldTop: Int,
+            oldRight: Int,
+            oldBottom: Int
+          ) {
+            it.removeOnLayoutChangeListener(this)
+            val systemWindowInsetBottom = insets.systemWindowInsetBottom
+            if (!isShouldApplyBottomInset(it, systemWindowInsetBottom)) {
+              return
+            }
+            val insetsBottom = calculateBottomInset(it, systemWindowInsetBottom)
+            val scrollableContent = it.getChildAt(0)
+            scrollableContent.setPadding(
+              scrollableContent.paddingLeft,
+              scrollableContent.paddingTop,
+              scrollableContent.paddingRight,
+              insetsBottom
+            )
           }
-          return insets;
-        });
+
+        }
+      }
+      return@setOnApplyWindowInsetsListener insets
+    }
   }
 
-  private static int calculateBottomInset(ViewGroup scrollView, int systemWindowInsetBottom) {
-    View scrollableContent = scrollView.getChildAt(0);
-    int calculatedInset = Math.min(
-        systemWindowInsetBottom,
-        scrollableContent.getHeight() + systemWindowInsetBottom - scrollView.getHeight());
-    return Math.max(calculatedInset, 0);
+  private fun calculateBottomInset(scrollView: ViewGroup, systemWindowInsetBottom: Int): Int {
+    val scrollableContent = scrollView.getChildAt(0)
+    val calculatedInset =
+      systemWindowInsetBottom.coerceAtMost(scrollableContent.height + systemWindowInsetBottom - scrollView.height)
+    return calculatedInset.coerceAtLeast(0)
   }
 
-  @SuppressWarnings("RestrictTo")
-  private static boolean shouldApplyBottomInset(ViewGroup scrollView, int systemWindowInsetBottom) {
-    View scrollableContent = scrollView.getChildAt(0);
-    int scrollableContentHeight = scrollableContent.getHeight();
-    int scrollViewHeight = scrollView.getHeight();
-    int[] scrollViewLocation = new int[2];
-    scrollView.getLocationOnScreen(scrollViewLocation);
-    Context context = scrollView.getContext();
+  private fun isShouldApplyBottomInset(
+    scrollView: ViewGroup,
+    systemWindowInsetBottom: Int
+  ): Boolean {
+    val scrollableContent = scrollView.getChildAt(0)
+    val scrollableContentHeight = scrollableContent.height
+    val scrollViewHeight = scrollView.height
 
-    Activity activity = ContextUtils.getActivity(context);
+    val scrollViewLocation = IntArray(2)
+    scrollView.getLocationOnScreen(scrollViewLocation)
+    val activity = ContextUtils.getActivity(scrollView.context)
     return scrollViewHeight + scrollViewLocation[1] >= getContentViewHeight(activity)
-        && scrollableContentHeight + systemWindowInsetBottom >= scrollViewHeight;
+      && scrollableContentHeight + systemWindowInsetBottom >= scrollViewHeight
   }
 
-  private static int getContentViewHeight(Activity context) {
-    return context.findViewById(android.R.id.content).getHeight();
+  private fun getContentViewHeight(activity: Activity?): Int {
+    return activity?.findViewById<ViewGroup>(android.R.id.content)?.height ?: 0
   }
 }

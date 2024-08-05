@@ -45,7 +45,7 @@ public class BottomAppBarFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new BottomAppBarMainDemoFragment();
       }
     };
@@ -65,7 +65,7 @@ public class BottomAppBarFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_bottomappbar_title, R.drawable.ic_bottomappbar) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new BottomAppBarFragment();
         }
       };

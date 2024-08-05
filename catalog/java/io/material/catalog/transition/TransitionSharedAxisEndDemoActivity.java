@@ -73,7 +73,7 @@ public class TransitionSharedAxisEndDemoActivity extends DemoActivity {
   }
 
   @Override
-  protected boolean shouldSetUpContainerTransform() {
+  protected boolean isShouldSetUpContainerTransform() {
     return false;
   }
 }

@@ -46,7 +46,7 @@ import com.google.android.material.sidesheet.SideSheetBehavior;
 import com.google.android.material.sidesheet.SideSheetCallback;
 import com.google.android.material.sidesheet.SideSheetDialog;
 import io.material.catalog.feature.DemoFragment;
-import io.material.catalog.preferences.CatalogPreferencesHelper;
+import io.material.catalog.preferences.PreferencesDialogHelper;
 import io.material.catalog.windowpreferences.WindowPreferencesManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ import java.util.List;
 /** A fragment that displays the main Side Sheet demo for the Catalog app. */
 public class SideSheetMainDemoFragment extends DemoFragment {
 
-  @Nullable private CatalogPreferencesHelper catalogPreferencesHelper;
+  @Nullable private PreferencesDialogHelper preferencesDialogHelper;
   private final List<View> sideSheetViews = new ArrayList<>();
 
   private static final SparseIntArray GRAVITY_ID_RES_MAP = new SparseIntArray();
@@ -75,7 +75,7 @@ public class SideSheetMainDemoFragment extends DemoFragment {
     super.onCreate(bundle);
     // The preferences helper is used in an adhoc way with the toolbar since the demo draws its own
     // action bar, in order to allow the side sheet to be 100% of the screen's height.
-    catalogPreferencesHelper = new CatalogPreferencesHelper(getParentFragmentManager());
+    preferencesDialogHelper = PreferencesDialogHelper.createHelper(getParentFragmentManager());
   }
 
   @NonNull
@@ -336,9 +336,9 @@ public class SideSheetMainDemoFragment extends DemoFragment {
     @Nullable AppCompatActivity activity = (AppCompatActivity) getActivity();
     if (activity != null) {
       toolbar.setNavigationOnClickListener(v -> activity.onBackPressed());
-      if (catalogPreferencesHelper != null) {
-        catalogPreferencesHelper.onCreateOptionsMenu(toolbar.getMenu(), activity.getMenuInflater());
-        toolbar.setOnMenuItemClickListener(catalogPreferencesHelper::onOptionsItemSelected);
+      if (preferencesDialogHelper != null) {
+        preferencesDialogHelper.onCreateOptionsMenu(toolbar.getMenu(), activity.getMenuInflater());
+        toolbar.setOnMenuItemClickListener(preferencesDialogHelper::onOptionsItemSelected);
       }
     }
   }
@@ -372,7 +372,7 @@ public class SideSheetMainDemoFragment extends DemoFragment {
   }
 
   @Override
-  public boolean shouldShowDefaultDemoActionBar() {
+  public boolean isShouldShowDefaultDemoActionBar() {
     return false;
   }
 

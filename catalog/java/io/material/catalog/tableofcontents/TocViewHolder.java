@@ -16,6 +16,8 @@
 
 package io.material.catalog.tableofcontents;
 
+import static io.material.catalog.feature.FeatureDemoKt.STATUS_WIP;
+
 import io.material.catalog.R;
 
 import androidx.fragment.app.FragmentActivity;
@@ -56,8 +58,8 @@ class TocViewHolder extends ViewHolder {
     itemView.setOnClickListener(
         v ->
             FeatureDemoUtils.startFragment(
-                activity, featureDemo.createFragment(), FRAGMENT_CONTENT, v, transitionName));
+                activity, featureDemo.getFragment(), FRAGMENT_CONTENT, v, transitionName));
     statusWipLabelView.setVisibility(
-        featureDemo.getStatus() == FeatureDemo.STATUS_WIP ? View.VISIBLE : View.GONE);
+        featureDemo.getStatus() == STATUS_WIP ? View.VISIBLE : View.GONE);
   }
 }

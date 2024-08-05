@@ -145,7 +145,7 @@ public class CustomNavigationDrawerDemoActivity extends DemoActivity {
   }
 
   @Override
-  protected boolean shouldShowDefaultDemoActionBar() {
+  protected boolean isShouldShowDefaultDemoActionBar() {
     return false;
   }
 

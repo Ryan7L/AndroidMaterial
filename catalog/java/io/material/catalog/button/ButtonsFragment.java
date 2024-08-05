@@ -48,7 +48,7 @@ public class ButtonsFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new ButtonsMainDemoFragment();
       }
     };
@@ -60,7 +60,7 @@ public class ButtonsFragment extends DemoLandingFragment {
         new Demo(R.string.cat_buttons_toggle_group) {
           @Nullable
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new ButtonToggleGroupDemoFragment();
           }
         });
@@ -80,7 +80,7 @@ public class ButtonsFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_buttons_title, R.drawable.ic_button) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new ButtonsFragment();
         }
       };

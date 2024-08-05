@@ -48,7 +48,7 @@ public class ProgressIndicatorFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new ProgressIndicatorMainDemoFragment();
       }
     };
@@ -61,7 +61,7 @@ public class ProgressIndicatorFragment extends DemoLandingFragment {
         new Demo(R.string.cat_progress_indicator_visibility_demo_title) {
           @Nullable
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new ProgressIndicatorVisibilityDemoFragment();
           }
         });
@@ -69,7 +69,7 @@ public class ProgressIndicatorFragment extends DemoLandingFragment {
         new Demo(R.string.cat_progress_indicator_demo_standalone_title) {
           @Nullable
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new ProgressIndicatorStandaloneDemoFragment();
           }
         });
@@ -77,7 +77,7 @@ public class ProgressIndicatorFragment extends DemoLandingFragment {
         new Demo(R.string.cat_progress_indicator_wave_demo_title) {
           @Nullable
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new ProgressIndicatorWaveDemoFragment();
           }
         });
@@ -92,7 +92,7 @@ public class ProgressIndicatorFragment extends DemoLandingFragment {
         new Demo(R.string.cat_progress_indicator_multi_color_demo_title) {
           @Nullable
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new ProgressIndicatorMultiColorDemoFragment();
           }
         });
@@ -113,7 +113,7 @@ public class ProgressIndicatorFragment extends DemoLandingFragment {
       return new FeatureDemo(
           R.string.cat_progress_indicator_title, R.drawable.ic_progress_activity_24px) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new ProgressIndicatorFragment();
         }
       };

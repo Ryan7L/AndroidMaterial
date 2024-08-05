@@ -102,11 +102,11 @@ public abstract class BaseTopAppBarActionBarDemoActivity extends DemoActivity {
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    return DemoUtils.showSnackbar(this, item) || super.onOptionsItemSelected(item);
+    return DemoUtils.showSnackBar(this, item) || super.onOptionsItemSelected(item);
   }
 
   @Override
-  public boolean shouldShowDefaultDemoActionBar() {
+  public boolean isShouldShowDefaultDemoActionBar() {
     return false;
   }
 
@@ -116,13 +116,13 @@ public abstract class BaseTopAppBarActionBarDemoActivity extends DemoActivity {
   }
 
   @Override
-  protected boolean shouldSetUpContainerTransform() {
+  protected boolean isShouldSetUpContainerTransform() {
     return false;
   }
 
   // Disable edge to edge due to that causing glitches with the status bar during action mode.
   @Override
-  protected boolean shouldApplyEdgeToEdgePreference() {
+  protected boolean isShouldApplyEdgeToEdgePreference() {
     return false;
   }
 }

@@ -47,7 +47,7 @@ public class TextFieldFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new TextFieldMainDemoFragment();
       }
     };
@@ -59,49 +59,49 @@ public class TextFieldFragment extends DemoLandingFragment {
     additionalDemos.add(
         new Demo(R.string.cat_textfield_filled_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new TextFieldFilledDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_textfield_outlined_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new TextFieldOutlinedDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_textfield_exposed_dropdown_menu_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new TextFieldExposedDropdownMenuDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_textfield_filled_icons_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new TextFieldFilledIconsDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_textfield_outlined_icons_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new TextFieldOutlinedIconsDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_textfield_prefix_suffix_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new TextFieldPrefixSuffixDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_textfield_legacy_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new TextFieldLegacyDemoFragment();
           }
         });
@@ -121,7 +121,7 @@ public class TextFieldFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_textfield_title, R.drawable.ic_textfield) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new TextFieldFragment();
         }
       };

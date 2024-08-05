@@ -45,7 +45,7 @@ public class CheckBoxFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new CheckBoxMainDemoFragment();
       }
     };
@@ -65,7 +65,7 @@ public class CheckBoxFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_checkbox_title, R.drawable.ic_checkbox) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new CheckBoxFragment();
         }
       };

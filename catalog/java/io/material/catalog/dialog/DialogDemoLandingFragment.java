@@ -44,7 +44,7 @@ public class DialogDemoLandingFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new DialogMainDemoFragment();
       }
     };
@@ -64,7 +64,7 @@ public class DialogDemoLandingFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_dialog_title, R.drawable.ic_dialog) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new DialogDemoLandingFragment();
         }
       };

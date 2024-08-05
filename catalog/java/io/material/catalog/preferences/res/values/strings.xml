@@ -39,4 +39,10 @@
   <string name="edge_to_edge_preference_description" description="Title of edge to edge mode toggle [CHAR LIMIT=NONE]">Edge To Edge</string>
   <string name="edge_to_edge_preference_option_on" description="Option to enable edge to edge mode [CHAR LIMIT=NONE]">On</string>
   <string name="edge_to_edge_preference_option_off" description="Option to disable edge to edge mode [CHAR LIMIT=NONE]">Off</string>
+
+  <string name="font_preference_description" translatable="false">字体</string>
+  <string name="font_preference_option_default" translatable="false">默认</string>
+  <string name="font_preference_option_custom_1" translatable="false">Custom1</string>
+  <string name="font_preference_option_custom_2" translatable="false">Custom2</string>
+  <string name="font_preference_option_custom_3" translatable="false">Custom3</string>
 </resources>

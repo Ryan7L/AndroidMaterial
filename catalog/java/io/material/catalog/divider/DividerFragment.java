@@ -54,7 +54,7 @@ public class DividerFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new DividerMainDemoFragment();
       }
     };
@@ -68,7 +68,7 @@ public class DividerFragment extends DemoLandingFragment {
         new Demo(R.string.cat_divider_item_decoration_demo_title) {
           @Nullable
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new DividerItemDecorationDemoFragment();
           }
         }
@@ -100,7 +100,7 @@ public class DividerFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(getDemoTitleResId(), getDemoDrawableResId()) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new DividerFragment();
         }
       };

@@ -63,7 +63,7 @@ public class ExtendedFabBehaviorDemoFragment extends DemoFragment {
   }
 
   @Override
-  public boolean shouldShowDefaultDemoActionBar() {
+  public boolean isShouldShowDefaultDemoActionBar() {
     return false;
   }
 

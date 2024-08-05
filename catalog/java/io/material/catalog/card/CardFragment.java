@@ -48,7 +48,7 @@ public class CardFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new CardMainDemoFragment();
       }
     };
@@ -59,37 +59,37 @@ public class CardFragment extends DemoLandingFragment {
     return Arrays.asList(
         new Demo(R.string.cat_card_selection_mode) {
           @Override
-          public Intent createActivityIntent() {
+          public Intent getActivityIntent() {
             return new Intent(getContext(), CardSelectionModeActivity.class);
           }
         },
         new Demo(R.string.cat_card_draggable_card) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new DraggableCardFragment();
           }
         },
         new Demo(R.string.cat_card_states) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new CardStatesFragment();
           }
         },
         new Demo(R.string.cat_card_rich_media_demo) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new CardRichMediaDemoFragment();
           }
         },
         new Demo(R.string.cat_card_list) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new CardListDemoFragment();
           }
         },
         new Demo(R.string.cat_card_swipe_dismiss) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new CardSwipeDismissFragment();
           }
         });
@@ -109,7 +109,7 @@ public class CardFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_card_title, R.drawable.ic_card) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new CardFragment();
         }
       };

@@ -45,7 +45,7 @@ public class RadioButtonFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new RadioButtonMainDemoFragment();
       }
     };
@@ -65,7 +65,7 @@ public class RadioButtonFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_radiobutton_title, R.drawable.ic_radiobutton) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new RadioButtonFragment();
         }
       };

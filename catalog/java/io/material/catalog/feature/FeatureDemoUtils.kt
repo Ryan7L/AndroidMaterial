@@ -1,140 +1,125 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.feature
 
-package io.material.catalog.feature;
+import android.content.Context
+import android.os.Build
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.preference.PreferenceManager
+import com.google.android.material.color.MaterialColors
+import com.google.android.material.transition.Hold
+import com.google.android.material.transition.MaterialContainerTransform
+import io.material.catalog.R
 
-import io.material.catalog.R;
+abstract class FeatureDemoUtils {
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-import android.view.View;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.color.MaterialColors;
-import com.google.android.material.transition.Hold;
-import com.google.android.material.transition.MaterialContainerTransform;
+  companion object {
 
-/** Utils for feature demos. */
-public abstract class FeatureDemoUtils {
+    const val ARG_TRANSITION_NAME = "ARG_TRANSITION_NAME"
 
-  static final String ARG_TRANSITION_NAME = "ARG_TRANSITION_NAME";
+    const val MAIN_ACTIVITY_FRAGMENT_CONTAINER_ID = R.id.container
 
-  private static final int MAIN_ACTIVITY_FRAGMENT_CONTAINER_ID = R.id.container;
-  private static final String KEY_DEFAULT_CATALOG_DEMO_LANDING =
-      "default_catalog_demo_landing_preference";
-  private static final String KEY_DEFAULT_CATALOG_DEMO = "default_catalog_demo_preference";
+    const val KEY_DEFAULT_CATALOG_DEMO_LANDING = "default_catalog_demo_landing_preference"
 
-  public static void startFragment(FragmentActivity activity, Fragment fragment, String tag) {
-    startFragmentInternal(activity, fragment, tag, null, null);
-  }
+    const val KEY_DEFAULT_CATALOG_DEMO = "default_catalog_demo_preference"
 
-  public static void startFragment(
-      FragmentActivity activity,
-      Fragment fragment,
-      String tag,
-      @Nullable View sharedElement,
-      @Nullable String sharedElementName) {
-    startFragmentInternal(activity, fragment, tag, sharedElement, sharedElementName);
-  }
+    @JvmStatic
+    fun saveDefaultDemo(context: Context, value: String) {
+      PreferenceManager.getDefaultSharedPreferences(context).edit().putString(
+        KEY_DEFAULT_CATALOG_DEMO, value
+      ).apply()
+    }
 
-  public static void startFragmentInternal(
-      FragmentActivity activity,
-      Fragment fragment,
-      String tag,
-      @Nullable View sharedElement,
-      @Nullable String sharedElementName) {
-    FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+    @JvmStatic
+    fun getDefaultDemo(context: Context): String =
+      PreferenceManager.getDefaultSharedPreferences(context).getString(KEY_DEFAULT_CATALOG_DEMO, "")
+        ?: ""
 
-    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP
-        && sharedElement != null
-        && sharedElementName != null) {
-      Fragment currentFragment = getCurrentFragment(activity);
+    @JvmStatic
+    fun saveDefaultDemoLanding(context: Context, value: String) {
+      PreferenceManager.getDefaultSharedPreferences(context).edit().putString(
+        KEY_DEFAULT_CATALOG_DEMO_LANDING, value
+      ).apply()
+    }
 
-      Context context = currentFragment.requireContext();
-      MaterialContainerTransform transform =
-          new MaterialContainerTransform(context, /* entering= */ true);
-      transform.setContainerColor(MaterialColors.getColor(sharedElement, R.attr.colorSurface));
-      transform.setFadeMode(MaterialContainerTransform.FADE_MODE_THROUGH);
-      fragment.setSharedElementEnterTransition(transform);
-      transaction.addSharedElement(sharedElement, sharedElementName);
+    @JvmStatic
+    fun getDefaultDemoLanding(context: Context): String =
+      PreferenceManager.getDefaultSharedPreferences(context).getString(
+        KEY_DEFAULT_CATALOG_DEMO_LANDING, ""
+      ) ?: ""
 
-      Hold hold = new Hold();
-      // Add root view as target for the Hold so that the entire view hierarchy is held in place as
-      // one instead of each child view individually. Helps keep shadows during the transition.
-      hold.addTarget(currentFragment.getView());
-      hold.setDuration(transform.getDuration());
-      currentFragment.setExitTransition(hold);
+    @JvmStatic
+    fun getCurrentFragment(activity: FragmentActivity): Fragment? =
+      activity.supportFragmentManager.findFragmentById(
+        MAIN_ACTIVITY_FRAGMENT_CONTAINER_ID
+      )
 
-      if (fragment.getArguments() == null) {
-        Bundle args = new Bundle();
-        args.putString(ARG_TRANSITION_NAME, sharedElementName);
-        fragment.setArguments(args);
+    @JvmStatic
+    fun startFragment(activity: FragmentActivity, fragment: Fragment, tag: String) {
+      startFragment(activity, fragment, tag, null, null)
+    }
+
+    @JvmStatic
+    fun startFragment(
+      activity: FragmentActivity,
+      fragment: Fragment,
+      tag: String,
+      sharedElement: View?,
+      sharedElementName: String?
+    ) {
+      startFragmentInternal(activity, fragment, tag, sharedElement, sharedElementName)
+    }
+
+    @JvmStatic
+    private fun startFragmentInternal(
+      activity: FragmentActivity,
+      fragment: Fragment,
+      tag: String,
+      sharedElement: View?,
+      sharedElementName: String?
+    ) {
+      //FragmentTransaction 是 Android 中用于管理 Fragment 事务的类。 它提供了一组 API，用于执行添加、移除、替换和显示 Fragment 等操作。
+      // 您可以将 FragmentTransaction 视为一系列对 Fragment 的操作，这些操作会被一起执行。
+      // 可以通过 FragmentManager 的 beginTransaction() 方法获取 FragmentTransaction 对象
+      val transaction = activity.supportFragmentManager.beginTransaction()
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+        && sharedElement != null && sharedElementName != null
+      ) {
+        val currentFragment = getCurrentFragment(activity)
+        val context = currentFragment?.requireContext()
+        context ?: return
+
+        val transform = MaterialContainerTransform(context, true)
+          .apply {
+            containerColor = MaterialColors.getColor(sharedElement, R.attr.colorSurface)
+            fadeMode = MaterialContainerTransform.FADE_MODE_THROUGH
+          }
+        fragment.sharedElementEnterTransition = transform
+        transaction.addSharedElement(sharedElement, sharedElementName)
+        Hold().also {
+          //  将根视图添加为“保留”的目标，以便将整个视图层次结构作为一个整体保留，而不是单独保留每个子视图。有助于在过渡过程中保持阴影。
+          it.addTarget(currentFragment.view!!)
+          it.duration = transform.duration
+          currentFragment.exitTransition = it
+        }
+        if (fragment.arguments == null) {
+          fragment.arguments = Bundle().apply { putString(ARG_TRANSITION_NAME, sharedElementName) }
+        } else {
+          fragment.arguments?.putString(ARG_TRANSITION_NAME, sharedElementName)
+        }
       } else {
-        fragment.getArguments().putString(ARG_TRANSITION_NAME, sharedElementName);
-      }
-    } else {
-      transaction.setCustomAnimations(
+        transaction.setCustomAnimations(
           R.anim.abc_grow_fade_in_from_bottom,
           R.anim.abc_fade_out,
           R.anim.abc_fade_in,
-          R.anim.abc_shrink_fade_out_from_bottom);
+          R.anim.abc_shrink_fade_out_from_bottom
+        )
+      }
+      transaction.replace(MAIN_ACTIVITY_FRAGMENT_CONTAINER_ID, fragment, tag)
+        .addToBackStack(null)
+        .commit()
     }
-
-    transaction
-        .replace(MAIN_ACTIVITY_FRAGMENT_CONTAINER_ID, fragment, tag)
-        .addToBackStack(null /* name */)
-        .commit();
   }
 
-  public static Fragment getCurrentFragment(FragmentActivity activity) {
-    return activity
-        .getSupportFragmentManager()
-        .findFragmentById(MAIN_ACTIVITY_FRAGMENT_CONTAINER_ID);
-  }
-
-  @NonNull
-  public static String getDefaultDemoLanding(@NonNull Context context) {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    return preferences.getString(KEY_DEFAULT_CATALOG_DEMO_LANDING, "");
-  }
-
-  public static void saveDefaultDemoLanding(@NonNull Context context, @NonNull String val) {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    SharedPreferences.Editor editor = preferences.edit();
-    editor.putString(KEY_DEFAULT_CATALOG_DEMO_LANDING, val);
-    editor.apply();
-  }
-
-  @NonNull
-  public static String getDefaultDemo(@NonNull Context context) {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    return preferences.getString(KEY_DEFAULT_CATALOG_DEMO, "");
-  }
-
-  public static void saveDefaultDemo(@NonNull Context context, @NonNull String val) {
-    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    SharedPreferences.Editor editor = preferences.edit();
-    editor.putString(KEY_DEFAULT_CATALOG_DEMO, val);
-    editor.apply();
-  }
 }

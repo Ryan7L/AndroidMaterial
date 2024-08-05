@@ -52,7 +52,7 @@ public class SearchFragment extends DemoLandingFragment {
     return new Demo() {
       @Nullable
       @Override
-      public Intent createActivityIntent() {
+      public Intent getActivityIntent() {
         return new Intent(getContext(), SearchMainDemoActivity.class);
       }
     };
@@ -65,7 +65,7 @@ public class SearchFragment extends DemoLandingFragment {
     additionalDemos.add(
         new Demo(R.string.cat_searchbar_recycler_title) {
           @Override
-          public Intent createActivityIntent() {
+          public Intent getActivityIntent() {
             return new Intent(getContext(), SearchRecyclerDemoActivity.class);
           }
         });
@@ -86,7 +86,7 @@ public class SearchFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_searchbar_title, R.drawable.ic_search_bar) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new SearchFragment();
         }
       };

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2021 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,7 @@
   -->
 
 <resources>
-  <item type="id" name="theme_feature_corner_family" />
-  <item type="id" name="theme_feature_corner_size" />
+  <item name="theme_feature_corner_family" type="id" />
+  <item name="theme_feature_corner_size" type="id" />
+  <item name="theme_feature_font" type="id" />
 </resources>

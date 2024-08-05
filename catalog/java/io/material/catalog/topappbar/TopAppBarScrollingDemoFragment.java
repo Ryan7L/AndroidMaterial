@@ -66,11 +66,11 @@ public class TopAppBarScrollingDemoFragment extends DemoFragment {
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    return DemoUtils.showSnackbar(getActivity(), item) || super.onOptionsItemSelected(item);
+    return DemoUtils.showSnackBar(getActivity(), item) || super.onOptionsItemSelected(item);
   }
 
   @Override
-  public boolean shouldShowDefaultDemoActionBar() {
+  public boolean isShouldShowDefaultDemoActionBar() {
     return false;
   }
 }

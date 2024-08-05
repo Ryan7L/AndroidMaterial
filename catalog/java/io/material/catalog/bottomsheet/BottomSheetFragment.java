@@ -48,7 +48,7 @@ public class BottomSheetFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new BottomSheetMainDemoFragment();
       }
     };
@@ -60,7 +60,7 @@ public class BottomSheetFragment extends DemoLandingFragment {
     additionalDemos.add(
         new Demo(R.string.cat_bottomsheet_scrollable_content_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new BottomSheetScrollableContentDemoFragment();
           }
         });
@@ -81,7 +81,7 @@ public class BottomSheetFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_bottomsheet_title, R.drawable.ic_bottomsheet) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new BottomSheetFragment();
         }
       };

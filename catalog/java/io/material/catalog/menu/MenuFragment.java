@@ -54,7 +54,7 @@ public class MenuFragment extends DemoLandingFragment {
     return new Demo() {
       @Nullable
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         MenuMainDemoFragment menuMainDemoFragment = new MenuMainDemoFragment();
         menuMainDemoFragment.setPopupItemLayoutRes(getAdapterItemLayout());
         return menuMainDemoFragment;
@@ -76,7 +76,7 @@ public class MenuFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_menus_title, R.drawable.ic_menu) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new MenuFragment();
         }
       };

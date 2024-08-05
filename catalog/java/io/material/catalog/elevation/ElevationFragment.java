@@ -48,7 +48,7 @@ public class ElevationFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new ElevationMainDemoFragment();
       }
     };
@@ -59,13 +59,13 @@ public class ElevationFragment extends DemoLandingFragment {
     return Arrays.asList(
         new Demo(R.string.cat_elevation_overlay_title) {
           @Override
-          public Intent createActivityIntent() {
+          public Intent getActivityIntent() {
             return new Intent(getContext(), ElevationOverlayDemoActivity.class);
           }
         },
         new Demo(R.string.cat_elevation_animation_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new ElevationAnimationDemoFragment();
           }
         });
@@ -85,7 +85,7 @@ public class ElevationFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_elevation_fragment_title, R.drawable.ic_elevation) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new ElevationFragment();
         }
       };

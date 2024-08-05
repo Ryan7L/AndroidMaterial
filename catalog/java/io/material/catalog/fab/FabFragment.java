@@ -47,7 +47,7 @@ public class FabFragment extends DemoLandingFragment {
   public Demo getMainDemo() {
     return new Demo() {
       @Override
-      public Fragment createFragment() {
+      public Fragment getFragment() {
         return new FabMainDemoFragment();
       }
     };
@@ -59,14 +59,14 @@ public class FabFragment extends DemoLandingFragment {
     additionalDemos.add(
         new Demo(R.string.cat_extended_fab_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new ExtendedFabDemoFragment();
           }
         });
     additionalDemos.add(
         new Demo(R.string.cat_extended_fab_behavior_demo_title) {
           @Override
-          public Fragment createFragment() {
+          public Fragment getFragment() {
             return new ExtendedFabBehaviorDemoFragment();
           }
         });
@@ -87,7 +87,7 @@ public class FabFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_fab_title, R.drawable.ic_fab) {
         @Override
-        public Fragment createFragment() {
+        public Fragment getFragment() {
           return new FabFragment();
         }
       };

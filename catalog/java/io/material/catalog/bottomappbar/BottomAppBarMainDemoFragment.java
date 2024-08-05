@@ -49,7 +49,7 @@ import com.google.android.material.shape.ShapeAppearanceModel;
 import com.google.android.material.snackbar.Snackbar;
 import io.material.catalog.feature.DemoFragment;
 import io.material.catalog.feature.DemoUtils;
-import io.material.catalog.preferences.CatalogPreferencesHelper;
+import io.material.catalog.preferences.PreferencesDialogHelper;
 import java.util.List;
 
 /** A fragment that displays the main Bottom App Bar demos for the Catalog app. */
@@ -83,7 +83,7 @@ public class BottomAppBarMainDemoFragment extends DemoFragment {
   protected CoordinatorLayout coordinatorLayout;
   protected FloatingActionButton fab;
 
-  @Nullable private CatalogPreferencesHelper catalogPreferencesHelper;
+  @Nullable private PreferencesDialogHelper preferencesDialogHelper;
   private BottomSheetBehavior<View> bottomDrawerBehavior;
 
   @Override
@@ -93,7 +93,7 @@ public class BottomAppBarMainDemoFragment extends DemoFragment {
 
     // The preferences helper is used in an adhoc way with the toolbar since the BottomAppBar is
     // set as the action bar.
-    catalogPreferencesHelper = new CatalogPreferencesHelper(getParentFragmentManager());
+    preferencesDialogHelper = PreferencesDialogHelper.createHelper(getParentFragmentManager());
   }
 
   @Override
@@ -119,9 +119,9 @@ public class BottomAppBarMainDemoFragment extends DemoFragment {
 
     Toolbar toolbar = view.findViewById(R.id.toolbar);
     toolbar.setTitle(getDefaultDemoTitle());
-    catalogPreferencesHelper.onCreateOptionsMenu(
+    preferencesDialogHelper.onCreateOptionsMenu(
         toolbar.getMenu(), getActivity().getMenuInflater());
-    toolbar.setOnMenuItemClickListener(catalogPreferencesHelper::onOptionsItemSelected);
+    toolbar.setOnMenuItemClickListener(preferencesDialogHelper::onOptionsItemSelected);
     toolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed());
 
     coordinatorLayout = view.findViewById(R.id.coordinator_layout);
@@ -177,7 +177,7 @@ public class BottomAppBarMainDemoFragment extends DemoFragment {
   }
 
   @Override
-  public boolean shouldShowDefaultDemoActionBar() {
+  public boolean isShouldShowDefaultDemoActionBar() {
     return false;
   }
 

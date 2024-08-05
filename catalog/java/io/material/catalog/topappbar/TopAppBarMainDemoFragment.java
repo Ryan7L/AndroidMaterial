@@ -109,11 +109,11 @@ public class TopAppBarMainDemoFragment extends DemoFragment {
       badgeDrawable.clearNumber();
       badgeDrawable.setVisible(false);
     }
-    return DemoUtils.showSnackbar(getActivity(), item) || super.onOptionsItemSelected(item);
+    return DemoUtils.showSnackBar(getActivity(), item) || super.onOptionsItemSelected(item);
   }
 
   @Override
-  public boolean shouldShowDefaultDemoActionBar() {
+  public boolean isShouldShowDefaultDemoActionBar() {
     return false;
   }
 }
