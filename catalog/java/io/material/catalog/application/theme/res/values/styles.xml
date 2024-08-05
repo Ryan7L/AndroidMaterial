@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2017 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,18 +13,33 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
+
+<!--
+
+theme 和 style 区别
+在 Android 中，styles 和 themes 文件夹都是用于存放样式和主题资源的，但它们之间有一些关键的区别：
+styles 文件夹 存放的是**样式（Style）**资源。 样式是一组属性的集合， 用于定义单个 View 的外观，例如颜色、字体、大小等。您可以将样式应用于任何 View，例如 Button、TextView 或 ImageView。
+themes 文件夹 存放的是**主题（Theme）**资源。 主题也是一组属性的集合， 但它用于定义整个应用程序、 Activity 或 View 层次结构的整体外观。主题可以包含颜色、字体、 可绘制对象、 样式等属性。
+简单来说，样式用于单个 View，而主题用于整个应用程序或 Activity。
+更详细的区别：
+作用范围： 样式作用于单个 View，而主题作用于整个应用程序、Activity 或 View 层次结构。
+属性类型： 样式只能包含 View 的属性，而主题可以包含 View 的属性以及其他属性，例如颜色、字体、可绘制对象等。
+继承： 样式可以继承其他样式，而主题可以继承其他主题。
+应用方式： 样式在布局文件中通过 style 属性应用于 View，而主题在 AndroidManifest.xml 文件中通过 android:theme 属性应用于应用程序或 Activity。
+
+
+
+-->
 <resources>
 
-  <!-- For the catalog we know that toolbars will always be on top of a "surface" color,
-       so it's better for them to have no background, especially because it's common for
-       toolbars to be nested in an AppBarLayout which has its own background handling. -->
+  <!-- 对于应用，我们知道工具栏始终位于“surface”颜色之上，因此它们最好没有背景，特别是因为工具栏通常嵌套在具有自己的背景处理的 AppBarLayout 中。 -->
   <style name="Widget.Catalog.Toolbar" parent="Widget.Material3.Toolbar.OnSurface" />
-
+  <!-- toolbar 上的关闭按钮的样式 -->
   <style name="Widget.Catalog.Toolbar.WithCloseButton">
     <item name="navigationContentDescription">@string/toolbar_navigation_close_description</item>
     <item name="navigationIcon">@drawable/ic_close_vd_theme_24px</item>
   </style>
-
+  <!--toolBar 上按钮的样式-->
   <style name="Widget.Catalog.TocButton" parent="Widget.AppCompat.ImageButton">
     <item name="android:minWidth">@dimen/mtrl_min_touch_target_size</item>
     <item name="android:minHeight">@dimen/mtrl_min_touch_target_size</item>

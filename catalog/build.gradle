@@ -52,6 +52,7 @@ dependencies {
   testImplementation "com.google.truth:truth:${project.rootProject.ext.truthVersion}"
   testImplementation "org.mockito:mockito-core:${project.rootProject.ext.mockitoCoreVersion}"
   testImplementation "org.robolectric:robolectric:${project.rootProject.ext.robolectricVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.8.22"
 }
 
 def srcDirs = [

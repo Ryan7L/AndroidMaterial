@@ -1,106 +1,71 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.application
 
-package io.material.catalog.application;
+import android.app.Application
+import android.content.pm.PackageManager
+import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.multidex.MultiDexApplication
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import io.material.catalog.preferences.BaseCatalogPreferences
+import javax.inject.Inject
 
-import android.app.Application;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import androidx.multidex.MultiDexApplication;
-import androidx.appcompat.app.AppCompatDelegate;
-import android.util.Log;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasAndroidInjector;
-import io.material.catalog.preferences.BaseCatalogPreferences;
-import java.lang.reflect.InvocationTargetException;
-import javax.inject.Inject;
 
-/** Catalog application class that provides support for using dispatching Dagger injectors. */
-public class CatalogApplication extends MultiDexApplication implements HasAndroidInjector {
+private const val TAG = "CatalogApplication"
+private const val COMPONENT_OVERRIDE_KEY = "io.material.catalog.application.componentOverride"
 
-  /** Logging tag */
-  public static final String TAG = "CatalogApplication";
-  /** Key that contains the class name to replace the default application component. */
-  public static final String COMPONENT_OVERRIDE_KEY =
-      "io.material.catalog.application.componentOverride";
+open class CatalogApplication : MultiDexApplication(), HasAndroidInjector {
 
-  @Inject DispatchingAndroidInjector<Object> androidInjector;
-  @Inject BaseCatalogPreferences catalogPreferences;
+  @Inject
+  lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+  @Inject
+  lateinit var catalogPreferences: BaseCatalogPreferences
 
-    if (!overrideApplicationComponent(this)) {
-      DaggerCatalogApplicationComponent.builder().application(this).build().inject(this);
+  override fun onCreate() {
+    super.onCreate()
+    AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+    if (!overrideApplicationComponent(this)){
+      DaggerCatalogApplicationComponent.builder().application(this).build().inject(this)
     }
-    catalogPreferences.applyPreferences(this);
+    catalogPreferences.applyPreferences(this)
+  }
+  /**
+   * 使用在 AndroidManifest.xml 元数据中指定的键为[COMPONENT_OVERRIDE_KEY]组件替换应用程序组件。如果组件已正确初始化并替换，则返回true ，否则返回false 。
+   * 这假设替换组件可以按照与默认组件完全相同的方式进行初始化。
+   * 抑制未经检查的警告，因为我们无法在此方法中为 Class 的实例提供静态类型的类参数。
+   */
+  private fun overrideApplicationComponent(catalogApplication: CatalogApplication): Boolean {
+    try {
+      val applicationInfo =
+        packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
+      val className = applicationInfo.metaData.getString(COMPONENT_OVERRIDE_KEY)
+      className ?: let {
+        Log.i(
+          TAG,
+          "overrideApplicationComponent: Component override metadata not found, using default component."
+        )
+        return false
+      }
+      Log.i(TAG, "overrideApplicationComponent: $className")
+      val builderObject = Class.forName(className).getMethod("builder").invoke(null)
+      val builderClass = builderObject::class.java
+      builderClass.getMethod("application", Application::class.java)
+        .invoke(builderObject, catalogApplication)
+      val component = builderClass.getMethod("build").invoke(builderObject)
+      component.javaClass.getMethod("inject", CatalogApplication::class.java)
+        .invoke(component, catalogApplication)
+      return true
+
+    } catch (e: Exception) {
+      e.printStackTrace()
+      return false
+    }
   }
 
   /**
-   * Replaces the application component by the one specified in AndroidManifest.xml metadata with
-   * key {@link #COMPONENT_OVERRIDE_KEY}. Returns {@code true} if the component was properly
-   * initialized and replaced, otherwise returns {@code false}.
-   *
-   * <p>This assumes that the replacement component can be initialized exactly the same way as the
-   * default component.
-   *
-   * <p>Suppressing unchecked warnings because there is no way we have a statically typed class
-   * argument for instances of Class in this method.
+   * 返回一个 [AndroidInjector]。
    */
-  private boolean overrideApplicationComponent(CatalogApplication catalogApplication) {
-    try {
-      ApplicationInfo applicationInfo =
-          getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
-      String className = applicationInfo.metaData.getString(COMPONENT_OVERRIDE_KEY);
-      if (className == null) {
-        // Fail early
-        Log.i(TAG, "Component override metadata not found, using default component.");
-        return false;
-      }
-      Log.i(TAG, className);
-      Object builderObject = Class.forName(className).getMethod("builder").invoke(null);
-      Class<?> builderClass = builderObject.getClass();
-      builderClass
-          .getMethod("application", Application.class)
-          .invoke(builderObject, catalogApplication);
-      Object component = builderClass.getMethod("build").invoke(builderObject);
-      component
-          .getClass()
-          .getMethod("inject", getCatalogApplicationClass())
-          .invoke(component, catalogApplication);
-      return true;
-    } catch (PackageManager.NameNotFoundException
-        | ClassNotFoundException
-        | NoSuchMethodException
-        | InvocationTargetException
-        | IllegalAccessException e) {
-      Log.e(TAG, "Component override failed with exception:", e);
-    }
-    return false;
-  }
-
-  protected Class<? extends CatalogApplication> getCatalogApplicationClass() {
-    return CatalogApplication.class;
-  }
-
-  @Override
-  public AndroidInjector<Object> androidInjector() {
-    return androidInjector;
-  }
+  override fun androidInjector(): AndroidInjector<Any> = androidInjector
 }
