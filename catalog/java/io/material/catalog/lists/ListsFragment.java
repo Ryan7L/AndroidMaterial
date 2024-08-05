@@ -51,24 +51,24 @@ public class ListsFragment extends DemoLandingFragment {
     };
   }
 
-  /** The Dagger module for {@link ListsFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
-
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract ListsFragment contributeInjector();
-
-    @IntoSet
-    @Provides
-    @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(R.string.cat_lists_title, R.drawable.ic_lists) {
-        @Override
-        public Fragment createFragment() {
-          return new ListsFragment();
-        }
-      };
-    }
-  }
+//  /** The Dagger module for {@link ListsFragment} dependencies. */
+//  @dagger.Module
+//  public abstract static class Module {
+//
+//    @FragmentScope
+//    @ContributesAndroidInjector
+//    abstract ListsFragment contributeInjector();
+//
+//    @IntoSet
+//    @Provides
+//    @ActivityScope
+//    static FeatureDemo provideFeatureDemo() {
+//      return new FeatureDemo(R.string.cat_lists_title, R.drawable.ic_lists) {
+//        @Override
+//        public Fragment createFragment() {
+//          return new ListsFragment();
+//        }
+//      };
+//    }
+//  }
 }

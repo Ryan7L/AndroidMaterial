@@ -51,24 +51,24 @@ public class SwitchFragment extends DemoLandingFragment {
     };
   }
 
-  /** The Dagger module for {@link SwitchFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
-
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract SwitchFragment contributeInjector();
-
-    @IntoSet
-    @Provides
-    @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(R.string.cat_switch_title, R.drawable.ic_switch) {
-        @Override
-        public Fragment createFragment() {
-          return new SwitchFragment();
-        }
-      };
-    }
-  }
+//  /** The Dagger module for {@link SwitchFragment} dependencies. */
+//  @dagger.Module
+//  public abstract static class Module {
+//
+//    @FragmentScope
+//    @ContributesAndroidInjector
+//    abstract SwitchFragment contributeInjector();
+//
+//    @IntoSet
+//    @Provides
+//    @ActivityScope
+//    static FeatureDemo provideFeatureDemo() {
+//      return new FeatureDemo(R.string.cat_switch_title, R.drawable.ic_switch) {
+//        @Override
+//        public Fragment createFragment() {
+//          return new SwitchFragment();
+//        }
+//      };
+//    }
+//  }
 }
