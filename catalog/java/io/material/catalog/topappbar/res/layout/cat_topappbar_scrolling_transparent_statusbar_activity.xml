@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2017 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,35 +13,52 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinator"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/coordinator"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true">
 
   <com.google.android.material.appbar.AppBarLayout
-      android:id="@+id/appbarlayout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:fitsSystemWindows="true"
-      app:statusBarForeground="?attr/colorPrimarySurface">
+    android:id="@+id/appbarlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    app:statusBarForeground="?attr/colorSurface">
+    <!--  如果不设置statusBarForeground 属性，则会在向上滚动时，状态栏部分会出现问题，可以通过 设置 ?attr/colorSurface 和 在代码中设置
+    view.findViewById<AppBarLayout>(R.id.appbarlayout).apply {
+          setStatusBarForegroundColor(
+          MaterialColors.getColor(
+            this,
+            R.attr.colorSurface
+          )
+        )
+        }
+        完成状态栏与主题的适配，避免此问题
+    -->
+    <!--
+        statusBarForeground： 用于设置 状态栏的前景。
+            作用
+                绘制状态栏背景: statusBarForeground 允许你在状态栏区域绘制一个 Drawable，它会覆盖状态栏的默认背景。
+                控制状态栏内容可见性: 通过设置合适的 Drawable，你可以控制状态栏内容（ 例如时间、 电量图标等） 的可见性。 例如， 使用半透明的 Drawable 可以使状态栏内容仍然可见，而使用不透明的 Drawable 则会完全遮挡状态栏内容。
+
+    -->
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        style="?attr/catalogToolbarWithCloseButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_scrollFlags="scroll|enterAlways|snap" />
+      android:id="@+id/toolbar"
+      style="?attr/catalogToolbarWithCloseButtonStyle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_scrollFlags="scroll|enterAlways|snap" />
   </com.google.android.material.appbar.AppBarLayout>
 
   <androidx.core.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <include layout="@layout/cat_topappbar_filler_text_view"/>
+    <include layout="@layout/cat_topappbar_filler_text_view" />
   </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

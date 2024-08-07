@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="cat_text_view_title">TextView</string>
+  <string name="cat_text_view_description">
+    TextView 与 MaterialTextView 的使用
+    MaterialTextView 是 TextView 的增强版本，提供更好的 Material Design 支持和更精细的文本样式控制。 在新项目中，建议优先使用 MaterialTextView。
+    MaterialTextView 支持 lineHeight 属性，可以更精确地控制文本的行高，即使在使用 TextAppearance 时也能生效。 这在 TextView 早期版本中是不支持的。
+    总的来说，MaterialTextView 提供了更现代化、更符合 Material Design 规范的文本显示方式，并增强了文本样式控制和可访问性。
+  </string>
+  <string name="cat_text_view_additional_title">MaterialTextView</string>
+  <string name="cat_text_view_main_title">android.widget.TextView</string>
+  <string name="widget_text_view_resource">详细属性</string>
+  <string name="widget_text_view_url">https://zhima.blog.csdn.net/article/details/121826879</string>
+  <array name="resource_link">
+    <item name="widget_text_view_resource">详细属性</item>
+  </array>
+  <array name="link_url">
+    <item name="widget_text_view_url">https://zhima.blog.csdn.net/article/details/121826879</item>
+  </array>
+</resources>

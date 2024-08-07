@@ -101,7 +101,7 @@ public class TabsFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_tabs_title, R.drawable.ic_tabs) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new TabsFragment();
         }
       };

@@ -86,7 +86,7 @@ public class SearchFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_searchbar_title, R.drawable.ic_search_bar) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new SearchFragment();
         }
       };

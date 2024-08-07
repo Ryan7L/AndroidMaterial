@@ -68,7 +68,7 @@ public class SideSheetFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_sidesheet_title, R.drawable.ic_side_navigation_24px) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new SideSheetFragment();
         }
       };

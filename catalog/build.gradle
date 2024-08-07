@@ -1,4 +1,4 @@
-plugins{
+plugins {
   id("kotlin-kapt")
   id("org.jetbrains.kotlin.android")
   id("com.android.application")
@@ -23,7 +23,7 @@ dependencies {
   api "androidx.recyclerview:recyclerview:1.2.1"
   api 'androidx.window:window:1.0.0-beta04'
   api "androidx.window:window-java:1.0.0-beta04"
-  api "androidx.preference:preference:1.1.1"
+  api "androidx.preference:preference-ktx:1.2.0"
 
   api 'com.google.guava:guava:33.2.1-android'
   modules {
@@ -52,7 +52,7 @@ dependencies {
   testImplementation "com.google.truth:truth:${project.rootProject.ext.truthVersion}"
   testImplementation "org.mockito:mockito-core:${project.rootProject.ext.mockitoCoreVersion}"
   testImplementation "org.robolectric:robolectric:${project.rootProject.ext.robolectricVersion}"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:1.8.22"
+  implementation "org.jetbrains.kotlin:kotlin-reflect:1.8.22"
 }
 
 def srcDirs = [
@@ -102,7 +102,10 @@ def srcDirs = [
   'timepicker',
   'topappbar',
   'transition',
-  'windowpreferences'
+  'windowpreferences',
+  'z_ryan/bar',
+  'z_ryan/textview',
+  'z_ryan/layout',
 ]
 
 android {

@@ -21,7 +21,17 @@
   android:layout_height="match_parent"
   android:animateLayoutChanges="true"
   android:orientation="vertical">
-
+<!--
+    animateLayoutChanges：
+    animateLayoutChanges 是 ViewGroup 的一个属性，用于启用或禁用布局更改的自动动画。  当 animateLayoutChanges 设置为 true 时，
+    ViewGroup 中的任何布局更改（例如添加、删除或修改子 View）都会触发动画效果。
+    可以使用 LayoutTransition 类来自定义动画效果。 LayoutTransition 允许您为不同的布局更改事件设置不同的动画， 例如：
+      APPEARING：View 添加到 ViewGroup 时
+      DISAPPEARING：View 从 ViewGroup 中移除时
+      CHANGE_APPEARING：由于添加 View 而导致其他 View 发生更改时
+      CHANGE_DISAPPEARING：由于移除 View 而导致其他 View 发生更改时
+      您可以使用 setAnimator() 方法为每个事件设置自定义动画
+-->
   <androidx.coordinatorlayout.widget.CoordinatorLayout
       android:id="@+id/cat_demo_fragment_container"
       android:layout_width="match_parent"
@@ -32,7 +42,12 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:fitsSystemWindows="true">
-
+<!--
+    fitsSystemWindows 是 Android View 的一个属性，用于指示 View 是否应该调整其 padding 以适应系统窗口，例如状态栏、导航栏等。
+    作用：
+    当 fitsSystemWindows 设置为 true 时，View 会根据系统窗口的位置和大小调整其 padding，以确保 View 的内容不会被系统窗口遮挡。
+    例如，如果状态栏的高度为 24dp，并且 fitsSystemWindows 为 true，则 View 的顶部 padding 将至少为 24dp。
+-->
       <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         style="?attr/catalogToolbarWithCloseButtonStyle"
@@ -41,3 +56,23 @@
     </com.google.android.material.appbar.AppBarLayout>
   </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>
+<!--
+
+        CoordinatorLayout 本身并没有预定义的 Behavior，它的强大之处在于可以配合拥有特定 Behavior 的子 View 使用，或者自定义 Behavior 来实现各种效果。一些常用的拥有默认 Behavior 的 View 包括：
+        1. AppBarLayout
+            AppBarLayout.ScrollingViewBehavior：这是 AppBarLayout 的默认 Behavior，它允许 AppBarLayout 与可滚动 View（例如 NestedScrollView）进行交互，实现折叠 Toolbar、隐藏 View 等效果。
+        2. FloatingActionButton
+            FloatingActionButton.Behavior：这是 FloatingActionButton 的默认 Behavior，它允许 FloatingActionButton 对其他 View（例如 Snackbar）的出现做出反应，例如向上移动以避免遮挡。
+        3. BottomNavigationView
+            BottomNavigationView.Behavior：这是 BottomNavigationView 的默认 Behavior，它允许 BottomNavigationView 与可滚动 View 进行交互，例如在向上滚动时隐藏，向下滚动时显示。
+        4. BottomSheetBehavior
+            BottomSheetBehavior：这不是 View 本身，而是一个用于控制底部弹出式面板行为的类。  它可以与任何 View 结合使用，实现底部弹出式面板的效果。
+        5. SwipeDismissBehavior
+            SwipeDismissBehavior：这是一个用于实现滑动删除功能的 Behavior。 它可以与任何 View 结合使用，允许用户通过滑动来移除 View。
+
+
+
+
+
+
+-->

@@ -101,7 +101,7 @@ public class SliderFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_slider_title, R.drawable.ic_sliders_24px) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new SliderFragment();
         }
       };

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2019 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,43 +13,57 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
 
   <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingTop="32dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="32dp">
+
+    <com.google.android.material.appbar.MaterialToolbar
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:paddingTop="32dp"
-      android:paddingBottom="32dp"
-      android:paddingLeft="16dp"
-      android:paddingRight="16dp"
-      android:clipToPadding="false"
-      android:orientation="vertical">
+      app:subtitle="Default"
+      app:title="Toolbar"
+      app:titleCentered="true" />
+    <!--
+        MaterialToolbar：
+          MaterialToolbar 是 Toolbar 的子类，它继承了 Toolbar 的所有功能，并添加了一些 Material Design 的特性。 主要区别在于 MaterialToolbar 支持 Dark Theme 的 elevation overlays 以及 居中标题。
+          Elevation Overlays: 在 Dark Theme 中，MaterialToolbar 会在 Toolbar 的背景上添加一层 elevation overlay，使 Toolbar 在深色背景下更加突出。
+          居中标题: MaterialToolbar 默认情况下会将标题居中显示，而 Toolbar 默认情况下会将标题左对齐。
+          何时使用 MaterialToolbar
+          如果你需要支持 Dark Theme 的 elevation overlays，或者需要默认居中显示标题， 那么你应该使用 MaterialToolbar。
+          如果你使用的是 Material Design 组件库，建议你始终使用 MaterialToolbar 而不是 Toolbar。
+
+         titleCentered:标题是否居中
+         subtitleCentered:副标题是否居中
+         navigationIcon	左侧返回按钮
+         menu	右侧菜单文件
+    -->
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:subtitle="Default"
-        app:title="Toolbar"/>
+      style="?attr/toolbarSurfaceStyle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="32dp"
+      app:subtitle="Surface"
+      app:title="Toolbar" />
 
     <com.google.android.material.appbar.MaterialToolbar
-        style="?attr/toolbarSurfaceStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:subtitle="Surface"
-        app:title="Toolbar"/>
-
-    <com.google.android.material.appbar.MaterialToolbar
-        style="?attr/toolbarSurfaceStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:elevation="@dimen/design_appbar_elevation"
-        app:subtitle="Surface Elevated"
-        app:title="Toolbar"/>
+      style="?attr/toolbarSurfaceStyle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="32dp"
+      android:elevation="@dimen/design_appbar_elevation"
+      app:subtitle="Surface Elevated"
+      app:title="Toolbar" />
   </LinearLayout>
 </ScrollView>

@@ -100,7 +100,7 @@ public class DividerFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(getDemoTitleResId(), getDemoDrawableResId()) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new DividerFragment();
         }
       };

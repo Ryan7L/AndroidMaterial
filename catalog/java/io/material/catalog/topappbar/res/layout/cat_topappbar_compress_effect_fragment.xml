@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2021 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,114 +13,154 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinator"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/coordinator"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true">
 
   <com.google.android.material.appbar.AppBarLayout
-      android:id="@+id/appbarlayout"
+    android:id="@+id/appbarlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true">
+    <!--
+      layout_scrollFlags:AppBarLayout的属性，用于子view，用于控制子 View 在滚动时的行为。 它决定了 子View 如何与 AppBarLayout 的滚动交互，例如是否滚动、是否固定、是否退出屏幕等。
+        1. scroll
+          作用: 这是最基本的标志，表示 View 会随着 AppBarLayout 滚动。
+          必须与其他标志一起使用 才有效果。 如果单独使用 scroll 标志，View 的行为与没有设置任何标志时相同。
+        2. enterAlways
+          作用: 当向下滚动时，View 会立即进入屏幕，无论滚动方向如何。
+          效果: 即使您向上滚动，View 也会立即出现，而不是等到滚动到顶部才出现。
+        3. enterAlwaysCollapsed
+          作用: 如果 View 有一个最小高度（通过 minHeight 属性设置），它会以最小高度进入屏幕，并在完全可见后展开到完整高度。
+          效果: View 会先以折叠状态进入屏幕，然后逐渐展开。
+        4. exitUntilCollapsed
+          作用: 当向上滚动时，View 会一直滚动到折叠状态（如果有最小高度）。
+          效果: View 会一直保持可见，直到滚动到其最小高度。
+        5. snap
+          作用: 当滚动停止时，View 会“捕捉”到最近的边缘位置，要么完全可见， 要么完全隐藏。简单来说就是，在滚动结束后，如果view只显示了一部分，那么该标志会根据view显示的多少，决定完全隐藏或完全显示
+          效果: 避免 View 停留在中间状态，提供更清晰的视觉效果。
+        6. snapMargins
+          作用: 与 snap 类似，但会考虑 View 的 margins。
+          效果: 在捕捉到边缘位置时，会考虑 View 的 margins，避免 View 与屏幕边缘过于接近。
+        7.noScroll：可以理解为默认值，如果不设置layout_scrollFlags，就会是noScroll的效果
+          作用：禁用视图上的滚动。该标志不应与任何其他滚动标志组合使用。
+        组合使用：
+        您可以将多个标志组合在一起使用，例如 scroll|enterAlways 或 scroll|exitUntilCollapsed，以创建更复杂的滚动效果。
+        希望以上信息能够帮助您理解 layout_scrollFlags 属性的所有值及其作用！
+    -->
+    <!--
+        layout_scrollEffect：AppBarLayout的属性，用于子view，控制子View在滚动时，显示或消失的效果
+          常用值：
+            none：无任何效果
+            compress：压缩效果，简单来说就是设置该属性的view在滚动消失或显示的过程中，未完全显示或消失时，会达到 该view 置于底层，上层的view慢慢的，一点点的将其覆盖的效果
+    -->
+    <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      style="?attr/catalogToolbarWithCloseButtonStyle"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:fitsSystemWindows="true">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        style="?attr/catalogToolbarWithCloseButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_scrollFlags="scroll|enterAlways|snap"
-        app:layout_scrollEffect="compress"
-        app:title="@string/cat_topappbar_compress_toolbar_title" />
-
+      app:layout_scrollEffect="compress"
+      app:layout_scrollFlags="scroll|enterAlways|snap"
+      app:title="@string/cat_topappbar_compress_toolbar_title" />
+    <!--
+        在该布局文件中，如果去掉ToolBar的scrollFlags ，那么运行时整个AppBarLayout都不会滚动，包括TabLayout，
+        因为AppBarLayout 的滚动行为是由其子 View 的 scrollFlags 共同决定的。如果第一个直接子 View 没有设置 scroll 标志，
+        那么整个 AppBarLayout 就不会滚动（可以理解为第一个没有设置flag，就不会滚动，就算第二个设置了，但因为第一个不会滚动，
+        挡住了第二个滚动的控件，所以第二个也没法滚动了）。而不设置TabLayout的scrollFlag则不会出现无法滚动的情况，而是ToolBar正常隐藏显示，
+        TabLayout则在滚动时，位于顶部
+    -->
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_scrollFlags="scroll|enterAlways"
-        android:background="@android:color/transparent"
-        android:visibility="gone"
-        app:tabMode="scrollable">
+      android:id="@+id/tabs"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@android:color/transparent"
+      android:visibility="gone"
+      app:layout_scrollFlags="scroll|enterAlways"
+      app:tabMode="scrollable">
 
       <com.google.android.material.tabs.TabItem
-          android:layout_height="wrap_content"
-          android:layout_width="wrap_content"
-          android:text="@string/cat_topappbar_tabs_label_all"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cat_topappbar_tabs_label_all" />
+
       <com.google.android.material.tabs.TabItem
-          android:layout_height="wrap_content"
-          android:layout_width="wrap_content"
-          android:text="@string/cat_topappbar_tabs_label_shopping"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cat_topappbar_tabs_label_shopping" />
+
       <com.google.android.material.tabs.TabItem
-          android:layout_height="wrap_content"
-          android:layout_width="wrap_content"
-          android:text="@string/cat_topappbar_tabs_label_news"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cat_topappbar_tabs_label_news" />
+
       <com.google.android.material.tabs.TabItem
-          android:layout_height="wrap_content"
-          android:layout_width="wrap_content"
-          android:text="@string/cat_topappbar_tabs_label_maps"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cat_topappbar_tabs_label_maps" />
+
       <com.google.android.material.tabs.TabItem
-          android:layout_height="wrap_content"
-          android:layout_width="wrap_content"
-          android:text="@string/cat_topappbar_tabs_label_images"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cat_topappbar_tabs_label_images" />
+
       <com.google.android.material.tabs.TabItem
-          android:layout_height="wrap_content"
-          android:layout_width="wrap_content"
-          android:text="@string/cat_topappbar_tabs_label_updates"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cat_topappbar_tabs_label_updates" />
+
       <com.google.android.material.tabs.TabItem
-          android:layout_height="wrap_content"
-          android:layout_width="wrap_content"
-          android:text="@string/cat_topappbar_tabs_label_settings"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cat_topappbar_tabs_label_settings" />
+
       <com.google.android.material.tabs.TabItem
-          android:layout_height="wrap_content"
-          android:layout_width="wrap_content"
-          android:text="@string/cat_topappbar_tabs_label_plugins"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cat_topappbar_tabs_label_plugins" />
+
       <com.google.android.material.tabs.TabItem
-          android:layout_height="wrap_content"
-          android:layout_width="wrap_content"
-          android:text="@string/cat_topappbar_tabs_label_more"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cat_topappbar_tabs_label_more" />
 
     </com.google.android.material.tabs.TabLayout>
 
   </com.google.android.material.appbar.AppBarLayout>
 
   <androidx.core.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="vertical">
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:padding="16dp">
 
-      <ToggleButton
-          android:id="@+id/show_hide_tabs_button"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_horizontal"
-          android:layout_marginBottom="8dp"
-          android:checked="false"
-          android:textOn="@string/cat_topappbar_compress_hide_tabs_toggle_label"
-          android:textOff="@string/cat_topappbar_compress_show_tabs_toggle_label" />
-
-      <ToggleButton
+      <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/show_hide_toolbar_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="8dp"
         android:checked="true"
-        android:textOn="@string/cat_topappbar_compress_hide_toolbar_toggle_label"
-        android:textOff="@string/cat_topappbar_compress_show_toolbar_toggle_label" />
+        android:text="@string/cat_topappbar_compress_hide_toolbar_toggle_label" />
+
+      <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/show_hide_tabs_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:checked="false"
+        android:text="@string/cat_topappbar_compress_show_tabs_toggle_label" />
 
       <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/cat_topappbar_lorem_ipsum"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cat_topappbar_lorem_ipsum" />
 
     </LinearLayout>
 

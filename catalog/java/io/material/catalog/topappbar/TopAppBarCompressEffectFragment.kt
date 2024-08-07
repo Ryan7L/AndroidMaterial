@@ -1,102 +1,89 @@
-/*
- * Copyright 2021 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+package io.material.catalog.topappbar
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.color.MaterialColors
+import com.google.android.material.materialswitch.MaterialSwitch
+import com.google.android.material.tabs.TabLayout
+import io.material.catalog.R
+import io.material.catalog.feature.DemoFragment
+import io.material.catalog.feature.DemoUtils
+
+/**
+ * 显示应用程序的滚动顶部应用程序栏演示的Fragment
  */
-
-package io.material.catalog.topappbar;
-
-import io.material.catalog.R;
-
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ToggleButton;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.color.MaterialColors;
-import com.google.android.material.tabs.TabLayout;
-import io.material.catalog.feature.DemoFragment;
-import io.material.catalog.feature.DemoUtils;
-
-/** A fragment that displays a scrolling Top App Bar demo for the Catalog app. */
-public class TopAppBarCompressEffectFragment extends DemoFragment {
-
-  @Override
-  public void onCreate(@Nullable Bundle bundle) {
-    super.onCreate(bundle);
-    setHasOptionsMenu(true);
+class TopAppBarCompressEffectFragment : DemoFragment() {
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    @Suppress("DEPRECATION")
+    setHasOptionsMenu(true)
   }
 
-  @Nullable
-  @Override
-  public View onCreateDemoView(
-      @NonNull LayoutInflater layoutInflater,
-      @Nullable ViewGroup viewGroup,
-      @Nullable Bundle bundle) {
-    View view =
-        layoutInflater.inflate(R.layout.cat_topappbar_compress_effect_fragment, viewGroup, false);
+  override fun onCreateDemoView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    val view = inflater.inflate(R.layout.cat_topappbar_compress_effect_fragment, container, false)
+    val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+    (activity as AppCompatActivity).setSupportActionBar(toolbar)
+    val appbarLayout = view.findViewById<AppBarLayout>(R.id.appbarlayout)
+    appbarLayout.setStatusBarForegroundColor(
+      MaterialColors.getColor(
+        appbarLayout,
+        R.attr.colorSurface
+      )
+    )
 
-    Toolbar toolbar = view.findViewById(R.id.toolbar);
-    AppCompatActivity activity = (AppCompatActivity) getActivity();
-    activity.setSupportActionBar(toolbar);
-
-    AppBarLayout appBarLayout = view.findViewById(R.id.appbarlayout);
-    appBarLayout.setStatusBarForegroundColor(
-        MaterialColors.getColor(appBarLayout, R.attr.colorSurface));
-
-    TabLayout tabs = view.findViewById(R.id.tabs);
-    ToggleButton showHideTabsButton = view.findViewById(R.id.show_hide_tabs_button);
-    updateTabVisibility(tabs, showHideTabsButton.isChecked());
-    showHideTabsButton.setOnCheckedChangeListener(
-        (buttonView, isChecked) -> updateTabVisibility(tabs, isChecked));
-
-    ToggleButton showHideToolbarButton = view.findViewById(R.id.show_hide_toolbar_button);
-    showHideToolbarButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+    val tabLayout = view.findViewById<TabLayout>(R.id.tabs)
+    val showHideTabsButton = view.findViewById<MaterialSwitch>(R.id.show_hide_tabs_button)
+    updateTabVisibility(showHideTabsButton, tabLayout, showHideTabsButton.isChecked)
+    showHideTabsButton.setOnCheckedChangeListener { buttonView, isChecked ->
+      updateTabVisibility(showHideTabsButton, tabLayout, isChecked)
+    }
+    val showHideToolbarButton = view.findViewById<MaterialSwitch>(R.id.show_hide_toolbar_button)
+    showHideToolbarButton.setOnCheckedChangeListener { buttonView, isChecked ->
+      showHideToolbarButton.text =
+        getString(if (isChecked) R.string.cat_topappbar_compress_hide_toolbar_toggle_label else R.string.cat_topappbar_compress_show_toolbar_toggle_label)
       if (isChecked) {
-        activity.getSupportActionBar().show();
+        (activity as AppCompatActivity).supportActionBar?.show()
       } else {
-        activity.getSupportActionBar().hide();
+        (activity as AppCompatActivity).supportActionBar?.hide()
       }
-    });
+    }
 
-    return view;
+    return view
   }
 
-  private static void updateTabVisibility(TabLayout tabs, boolean show) {
-    tabs.setVisibility(show ? View.VISIBLE : View.GONE);
+  private fun updateTabVisibility(button: MaterialSwitch, tabLayout: TabLayout, show: Boolean) {
+
+    button.text =
+      getString(if (show) R.string.cat_topappbar_compress_hide_tabs_toggle_label else R.string.cat_topappbar_compress_show_tabs_toggle_label)
+    tabLayout.visibility = if (show) View.VISIBLE else View.GONE
   }
 
-  @Override
-  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
-    menuInflater.inflate(R.menu.cat_topappbar_menu, menu);
-    super.onCreateOptionsMenu(menu, menuInflater);
+  @Deprecated("Deprecated in Java")
+  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    inflater.inflate(R.menu.cat_topappbar_menu, menu)
+    @Suppress("DEPRECATION")
+    super.onCreateOptionsMenu(menu, inflater)
   }
 
-  @Override
-  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-    return DemoUtils.showSnackBar(getActivity(), item) || super.onOptionsItemSelected(item);
+  @Deprecated("Deprecated in Java")
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    @Suppress("DEPRECATION")
+    return super.onOptionsItemSelected(item) || DemoUtils.showSnackBar(requireActivity(), item)
   }
 
-  @Override
-  public boolean isShouldShowDefaultDemoActionBar() {
-    return false;
-  }
+  override val isShouldShowDefaultDemoActionBar: Boolean
+    get() = false
 }
+

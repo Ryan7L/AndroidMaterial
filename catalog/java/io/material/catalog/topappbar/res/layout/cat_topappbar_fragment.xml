@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2017 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,65 +13,88 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinator"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/coordinator"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true">
 
   <com.google.android.material.appbar.AppBarLayout
-      android:id="@+id/appbarlayout"
+    android:id="@+id/appbarlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    app:liftOnScroll="true">
+<!--
+    liftOnScroll 属性是 AppBarLayout 的一个布尔值属性，用于控制 App Bar 在滚动时的抬升效果。 当 liftOnScroll 设置为 true 时，App Bar 会在关联的可滚动视图向上滚动时抬升，并在向下滚动时恢复到其原始位置。
+    所谓的抬升可以理解为 view的z轴变高了
+        作用：
+            增强视觉效果： 抬升效果可以使 App Bar 更突出，并为用户提供更清晰的视觉反馈。
+            改善用户体验： 抬升效果可以使 App Bar 在滚动时更容易被注意到，从而方便用户访问 App Bar 中的操作按钮
+        注：
+            liftOnScroll 属性需要与 CoordinatorLayout 和可滚动视图（例如 NestedScrollView 或 RecyclerView）一起使用才能生效。
+            关联的可滚动视图需要设置 app:layout_behavior="@string/appbar_scrolling_view_behavior" 属性。
+-->
+    <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      style="?attr/catalogToolbarWithCloseButtonStyle"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:fitsSystemWindows="true"
-      app:liftOnScroll="true">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        style="?attr/catalogToolbarWithCloseButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="@string/cat_topappbar_main_demo_toolbar_title"/>
+      app:title="@string/cat_topappbar_main_demo_toolbar_title" />
   </com.google.android.material.appbar.AppBarLayout>
 
   <androidx.core.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+<!--
+  在NestedScrollView 上取消 behavior后 NestedScrollView会覆盖AppBarLayout的原因：
+    CoordinatorLayout 默认行为： CoordinatorLayout 本身并没有定义其子 View 之间的默认层级关系。如果没有设置 Behavior，子 View 会按照它们在 XML 布局文件中声明的顺序进行排列。
+  布局顺序： 在您的布局文件中，NestedScrollView 声明在 AppBarLayout 之后，因此在没有 Behavior 的情况下，NestedScrollView 会绘制在 AppBarLayout 之上，导致覆盖现象。
+  Behavior 的作用：
+    AppBarLayout.ScrollingViewBehavior 正是为了解决这个问题而设计的。它会改变 NestedScrollView 的默认行为，使其能够识别 AppBarLayout 并与其协同工作，而不是简单地覆盖它。
+  总结：
+    当您移除 appbar_scrolling_view_behavior 时，NestedScrollView 就失去了与 AppBarLayout 的协同关系，回到了 CoordinatorLayout 的默认行为模式，按照布局顺序进行绘制，从而覆盖了 AppBarLayout
+
+-->
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical">
+
       <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/cat_topappbar_switch_edit_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/cat_topappbar_edit_menu_toggle"
-        android:checked="true"/>
+        android:checked="true"
+        android:text="@string/cat_topappbar_edit_menu_toggle" />
+
       <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/cat_topappbar_switch_lift_on_scroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/cat_topappbar_lift_on_scroll_toggle"
-        android:checked="true"/>
+        android:checked="true"
+        android:text="@string/cat_topappbar_lift_on_scroll_toggle" />
+
       <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/cat_topappbar_switch_lifted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/cat_topappbar_lifted"
-        android:enabled="false"/>
+        android:enabled="false"
+        android:text="@string/cat_topappbar_lifted" />
+
       <Button
         android:id="@+id/cat_topappbar_button_increment_badge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/cat_topappbar_increment_badge_number"/>
-      <include layout="@layout/cat_topappbar_filler_text_view"/>
+        android:text="@string/cat_topappbar_increment_badge_number" />
+
+      <include layout="@layout/cat_topappbar_filler_text_view" />
     </LinearLayout>
   </androidx.core.widget.NestedScrollView>
 

@@ -80,7 +80,7 @@ public class ButtonsFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_buttons_title, R.drawable.ic_button) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new ButtonsFragment();
         }
       };

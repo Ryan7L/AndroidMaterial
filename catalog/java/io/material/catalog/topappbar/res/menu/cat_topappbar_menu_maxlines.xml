@@ -20,4 +20,7 @@
   <item android:id="@+id/maxLines1" />
   <item android:id="@+id/maxLines2" />
   <item android:id="@+id/maxLines3" />
+  <item android:id="@+id/maxLines5" />
+  <item android:id="@+id/maxLines6" />
+  <item android:id="@+id/maxLines7" />
 </menu>

@@ -1,76 +1,55 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.topappbar
 
-package io.material.catalog.topappbar;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.color.MaterialColors
+import io.material.catalog.R
+import io.material.catalog.feature.DemoFragment
+import io.material.catalog.feature.DemoUtils
 
-import io.material.catalog.R;
-
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.annotation.Nullable;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.color.MaterialColors;
-import io.material.catalog.feature.DemoFragment;
-import io.material.catalog.feature.DemoUtils;
-
-/** A fragment that displays a scrolling Top App Bar demo for the Catalog app. */
-public class TopAppBarScrollingDemoFragment extends DemoFragment {
-
-  @Override
-  public void onCreate(@Nullable Bundle bundle) {
-    super.onCreate(bundle);
-    setHasOptionsMenu(true);
+class TopAppBarScrollingDemoFragment : DemoFragment() {
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    @Suppress("DEPRECATION")
+    setHasOptionsMenu(true)
   }
 
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view = layoutInflater.inflate(R.layout.cat_topappbar_scrolling_fragment, viewGroup, false);
-
-    Toolbar toolbar = view.findViewById(R.id.toolbar);
-    AppCompatActivity activity = (AppCompatActivity) getActivity();
-    activity.setSupportActionBar(toolbar);
-
-    AppBarLayout appBarLayout = view.findViewById(R.id.appbarlayout);
-    appBarLayout.setStatusBarForegroundColor(
-        MaterialColors.getColor(appBarLayout, R.attr.colorSurface));
-
-    return view;
+  override fun onCreateDemoView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    val view = inflater.inflate(R.layout.cat_topappbar_scrolling_fragment, container, false)
+    (activity as AppCompatActivity).setSupportActionBar(view.findViewById(R.id.toolbar))
+    val appbarLayout = view.findViewById<AppBarLayout>(R.id.appbarlayout)
+    appbarLayout.setStatusBarForegroundColor(
+      MaterialColors.getColor(appbarLayout, R.attr.colorSurface)
+    )
+    view.findViewById<Toolbar>(R.id.toolbar)
+    return view
   }
 
-  @Override
-  public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
-    menuInflater.inflate(R.menu.cat_topappbar_menu, menu);
-    super.onCreateOptionsMenu(menu, menuInflater);
+  @Deprecated("Deprecated in Java")
+  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    inflater.inflate(R.menu.cat_topappbar_menu, menu)
+    @Suppress("DEPRECATION")
+    super.onCreateOptionsMenu(menu, inflater)
   }
 
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    return DemoUtils.showSnackBar(getActivity(), item) || super.onOptionsItemSelected(item);
+  @Deprecated("Deprecated in Java")
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    @Suppress("DEPRECATION")
+    return super.onOptionsItemSelected(item) || DemoUtils.showSnackBar(requireActivity(), item)
   }
 
-  @Override
-  public boolean isShouldShowDefaultDemoActionBar() {
-    return false;
-  }
+  override val isShouldShowDefaultDemoActionBar: Boolean
+    get() = false
 }

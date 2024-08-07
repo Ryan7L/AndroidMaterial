@@ -94,7 +94,7 @@ public class ShapeThemingFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_shape_theming_title, R.drawable.ic_shape) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new ShapeThemingFragment();
         }
       };

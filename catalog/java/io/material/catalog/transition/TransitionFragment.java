@@ -143,7 +143,7 @@ public class TransitionFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_transition_title, R.drawable.ic_transition) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new TransitionFragment();
         }
       };

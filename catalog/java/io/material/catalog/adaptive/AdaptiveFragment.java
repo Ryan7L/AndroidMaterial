@@ -98,7 +98,7 @@ public class AdaptiveFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_adaptive_title, R.drawable.ic_side_drawer) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new AdaptiveFragment();
         }
       };

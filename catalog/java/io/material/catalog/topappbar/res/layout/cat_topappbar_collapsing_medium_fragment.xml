@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2017 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,43 +13,73 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinator"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/coordinator"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
 
   <com.google.android.material.appbar.AppBarLayout
-      android:id="@+id/appbarlayout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:fitsSystemWindows="true">
+    android:id="@+id/appbarlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.CollapsingToolbarLayout
-        style="?attr/collapsingToolbarLayoutMediumStyle"
-        android:id="@+id/collapsingtoolbarlayout"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/collapsingToolbarLayoutMediumSize"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+      app:toolbarId="@id/toolbar"
+      android:id="@+id/collapsingtoolbarlayout"
+      style="?attr/collapsingToolbarLayoutMediumStyle"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/collapsingToolbarLayoutMediumSize"
+      app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+      <!--
+          CollapsingToolbarLayout：于创建可折叠的 App Bar（并不一定要属于AppBarLayout的子view，也可单独使用）。它通常与 AppBarLayout 和 Toolbar 一起使用
+          注：CollapsingToolbarLayout的直接子View才收折叠效果影响，间接子view（子view的子view）不会直接受折叠效果影响
+          主要功能：
+            可折叠标题: CollapsingToolbarLayout 可以显示一个标题，该标题在 App Bar 完全展开时会变大，在 App Bar 折叠时会变小并固定在 Toolbar 上。
+            内容 Scrim: 你可以为 CollapsingToolbarLayout 设置一个内容 scrim，它会在 App Bar 折叠到一定程度时显示，遮盖住背景内容，使标题更易于阅读。
+            状态栏 Scrim: 你可以为 CollapsingToolbarLayout 设置一个状态栏 scrim，它会在 App Bar 折叠到一定程度时显示，遮盖住状态栏，使 App Bar 的颜色更加突出。
+            视差滚动: CollapsingToolbarLayout 支持视差滚动效果，你可以将图片或其他 View 设置为以视差的方式滚动， creating a depth effect.
+            固定子 View: 你可以将 CollapsingToolbarLayout 的子 View 固定在顶部，例如将 Toolbar 固定在顶部，使其在 App Bar 折叠时仍然可见。
+
+         toolbarId：指定与之配合的ToolBar的Id，不指定的话会遍历layout中所有的View 关联找到的第一个直接的Toolbar
+         contentScrim：内容遮罩。 或者说前景色
+         作用
+          增强标题可见性: 当 CollapsingToolbarLayout 折叠时，contentScrim 会显示出来，遮盖住 CollapsingToolbarLayout 的内容区域，使标题在折叠后的背景上更加清晰可见。
+          美化视觉效果: contentScrim 可以为 CollapsingToolbarLayout 添加一层颜色或 Drawable，提升视觉效果，使 App Bar 更具吸引力。
+
+          statusBarScrim：类似 contentScrim，但用于状态栏。当 CollapsingToolbarLayout 折叠时，statusBarScrim 会显示出来，遮盖住状态栏， 创造更加身临其境的视觉效果.
+         -->
 
       <androidx.appcompat.widget.Toolbar
-          android:id="@+id/toolbar"
-          style="?attr/catalogToolbarWithCloseButtonStyle"
-          android:layout_width="match_parent"
-          android:layout_height="?attr/actionBarSize"
-          android:elevation="0dp"
-          app:layout_collapseMode="pin"
-          app:title="@string/cat_topappbar_collapsing_demo_toolbar_medium_title"/>
+        android:id="@+id/toolbar"
+        style="?attr/catalogToolbarWithCloseButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="0dp"
+        app:layout_collapseMode="pin"
+        app:title="@string/cat_topappbar_collapsing_demo_toolbar_medium_title" />
     </com.google.android.material.appbar.CollapsingToolbarLayout>
   </com.google.android.material.appbar.AppBarLayout>
+  <!--
+      layout_collapseMode:是 CollapsingToolbarLayout 中 的一个属性，用于子view 是用来控制子 View 在 CollapsingToolbarLayout 折叠过程中的行为
+        常用值：
+          pin：子 View 在折叠过程中会固定在顶部。例如，你可以将 Toolbar 的 layout_collapseMode 设置为 pin，使其在 CollapsingToolbarLayout 折叠时仍然可见。
+          parallax：子 View 会以视差的方式滚动， 创造深度效果. 例如，你可以将 ImageView 的 layout_collapseMode 设置为 parallax，使其在 CollapsingToolbarLayout 折叠时产生视差滚动效果。
+          none：子 View 不会参与折叠过程，其行为与普通的 View 相同。
+      标题问题：为什么在ToolBar上设置的标题在展开后却没有显示在ToolBar上？
+            原因：可以给CollapsingToolbarLayout设置标题，但如果在 CollapsingToolbarLayout 中嵌套了一个 Toolbar，并且 Toolbar 也设置了标题，那么 CollapsingToolbarLayout 的标题会被 Toolbar 的标题覆盖
 
+
+      虽然是在Toolbar上设置的标题，但当CollapsingToolbarLayout展开后，CollapsingToolbarLayout会接管标题，折叠后ToolBar才接管标题
+
+  -->
   <androidx.core.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <include layout="@layout/cat_topappbar_filler_text_view"/>
+    <include layout="@layout/cat_topappbar_filler_text_view" />
   </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

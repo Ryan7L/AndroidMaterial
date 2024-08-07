@@ -85,7 +85,7 @@ public class ElevationFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_elevation_fragment_title, R.drawable.ic_elevation) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new ElevationFragment();
         }
       };

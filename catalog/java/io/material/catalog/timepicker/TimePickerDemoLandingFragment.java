@@ -64,7 +64,7 @@ public class TimePickerDemoLandingFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_time_picker_demo_title, R.drawable.ic_placeholder) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new TimePickerDemoLandingFragment();
         }
       };

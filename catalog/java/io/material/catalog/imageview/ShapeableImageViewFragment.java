@@ -65,7 +65,7 @@ public class ShapeableImageViewFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_imageview_title, R.drawable.ic_placeholder) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new ShapeableImageViewFragment();
         }
       };

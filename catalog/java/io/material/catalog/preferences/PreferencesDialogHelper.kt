@@ -78,9 +78,8 @@ class PreferencesDialogHelper private constructor() {
  */
 interface PreferencesFragment {
   /**
-   * 默认操作栏是否带有打开设置支持
+   * 是否显示默认的操作栏
    * @return Boolean
    */
-//  fun isShouldShowDefaultDemoActionBar(): Boolean
   val isShouldShowDefaultDemoActionBar: Boolean
 }

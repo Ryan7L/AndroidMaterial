@@ -40,7 +40,7 @@ abstract class DemoFragment : Fragment(), PreferencesFragment, HasAndroidInjecto
 
   private lateinit var toolbar: Toolbar
 
-  private lateinit var demoContainer: ViewGroup
+  protected lateinit var demoFragmentContainer: ViewGroup
 
   private var preferencesDialogHelper: PreferencesDialogHelper? = null
 
@@ -66,11 +66,12 @@ abstract class DemoFragment : Fragment(), PreferencesFragment, HasAndroidInjecto
       val transitionName = it.getString(FeatureDemoUtils.ARG_TRANSITION_NAME)
       ViewCompat.setTransitionName(rootView, transitionName)
     }
+
     toolbar = rootView.findViewById(R.id.toolbar)
-    demoContainer = rootView.findViewById(R.id.cat_demo_fragment_container)
+    demoFragmentContainer = rootView.findViewById(R.id.cat_demo_fragment_container)
     initDemoActionBar()
     val demoView = onCreateDemoView(inflater, container, savedInstanceState)
-    demoContainer.addView(demoView)
+    demoFragmentContainer.addView(demoView)
 
     (demoView?.layoutParams as CoordinatorLayout.LayoutParams).behavior =
       AppBarLayout.ScrollingViewBehavior()
@@ -80,8 +81,8 @@ abstract class DemoFragment : Fragment(), PreferencesFragment, HasAndroidInjecto
       rootView.findViewById<AppBarLayout>(R.id.cat_demo_fragment_appbar)
         .liftOnScrollTargetViewId = liftOnScrollTargetViewId
     }
-    val children = demoContainer.getChildAt(0) as ViewGroup
-    DemoUtils.addBottomSpaceInsetsIfNeeded(children, demoContainer)
+    val children = demoFragmentContainer.getChildAt(0) as ViewGroup
+    DemoUtils.addBottomSpaceInsetsIfNeeded(children, demoFragmentContainer)
     return rootView
   }
 
@@ -145,4 +146,5 @@ abstract class DemoFragment : Fragment(), PreferencesFragment, HasAndroidInjecto
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View?
+
 }

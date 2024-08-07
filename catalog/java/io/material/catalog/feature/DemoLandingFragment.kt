@@ -5,6 +5,10 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.URLSpan
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -76,6 +80,8 @@ abstract class DemoLandingFragment : DaggerFragment() {
    */
   @ArrayRes
   open val linksArrayResId: Int = -1
+
+  open val linkUrlArrayResId: Int = -1
 
   /**
    *  额外的功能演示集合
@@ -168,10 +174,12 @@ abstract class DemoLandingFragment : DaggerFragment() {
 
   private fun addLinks(layoutInflater: LayoutInflater, view: View) {
     val linksSection = view.findViewById<ViewGroup>(R.id.cat_demo_landing_links_section)
-    if (linksArrayResId != -1) {
+    if (linksArrayResId != -1 && linkUrlArrayResId != -1) {
       val linksStringArray = resources.getStringArray(linksArrayResId)
-      linksStringArray.forEach {
-        addLinkView(layoutInflater, linksSection, it)
+      val urlArray = resources.getStringArray(linkUrlArrayResId)
+      val descToUrlMap = linksStringArray.zip(urlArray).toMap()
+      descToUrlMap.forEach {
+        addLinkView(layoutInflater, linksSection, it.toPair())
       }
       linksSection.visibility = View.VISIBLE
     } else {
@@ -183,10 +191,22 @@ abstract class DemoLandingFragment : DaggerFragment() {
   private fun addLinkView(
     layoutInflater: LayoutInflater,
     viewGroup: ViewGroup,
-    linkString: String
+    linkString: Pair<String, String>
   ) {
     layoutInflater.inflate(R.layout.cat_demo_landing_link_entry, viewGroup, false).let {
-      (it as TextView).text = linkString
+      val desc = SpannableString(linkString.first).apply {
+        setSpan(
+          URLSpan(linkString.second),
+          0,
+          linkString.first.length,
+          Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+      }
+
+      (it as TextView).apply {
+        text = desc
+        movementMethod = LinkMovementMethod.getInstance()
+      }
       viewGroup.addView(it)
     }
   }
@@ -330,7 +350,8 @@ abstract class DemoLandingFragment : DaggerFragment() {
 
   override fun onPrepareOptionsMenu(menu: Menu) {
     val item = menu.findItem(R.id.favorite_toggle)
-    val isChecked = FeatureDemoUtils.getDefaultDemoLanding(requireContext()) == this::class.java.name
+    val isChecked =
+      FeatureDemoUtils.getDefaultDemoLanding(requireContext()) == this::class.java.name
     setMenuItemChecked(item, isChecked)
   }
 

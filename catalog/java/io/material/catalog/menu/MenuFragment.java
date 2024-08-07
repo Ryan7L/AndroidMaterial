@@ -76,7 +76,7 @@ public class MenuFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_menus_title, R.drawable.ic_menu) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new MenuFragment();
         }
       };

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2017 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,54 +13,74 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<!-- Specifying an id for the CoordinatorLayout allows the expanded/collapsed state of the
-     CollapsingToolbarLayout to be saved and restored by the Android system. -->
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cat_toc_coordinator_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+<!-- 为 CoordinatorLayout 指定一个 id 可以让 Android 系统保存和恢复 CollapsingToolbarLayout 的 ExpandedCollapsed 状态。 -->
+
+<!--
+  CoordinatorLayout：协调者布局，用来协调其子View们之间动作的一个容器，遵循Material Design风格
+  CoordinatorLayout须要作为顶层父View，子View想要与CoordinatorLayout实现"联动性"效果的首要条件是这个View必须实现了NestedScrollingChild接口
+  (例如：NestedScrollView、RecyclerView等控件)。CoordinatorLayout子控件如果需要联动，需要设置app:layout_behavior属性
+  CoordinatorLayout 是 Android Material Design 中的一个强大布局，它允许您协调子 View 之间的交互和动画效果。
+  主要功能：
+      协调子 View 的布局： CoordinatorLayout 可以根据子 View 的行为和属性来调整它们的布局。
+      实现滚动效果： CoordinatorLayout 可以与 AppBarLayout、NestedScrollView 等 View 结合使用，实现各种滚动效果，例如折叠 Toolbar、隐藏 FloatingActionButton 等。
+      创建自定义行为： 您可以创建自定义行为来定义子 View 如何与其他 View 交互。
+
+   常用属性：
+       app:layout_behavior：用于指定子 View 的行为。
+       app:layout_anchor：用于将子 View 锚定到另一个 View。
+       app:layout_anchorGravity：用于指定子 View 相对于锚点 View 的位置。
+   常用行为：
+       FloatingActionButton.Behavior：用于使 FloatingActionButton 在其他 View（例如 Snackbar）出现时向上移动。
+       AppBarLayout.ScrollingViewBehavior：用于使子 View 在 AppBarLayout 滚动时做出相应的反应。
+       SwipeDismissBehavior：用于实现滑动删除功能。
+
+-->
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/cat_toc_coordinator_layout"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true">
 
   <com.google.android.material.appbar.AppBarLayout
-      android:id="@+id/cat_toc_app_bar_layout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:fitsSystemWindows="true">
+    android:id="@+id/cat_toc_app_bar_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.CollapsingToolbarLayout
-        android:id="@+id/cat_toc_collapsingtoolbarlayout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/cat_toc_tall_toolbar_height"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-        app:titleEnabled="false">
+      android:id="@+id/cat_toc_collapsingtoolbarlayout"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/cat_toc_tall_toolbar_height"
+      app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+      app:titleEnabled="false">
 
       <androidx.appcompat.widget.Toolbar
-          android:id="@+id/toolbar"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:layout_collapseMode="pin"/>
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_collapseMode="pin" />
 
       <FrameLayout
-          android:id="@+id/content"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_vertical"
-          app:layout_collapseMode="parallax"/>
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        app:layout_collapseMode="parallax" />
     </com.google.android.material.appbar.CollapsingToolbarLayout>
   </com.google.android.material.appbar.AppBarLayout>
 
   <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/cat_toc_grid"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    android:id="@+id/cat_toc_grid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
   <View
-      android:id="@+id/cat_toc_grid_top_divider"
-      android:layout_width="match_parent"
-      android:layout_height="@dimen/cat_toc_grid_divider_size"
-      android:background="@color/cat_toc_grid_divider_color"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    android:id="@+id/cat_toc_grid_top_divider"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/cat_toc_grid_divider_size"
+    android:background="@color/cat_toc_grid_divider_color"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

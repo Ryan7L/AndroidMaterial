@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2021 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,34 +13,39 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinator"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/coordinator"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true">
 
   <com.google.android.material.appbar.AppBarLayout
-      android:id="@+id/appbarlayout"
+    android:id="@+id/appbarlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    app:liftOnScroll="true"
+    app:liftOnScrollTargetViewId="@id/recycler_view">
+    <!--
+        liftOnScrollTargetViewId：AppBarLayout 的一个属性，用于指定一个 View 的 ID，当 AppBarLayout 向上滚动时，该 View 会被 "提升" 到 AppBarLayout 的下方
+        要提升的 View 必须是 AppBarLayout 的兄弟 View，并且必须在 CoordinatorLayout 中
+        后面的@id/recycler_view是因为PreferenceFragment中的Preference是依托RecyclerView实现的
+
+     -->
+    <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      style="?attr/catalogToolbarWithCloseButtonStyle"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:fitsSystemWindows="true"
-      app:liftOnScrollTargetViewId="@id/recycler_view">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        style="?attr/catalogToolbarWithCloseButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="@string/cat_topappbar_preferences_toolbar_title" />
+      app:title="@string/cat_topappbar_preferences_toolbar_title" />
 
   </com.google.android.material.appbar.AppBarLayout>
 
   <FrameLayout
-      android:id="@+id/cat_topappbar_preferences_container"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    android:id="@+id/cat_topappbar_preferences_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

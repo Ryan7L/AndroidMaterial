@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2020 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/coordinator"
@@ -30,13 +28,15 @@
     android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.CollapsingToolbarLayout
-      style="?attr/collapsingToolbarLayoutLargeStyle"
       android:id="@+id/collapsingtoolbarlayout"
+      style="?attr/collapsingToolbarLayoutLargeStyle"
       android:layout_width="match_parent"
       android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
       app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
       app:maxLines="3">
-
+      <!--
+          maxLines:展开状态下的最大行数，通常是标题
+         -->
       <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         style="?attr/catalogToolbarWithCloseButtonStyle"

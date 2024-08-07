@@ -1,73 +1,65 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+package io.material.catalog.topappbar
+
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import com.google.android.material.appbar.AppBarLayout
+import io.material.catalog.R
+import io.material.catalog.feature.DemoFragment
+import kotlin.math.abs
+
+/**
+ * 折叠顶部应用栏演示的基类Fragment。
  */
+private const val TAG = "BaseTopAppBarCollapsing"
+abstract class BaseTopAppBarCollapsingDemoFragment : DemoFragment() {
 
-package io.material.catalog.topappbar;
+  /**
+   * 折叠工具栏的布局ID
+   */
+  @get:LayoutRes
+  protected abstract val collapsingToolBarLayoutResId: Int
 
-import io.material.catalog.R;
-
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import io.material.catalog.feature.DemoFragment;
-
-/** A base fragment that displays a collapsing Top App Bar demo for the Catalog app. */
-public abstract class BaseTopAppBarCollapsingDemoFragment extends DemoFragment {
-
-  @Override
-  public void onCreate(@Nullable Bundle bundle) {
-    super.onCreate(bundle);
-
-    setHasOptionsMenu(true);
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setHasOptionsMenu(true)
   }
 
-  @NonNull
-  @Override
-  public View onCreateDemoView(
-      @NonNull LayoutInflater layoutInflater,
-      @Nullable ViewGroup viewGroup,
-      @Nullable Bundle bundle) {
-    View view = layoutInflater.inflate(getCollapsingToolbarLayoutResId(), viewGroup, false);
-
-    Toolbar toolbar = view.findViewById(R.id.toolbar);
-    AppCompatActivity activity = (AppCompatActivity) getActivity();
-    activity.setSupportActionBar(toolbar);
-
-    return view;
+  override fun onCreateDemoView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    val view = layoutInflater.inflate(collapsingToolBarLayoutResId, container, false)
+    val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+    (activity as AppCompatActivity).setSupportActionBar(toolbar)
+    val appbarLayout = view.findViewById<AppBarLayout>(R.id.appbarlayout)
+    appbarLayout.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+      val totalScrollRange = appBarLayout.totalScrollRange
+      val collapsePercentage = abs(verticalOffset) / totalScrollRange
+      if (collapsePercentage == 0){
+        //完全展开
+        Log.i(TAG, "onCreateDemoView: 完全展开")
+      }else{
+        //部分折叠或完全折叠
+        Log.i(TAG, "onCreateDemoView: 部分折叠或完全折叠")
+      }
+    }
+    return view
   }
 
-  @Override
-  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
-    super.onCreateOptionsMenu(menu, menuInflater);
-
-    menuInflater.inflate(R.menu.cat_topappbar_menu, menu);
+  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    super.onCreateOptionsMenu(menu, inflater)
+    inflater.inflate(R.menu.cat_topappbar_menu, menu)
   }
 
-  @Override
-  public boolean isShouldShowDefaultDemoActionBar() {
-    return false;
-  }
-
-  @LayoutRes
-  protected abstract int getCollapsingToolbarLayoutResId();
+  override val isShouldShowDefaultDemoActionBar: Boolean
+    get() = false
 }

@@ -14,6 +14,27 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
+
+<!--
+    PreferenceScreen：是设置选项的配置文件，一般用在设置页面，Preference的状态保存在SharedPreference，不需要自行处理
+    节点：
+      1.PreferenceScreen：根节点
+      2.Preference:普通节点，可以用于简略消息，用户点击进入详情界面
+          常用属性：
+            key:标识，唯一的，因为Preference的值时存在SharedPreference中，所以必需设置key值，用于区分
+            title:标题
+            summary:描述
+            layout：布局，可以嵌入一个布局覆盖当前项的view，此时，除layout外的其他项都不会显示
+            icon:图标
+      3.CheckBoxPreference:带checkbox的节点，一般用于设置开关
+          常用属性:
+            summaryOff:off状态的描述
+            summaryOn:on状态的描述
+
+
+-->
+
+
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <PreferenceCategory

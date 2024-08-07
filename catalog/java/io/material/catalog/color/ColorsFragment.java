@@ -102,7 +102,7 @@ public class ColorsFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_colors_title, R.drawable.ic_placeholder) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new ColorsFragment();
         }
       };

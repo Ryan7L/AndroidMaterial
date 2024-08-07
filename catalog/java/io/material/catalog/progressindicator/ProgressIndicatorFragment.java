@@ -113,7 +113,7 @@ public class ProgressIndicatorFragment extends DemoLandingFragment {
       return new FeatureDemo(
           R.string.cat_progress_indicator_title, R.drawable.ic_progress_activity_24px) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new ProgressIndicatorFragment();
         }
       };

@@ -101,7 +101,7 @@ public class CarouselFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_carousel_title, R.drawable.ic_lists) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new CarouselFragment();
         }
       };

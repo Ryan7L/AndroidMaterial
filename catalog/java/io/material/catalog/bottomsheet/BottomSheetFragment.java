@@ -81,7 +81,7 @@ public class BottomSheetFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_bottomsheet_title, R.drawable.ic_bottomsheet) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new BottomSheetFragment();
         }
       };

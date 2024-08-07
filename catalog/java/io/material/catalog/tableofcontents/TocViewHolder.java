@@ -58,7 +58,7 @@ class TocViewHolder extends ViewHolder {
     itemView.setOnClickListener(
         v ->
             FeatureDemoUtils.startFragment(
-                activity, featureDemo.getFragment(), FRAGMENT_CONTENT, v, transitionName));
+                activity, featureDemo.getLandingFragment(), FRAGMENT_CONTENT, v, transitionName));
     statusWipLabelView.setVisibility(
         featureDemo.getStatus() == STATUS_WIP ? View.VISIBLE : View.GONE);
   }

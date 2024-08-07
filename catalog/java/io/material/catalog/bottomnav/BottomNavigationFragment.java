@@ -86,7 +86,7 @@ public class BottomNavigationFragment extends DemoLandingFragment {
     static FeatureDemo provideFeatureDemo() {
       return new FeatureDemo(R.string.cat_bottom_nav_title, R.drawable.ic_bottomnavigation) {
         @Override
-        public Fragment getFragment() {
+        public Fragment getLandingFragment() {
           return new BottomNavigationFragment();
         }
       };
