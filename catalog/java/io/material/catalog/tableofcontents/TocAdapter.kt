@@ -1,94 +1,72 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.tableofcontents
 
-package io.material.catalog.tableofcontents;
+import android.util.Log
+import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.RecyclerView
+import io.material.catalog.feature.FeatureDemo
+import java.util.Locale
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.RecyclerView.Adapter;
-import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
-import com.google.common.collect.ImmutableList;
-import io.material.catalog.feature.FeatureDemo;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
+private const val TAG = "TocAdapter"
 
-/** Handles individual items in the catalog table of contents. */
-final class TocAdapter extends Adapter<TocViewHolder> implements Filterable {
+class TocAdapter(
+  private val activity: FragmentActivity,
+  private val featureDemos: MutableList<FeatureDemo>
+) :
+  RecyclerView.Adapter<TocViewHolder>(), Filterable {
 
-  private final FragmentActivity activity;
-  private final List<FeatureDemo> featureDemos;
-  private final ImmutableList<FeatureDemo> featureDemosAll;
+  private val featureDemoList = featureDemos.toList()
 
-  private final Filter featureDemoFilter =
-      new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-          List<FeatureDemo> filteredList = new ArrayList<>();
-
-          if (constraint.length() == 0) {
-            filteredList.addAll(featureDemosAll);
-          } else {
-            for (FeatureDemo featureDemo : featureDemosAll) {
-              if (activity
-                  .getString(featureDemo.getTitleResId())
-                  .toLowerCase(Locale.ROOT)
-                  .contains(constraint.toString().toLowerCase(Locale.ROOT))) {
-                filteredList.add(featureDemo);
-              }
+  private val featureDemoFilter = object : Filter() {
+    override fun performFiltering(constraint: CharSequence?): FilterResults {
+      val filteredList = mutableListOf<FeatureDemo>()
+      constraint?.let {
+        if (it.isEmpty()) {
+          filteredList.addAll(featureDemoList)
+        } else {
+          featureDemoList.forEach { demo ->
+            if (activity.getString(demo.titleResId)
+                .lowercase(Locale.ROOT)
+                .contains(it.toString().lowercase(Locale.ROOT))
+            ) {
+              filteredList.add(demo)
             }
           }
-          FilterResults filterResults = new FilterResults();
-          filterResults.values = filteredList;
-          return filterResults;
         }
+      }
+      return FilterResults().apply {
+        values = filteredList
+      }
+    }
 
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults filterResults) {
-          featureDemos.clear();
-          featureDemos.addAll((Collection<? extends FeatureDemo>) filterResults.values);
-          notifyDataSetChanged();
+    override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+      results?.let {
+        featureDemos.clear()
+        (it.values as? List<*>)?.forEach { demo ->
+          Log.d(TAG, "publishResults: foeEach")
+          if (demo is FeatureDemo) {
+            Log.d(TAG, "publishResults: add")
+            featureDemos.add(demo)
+          }
         }
-      };
+        notifyDataSetChanged()
+      }
+    }
 
-  TocAdapter(FragmentActivity activity, List<FeatureDemo> featureDemos) {
-    this.activity = activity;
-    this.featureDemos = featureDemos;
-    this.featureDemosAll = ImmutableList.copyOf(featureDemos);
   }
 
-  @Override
-  public TocViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-    return new TocViewHolder(activity, viewGroup);
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TocViewHolder {
+    return TocViewHolder(activity, parent)
   }
 
-  @Override
-  public void onBindViewHolder(TocViewHolder tocViewHolder, int i) {
-    tocViewHolder.bind(activity, featureDemos.get(i));
+  override fun getItemCount(): Int = featureDemos.size
+
+  override fun onBindViewHolder(holder: TocViewHolder, position: Int) {
+    holder.bind(activity, featureDemos[position])
   }
 
-  @Override
-  public int getItemCount() {
-    return featureDemos.size();
-  }
+  override fun getFilter(): Filter = featureDemoFilter
 
-  @Override
-  public Filter getFilter() {
-    return featureDemoFilter;
-  }
 }

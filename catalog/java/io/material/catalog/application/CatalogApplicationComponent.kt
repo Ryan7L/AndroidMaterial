@@ -29,7 +29,6 @@ interface CatalogApplicationComponent {
   fun inject(app: CatalogApplication)
 
   @dagger.Component.Builder
-
   interface Builder {
     @BindsInstance
     fun application(application: Application): Builder

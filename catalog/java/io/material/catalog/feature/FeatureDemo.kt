@@ -33,8 +33,7 @@ abstract class FeatureDemo @JvmOverloads constructor(
     val KEY_FAVORITE_LAUNCH = "KEY_FAVORITE_LAUNCH"
   }
 
-  //  abstract fun createFragment(): Fragment
-  abstract val landingFragment: Fragment?
+  abstract val landingFragment: Fragment
 
 
 }

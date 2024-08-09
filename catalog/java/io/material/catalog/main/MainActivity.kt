@@ -21,10 +21,6 @@ class MainActivity : BaseCatalogActivity() {
 
   @Inject
   lateinit var internalOptionsMenu: Optional<InternalOptionsMenuPresenter>
-//  private val tocFragment: TocFragment by lazy {
-//    TocFragment()
-//  }
-
   override fun onCreate(savedInstanceState: Bundle?) {
     ThemeOverlayUtils.applyThemeOverlays(this)
     super.onCreate(savedInstanceState)

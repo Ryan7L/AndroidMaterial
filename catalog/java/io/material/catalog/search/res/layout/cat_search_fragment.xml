@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2022 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,63 +13,81 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
 
   <androidx.core.widget.NestedScrollView
-      android:id="@+id/nested_scroll_view"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:layout_behavior="@string/searchbar_scrolling_view_behavior">
+    android:id="@+id/nested_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/searchbar_scrolling_view_behavior">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:fitsSystemWindows="true"
-        android:lineSpacingMultiplier="1.2"
-        android:text="@string/cat_searchbar_lorem_ipsum"/>
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="16dp"
+      android:layout_marginTop="88dp"
+      android:layout_marginRight="16dp"
+      android:layout_marginBottom="16dp"
+      android:fitsSystemWindows="true"
+      android:lineSpacingMultiplier="1.2"
+      android:text="@string/cat_searchbar_lorem_ipsum" />
   </androidx.core.widget.NestedScrollView>
 
   <com.google.android.material.appbar.AppBarLayout
-      android:id="@+id/app_bar_layout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:fitsSystemWindows="true"
-      app:statusBarForeground="?attr/colorSurface">
+    android:id="@+id/app_bar_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    app:statusBarForeground="?attr/colorSurface">
 
     <com.google.android.material.search.SearchBar
-        android:id="@+id/cat_search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/cat_searchbar_hint">
-    </com.google.android.material.search.SearchBar>
+      android:id="@+id/cat_search_bar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="@string/cat_searchbar_hint" />
   </com.google.android.material.appbar.AppBarLayout>
 
   <com.google.android.material.search.SearchView
-      android:id="@+id/cat_search_view"
+    android:id="@+id/cat_search_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:hint="@string/cat_searchbar_hint"
+    app:layout_anchor="@id/cat_search_bar">
+    <!--
+        layout_anchor:用于 CoordinatorLayout 的一个重要属性，它允许你将一个 View 锚定 到另一个 View 上
+            当目标 View 移动时，当前 View 也会随之移动
+
+        layout_anchorGravity：layout_anchorGravity 是与 layout_anchor 配合使用的属性，它决定了 View 相对于锚定 View 的位置。
+          作用
+          精确定位: 当一个 View 通过 layout_anchor 锚定到另一个 View 后，layout_anchorGravity 属性可以更精确地控制该 View 的位置，使其相对于锚定 View 进行对齐或偏移。
+          默认值：默认值是 top|start
+          常用值：
+              top：顶部对齐
+              bottom：底部对齐
+              start：起始边对齐（左侧对齐）
+              end：结束边对齐（右侧对齐）
+              center：居中对齐
+              fill：填充可用空间
+              center_vertical：垂直居中
+              center_horizontal：水平居中
+          注意：要注意的是，即使设置了 layout_anchorGravity，也可能需要同时设置 android:layout_gravity 属性才能达到预期的效果。 这是因为 layout_anchorGravity 仅控制 View 相对于锚定 View 的位置，而 android:layout_gravity 控制 View 在其父布局中的位置。
+                例如，如果你想将一个 View 锚定到另一个 View 的右侧，并使其在垂直方向上居中，则需要同时设置 layout_anchorGravity 为 center_vertical|end 和 android:layout_gravity 为 center_vertical
+
+      -->
+    <!-- 内容放在这里（ScrollView、RecyclerView 等）. -->
+    <ScrollView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:hint="@string/cat_searchbar_hint"
-      app:layout_anchor="@id/cat_search_bar">
-
-    <!-- Content goes here (ScrollView, RecyclerView, etc.). -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+      android:scrollbars="none">
 
       <LinearLayout
-          android:id="@+id/cat_search_view_suggestion_container"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"/>
+        android:id="@+id/cat_search_view_suggestion_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
     </ScrollView>
   </com.google.android.material.search.SearchView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,95 +1,61 @@
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.search
 
-package io.material.catalog.search;
+import android.content.Intent
+import androidx.fragment.app.Fragment
+import dagger.Provides
+import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoSet
+import io.material.catalog.R
+import io.material.catalog.application.scope.ActivityScope
+import io.material.catalog.application.scope.FragmentScope
+import io.material.catalog.feature.Demo
+import io.material.catalog.feature.DemoLandingFragment
+import io.material.catalog.feature.FeatureDemo
 
-import io.material.catalog.R;
+class SearchFragment : DemoLandingFragment() {
+  /**
+   * ActionBar 或 ToolBar 的标题的资源ID
+   */
+  override val titleResId: Int = R.string.cat_searchbar_title
 
-import android.content.Intent;
-import androidx.fragment.app.Fragment;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import dagger.multibindings.IntoSet;
-import io.material.catalog.application.scope.ActivityScope;
-import io.material.catalog.application.scope.FragmentScope;
-import io.material.catalog.feature.Demo;
-import io.material.catalog.feature.DemoLandingFragment;
-import io.material.catalog.feature.FeatureDemo;
-import java.util.ArrayList;
-import java.util.List;
+  /**
+   * 演示功能的描述的资源ID
+   */
+  override val descriptionResId: Int = R.string.cat_searchbar_description
 
-/** A landing fragment that links to Open Search Bar demos for the Catalog app. */
-public class SearchFragment extends DemoLandingFragment {
-
-  @Override
-  public int getTitleResId() {
-    return R.string.cat_searchbar_title;
+  /**
+   * 主要的Demo
+   */
+  override val mainDemo: Demo = object : Demo() {
+    override val activityIntent: Intent = Intent(context, SearchMainDemoActivity::class.java)
   }
-
-  @Override
-  public int getDescriptionResId() {
-    return R.string.cat_searchbar_description;
-  }
-
-  @Override
-  @NonNull
-  public Demo getMainDemo() {
-    return new Demo() {
-      @Nullable
-      @Override
-      public Intent getActivityIntent() {
-        return new Intent(getContext(), SearchMainDemoActivity.class);
+  override val additionalDemos: List<Demo>
+    get() = listOf(
+      object : Demo(R.string.cat_searchbar_recycler_title) {
+        override val activityIntent: Intent =
+          Intent(context, SearchRecyclerDemoActivity::class.java)
       }
-    };
-  }
+    )
+}
 
-  @Override
-  @NonNull
-  public List<Demo> getAdditionalDemos() {
-    List<Demo> additionalDemos = new ArrayList<>();
-    additionalDemos.add(
-        new Demo(R.string.cat_searchbar_recycler_title) {
-          @Override
-          public Intent getActivityIntent() {
-            return new Intent(getContext(), SearchRecyclerDemoActivity.class);
-          }
-        });
-    return additionalDemos;
-  }
+@dagger.Module
+abstract class SearchFragmentModule {
 
-  /** The Dagger module for {@link SearchFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
+  @FragmentScope
+  @ContributesAndroidInjector
+  abstract fun contributeInjector(): SearchFragment
 
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract SearchFragment contributeInjector();
-
+  companion object {
+    @JvmStatic
     @IntoSet
-    @Provides
     @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(R.string.cat_searchbar_title, R.drawable.ic_search_bar) {
-        @Override
-        public Fragment getLandingFragment() {
-          return new SearchFragment();
-        }
-      };
+    @Provides
+    fun provideFeatureDemo(): FeatureDemo {
+      return object : FeatureDemo(R.string.cat_searchbar_title, R.drawable.ic_search_bar) {
+        override val landingFragment: Fragment
+          get() = SearchFragment()
+      }
     }
   }
 }
+

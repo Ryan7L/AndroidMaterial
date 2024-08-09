@@ -106,6 +106,7 @@ def srcDirs = [
   'z_ryan/bar',
   'z_ryan/textview',
   'z_ryan/layout',
+  'z_ryan/sample',
 ]
 
 android {

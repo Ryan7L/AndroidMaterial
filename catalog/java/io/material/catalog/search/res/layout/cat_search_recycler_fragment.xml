@@ -21,9 +21,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-  <!-- Use AppBarLayout scrolling behavior instead of SearchBar
-       scrolling behavior since this demo uses an opaque AppBarLayout
-       and a non-floating SearchBar. -->
+  <!-- 使用 AppBarLayout 滚动行为而不是 SearchBar 滚动行为，因为此演示使用不透明的 AppBarLayout 和非浮动 SearchBar. -->
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recycler_view"
       android:layout_width="match_parent"
@@ -64,9 +62,7 @@
     </com.google.android.material.tabs.TabLayout>
   </com.google.android.material.appbar.AppBarLayout>
 
-  <!-- Elevation needs to be greater than AppBarLayout's elevation;
-       otherwise for some reason when the AppBarLayout's background
-       is not transparent, the elevation on this Toolbar doesn't show. -->
+  <!-- Elevation需要大于AppBarLayout的elevation；否则，由于某种原因，当 AppBarLayout 的背景不透明时，此工具栏上的标高不会显示. -->
   <FrameLayout
       android:id="@+id/contextual_toolbar_container"
       android:layout_width="match_parent"

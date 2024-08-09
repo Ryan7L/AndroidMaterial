@@ -19,8 +19,7 @@
           description="Title for the search bar [CHAR_LIMIT=40]">Search</string>
   <string name="cat_searchbar_description"
           description="Search bar description [CHAR_LIMIT=NONE]">
-    This floating search field component allows for product-specific branding,
-    while also providing a surface for additional navigation and menu icons.
+    该浮动搜索字段组件允许特定于产品的品牌，同时还提供用于附加导航和菜单图标的表面
   </string>
 
   <string name="cat_searchbar_menu_cast_title"

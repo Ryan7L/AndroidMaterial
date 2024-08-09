@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/rootContent"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true">
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+  <com.google.android.material.appbar.AppBarLayout
+    android:id="@+id/appbarLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    app:liftOnScroll="true"
+    app:statusBarForeground="?attr/colorSurface">
+
+    <com.google.android.material.search.SearchBar
+      android:id="@+id/searchBar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="@string/search_hint_text" />
+
+    <com.google.android.material.tabs.TabLayout
+      android:id="@+id/tabLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <com.google.android.material.tabs.TabItem
+        android:id="@+id/tabs_popularity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_tabs_popularity" />
+
+      <com.google.android.material.tabs.TabItem
+        android:id="@+id/tabs_following"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_tabs_followed" />
+
+    </com.google.android.material.tabs.TabLayout>
+  </com.google.android.material.appbar.AppBarLayout>
+
+  <com.google.android.material.search.SearchView
+    android:id="@+id/searchView"
+    android:layout_width="match_parent"
+    app:layout_anchor="@id/searchBar"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/historyRv"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+  </com.google.android.material.search.SearchView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

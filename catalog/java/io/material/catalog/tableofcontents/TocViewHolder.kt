@@ -1,65 +1,43 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.tableofcontents
 
-package io.material.catalog.tableofcontents;
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.ViewCompat
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.RecyclerView
+import io.material.catalog.R
+import io.material.catalog.feature.FeatureDemo
+import io.material.catalog.feature.FeatureDemoUtils
+import io.material.catalog.feature.STATUS_WIP
 
-import static io.material.catalog.feature.FeatureDemoKt.STATUS_WIP;
+private const val FRAGMENT_CONTENT = "fragment_content"
 
-import io.material.catalog.R;
+class TocViewHolder(private val activity: FragmentActivity, private val viewGroup: ViewGroup) :
+  RecyclerView.ViewHolder(
+    LayoutInflater.from(activity).inflate(R.layout.cat_toc_item, viewGroup, false)
+  ) {
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.RecyclerView.ViewHolder;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import androidx.core.view.ViewCompat;
-import io.material.catalog.feature.FeatureDemo;
-import io.material.catalog.feature.FeatureDemoUtils;
-
-/** Creates the UI for a single item in the catalog table of contents. */
-class TocViewHolder extends ViewHolder {
-
-  private static final String FRAGMENT_CONTENT = "fragment_content";
-
-  private final TextView titleView;
-  private final ImageView imageView;
-  private final TextView statusWipLabelView;
-
-  TocViewHolder(FragmentActivity activity, ViewGroup viewGroup) {
-    super(
-        LayoutInflater.from(activity)
-            .inflate(R.layout.cat_toc_item, viewGroup, false /* attachToRoot */));
-
-    titleView = itemView.findViewById(R.id.cat_toc_title);
-    imageView = itemView.findViewById(R.id.cat_toc_image);
-    statusWipLabelView = itemView.findViewById(R.id.cat_toc_status_wip_label);
-  }
-
-  void bind(FragmentActivity activity, FeatureDemo featureDemo) {
-    String transitionName = activity.getString(featureDemo.getTitleResId());
-    ViewCompat.setTransitionName(itemView, transitionName);
-    titleView.setText(featureDemo.getTitleResId());
-    imageView.setImageResource(featureDemo.getDrawableResId());
-    itemView.setOnClickListener(
-        v ->
-            FeatureDemoUtils.startFragment(
-                activity, featureDemo.getLandingFragment(), FRAGMENT_CONTENT, v, transitionName));
-    statusWipLabelView.setVisibility(
-        featureDemo.getStatus() == STATUS_WIP ? View.VISIBLE : View.GONE);
+  val titleTv = itemView.findViewById<TextView>(R.id.cat_toc_title)
+  val imageView = itemView.findViewById<ImageView>(R.id.cat_toc_image)
+  val statusWipLabelView = itemView.findViewById<TextView>(R.id.cat_toc_status_wip_label)
+  fun bind(activity: FragmentActivity, featureDemo: FeatureDemo) {
+    val transitionName = activity.getString(featureDemo.titleResId)
+    ViewCompat.setTransitionName(itemView, transitionName)
+    titleTv.setText(featureDemo.titleResId)
+    imageView.setImageResource(featureDemo.drawableResId)
+    itemView.setOnClickListener {
+      FeatureDemoUtils.startFragment(
+        activity,
+        featureDemo.landingFragment,
+        FRAGMENT_CONTENT,
+        it,
+        transitionName
+      )
+      statusWipLabelView.visibility =
+        if (featureDemo.status == STATUS_WIP) View.VISIBLE else View.GONE
+    }
   }
 }
