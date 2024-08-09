@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2017 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,57 +14,62 @@
   limitations under the License.
   -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/cat_toc_item_size"
-    android:foreground="?attr/selectableItemBackground">
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="@dimen/cat_toc_item_size"
+  android:foreground="?attr/selectableItemBackground">
 
   <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:padding="16dp"
-      android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1">
 
       <ImageView
-          android:id="@+id/cat_toc_image"
-          android:layout_width="80dp"
-          android:layout_height="80dp"
-          android:layout_gravity="center"
-          android:contentDescription="@null"
-          android:importantForAccessibility="no"
-          tools:src="@drawable/ic_text_field_24px"/>
+        android:id="@+id/cat_toc_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:contentDescription="@null"
+        android:importantForAccessibility="no"
+        tools:src="@drawable/ic_text_field_24px" />
     </FrameLayout>
 
     <TextView
-        android:id="@+id/cat_toc_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:text="Text Field"/>
+      android:id="@+id/cat_toc_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+      tools:text="Text Field" />
   </LinearLayout>
 
   <TextView
-      android:id="@+id/cat_toc_status_wip_label"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_margin="8dp"
-      android:layout_gravity="end"
-      android:paddingTop="2dp"
-      android:paddingBottom="2dp"
-      android:paddingLeft="48dp"
-      android:paddingRight="48dp"
-      android:background="@color/cat_toc_status_wip_background_color"
-      android:rotation="45"
-      android:text="@string/cat_toc_status_wip"
-      android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-      android:textColor="@color/cat_toc_status_wip_text_color"
-      android:translationX="48dp"
-      android:visibility="gone"
-      tools:visibility="visible"/>
+    android:id="@+id/cat_toc_status_wip_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    android:layout_margin="8dp"
+    android:background="@color/cat_toc_status_wip_background_color"
+    android:paddingLeft="48dp"
+    android:paddingTop="2dp"
+    android:paddingRight="48dp"
+    android:paddingBottom="2dp"
+    android:rotation="45"
+    android:text="@string/cat_toc_status_wip"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textColor="@color/cat_toc_status_wip_text_color"
+    android:translationX="48dp"
+    android:visibility="gone"
+    tools:visibility="visible" />
+  <!--
+    android:visibility="gone"
+    tools:visibility="visible"
+    两者前缀不同，tools前缀基本用于设计时属性，只在设计时才用效，在编译时会被移除
+   -->
 </FrameLayout>

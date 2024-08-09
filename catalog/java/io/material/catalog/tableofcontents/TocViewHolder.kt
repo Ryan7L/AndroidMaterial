@@ -15,14 +15,14 @@ import io.material.catalog.feature.STATUS_WIP
 
 private const val FRAGMENT_CONTENT = "fragment_content"
 
-class TocViewHolder(private val activity: FragmentActivity, private val viewGroup: ViewGroup) :
+class TocViewHolder(activity: FragmentActivity, private val viewGroup: ViewGroup) :
   RecyclerView.ViewHolder(
     LayoutInflater.from(activity).inflate(R.layout.cat_toc_item, viewGroup, false)
   ) {
 
-  val titleTv = itemView.findViewById<TextView>(R.id.cat_toc_title)
-  val imageView = itemView.findViewById<ImageView>(R.id.cat_toc_image)
-  val statusWipLabelView = itemView.findViewById<TextView>(R.id.cat_toc_status_wip_label)
+  private val titleTv = itemView.findViewById<TextView>(R.id.cat_toc_title)
+  private val imageView = itemView.findViewById<ImageView>(R.id.cat_toc_image)
+  private val statusWipLabelView = itemView.findViewById<TextView>(R.id.cat_toc_status_wip_label)
   fun bind(activity: FragmentActivity, featureDemo: FeatureDemo) {
     val transitionName = activity.getString(featureDemo.titleResId)
     ViewCompat.setTransitionName(itemView, transitionName)

@@ -16,10 +16,21 @@ class TocAdapter(
   private val featureDemos: MutableList<FeatureDemo>
 ) :
   RecyclerView.Adapter<TocViewHolder>(), Filterable {
-
+  //Filterable:定义可过滤行为。可过滤类的数据可受过滤器约束。可过滤类通常是Adapter实现
   private val featureDemoList = featureDemos.toList()
-
+  //Filter：过滤器，异步的
   private val featureDemoFilter = object : Filter() {
+    /**
+     * 在工作线程中调用以根据约束过滤数据。子类必须实现该方法才能执行过滤操作。
+     * 过滤操作计算出的结果必须以 [android.widget.Filter.FilterResults] 的形式
+     * 返回，然后通过 [publishResults]
+     * 在 UI 线程中发布。
+     *
+     * 当约束为空时，必须恢复原始数据
+     *
+     * @param constraint 用于过滤数据的约束
+     * @return 过滤操作的结果
+     */
     override fun performFiltering(constraint: CharSequence?): FilterResults {
       val filteredList = mutableListOf<FeatureDemo>()
       constraint?.let {
@@ -40,7 +51,12 @@ class TocAdapter(
         values = filteredList
       }
     }
-
+    /**
+     * 在UI线程中调用，将过滤结果发布到用户界面中。子类必须实现此方法才能显示 [performFiltering] 中计算的结果
+     *
+     * @param constraint 用于过滤数据的约束
+     * @param results 过滤操作的结果
+     */
     override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
       results?.let {
         featureDemos.clear()

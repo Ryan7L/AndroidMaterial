@@ -188,7 +188,7 @@ class TocFragment : DaggerFragment() {
 
   private fun initSearchView() {
     searchView.setOnClickListener {
-      clearSearchView()
+      closeSearchView()
     }
     searchView.setOnQueryTextListener(object : OnQueryTextListener {
       override fun onQueryTextSubmit(query: String?): Boolean {
