@@ -2,6 +2,7 @@ package io.material.catalog.tableofcontents
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -191,6 +192,13 @@ class TocFragment : DaggerFragment() {
       closeSearchView()
     }
     searchView.setOnQueryTextListener(object : OnQueryTextListener {
+      /**
+       * 当用户提交查询时调用。这可能是由于按下键盘上的某个键或按下提交按钮所致。侦听器可以通过返回 true 来覆盖标准行为，以表明它已处理提交请求。
+       * 否则返回 false，让 SearchView 通过启动任何相关意图来处理提交。
+       * @param query String  要提交的查询文本
+       * @return Boolean 如果 SearchView 应该执行显示任何可用建议的默认操作，则为 false；如果该操作由侦听器处理，则为 true。
+       *                  返回 false 表示您没有处理提交事件，SearchView 应该执行默认操作（但实际上默认操作是什么都不做)
+       */
       override fun onQueryTextSubmit(query: String?): Boolean {
         return false
       }
@@ -209,6 +217,8 @@ class TocFragment : DaggerFragment() {
   }
 
   private fun openSearchView() {
+    //用于在当前布局上执行延迟过渡动画。  作用： 当您调用 beginDelayedTransition() 方法时，它会捕获当前布局的状态，并在您修改布局后自动应用过渡动画。
+    // 这意味着您无需手动创建和启动动画， TransitionManager 会为您处理一切
     TransitionManager.beginDelayedTransition(headerContainer, openSearchViewTransition)
     headerContainer.visibility = View.GONE
     searchView.visibility = View.VISIBLE
@@ -224,6 +234,7 @@ class TocFragment : DaggerFragment() {
 
   private fun createSearchViewTransition(entering: Boolean): MaterialSharedAxis {
     return MaterialSharedAxis(MaterialSharedAxis.X, entering).apply {
+      //addTarget() 方法用于指定哪些 View 应该参与过渡动画,这意味着当过渡动画发生时， 这两个 View 会沿着 X 轴进行移动和淡入淡出
       addTarget(headerContainer)
       addTarget(searchView)
     }
@@ -241,6 +252,7 @@ class TocFragment : DaggerFragment() {
 
   private fun startDefaultDemoLandingIfNeeded() {
     val defaultDemoLanding = FeatureDemoUtils.getDefaultDemoLanding(requireContext())
+    Log.d("TAG", "startDefaultDemoLandingIfNeeded: $defaultDemoLanding")
     if (defaultDemoLanding.isNotEmpty()) {
       featureDemos.forEach {
         val fragment = it.landingFragment
@@ -248,6 +260,7 @@ class TocFragment : DaggerFragment() {
           val args = fragment.arguments ?: Bundle()
           fragment.arguments = args.apply { putBoolean(FeatureDemo.KEY_FAVORITE_LAUNCH, true) }
           FeatureDemoUtils.startFragment(requireActivity(), fragment, FRAGMENT_CONTENT)
+          return
 
         }
       }

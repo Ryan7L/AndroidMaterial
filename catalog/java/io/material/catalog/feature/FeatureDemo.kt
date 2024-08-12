@@ -22,7 +22,6 @@ const val STATUS_WIP = 1
 @IntDef(STATUS_READY, STATUS_WIP)
 @Retention(AnnotationRetention.SOURCE)
 annotation class Status()
-
 abstract class FeatureDemo @JvmOverloads constructor(
   @StringRes val titleResId: Int,
   @DrawableRes val drawableResId: Int,

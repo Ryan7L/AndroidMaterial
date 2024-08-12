@@ -74,6 +74,7 @@ import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.badge.BadgeUtils;
 import com.google.android.material.internal.BaselineLayout;
 import com.google.android.material.motion.MotionUtils;
+import com.google.android.material.navigation.NavigationBarView.ItemGravity;
 import com.google.android.material.navigation.NavigationBarView.ItemIconGravity;
 import com.google.android.material.resources.MaterialResources;
 import com.google.android.material.ripple.RippleUtils;
@@ -147,6 +148,7 @@ public abstract class NavigationBarItemView extends FrameLayout implements MenuV
 
   @ItemIconGravity private int itemIconGravity;
   private int badgeFixedEdge = BadgeDrawable.BADGE_FIXED_EDGE_START;
+  @ItemGravity private int itemGravity = NavigationBarView.ITEM_GRAVITY_TOP_CENTER;
 
   public NavigationBarItemView(@NonNull Context context) {
     super(context);
@@ -186,7 +188,8 @@ public abstract class NavigationBarItemView extends FrameLayout implements MenuV
           // If item icon gravity is start, we want to update the active indicator width in a layout
           // change listener to keep the active indicator size up to date with the content width.
           if (itemIconGravity == ITEM_ICON_GRAVITY_START
-              && activeIndicatorExpandedDesiredWidth == ACTIVE_INDICATOR_WIDTH_WRAP_CONTENT) {
+              && activeIndicatorExpandedDesiredWidth == ACTIVE_INDICATOR_WIDTH_WRAP_CONTENT
+              && (right - left) != (oldRight - oldLeft)) {
             LayoutParams lp = (LayoutParams) innerContentContainer.getLayoutParams();
             int newWidth = right - left + lp.rightMargin + lp.leftMargin;
             LayoutParams indicatorParams = (LayoutParams) activeIndicatorView.getLayoutParams();
@@ -292,16 +295,12 @@ public abstract class NavigationBarItemView extends FrameLayout implements MenuV
   }
 
   private void updateItemIconGravity() {
-    int gravity = Gravity.CENTER_HORIZONTAL | Gravity.TOP;
     int sideMargin = 0;
     int labelGroupTopMargin = activeIndicatorLabelPadding;
     int labelGroupSideMargin = 0;
     int sidePadding = 0;
-    int contentGravity = Gravity.CENTER;
     badgeFixedEdge = BadgeDrawable.BADGE_FIXED_EDGE_START;
     if (itemIconGravity == ITEM_ICON_GRAVITY_START) {
-      gravity = Gravity.CENTER;
-      contentGravity = Gravity.START | Gravity.CENTER_VERTICAL;
       sideMargin =
           getResources()
               .getDimensionPixelSize(R.dimen.m3_expressive_navigation_item_leading_trailing_space);
@@ -318,12 +317,11 @@ public abstract class NavigationBarItemView extends FrameLayout implements MenuV
       contentContainer.addView(labelGroup);
     }
     FrameLayout.LayoutParams contentContainerLp = (LayoutParams) contentContainer.getLayoutParams();
-    contentContainerLp.gravity = gravity;
+    contentContainerLp.gravity = itemGravity;
     FrameLayout.LayoutParams innerContentLp =
         (LayoutParams) innerContentContainer.getLayoutParams();
     innerContentLp.leftMargin = sideMargin;
     innerContentLp.rightMargin = sideMargin;
-    innerContentLp.gravity = contentGravity;
     LinearLayout.LayoutParams labelGroupLp =
         (LinearLayout.LayoutParams) labelGroup.getLayoutParams();
     labelGroupLp.rightMargin =
@@ -466,9 +464,7 @@ public abstract class NavigationBarItemView extends FrameLayout implements MenuV
         contentContainer,
         itemIconGravity == ITEM_ICON_GRAVITY_TOP ? (int) (itemPaddingTop + topMarginShift) : 0,
         0,
-        itemIconGravity == ITEM_ICON_GRAVITY_TOP
-            ? Gravity.CENTER_HORIZONTAL | Gravity.TOP
-            : Gravity.CENTER);
+        itemGravity);
     setViewMarginAndGravity(
         innerContentContainer,
         0,
@@ -484,7 +480,8 @@ public abstract class NavigationBarItemView extends FrameLayout implements MenuV
   }
 
   private void setLayoutConfigurationIconOnly() {
-    setViewMarginAndGravity(contentContainer, itemPaddingTop, itemPaddingTop, Gravity.CENTER);
+    setViewMarginAndGravity(contentContainer, itemPaddingTop, itemPaddingTop,
+        itemIconGravity == ITEM_ICON_GRAVITY_TOP ? Gravity.CENTER : itemGravity);
     setViewMarginAndGravity(innerContentContainer, 0, 0, Gravity.CENTER);
     updateViewPaddingBottom(labelGroup, 0);
     labelGroup.setVisibility(GONE);
@@ -867,6 +864,14 @@ public abstract class NavigationBarItemView extends FrameLayout implements MenuV
     this.activeIndicatorEnabled = enabled;
     refreshItemBackground();
     activeIndicatorView.setVisibility(enabled ? View.VISIBLE : View.GONE);
+    requestLayout();
+  }
+
+  /**
+   * Set the gravity of the item.
+   */
+  public void setItemGravity(@ItemGravity int itemGravity) {
+    this.itemGravity = itemGravity;
     requestLayout();
   }
 

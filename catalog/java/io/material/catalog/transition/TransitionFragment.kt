@@ -1,152 +1,103 @@
-/*
- * Copyright 2019 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.transition
 
-package io.material.catalog.transition;
+import android.content.Intent
+import android.os.Build
+import androidx.fragment.app.Fragment
+import dagger.Provides
+import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoSet
+import io.material.catalog.R
+import io.material.catalog.application.scope.ActivityScope
+import io.material.catalog.application.scope.FragmentScope
+import io.material.catalog.feature.Demo
+import io.material.catalog.feature.DemoLandingFragment
+import io.material.catalog.feature.FeatureDemo
+import io.material.catalog.musicplayer.MusicPlayerDemoActivity
 
-import io.material.catalog.R;
+open class TransitionFragment : DemoLandingFragment() {
+  private val PLATFORM_TRANSITIONS_AVAILABLE = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+  override val titleResId: Int = R.string.cat_transition_title
+  override val descriptionResId: Int = R.string.cat_transition_description
+  override val mainDemo: Demo = object : Demo() {
+    override val activityIntent: Intent
+      get() = Intent(context, MusicPlayerDemoActivity::class.java)
 
-import android.content.Intent;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
-import androidx.fragment.app.Fragment;
-import androidx.annotation.ChecksSdkIntAtLeast;
-import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import dagger.multibindings.IntoSet;
-import io.material.catalog.application.scope.ActivityScope;
-import io.material.catalog.application.scope.FragmentScope;
-import io.material.catalog.feature.Demo;
-import io.material.catalog.feature.DemoLandingFragment;
-import io.material.catalog.feature.FeatureDemo;
-import io.material.catalog.musicplayer.MusicPlayerDemoActivity;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-/** A landing fragment that links to Transition demos for the Catalog app. */
-public class TransitionFragment extends DemoLandingFragment {
-
-  @ChecksSdkIntAtLeast(api = VERSION_CODES.LOLLIPOP)
-  private static final boolean PLATFORM_TRANSITIONS_AVAILABLE =
-      VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP;
-
-  @Override
-  public int getTitleResId() {
-    return R.string.cat_transition_title;
   }
-
-  @Override
-  public int getDescriptionResId() {
-    return R.string.cat_transition_description;
-  }
-
-  @Override
-  public Demo getMainDemo() {
-    return new Demo() {
-      @Override
-      public Intent getActivityIntent() {
-        return new Intent(getContext(), MusicPlayerDemoActivity.class);
-      }
-    };
-  }
-
-  @Override
-  public List<Demo> getAdditionalDemos() {
-    List<Demo> demos = new ArrayList<>();
-    if (PLATFORM_TRANSITIONS_AVAILABLE) {
-      demos.add(
-          new Demo(R.string.cat_transition_container_transform_activity_title) {
-            @Override
-            public Intent getActivityIntent() {
-              return new Intent(getContext(), TransitionContainerTransformStartDemoActivity.class);
-            }
-          });
-    }
-    demos.addAll(
-        Arrays.asList(
-            new Demo(R.string.cat_transition_container_transform_fragment_title) {
-              @Override
-              public Fragment getFragment() {
-                return new TransitionContainerTransformDemoFragment();
-              }
-            },
-            new Demo(R.string.cat_transition_container_transform_view_title) {
-              @Override
-              public Fragment getFragment() {
-                return new TransitionContainerTransformViewDemoFragment();
-              }
-            }));
-
-    if (PLATFORM_TRANSITIONS_AVAILABLE) {
-      demos.add(
-          new Demo(R.string.cat_transition_shared_axis_activity_title) {
-            @Override
-            public Intent getActivityIntent() {
-              return new Intent(getContext(), TransitionSharedAxisStartDemoActivity.class);
-            }
+  override val additionalDemos: List<Demo>
+    get() = mutableListOf<Demo>().apply {
+      if (PLATFORM_TRANSITIONS_AVAILABLE) {
+        add(
+          object : Demo(R.string.cat_transition_container_transform_activity_title) {
+            override val activityIntent: Intent
+              get() = Intent(context, TransitionContainerTransformStartDemoActivity::class.java)
           }
-      );
-    }
-    demos.addAll(
-        Arrays.asList(
-            new Demo(R.string.cat_transition_shared_axis_fragment_title) {
-              @Override
-              public Fragment getFragment() {
-                return new TransitionSharedAxisDemoFragment();
-              }
-            },
-            new Demo(R.string.cat_transition_shared_axis_view_title) {
-              @Override
-              public Fragment getFragment() {
-                return new TransitionSharedAxisViewDemoFragment();
-              }
-            },
-            new Demo(R.string.cat_transition_fade_through_title) {
-              @Override
-              public Fragment getFragment() {
-                return new TransitionFadeThroughDemoFragment();
-              }
-            },
-            new Demo(R.string.cat_transition_fade_title) {
-              @Override
-              public Fragment getFragment() {
-                return new TransitionFadeDemoFragment();
-              }
-            }));
-    return demos;
-  }
-
-  /** The Dagger module for {@link TransitionFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
-
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract TransitionFragment contributeInjector();
-
-    @IntoSet
-    @Provides
-    @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(R.string.cat_transition_title, R.drawable.ic_transition) {
-        @Override
-        public Fragment getLandingFragment() {
-          return new TransitionFragment();
+        )
+      }
+      add(
+        object : Demo(R.string.cat_transition_container_transform_fragment_title) {
+          override val fragment: Fragment
+            get() = TransitionContainerTransformDemoFragment()
         }
-      };
+      )
+      add(
+        object : Demo(R.string.cat_transition_container_transform_view_title) {
+          override val fragment: Fragment
+            get() = TransitionContainerTransformViewDemoFragment()
+        }
+      )
+      if (PLATFORM_TRANSITIONS_AVAILABLE) {
+        add(
+          object : Demo(R.string.cat_transition_shared_axis_activity_title) {
+            override val activityIntent: Intent
+              get() = Intent(context, TransitionSharedAxisStartDemoActivity::class.java)
+          }
+        )
+      }
+      add(
+        object : Demo(R.string.cat_transition_shared_axis_fragment_title) {
+          override val fragment: Fragment
+            get() = TransitionSharedAxisDemoFragment()
+        }
+      )
+      add(
+        object : Demo(R.string.cat_transition_shared_axis_view_title) {
+          override val fragment: Fragment
+            get() = TransitionSharedAxisViewDemoFragment()
+        }
+      )
+      add(
+        object : Demo(R.string.cat_transition_fade_through_title) {
+          override val fragment: Fragment
+            get() = TransitionFadeThroughDemoFragment()
+        }
+      )
+      add(
+        object : Demo(R.string.cat_transition_fade_title) {
+          override val fragment: Fragment
+            get() = TransitionFadeDemoFragment()
+        }
+      )
+    }.toList()
+
+}
+
+@dagger.Module
+abstract class TransitionModule {
+  @FragmentScope
+  @ContributesAndroidInjector
+  abstract fun contributeInjector(): TransitionFragment
+
+  companion object {
+    @JvmStatic
+    @Provides
+    @IntoSet
+    @ActivityScope
+    fun provideFeatureDemo(): FeatureDemo {
+      return object : FeatureDemo(R.string.cat_transition_title, R.drawable.ic_transition) {
+        override val landingFragment: Fragment
+          get() = TransitionFragment()
+      }
+
     }
   }
 }

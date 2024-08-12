@@ -69,6 +69,7 @@ public class TransitionSharedAxisEndDemoActivity extends DemoActivity {
     sharedAxisHelper.updateButtonsEnabled(false);
     sharedAxisHelper.setSelectedAxis(axis);
 
+
     sharedAxisHelper.setBackButtonOnClickListener(v -> onBackPressed());
   }
 

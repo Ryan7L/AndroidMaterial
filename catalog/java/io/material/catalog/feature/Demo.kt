@@ -14,7 +14,7 @@ abstract class Demo(@StringRes val titleResId: Int = R.string.cat_demo_landing_r
   val demoClassName: String
     get() {
       fragment?.let {
-        return it.javaClass.simpleName
+        return it.javaClass.name
       }
       activityIntent?.let {
         val className = it.component!!.className

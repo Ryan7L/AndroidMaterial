@@ -61,7 +61,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_collapseMode="pin" />
+<!--  造成 演示效果的原因是当 CollapsingToolbarLayout 开始折叠时，FrameLayout 会以视差效果向上滚动，但由于 Toolbar 固定在顶部，FrameLayout 的内容最终会滚动到 Toolbar 的上方，并覆盖 Toolbar 的部分区域。
+      CollapsingToolbarLayout只是折叠效果，而不是替换效果
 
+    -->
       <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
@@ -75,7 +78,7 @@
     android:id="@+id/cat_toc_grid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    app:layout_behavior = "@string/appbar_scrolling_view_behavior"/>
 
   <View
     android:id="@+id/cat_toc_grid_top_divider"

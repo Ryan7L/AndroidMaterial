@@ -37,6 +37,7 @@ import io.material.catalog.textfield.TextFieldFragment
 import io.material.catalog.timepicker.TimePickerDemoLandingFragment
 import io.material.catalog.topappbar.TopAppBarModule
 import io.material.catalog.transition.TransitionFragment
+import io.material.catalog.transition.TransitionModule
 import io.material.catalog.z_ryan.sample.SampleFragmentModule
 
 @dagger.Module(
@@ -71,7 +72,7 @@ import io.material.catalog.z_ryan.sample.SampleFragmentModule
     TextFieldFragment.Module::class,
     TimePickerDemoLandingFragment.Module::class,
     TopAppBarModule::class,
-    TransitionFragment.Module::class,
+    TransitionModule::class,
     SampleFragmentModule::class]
 )
 abstract class TocModule {

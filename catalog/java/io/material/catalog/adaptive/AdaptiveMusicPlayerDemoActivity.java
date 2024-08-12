@@ -18,6 +18,7 @@ package io.material.catalog.adaptive;
 
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
+
 import io.material.catalog.musicplayer.MusicPlayerDemoActivity;
 
 /** An Activity which hosts an Adaptive music app flow. */
@@ -25,7 +26,7 @@ public class AdaptiveMusicPlayerDemoActivity extends MusicPlayerDemoActivity {
 
   @Override
   @NonNull
-  protected Fragment getLibraryDemoFragment() {
+  public Fragment getLibraryDemoFragment() {
     return new AdaptiveMusicPlayerLibraryDemoFragment();
   }
 }

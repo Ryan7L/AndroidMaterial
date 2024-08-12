@@ -20,7 +20,7 @@
   <string name="cat_toc_transition" tools:ignore="UnusedResources">Transition</string>
   <string name="cat_transition_title">Transition</string>
   <string name="cat_transition_description">
-    Transition choreography is a coordinated sequence of motion that maintains user focus as the interface adapts.
+    Transition choreography 是一个协调的运动序列，可在界面适应时保持用户焦点.
   </string>
 
   <string name="cat_transition_container_transform_activity_title">Container Transform (Activity)</string>

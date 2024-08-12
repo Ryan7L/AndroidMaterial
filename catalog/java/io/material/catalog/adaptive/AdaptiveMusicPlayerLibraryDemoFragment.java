@@ -36,7 +36,8 @@ import androidx.window.layout.WindowLayoutInfo;
 import com.google.android.material.transition.Hold;
 import com.google.android.material.transition.MaterialContainerTransform;
 import com.google.android.material.transition.MaterialFadeThrough;
-import io.material.catalog.musicplayer.MusicData.Album;
+
+import io.material.catalog.musicplayer.Album;
 import io.material.catalog.musicplayer.MusicPlayerLibraryDemoFragment;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -81,7 +82,7 @@ public class AdaptiveMusicPlayerLibraryDemoFragment extends MusicPlayerLibraryDe
   @Override
   public void onAlbumClicked(@NonNull View view, @NonNull Album album) {
     AdaptiveMusicPlayerAlbumDemoFragment fragment =
-        AdaptiveMusicPlayerAlbumDemoFragment.newInstance(album.getAlbumId());
+        AdaptiveMusicPlayerAlbumDemoFragment.newInstance(album.getId());
 
     MaterialContainerTransform transform =
         new MaterialContainerTransform(requireContext(), /* entering= */ true);

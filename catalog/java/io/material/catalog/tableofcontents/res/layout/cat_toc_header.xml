@@ -17,7 +17,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content">
+  android:layout_height="wrap_content"
+  xmlns:tools="http://schemas.android.com/tools">
 
   <androidx.appcompat.widget.SearchView
     android:id="@+id/cat_toc_search_view"
@@ -27,6 +28,7 @@
     android:paddingEnd="16dp"
     android:contentDescription="@string/cat_search_description"
     android:visibility="gone"
+    tools:visibility="visible"
     app:iconifiedByDefault="false"
     app:searchIcon="@drawable/ic_arrow_back_black_24dp"
     app:srcCompat="@drawable/ic_search_24px" />
@@ -35,6 +37,7 @@
     android:id="@+id/cat_toc_header_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
 
     <ImageButton
       android:id="@+id/cat_toc_search_button"
