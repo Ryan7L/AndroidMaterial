@@ -113,7 +113,9 @@ class TocFragment : DaggerFragment() {
         spanCount
       )
     )
+
     val demoList = featureDemos.toList()
+
     //按字母顺序排序
     val collator = Collator.getInstance()
     demoList.sortedWith { demo1, demo2 ->
@@ -121,6 +123,16 @@ class TocFragment : DaggerFragment() {
         requireContext().getString(demo1.titleResId), requireContext().getString(demo2.titleResId)
       )
     }
+    try {
+      demoList.forEach {
+        Log.d("TAG", "onCreateView: ${it.landingFragment.javaClass.name}")
+      }
+    }catch (e: Exception){
+      Log.d("TAG", "onCreateView: ${e.message}")
+    }
+//    demoList.forEach {
+//      Log.d("TAG", "onCreateView: ${it.landingFragment.javaClass.name}")
+//    }
     adapter = TocAdapter(requireActivity(), demoList.toMutableList())
     rv.adapter = adapter
     adjustLogoConstraintsForNarrowScreenWidths()

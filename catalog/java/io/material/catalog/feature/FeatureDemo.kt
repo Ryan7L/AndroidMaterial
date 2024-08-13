@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 const val STATUS_READY = 0
 
 /**
- * demo 或 组件正在运行中
+ * demo 或 组件正在开发中
  */
 const val STATUS_WIP = 1
 
@@ -21,7 +21,7 @@ const val STATUS_WIP = 1
  */
 @IntDef(STATUS_READY, STATUS_WIP)
 @Retention(AnnotationRetention.SOURCE)
-annotation class Status()
+annotation class Status
 abstract class FeatureDemo @JvmOverloads constructor(
   @StringRes val titleResId: Int,
   @DrawableRes val drawableResId: Int,

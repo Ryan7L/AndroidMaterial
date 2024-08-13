@@ -302,7 +302,7 @@ abstract class DemoLandingFragment : DaggerFragment() {
   private fun updateFavoriteDemoLandingPreference(isChecked: Boolean) {
     FeatureDemoUtils.saveDefaultDemoLanding(
       requireContext(),
-      if (isChecked) this::class.java.name else ""
+      if (isChecked) javaClass.name else ""
     )
   }
 

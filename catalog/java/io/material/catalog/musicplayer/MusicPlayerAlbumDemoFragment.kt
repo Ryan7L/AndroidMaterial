@@ -22,23 +22,21 @@ import dagger.android.support.DaggerFragment
 import io.material.catalog.R
 import kotlin.math.abs
 
+
+private const val ALBUM_ID_KEY = "album_id_key"
+
 open class MusicPlayerAlbumDemoFragment : DaggerFragment() {
+
   companion object {
-    @JvmField
-    val TAG = "MusicPlayerAlbumDemoFragment"
-
-    @JvmField
-    val ALBUM_ID_KEY = "album_id_key"
-
     @JvmStatic
-    open fun newInstance(albumId: Long): MusicPlayerAlbumDemoFragment {
-      val args = Bundle().apply {
-        putLong(ALBUM_ID_KEY, albumId)
-      }
+    fun newInstance(albumId: Long): MusicPlayerAlbumDemoFragment {
       return MusicPlayerAlbumDemoFragment().apply {
-        arguments = args
+        arguments = Bundle().apply {
+          putLong(ALBUM_ID_KEY, albumId)
+        }
       }
     }
+    const val TAG = "MusicPlayerAlbumDemoFragment"
   }
 
   override fun onCreateView(
@@ -51,33 +49,44 @@ open class MusicPlayerAlbumDemoFragment : DaggerFragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val container = view.findViewById<ViewGroup>(R.id.container)
-    val toolBar = view.findViewById<Toolbar>(R.id.toolbar)
+    val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
     val albumImg = view.findViewById<ImageView>(R.id.album_image)
     val albumTitle = view.findViewById<TextView>(R.id.album_title)
     val albumArtist = view.findViewById<TextView>(R.id.album_artist)
     val rv = view.findViewById<RecyclerView>(R.id.song_recycler_view)
-    setUpAlbumViews(container, toolBar, albumImg, albumTitle, albumArtist, rv)
+    setUpAlbumViews(container, toolbar, albumImg, albumTitle, albumArtist, rv)
     val appBarLayout = view.findViewById<AppBarLayout>(R.id.app_bar_layout)
     val fab = view.findViewById<FloatingActionButton>(R.id.fab)
     val musicPlayerContainer = view.findViewById<View>(R.id.music_player_container)
+
     appBarLayout.addOnOffsetChangedListener { layout, verticalOffset ->
-      val verticalOffsetPercentage =  abs(verticalOffset) / layout.totalScrollRange.toFloat()
-      if (verticalOffsetPercentage > 0.2f && fab.isOrWillBeShown){
+      val verticalOffsetPercentage = abs(verticalOffset).toFloat() / layout.totalScrollRange.toFloat()
+      if (verticalOffsetPercentage > 0.2f && fab.isOrWillBeShown) {
         fab.hide()
-      }else if (verticalOffsetPercentage <= 0.2f && fab.isOrWillBeHidden && musicPlayerContainer.visibility != View.VISIBLE){
+      } else if (verticalOffsetPercentage <= 0.2f && fab.isOrWillBeHidden && musicPlayerContainer.visibility != View.VISIBLE) {
         fab.show()
       }
     }
-    //设置音乐播放器过渡
-    val musicPlayerEnterTransform = createMusicPlayerTransform(requireContext(), true, fab, musicPlayerContainer)
+    //设置音乐播放器过渡动画
+    val musicPlayerEnterTransform = createMusicPlayerTransform(
+      requireContext(),
+      true,
+      fab,
+      musicPlayerContainer
+    )
     fab.setOnClickListener {
-      TransitionManager.beginDelayedTransition(container,musicPlayerEnterTransform)
+      TransitionManager.beginDelayedTransition(container, musicPlayerEnterTransform)
       fab.visibility = View.GONE
       musicPlayerContainer.visibility = View.VISIBLE
     }
-    val musicPlayerExitTransform = createMusicPlayerTransform(requireContext(), false, musicPlayerContainer, fab)
+    val musicPlayerExitTransform = createMusicPlayerTransform(
+      requireContext(),
+      false,
+      musicPlayerContainer,
+      fab
+    )
     musicPlayerContainer.setOnClickListener {
-      TransitionManager.beginDelayedTransition(container,musicPlayerExitTransform)
+      TransitionManager.beginDelayedTransition(container, musicPlayerExitTransform)
       musicPlayerContainer.visibility = View.GONE
       fab.visibility = View.VISIBLE
     }
@@ -86,26 +95,26 @@ open class MusicPlayerAlbumDemoFragment : DaggerFragment() {
   open fun setUpAlbumViews(
     container: ViewGroup,
     toolbar: Toolbar,
-    albumImage: ImageView,
+    albumImg: ImageView,
     albumTitle: TextView,
     albumArtist: TextView,
     rv: RecyclerView
   ) {
-    val albumId = arguments?.getLong(ALBUM_ID_KEY, 0L) ?: 0L
+    val albumId = arguments?.getLong(ALBUM_ID_KEY) ?: 0L
     val album = MusicData.getAlbumById(albumId)
-    //设置与共享元素过渡的要过渡的列表网格项相匹配的过渡名称。
+    //设置与共享元素过渡的要过渡的列表/网格项相匹配的过渡动画名称。
     ViewCompat.setTransitionName(container, album.title)
-
+    //设置 toolbar
     ViewCompat.setElevation(toolbar, 0F)
-
     toolbar.setNavigationOnClickListener {
+      @Suppress("DEPRECATION")
       activity?.onBackPressed()
     }
-
-    albumImage.setImageResource(album.cover)
+    //设置专辑信息区
+    albumImg.setImageResource(album.cover)
     albumTitle.text = album.title
     albumArtist.text = album.artist
-
+    //设置曲目列表
     rv.layoutManager = LinearLayoutManager(requireContext())
     val adapter = TrackAdapter()
     rv.adapter = adapter
@@ -113,7 +122,10 @@ open class MusicPlayerAlbumDemoFragment : DaggerFragment() {
   }
 
   private fun createMusicPlayerTransform(
-    context: Context, entering: Boolean, startView: View, endView: View
+    context: Context,
+    entering: Boolean,
+    startView: View,
+    endView: View
   ): MaterialContainerTransform {
     return MaterialContainerTransform(context, entering).apply {
       setPathMotion(MaterialArcMotion())
@@ -139,11 +151,13 @@ class TrackAdapter : ListAdapter<Track, TrackViewHolder>(Track.DIFF_CALLBACK) {
 
 }
 
-class TrackViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-  private val playingIcon = view.findViewById<ImageView>(R.id.playing_icon)
-  private val trackNumber = view.findViewById<TextView>(R.id.track_number)
-  private val trackTitle = view.findViewById<TextView>(R.id.track_title)
-  private val trackDuration = view.findViewById<TextView>(R.id.track_duration)
+class TrackViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+  private val playingIcon = itemView.findViewById<ImageView>(R.id.playing_icon)
+  private val trackNumber = itemView.findViewById<TextView>(R.id.track_number)
+  private val trackTitle = itemView.findViewById<TextView>(R.id.track_title)
+  private val trackDuration = itemView.findViewById<TextView>(R.id.track_duration)
+
   fun bind(track: Track) {
     playingIcon.visibility = if (track.playing) View.VISIBLE else View.INVISIBLE
     trackNumber.text = track.track.toString()

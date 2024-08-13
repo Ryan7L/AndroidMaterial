@@ -8,7 +8,7 @@ import java.util.Locale
 class MusicData {
   companion object{
     @JvmStatic
-    private val TRACKS = listOf<Track>(
+    private val TRACKS = listOf(
       Track(1, "First", "3:25", true),
       Track(2, "Second", "4:51", false),
       Track(3, "Third", "4:12", false),
@@ -25,7 +25,7 @@ class MusicData {
       Track(14, "Fourteenth", "2:43", false)
     )
     @JvmField
-     val ALBUMS = listOf<Album>(
+     val ALBUMS = listOf(
       Album(
         0L,
         "Metamorphosis",
