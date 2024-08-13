@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2021 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,62 +14,68 @@
   ~ limitations under the License.
   -->
 
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/album_item_container"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="4dp">
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/album_item_container"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_margin="4dp">
 
   <androidx.constraintlayout.widget.ConstraintLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:paddingBottom="16dp">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp">
 
     <ImageView
-        android:id="@+id/album_image"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/cat_music_player_album_cover_content_description"
-        app:layout_constraintDimensionRatio="H,1:1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+      android:id="@+id/album_image"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:contentDescription="@string/cat_music_player_album_cover_content_description"
+      android:scaleType="centerCrop"
+      app:layout_constraintDimensionRatio="H,1:1"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+    <!--
+      layout_constraintDimensionRatio：宽高比约束，H,1:1 表示 高度将根据宽度和宽高比例计算
+      如果不加H或W约束，那么：
+          1.如果宽度和高度都设置为 match_constraints (0dp): 比例将应用于两个维度，并且视图将根据其他约束和比例调整大小。
+          2.如果只有一个维度设置为 match_constraints (0dp): 比例将应用于该维度。
+          3.如果宽度和高度都不是 match_constraints (0dp): layout_constraintDimensionRatio 属性将被忽略
+          在上面的View中，宽高都是0dp，那么宽度将会尽可能在满足其他约束下取最大值，然后计算出高度
+      -->
+    <TextView
+      android:id="@+id/album_title"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginEnd="16dp"
+      android:layout_marginBottom="2dp"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:textAppearance="?attr/textAppearanceHeadline6"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/album_image"
+      tools:text="Metamorphosis" />
 
     <TextView
-        android:id="@+id/album_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="2dp"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:textAppearance="?attr/textAppearanceHeadline6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/album_image"
-        tools:text="Metamorphosis" />
-
-    <TextView
-        android:id="@+id/album_artist"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="16dp"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:textAppearance="?attr/textAppearanceBody2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/album_title"
-        tools:text="Sandra Adams" />
+      android:id="@+id/album_artist"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="2dp"
+      android:layout_marginEnd="16dp"
+      android:layout_marginBottom="16dp"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:textAppearance="?attr/textAppearanceBody2"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/album_title"
+      tools:text="Sandra Adams" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

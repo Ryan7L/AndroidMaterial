@@ -80,8 +80,7 @@ public class ContainerTransformConfigurationHelper {
   }
 
   /**
-   * Show configuration chooser associated with a container transform from {@link
-   * TransitionContainerTransformDemoFragment}.
+   * 显示与来自 {@link TransitionContainerTransformDemoFragment} 的容器转换关联的配置选择器.
    */
   void showConfigurationChooser(Context context, @Nullable OnDismissListener onDismissListener) {
     BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
@@ -91,7 +90,7 @@ public class ContainerTransformConfigurationHelper {
     bottomSheetDialog.show();
   }
 
-  /** Set up the androidx transition according to the config helper's parameters. */
+  /** 根据配置助手的参数设置 androidx 转换. */
   void configure(MaterialContainerTransform transform, boolean entering) {
     long duration = entering ? getEnterDuration() : getReturnDuration();
     if (duration != NO_DURATION) {
@@ -107,7 +106,7 @@ public class ContainerTransformConfigurationHelper {
     transform.setDrawDebugEnabled(isDrawDebugEnabled());
   }
 
-  /** Set up the platform transition according to the config helper's parameters. */
+  /** 根据配置助手的参数设置平台转换。 */
   @RequiresApi(VERSION_CODES.LOLLIPOP)
   void configure(
       com.google.android.material.transition.platform.MaterialContainerTransform transform,
@@ -128,34 +127,33 @@ public class ContainerTransformConfigurationHelper {
   }
 
   /**
-   * Whether or not to a custom container transform should use {@link
-   * com.google.android.material.transition.MaterialArcMotion}.
+   * 自定义容器转换是否应使用 {@link com.google.android.material.transition.MaterialArcMotion}.
    */
   boolean isArcMotionEnabled() {
     return arcMotionEnabled;
   }
 
-  /** The enter duration to be used by a custom container transform. */
+  /** 自定义容器转换要使用的输入持续时间。 */
   long getEnterDuration() {
     return enterDuration;
   }
 
-  /** The return duration to be used by a custom container transform. */
+  /** 自定义容器转换使用的返回持续时间. */
   long getReturnDuration() {
     return returnDuration;
   }
 
-  /** The interpolator to be used by a custom container transform. */
+  /** 自定义容器转换使用的插值器. */
   Interpolator getInterpolator() {
     return interpolator;
   }
 
-  /** The fade mode used by a custom container transform. */
+  /** 自定义容器变换使用的淡入淡出模式。 */
   int getFadeMode() {
     return FADE_MODE_MAP.get(fadeModeButtonId);
   }
 
-  /** Whether or not the custom transform should draw debugging lines. */
+  /** 自定义转换是否应绘制调试线. */
   boolean isDrawDebugEnabled() {
     return drawDebugEnabled;
   }
@@ -169,7 +167,7 @@ public class ContainerTransformConfigurationHelper {
     drawDebugEnabled = false;
   }
 
-  /** Create a bottom sheet dialog that displays controls to configure a container transform. */
+  /** 创建一个底部工作表对话框，显示用于配置容器转换的控件。 */
   private View createConfigurationBottomSheetView(Context context, BottomSheetDialog dialog) {
     View layout =
         LayoutInflater.from(context).inflate(R.layout.cat_transition_configuration_layout, null);
@@ -183,7 +181,7 @@ public class ContainerTransformConfigurationHelper {
     return layout;
   }
 
-  /** Update whether to use arc motion based on the selected radio button */
+  /** 根据所选单选按钮更新是否使用弧线运动 */
   private void setUpBottomSheetPathMotionButtonGroup(View view) {
     MaterialButtonToggleGroup toggleGroup = view.findViewById(R.id.path_motion_button_group);
     if (toggleGroup != null) {
@@ -198,7 +196,7 @@ public class ContainerTransformConfigurationHelper {
     }
   }
 
-  /** Update the fade mode based on the selected radio button */
+  /** 根据所选单选按钮更新淡入淡出模式 */
   private void setUpBottomSheetFadeModeButtonGroup(View view) {
     MaterialButtonToggleGroup toggleGroup = view.findViewById(R.id.fade_mode_button_group);
     if (toggleGroup != null) {
@@ -213,7 +211,7 @@ public class ContainerTransformConfigurationHelper {
     }
   }
 
-  /** Update enter duration and duration text when the slider value changes. */
+  /** 当滑块值更改时更新输入持续时间和持续时间文本. */
   private void setUpBottomSheetEnterDurationSlider(View view) {
     setUpBottomSheetDurationSlider(
         view,
@@ -223,7 +221,7 @@ public class ContainerTransformConfigurationHelper {
         (slider, value, fromUser) -> enterDuration = (long) value);
   }
 
-  /** Update return duration and duration text when the slider value changes. */
+  /** 当滑块值更改时更新返回持续时间和持续时间文本. */
   private void setUpBottomSheetReturnDurationSlider(View view) {
     setUpBottomSheetDurationSlider(
         view,
@@ -255,7 +253,7 @@ public class ContainerTransformConfigurationHelper {
     }
   }
 
-  /** Set up interpolation */
+  /** 设置插值 */
   private void setUpBottomSheetInterpolation(View view) {
     RadioGroup interpolationGroup = view.findViewById(R.id.interpolation_radio_group);
     ViewGroup customContainer = view.findViewById(R.id.custom_curve_container);

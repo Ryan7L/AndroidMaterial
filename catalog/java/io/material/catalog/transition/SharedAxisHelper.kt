@@ -2,6 +2,7 @@ package io.material.catalog.transition
 
 import android.util.SparseIntArray
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RadioGroup
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -20,14 +21,14 @@ private val BUTTON_AXIS_MAP = SparseIntArray().apply {
 /**
  * 用于设置和管理共享轴演示控件的帮助程序类。
  */
-class SharedAxisHelper(constraintLayout: ConstraintLayout) {
-  private val backButton: Button = constraintLayout.findViewById(R.id.back_button)
-  private val nextButton: Button = constraintLayout.findViewById(R.id.next_button)
+class SharedAxisHelper(controlLayout: ViewGroup) {
+  private val backButton: Button = controlLayout.findViewById(R.id.back_button)
+  private val nextButton: Button = controlLayout.findViewById(R.id.next_button)
   private val directionRadioGroup: RadioGroup =
-    constraintLayout.findViewById(R.id.radio_button_group_direction)
+    controlLayout.findViewById(R.id.radio_button_group_direction)
 
   init {
-    ViewCompat.setOnApplyWindowInsetsListener(constraintLayout) { view, insets ->
+    ViewCompat.setOnApplyWindowInsetsListener(controlLayout) { view, insets ->
       view.setPadding(
         view.paddingLeft,
         view.paddingTop,

@@ -84,6 +84,11 @@ abstract class DemoLandingFragment : DaggerFragment() {
   open val linkUrlArrayResId: Int = -1
 
   /**
+   * 非 material 库 demos
+   */
+  open val nonMaterialDemos: List<Demo> = emptyList()
+
+  /**
    *  额外的功能演示集合
    */
   open val additionalDemos: List<Demo> = emptyList()
@@ -135,9 +140,12 @@ abstract class DemoLandingFragment : DaggerFragment() {
     if (isRestricted) {
       val additionalDemosSection =
         rootView.findViewById<ViewGroup>(R.id.cat_demo_landing_additional_demos_section)
+      val nonMaterialDemosSection =
+        rootView.findViewById<ViewGroup>(R.id.cat_demo_landing_non_material_demos_section)
       descriptionTextView.setText(restrictedMessageId)
       mainDemoContainer.visibility = View.GONE
       additionalDemosSection.visibility = View.GONE
+      nonMaterialDemosSection.visibility = View.GONE
       return rootView
     }
     descriptionTextView.setText(descriptionResId)
@@ -161,15 +169,24 @@ abstract class DemoLandingFragment : DaggerFragment() {
       view.findViewById<ViewGroup>(R.id.cat_demo_landing_additional_demos_section)
     val additionalDemosContainer =
       view.findViewById<ViewGroup>(R.id.cat_demo_landing_additional_demos_container)
+    val nonMaterialDemosSection =
+      view.findViewById<ViewGroup>(R.id.cat_demo_landing_non_material_demos_section)
+    val nonMaterialDemosContainer =
+      view.findViewById<ViewGroup>(R.id.cat_demo_landing_non_material_demos_container)
     mainDemoContainer.removeAllViews()
     additionalDemosContainer.removeAllViews()
+    nonMaterialDemosContainer.removeAllViews()
 
     val defaultDemoClassName = FeatureDemoUtils.getDefaultDemo(requireContext())
     addDemoView(layoutInflater, mainDemoContainer, mainDemo, false, defaultDemoClassName)
     additionalDemos.forEach {
       addDemoView(layoutInflater, additionalDemosContainer, it, true, defaultDemoClassName)
     }
+    nonMaterialDemos.forEach {
+      addDemoView(layoutInflater, nonMaterialDemosContainer, it, true, defaultDemoClassName)
+    }
     additionalDemosSection.visibility = if (additionalDemos.isEmpty()) View.GONE else View.VISIBLE
+    nonMaterialDemosSection.visibility = if (nonMaterialDemos.isEmpty()) View.GONE else View.VISIBLE
   }
 
   private fun addLinks(layoutInflater: LayoutInflater, view: View) {

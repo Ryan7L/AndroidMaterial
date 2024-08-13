@@ -110,6 +110,10 @@
       android:name="io.material.catalog.search.SearchRecyclerDemoActivity"
       android:windowSoftInputMode="adjustNothing"
       android:exported="true" />
+    <activity android:name=".transition.CustomTransitionStartActivity"
+      android:exported="true"/>
+    <activity android:name=".transition.CustomTransitionEndActivity"
+      android:exported="true"/>
   </application>
 
 </manifest>
