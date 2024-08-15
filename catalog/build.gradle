@@ -107,6 +107,7 @@ def srcDirs = [
   'z_ryan/textview',
   'z_ryan/layout',
   'z_ryan/sample',
+  'animation'
 ]
 
 android {

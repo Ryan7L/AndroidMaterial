@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="cat_animation_title">动画</string>
+  <string name="cat_animation_description">
+    Android 中的动画可用于为您的应用增添视觉趣味性和流畅的用户体验。 您可以使用动画来实现各种效果， 例如移动视图、 更改其外观或创建过渡效果。
+    Android 提供了多种动画类型和 API：
+        1.视图动画：主要用于对View对象进行简单的变换，例如移动、缩放、旋转、透明度等。
+            1.补间动画：通过对视图进行一系列转换来创建动画。该转换是指视图的一些视觉属性
+            2.帧动画：通过按顺序显示一系列图像（如 GIF）来创建动画
+        2.属性动画：功能更加强大的动画框架，可以对所有对象进行动画处理，包括视图和非视图对象，可以更改颜色、位置等几乎任何属性
+
+        区别：视图动画只是改变了View的绘制位置，并没有真正改变View的实际属性，属性动画是真正改变了对象的值
+  </string>
+  <string name="cat_animation_additional_tween">补间动画</string>
+  <string name="cat_animation_additional_frame">帧动画</string>
+  <string name="cat_animation_additional_property">属性动画</string>
+  <string name="cat_animation_btn_start_anim">开始动画</string>
+  <string name="cat_animation_btn_stop_anim">结束动画</string>
+  <string name="cat_animation_btn_oneshot">OneShot</string>
+  <string name="cat_animation_type_title">动画类型</string>
+  <string name="cat_animation_repeat_model_title">重复模式</string>
+  <string name="cat_animation_repeat_model_infinite">INFINITE</string>
+  <string name="cat_animation_repeat_model_restart">RESTART</string>
+  <string name="cat_animation_repeat_model_reverse">REVERSE</string>
+
+  <string name="cat_animation_repeat_count_title">重复次数</string>
+  <string name="cat_animation_btn_use_code">代码生成</string>
+  <string name="cat_animation_type_alpha">Alpha</string>
+  <string name="cat_animation_type_scale">Scale</string>
+  <string name="cat_animation_type_rotate">Rotate</string>
+  <string name="cat_animation_type_translate">Translate</string>
+  <string name="cat_animation_type_set">Set</string>
+  <string name="cat_animation_btn_reset">重置动画</string>
+  <string name="cat_animation_btn_cancel">取消动画</string>
+  <string name="cat_animation_create_type_title">创建方式</string>
+  <string name="cat_animation_create_type_xml">XML</string>
+  <string name="cat_animation_create_type_code">CODE</string>
+  <string name="cat_animation_interpolator_title">插值器</string>
+  <string name="cat_animation_interpolator_LinearInterpolator">LinearInterpolator</string>
+  <string name="cat_animation_interpolator_AccelerateInterpolator">AccelerateInterpolator</string>
+  <string name="cat_animation_interpolator_AccelerateDecelerateInterpolator">AccelerateDecelerateInterpolator</string>
+  <string name="cat_animation_interpolator_DecelerateInterpolator">DecelerateInterpolator</string>
+  <string name="cat_animation_interpolator_AnticipateInterpolator">AnticipateInterpolator</string>
+  <string name="cat_animation_interpolator_OvershootInterpolator">OvershootInterpolator</string>
+  <string name="cat_animation_interpolator_AnticipateOvershootInterpolator">AnticipateOvershootInterpolator</string>
+  <string name="cat_animation_interpolator_BounceInterpolator">BounceInterpolator</string>
+  <string name="cat_animation_interpolator_CycleInterpolator">CycleInterpolator</string>
+  <string name="cat_animation_interpolator_custom">Custom</string>
+  <string-array name="cat_animation_interpolator_list">
+    <item name="LinearInterpolator">@string/cat_animation_interpolator_LinearInterpolator</item>
+    <item name="AccelerateInterpolator">@string/cat_animation_interpolator_AccelerateInterpolator</item>
+    <item name="AccelerateDecelerateInterpolator">@string/cat_animation_interpolator_AccelerateDecelerateInterpolator</item>
+    <item name="DecelerateInterpolator">@string/cat_animation_interpolator_DecelerateInterpolator</item>
+    <item name="AnticipateInterpolator">@string/cat_animation_interpolator_AnticipateInterpolator</item>
+    <item name="OvershootInterpolator">@string/cat_animation_interpolator_OvershootInterpolator</item>
+    <item name="AnticipateOvershootInterpolator">@string/cat_animation_interpolator_AnticipateOvershootInterpolator</item>
+    <item name="BounceInterpolator">@string/cat_animation_interpolator_BounceInterpolator</item>
+    <item name="CycleInterpolator">@string/cat_animation_interpolator_CycleInterpolator</item>
+    <item name="Custom">@string/cat_animation_interpolator_custom</item>
+  </string-array>
+
+</resources>

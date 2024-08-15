@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="8dp"
+    android:text="@string/cat_animation_create_type_title" />
+
+  <com.google.android.material.button.MaterialButtonToggleGroup
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="8dp"
+    app:singleSelection="true">
+
+    <com.google.android.material.button.MaterialButton
+      style="?attr/materialButtonOutlinedStyle"
+      android:id="@+id/xmlBtn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_animation_create_type_xml" />
+
+    <com.google.android.material.button.MaterialButton
+      android:id="@+id/codeBtn"
+      style="?attr/materialButtonOutlinedStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_animation_create_type_code" />
+  </com.google.android.material.button.MaterialButtonToggleGroup>
+</LinearLayout>
