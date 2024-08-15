@@ -8,14 +8,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <include layout="@layout/config_anim_type_section_layout" />
+    <include layout="@layout/config_create_type_layout" />
 
-    <include layout="@layout/config_repeat_model_section_layout" />
+    <include layout="@layout/config_anim_type_layout" />
 
-    <include layout="@layout/config_repeat_count_section_layout" />
+    <include layout="@layout/anim_shared_config" />
 
-    <include layout="@layout/config_create_type_section_layout" />
-
-    <include layout="@layout/config_interpolator_section_layout" />
   </LinearLayout>
 </androidx.core.widget.NestedScrollView>

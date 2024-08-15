@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+  android:fromXDelta="0"
+  android:fromYDelta="0"
+  android:toXDelta="100"
+  android:toYDelta="100" />
+  <!--
+  TranslateAnimation属性：
+      fromXDelta:起始位置的X偏移量
+      fromYDelta: 起始位置的Y偏移量
+      toXDelta: 结束位置的X偏移量
+      toYDelta: 结束位置的Y偏移量
+
+   注：偏移量：相对于 View 初始位置 的插值
+-->
+
+

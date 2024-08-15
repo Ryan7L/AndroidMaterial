@@ -45,18 +45,38 @@
   <string name="cat_animation_interpolator_AnticipateOvershootInterpolator">AnticipateOvershootInterpolator</string>
   <string name="cat_animation_interpolator_BounceInterpolator">BounceInterpolator</string>
   <string name="cat_animation_interpolator_CycleInterpolator">CycleInterpolator</string>
+  <string name="cat_animation_interpolator_PathInterpolator">PathInterpolator</string>
   <string name="cat_animation_interpolator_custom">Custom</string>
-  <string-array name="cat_animation_interpolator_list">
-    <item name="LinearInterpolator">@string/cat_animation_interpolator_LinearInterpolator</item>
-    <item name="AccelerateInterpolator">@string/cat_animation_interpolator_AccelerateInterpolator</item>
-    <item name="AccelerateDecelerateInterpolator">@string/cat_animation_interpolator_AccelerateDecelerateInterpolator</item>
-    <item name="DecelerateInterpolator">@string/cat_animation_interpolator_DecelerateInterpolator</item>
-    <item name="AnticipateInterpolator">@string/cat_animation_interpolator_AnticipateInterpolator</item>
-    <item name="OvershootInterpolator">@string/cat_animation_interpolator_OvershootInterpolator</item>
-    <item name="AnticipateOvershootInterpolator">@string/cat_animation_interpolator_AnticipateOvershootInterpolator</item>
-    <item name="BounceInterpolator">@string/cat_animation_interpolator_BounceInterpolator</item>
-    <item name="CycleInterpolator">@string/cat_animation_interpolator_CycleInterpolator</item>
-    <item name="Custom">@string/cat_animation_interpolator_custom</item>
-  </string-array>
+
+
+  <!--公用配置-->
+  <string name="cat_anim_shared_config_title">公共配置</string>
+
+  <string name="cat_anim_shared_config_duration_title">动画时长</string>
+  <string name="cat_anim_shared_config_duration_level_little">Little</string>
+  <string name="cat_anim_shared_config_duration_level_medium">Medium</string>
+  <string name="cat_anim_shared_config_duration_level_custom">Custom</string>
+  <string name="cat_anim_shared_config_duration_level_custom_input_hint">1000</string>
+  <string name="cat_anim_shared_config_duration_level_custom_input_placeholder">输入动画时长(毫秒)</string>
+
+  <string name="cat_anim_shared_config_state_title">View 开始或结束状态</string>
+  <string name="cat_anim_shared_config_state_fillEnable">FillEnabled</string>
+  <string name="cat_anim_shared_config_state_fillBefore">FillBefore</string>
+  <string name="cat_anim_shared_config_state_fillAfter">FillAfter</string>
+
+  <string name="cat_anim_shared_config_repeat_count_title">重复次数</string>
+  <string name="cat_anim_shared_config_repeat_count_infinite">INFINITE</string>
+  <string name="cat_anim_shared_config_repeat_count_custom">CUSTOM</string>
+  <string name="cat_anim_shared_config_repeat_count_custom_input_hint">0</string>
+  <string name="cat_anim_shared_config_repeat_count_custom_input_placeholder">输入重复次数</string>
+
+  <string name="cat_anim_shared_config_repeat_model_title">重复模式</string>
+  <string name="cat_anim_shared_config_repeat_model_restart">RESTART</string>
+  <string name="cat_anim_shared_config_repeat_model_reverse">REVERSE</string>
+
+
+  <string name="cat_anim_alpha_formAlpha">fromAlpha</string>
+  <string name="cat_anim_alpha_toAlpha">toAlpha</string>
+
 
 </resources>

@@ -10,37 +10,34 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="8dp"
-    android:text="@string/cat_animation_repeat_model_title" />
+    android:text="@string/cat_animation_create_type_title" />
 
   <com.google.android.material.button.MaterialButtonToggleGroup
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    app:checkedButton="@+id/xmlBtn"
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="8dp"
     app:singleSelection="true">
 
     <com.google.android.material.button.MaterialButton
-      android:id="@+id/infiniteBtn"
+      android:id="@+id/xnlBtn"
       style="?attr/materialButtonOutlinedStyle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-
-      android:text="@string/cat_animation_repeat_model_infinite" />
+      android:text="@string/cat_animation_create_type_xml" />
 
     <com.google.android.material.button.MaterialButton
-      android:id="@+id/restartBtn"
+      android:id="@+id/codeBtn"
       style="?attr/materialButtonOutlinedStyle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-
-      android:text="@string/cat_animation_repeat_model_restart" />
-
-    <com.google.android.material.button.MaterialButton
-      android:id="@+id/reverseBtn"
-      style="?attr/materialButtonOutlinedStyle"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-
-      android:text="@string/cat_animation_repeat_model_reverse" />
+      android:text="@string/cat_animation_create_type_code" />
   </com.google.android.material.button.MaterialButtonToggleGroup>
+
+  <FrameLayout
+    android:id="@+id/anim_config_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal" />
 </LinearLayout>

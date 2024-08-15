@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <string name="cat_sample_title">Sample</string>
-  <string name="cat_sample_description">示例</string>
-  <string name="home_tabs_popularity">人气</string>
-  <string name="home_tabs_followed">已关注</string>
-  <string name="search_hint_text">输入类别开始搜索</string>
-</resources>

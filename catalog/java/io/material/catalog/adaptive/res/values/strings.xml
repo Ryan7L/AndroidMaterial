@@ -18,9 +18,7 @@
 
   <string name="cat_adaptive_title" description="Title of the Adaptive Catalog demo [CHAR_LIMIT=NONE]">Adaptive</string>
   <string name="cat_adaptive_description" description="Description of the Adaptive Catalog demo [CHAR_LIMIT=NONE]">
-    Adaptive layouts adapt to differences inherent in devices, such as
-    increased screen space, to feel continuous and cohesive throughout the suite
-    of uniquely shaped devices.
+    自适应布局适应设备固有的差异，例如增加的屏幕空间，在整个形状独特的设备中感觉连续和有凝聚力.
   </string>
   <string name="cat_adaptive_fab_content_desc" description="Content description of the Floating Action Button [CHAR_LIMIT=NONE]">
     Floating Action Button

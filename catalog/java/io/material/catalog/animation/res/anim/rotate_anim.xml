@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+  android:duration="2000"
+  android:fillAfter="true"
+  android:fromDegrees="0"
+  android:pivotX="0.5"
+  android:pivotY="0.5"
+  android:repeatCount="infinite"
+  android:toDegrees="360" />
+  <!--
+    RotateAnimation属性：
+        fromDegrees：开始角度
+        toDegrees：结束角度
+        pivotX：坐标的X值，使用绝对值，或身宽度的百分比值
+        pivotY：坐标的Y值 使用绝对值，或身宽度的百分比值
+-->

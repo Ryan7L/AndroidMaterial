@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/duration_config_root"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+
+  <TextView
+    android:layout_marginTop="8dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:text="@string/cat_anim_shared_config_duration_title" />
+
+
+  <com.google.android.material.slider.Slider
+    android:layout_marginTop="8dp"
+    android:id="@+id/duration_slider"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:stepSize="50"
+    android:valueFrom="100"
+    android:valueTo="1000" />
+
+  <com.google.android.material.button.MaterialButtonToggleGroup
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="8dp"
+    app:checkedButton="@id/duration_level_medium"
+    app:singleSelection="true">
+
+    <com.google.android.material.button.MaterialButton
+      android:id="@+id/duration_level_little"
+      style="?attr/materialButtonOutlinedStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_anim_shared_config_duration_level_little" />
+
+    <com.google.android.material.button.MaterialButton
+      android:id="@+id/duration_level_medium"
+      style="?attr/materialButtonOutlinedStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_anim_shared_config_duration_level_medium" />
+
+    <com.google.android.material.button.MaterialButton
+      android:id="@+id/duration_level_custom"
+      style="?attr/materialButtonOutlinedStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_anim_shared_config_duration_level_custom" />
+  </com.google.android.material.button.MaterialButtonToggleGroup>
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/duration_input_layout"
+    style="?attr/textInputOutlinedStyle"
+    android:layout_width="@dimen/material_textinput_default_width"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="4dp"
+    android:layout_marginTop="8dp"
+    android:hint="@string/cat_anim_shared_config_duration_level_custom_input_hint"
+    android:visibility="gone"
+    app:helperTextEnabled="false"
+    app:placeholderText="@string/cat_anim_shared_config_duration_level_custom_input_placeholder"
+    tools:visibility="visible">
+
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/duration_input"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

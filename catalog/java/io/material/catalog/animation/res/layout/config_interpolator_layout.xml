@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+
+  <TextView
+    android:id="@+id/textView2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="8dp"
+    android:text="@string/cat_animation_interpolator_title"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <com.google.android.material.button.MaterialButton
+    android:id="@+id/placeholder"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:text="@string/cat_animation_interpolator_title"
+    app:layout_constraintDimensionRatio="w,5:1"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+  <RadioGroup
+    android:id="@+id/interpolationGroup"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:checkedButton="@id/linearInterpolatorBtn"
+    android:gravity="center_horizontal"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/btn">
+
+    <RadioButton
+      android:id="@+id/linearInterpolatorBtn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:checked="true"
+      android:text="@string/cat_animation_interpolator_LinearInterpolator"
+      android:visibility="gone"
+      tools:visibility="visible" />
+
+    <RadioButton
+      android:id="@+id/accelerateInterpolatorBtn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="@string/cat_animation_interpolator_AccelerateInterpolator"
+      android:visibility="gone"
+      tools:visibility="visible" />
+
+    <RadioButton
+      android:id="@+id/accelerateDecelerateInterpolatorBtn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="@string/cat_animation_interpolator_AccelerateDecelerateInterpolator"
+      android:visibility="gone"
+      tools:visibility="visible" />
+
+    <RadioButton
+      android:id="@+id/decelerateInterpolatorBtn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="@string/cat_animation_interpolator_DecelerateInterpolator"
+      android:visibility="gone"
+      tools:visibility="visible" />
+
+    <RadioButton
+      android:id="@+id/anticipateInterpolatorBtn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="@string/cat_animation_interpolator_AnticipateInterpolator"
+      android:visibility="gone"
+      tools:visibility="visible" />
+
+    <RadioButton
+      android:id="@+id/anticipateOvershootInterpolatorBtn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="@string/cat_animation_interpolator_AnticipateOvershootInterpolator"
+      android:visibility="gone"
+      tools:visibility="visible" />
+
+    <RadioButton
+      android:id="@+id/overshootInterpolatorBtn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="@string/cat_animation_interpolator_OvershootInterpolator"
+      android:visibility="gone"
+      tools:visibility="visible" />
+
+    <RadioButton
+      android:id="@+id/bounceInterpolatorBtn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="@string/cat_animation_interpolator_BounceInterpolator"
+      android:visibility="gone"
+      tools:visibility="visible" />
+
+    <RadioButton
+      android:id="@+id/cycleInterpolatorBtn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="@string/cat_animation_interpolator_CycleInterpolator"
+      android:visibility="gone"
+      tools:visibility="visible" />
+
+    <RadioButton
+      android:id="@+id/pathInterpolatorBtn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="@string/cat_animation_interpolator_PathInterpolator"
+      android:visibility="gone"
+      tools:visibility="visible" />
+
+    <RadioButton
+      android:id="@+id/customInterpolatorBtn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:text="@string/cat_animation_interpolator_custom"
+      android:visibility="gone"
+      tools:visibility="visible" />
+
+
+  </RadioGroup>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

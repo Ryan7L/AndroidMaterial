@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/state_config_root"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="8dp"
+    android:text="@string/cat_anim_shared_config_state_title" />
+
+  <RadioGroup
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="8dp"
+    android:orientation="horizontal">
+
+    <RadioButton
+      android:id="@+id/state_fillEnable"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:checked="false"
+      android:text="@string/cat_anim_shared_config_state_fillEnable" />
+
+    <RadioButton
+      android:id="@+id/state_fillBefore"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:enabled="false"
+      android:text="@string/cat_anim_shared_config_state_fillBefore" />
+
+    <RadioButton
+      android:id="@+id/state_fillAfter"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:enabled="false"
+      android:text="@string/cat_anim_shared_config_state_fillAfter" />
+  </RadioGroup>
+</LinearLayout>

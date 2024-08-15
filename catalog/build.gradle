@@ -103,10 +103,6 @@ def srcDirs = [
   'topappbar',
   'transition',
   'windowpreferences',
-  'z_ryan/bar',
-  'z_ryan/textview',
-  'z_ryan/layout',
-  'z_ryan/sample',
   'animation'
 ]
 

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <string name="layout_module_title">Layout</string>
-  <string name="layout_module_description">Android 常用布局</string>
-  <string name="layout_sub_coordinator_layout_title">CoordinatorLayout(协调者布局)</string>
-</resources>
