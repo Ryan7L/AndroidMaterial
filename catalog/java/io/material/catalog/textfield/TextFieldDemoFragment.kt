@@ -1,86 +1,58 @@
-/*
- * Copyright 2018 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.textfield
 
-package io.material.catalog.textfield;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import com.google.android.material.textfield.TextInputLayout
+import io.material.catalog.R
+import io.material.catalog.feature.DemoFragment
+import io.material.catalog.feature.DemoUtils
 
-import io.material.catalog.R;
+abstract class TextFieldDemoFragment : DemoFragment() {
+  open lateinit var textfields: List<TextInputLayout>
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.Nullable;
-import com.google.android.material.textfield.TextInputLayout;
-import io.material.catalog.feature.DemoFragment;
-import io.material.catalog.feature.DemoUtils;
-import java.util.List;
-
-/**
- * Base class that provides a structure for text field demos with optional controls for the Catalog
- * app.
- */
-public abstract class TextFieldDemoFragment extends DemoFragment {
-  protected List<TextInputLayout> textfields;
-
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view =
-        layoutInflater.inflate(
-            R.layout.cat_textfield_fragment, viewGroup, false /* attachToRoot */);
-    initTextFields(layoutInflater, view);
-    initTextFieldDemoControls(layoutInflater, view);
-    return view;
+  override fun onCreateDemoView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    val view = inflater.inflate(R.layout.cat_textfield_fragment, container, false)
+    initTextFields(inflater, view)
+    initTextFieldDemoControls(inflater, view)
+    return view
   }
 
-  private void initTextFields(LayoutInflater layoutInflater, View view) {
-    inflateTextFields(layoutInflater, view.findViewById(R.id.content));
-    // Add text fields from the content layout before the text fields from the demo controls to
-    // allow for modifying the demo text fields without modifying the textfields used for the
-    // demo controls.
-    addTextFieldsToList(view);
+  private fun initTextFields(inflater: LayoutInflater, view: View) {
+    inflateTextFields(inflater, view.findViewById(R.id.content))
+    //在演示控件的文本字段之前添加内容布局中的文本字段，以允许修改演示文本字段，而无需修改用于演示控件的文本字段。
+    addTextFieldsToList(view)
   }
 
-  private void inflateTextFields(LayoutInflater layoutInflater, ViewGroup content) {
-    content.addView(layoutInflater.inflate(getTextFieldContent(), content, false));
+
+  private fun inflateTextFields(inflater: LayoutInflater, content: ViewGroup) {
+    content.addView(inflater.inflate(textFieldContent, content, false))
   }
 
-  public void initTextFieldDemoControls(LayoutInflater layoutInflater, View view) {
-    inflateTextFieldDemoControls(layoutInflater, view.findViewById(R.id.content));
+  protected open fun initTextFieldDemoControls(inflater: LayoutInflater, view: View) {
+    inflateTextFieldDemoControls(inflater, view.findViewById(R.id.content))
+
   }
 
-  private void inflateTextFieldDemoControls(LayoutInflater layoutInflater, ViewGroup content) {
-    @LayoutRes int demoControls = getTextFieldDemoControlsLayout();
-    if (demoControls != 0) {
-      content.addView(layoutInflater.inflate(getTextFieldDemoControlsLayout(), content, false));
+  private fun inflateTextFieldDemoControls(inflater: LayoutInflater, content: ViewGroup) {
+    if (textFieldDemoControlsLayout != 0) {
+      content.addView(inflater.inflate(textFieldDemoControlsLayout, content, false))
     }
   }
 
-  private void addTextFieldsToList(View view) {
-    textfields = DemoUtils.findViewsWithType(view, TextInputLayout.class);
+  private fun addTextFieldsToList(view: View) {
+    textfields = DemoUtils.findViewsWithType(view, TextInputLayout::class.java)
   }
 
-  @LayoutRes
-  public int getTextFieldContent() {
-    return R.layout.cat_textfield_content;
-  }
+  @get:LayoutRes
+  open val textFieldContent: Int = R.layout.cat_textfield_content
 
-  @LayoutRes
-  public int getTextFieldDemoControlsLayout() {
-    return 0;
-  }
+  @get:LayoutRes
+  open val textFieldDemoControlsLayout: Int = 0
 }

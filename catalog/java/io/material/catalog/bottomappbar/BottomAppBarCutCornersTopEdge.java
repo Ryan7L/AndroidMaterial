@@ -22,7 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.shape.ShapePath;
 
 /**
- * A {@link BottomAppBar} top edge that works with a Diamond shaped {@link FloatingActionButton}
+ * 与菱形 {@link FloatingActionButton} 配合使用的 {@link BottomAppBar} 顶部边缘
  */
 public class BottomAppBarCutCornersTopEdge extends BottomAppBarTopEdgeTreatment {
 

@@ -2,13 +2,20 @@ package io.material.catalog.animation
 
 import android.content.Context
 import android.content.DialogInterface.OnDismissListener
+import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.view.animation.Animation
+import androidx.core.view.children
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.slider.Slider
-import com.google.android.material.textfield.TextInputLayout
 import io.material.catalog.R
+import io.material.catalog.databinding.AnimSharedConfigBinding
+import io.material.catalog.databinding.BottomSheetLayoutBinding
+import io.material.catalog.databinding.ConfigAnimTypeLayoutBinding
+import io.material.catalog.databinding.ConfigCreateTypeLayoutBinding
+import io.material.catalog.databinding.ConfigDurationLayoutBinding
+import io.material.catalog.databinding.ConfigRepeatCountLayoutBinding
+import io.material.catalog.databinding.ConfigRepeatModelLayoutBinding
 
 private const val ANIM_TYPE_ALPHA = 0
 private const val ANIM_TYPE_SCALE = 1
@@ -22,7 +29,6 @@ private const val REPEAT_MODEL_REVERSE = 2
 
 private const val CREATE_TYPE_XML = 0
 private const val CREATE_TYPE_CODE = 1
-
 private const val INTERPOLATOR_LINEAR = 0
 private const val INTERPOLATOR_ACCELERATE = 1
 private const val INTERPOLATOR_ACCELERATE_DECELERATE = 2
@@ -38,13 +44,27 @@ private var defaultConfig =
   Config(ANIM_TYPE_ALPHA, REPEAT_MODEL_RESTART, 1, CREATE_TYPE_XML, INTERPOLATOR_LINEAR)
 
 class TweenConfigHelper(private val context: Context) {
+  private var binding: BottomSheetLayoutBinding
+  private var createTypeBinding: ConfigCreateTypeLayoutBinding
+  private var animTypeBinding: ConfigAnimTypeLayoutBinding
+  private var sharedConfigBinding: AnimSharedConfigBinding
+  private var repeatModelBinding: ConfigRepeatModelLayoutBinding
+  private var repeatCountBinding: ConfigRepeatCountLayoutBinding
+  private var durationBinding: ConfigDurationLayoutBinding
   private val dialog: BottomSheetDialog = BottomSheetDialog(context).apply {
-    setContentView(R.layout.bottom_sheet_layout)
-    initCreateType(this)
-    initAnimType(this)
-    initRepeatModel(this)
-    initRepeatCount(this)
-    initDuration(this)
+    binding = BottomSheetLayoutBinding.inflate(layoutInflater)
+    createTypeBinding = ConfigCreateTypeLayoutBinding.bind(binding.root)
+    animTypeBinding = ConfigAnimTypeLayoutBinding.bind(binding.root)
+    sharedConfigBinding = AnimSharedConfigBinding.bind(binding.root)
+    repeatModelBinding = ConfigRepeatModelLayoutBinding.bind(sharedConfigBinding.root)
+    repeatCountBinding = ConfigRepeatCountLayoutBinding.bind(sharedConfigBinding.root)
+    durationBinding = ConfigDurationLayoutBinding.bind(sharedConfigBinding.root)
+    setContentView(binding.root)
+    initCreateType()
+    initAnimType()
+    initRepeatModel()
+    initRepeatCount()
+    initDuration()
   }
   private var animType: Int = defaultConfig.animType
   private var repeatModel: Int = defaultConfig.repeatModel
@@ -53,87 +73,127 @@ class TweenConfigHelper(private val context: Context) {
   private var interpolator: Int = defaultConfig.interpolator
   private var isXml = true
   private var duration: Long = 0
+
+
   fun openConfigDialog(onDismissListener: OnDismissListener?) {
     dialog.setOnDismissListener(onDismissListener)
     dialog.show()
   }
 
-  private fun initCreateType(dialog: BottomSheetDialog) {
-    dialog.findViewById<MaterialButton>(R.id.xmlBtn)?.setOnClickListener {
+  private fun initCreateType() {
+    createTypeBinding.xmlBtn.setOnClickListener {
       isXml = true
     }
-    dialog.findViewById<MaterialButton>(R.id.codeBtn)?.setOnClickListener {
+    createTypeBinding.codeBtn.setOnClickListener {
       isXml = false
     }
   }
 
-  private fun initAnimType(dialog: BottomSheetDialog) {
-    dialog.findViewById<MaterialButton>(R.id.type_alpha)?.setOnClickListener {
+  private fun initAnimType() {
+    val group = animTypeBinding.typeGroup
+
+    //重置item宽度
+    val childrenCount = group.childCount
+    val displayWidth = context.resources.displayMetrics.widthPixels
+    val marginParent =
+      TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, context.resources.displayMetrics)
+    val itemWidth = (displayWidth - 2 * marginParent) / childrenCount
+    group.children.forEach {
+      it.layoutParams = it.layoutParams.apply {
+        width = itemWidth.toInt()
+      }
+    }
+//    group.addOnButtonCheckedListener { group, checkedId, isChecked ->
+//      when (checkedId) {
+//        R.id.type_alpha -> animType = ANIM_TYPE_ALPHA
+//        R.id.type_scale -> animType = ANIM_TYPE_SCALE
+//        R.id.type_translate -> animType = ANIM_TYPE_TRANSLATE
+//        R.id.type_rotate -> animType = ANIM_TYPE_ROTATE
+//        R.id.type_set -> animType = ANIM_TYPE_COMBO
+//      }
+//    }
+    animTypeBinding.typeAlpha.setOnClickListener {
       animType = ANIM_TYPE_ALPHA
     }
-    dialog.findViewById<MaterialButton>(R.id.type_scale)?.setOnClickListener {
+    animTypeBinding.typeScale.setOnClickListener {
       animType = ANIM_TYPE_SCALE
     }
-    dialog.findViewById<MaterialButton>(R.id.type_translate)?.setOnClickListener {
+    animTypeBinding.typeTranslate.setOnClickListener {
       animType = ANIM_TYPE_TRANSLATE
     }
-    dialog.findViewById<MaterialButton>(R.id.rotateBtn)?.setOnClickListener {
+    animTypeBinding.typeRotate.setOnClickListener {
       animType = ANIM_TYPE_ROTATE
+    }
+    animTypeBinding.typeSet.setOnClickListener {
+      animType = ANIM_TYPE_COMBO
     }
   }
 
-  private fun initRepeatModel(dialog: BottomSheetDialog) {
-    dialog.findViewById<MaterialButton>(R.id.repeat_restart)?.setOnClickListener {
+  private fun initRepeatModel() {
+    repeatModelBinding.repeatRestart.setOnClickListener {
       repeatModel = REPEAT_MODEL_RESTART
     }
-    dialog.findViewById<MaterialButton>(R.id.repeat_reverse)?.setOnClickListener {
+    repeatModelBinding.repeatReverse.setOnClickListener {
       repeatModel = REPEAT_MODEL_REVERSE
     }
   }
 
-  private fun initRepeatCount(dialog: BottomSheetDialog) {
-    val slider = dialog.findViewById<Slider>(R.id.repeat_slider)
-    val inputLayout = dialog.findViewById<TextInputLayout>(R.id.repeat_input_layout)
-    val infinite = dialog.findViewById<MaterialButton>(R.id.repeat_infinite)
-    val custom = dialog.findViewById<MaterialButton>(R.id.repeat_custom)
-    slider?.setOnClickListener {
-      inputLayout?.visibility = View.GONE
-      infinite?.isChecked = false
-      custom?.isChecked = false
+  private fun initRepeatCount() {
+    val slider = repeatCountBinding.repeatSlider
+    val inputLayout = repeatCountBinding.repeatInputLayout
+    val infinite = repeatCountBinding.repeatInfinite
+    val custom = repeatCountBinding.repeatCustom
+    repeatCountBinding.repeatCountGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
+      Log.d("TAG", "initRepeatCount: ")
     }
-    slider?.addOnChangeListener { _, value, _ ->
+    slider.addOnChangeListener { _, value, _ ->
       repeatCount = value.toInt()
     }
-    infinite?.setOnClickListener {
-      inputLayout?.visibility = View.GONE
+    infinite.setOnClickListener {
+      slider.isEnabled = false
+      slider.value = 0f
+      inputLayout.visibility = View.GONE
       repeatCount = -1
     }
-    custom?.setOnClickListener {
-      slider?.value = 0f
-      inputLayout?.visibility = View.VISIBLE
+    custom.setOnClickListener {
+      slider.isEnabled = false
+      slider.value = 0f
+      inputLayout.visibility = View.VISIBLE
     }
   }
 
-  private fun initDuration(dialog: BottomSheetDialog) {
-    val slider = dialog.findViewById<Slider>(R.id.duration_slider)
-    val little = dialog.findViewById<MaterialButton>(R.id.duration_level_little)
-    val medium = dialog.findViewById<MaterialButton>(R.id.duration_level_medium)
-    val custom = dialog.findViewById<MaterialButton>(R.id.duration_level_custom)
-    val inputLayout = dialog.findViewById<TextInputLayout>(R.id.duration_input_layout)
-    slider?.setOnClickListener {
-      inputLayout?.visibility = View.GONE
-    }
-    slider?.addOnChangeListener { slider, value, fromUser ->
+  private fun initDuration() {
+    val slider = durationBinding.durationSlider
+    val little = durationBinding.durationLevelLittle
+    val medium = durationBinding.durationLevelMedium
+    val custom = durationBinding.durationLevelCustom
+    val inputLayout = durationBinding.durationInputLayout
+    slider.addOnChangeListener { slider, value, fromUser ->
       duration = value.toLong()
     }
-    little?.setOnClickListener {
-      inputLayout?.visibility = View.GONE
+    little.setOnClickListener {
+      inputLayout.visibility = View.GONE
+      slider.stepSize = 50f
+      slider.valueTo = 1000f
+      slider.valueFrom = 100f
+      slider.value = 100f
+      slider.isEnabled = true
     }
-    medium?.setOnClickListener {
-      inputLayout?.visibility = View.GONE
+    medium.setOnClickListener {
+      slider.stepSize = 100f
+      slider.valueTo = 5000f
+      slider.valueFrom = 1000f
+      slider.value = 1000f
+      inputLayout.visibility = View.GONE
+      slider.isEnabled = true
     }
-    custom?.setOnClickListener {
-      inputLayout?.visibility = View.GONE
+    custom.bindClick {
+      slider.stepSize = 100f
+      slider.valueTo = 5000f
+      slider.valueFrom = 1000f
+      slider.value = 1000f
+      slider.isEnabled = false
+      inputLayout.visibility = View.VISIBLE
     }
   }
 
@@ -193,3 +253,9 @@ data class AnimationConfig(
   val animConfig: BaseAnimationConfig?,
   val sharedConfig: SharedConfig? = null
 )
+
+fun View.bindClick(onClickListener: (View) -> Unit) {
+  setOnClickListener {
+    onClickListener(it)
+  }
+}

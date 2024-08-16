@@ -1,265 +1,228 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.textfield
 
-package io.material.catalog.textfield;
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.Button
+import android.widget.Toast
+import androidx.annotation.StringRes
+import com.google.android.material.materialswitch.MaterialSwitch
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
+import io.material.catalog.R
 
-import io.material.catalog.R;
+abstract class TextFieldControllableDemoFragment : TextFieldDemoFragment() {
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.StringRes;
-import com.google.android.material.materialswitch.MaterialSwitch;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputLayout;
+  var errorText: String? = null
 
-/** A base class for controllable text field demos in the Catalog app. */
-public abstract class TextFieldControllableDemoFragment extends TextFieldDemoFragment {
+  override fun initTextFieldDemoControls(inflater: LayoutInflater, view: View) {
+    super.initTextFieldDemoControls(inflater, view)
+    errorText = resources.getString(R.string.cat_textfield_error)
+    //用于切换错误文本可见性的初始化按钮。
+    val toggleErrorButton = view.findViewById<Button>(R.id.button_toggle_error)
+    toggleErrorButton.setOnClickListener {
+      if (textfields.isNotEmpty() && textfields[0].error == null) {
+        setAllTextFieldsError(errorText)
+        toggleErrorButton.text = resources.getString(R.string.cat_textfield_hide_error_text)
+        Snackbar.make(it, R.string.cat_textfield_show_error_text, Snackbar.LENGTH_SHORT).show()
+      } else {
+        setAllTextFieldsError(null)
+        toggleErrorButton.text = resources.getString(R.string.cat_textfield_show_error_text)
+        Snackbar.make(it, R.string.cat_textfield_hide_error_text, Snackbar.LENGTH_SHORT).show()
+      }
+    }
+    //用于更新标签文本的初始化文本字段。
+    val labelTextField = view.findViewById<TextInputLayout>(R.id.text_input_label)
+    val labelEditText = labelTextField.editText
+    labelEditText?.setOnEditorActionListener { v, actionId, event ->
+      if (actionId == EditorInfo.IME_ACTION_DONE) {
+        if (!labelTextField.checkTextInputIsNull(true)) {
+          setAllTextFieldsLabel(labelEditText.text.toString())
+          showToast(R.string.cat_textfield_toast_label_text)
+        }
+        return@setOnEditorActionListener true
+      }
+      return@setOnEditorActionListener false
+    }
 
-  private String errorText;
+    //用于更新错误文本的初始化文本字段
+    val textInputError = view.findViewById<TextInputLayout>(R.id.text_input_error)
+    val inputErrorEditText = textInputError.editText
+    inputErrorEditText?.setOnEditorActionListener { v, actionId, event ->
+      if (actionId == EditorInfo.IME_ACTION_DONE) {
+        if (!textInputError.checkTextInputIsNull(true)) {
+          updateErrorText(inputErrorEditText.text.toString(), toggleErrorButton)
+          showToast(R.string.cat_textfield_toast_error_text)
+        }
+        return@setOnEditorActionListener true
+      }
+      return@setOnEditorActionListener false
+    }
 
-  @Override
-  public void initTextFieldDemoControls(LayoutInflater layoutInflater, View view) {
-    super.initTextFieldDemoControls(layoutInflater, view);
-    errorText = getResources().getString(R.string.cat_textfield_error);
-
-    // Initialize button for toggling the error text visibility.
-    Button toggleErrorButton = view.findViewById(R.id.button_toggle_error);
-    toggleErrorButton.setOnClickListener(
-        v -> {
-          if (!textfields.isEmpty() && textfields.get(0).getError() == null) {
-            setAllTextFieldsError(errorText);
-            toggleErrorButton.setText(
-                getResources().getString(R.string.cat_textfield_hide_error_text));
-            Snackbar.make(v, R.string.cat_textfield_show_error_text, Snackbar.LENGTH_SHORT).show();
-          } else {
-            setAllTextFieldsError(null);
-            toggleErrorButton.setText(
-                getResources().getString(R.string.cat_textfield_show_error_text));
-            Snackbar.make(v, R.string.cat_textfield_hide_error_text, Snackbar.LENGTH_SHORT).show();
-          }
-        });
-
-    // Initialize text field for updating the label text.
-    TextInputLayout labelTextField = view.findViewById(R.id.text_input_label);
-    EditText labelEditText = labelTextField.getEditText();
-    labelEditText.setOnEditorActionListener(
-        (v, actionId, event) -> {
-          if (actionId == EditorInfo.IME_ACTION_DONE) {
-            if (!checkTextInputIsNull(labelTextField, /* showError= */ true)) {
-              setAllTextFieldsLabel(String.valueOf(labelEditText.getText()));
-              showToast(R.string.cat_textfield_toast_label_text);
-            }
-            return true;
-          }
-          return false;
-        });
-
-    // Initialize text field for updating the error text.
-    TextInputLayout textInputError = view.findViewById(R.id.text_input_error);
-    EditText inputErrorEditText = textInputError.getEditText();
-    inputErrorEditText.setOnEditorActionListener(
-        (v, actionId, event) -> {
-          if (actionId == EditorInfo.IME_ACTION_DONE) {
-            if (!checkTextInputIsNull(textInputError, /* showError= */ true)) {
-              updateErrorText(String.valueOf(inputErrorEditText.getText()), toggleErrorButton);
-              showToast(R.string.cat_textfield_toast_error_text);
-            }
-            return true;
-          }
-          return false;
-        });
-
-    // Initialize text field for updating the helper text.
-    TextInputLayout helperTextTextField = view.findViewById(R.id.text_input_helper_text);
-    EditText helperTextEditText = helperTextTextField.getEditText();
-    helperTextEditText.setOnEditorActionListener(
-        (v, actionId, event) -> {
-          if (actionId == EditorInfo.IME_ACTION_DONE) {
-            if (!checkTextInputIsNull(helperTextTextField, /* showError= */ true)) {
-              setAllTextFieldsHelperText(String.valueOf(helperTextEditText.getText()));
-              showToast(R.string.cat_textfield_toast_helper_text);
-            }
-            return true;
-          }
-          return false;
-        });
-
-    // Initialize text field for updating the placeholder text.
-    TextInputLayout placeholderTextField = view.findViewById(R.id.text_input_placeholder);
-    EditText placeholderEditText = placeholderTextField.getEditText();
-    placeholderEditText.setOnEditorActionListener(
-        (v, actionId, event) -> {
-          if (actionId == EditorInfo.IME_ACTION_DONE) {
-            if (!checkTextInputIsNull(placeholderTextField, /* showError= */ true)) {
-              setAllTextFieldsPlaceholder(String.valueOf(placeholderEditText.getText()));
-              showToast(R.string.cat_textfield_toast_placeholder_text);
-            }
-            return true;
-          }
-          return false;
-        });
-
-    // Initialize text field for updating the counter max.
-    TextInputLayout counterMaxTextField = view.findViewById(R.id.text_input_counter_max);
-    EditText counterEditText = counterMaxTextField.getEditText();
-    counterEditText.setOnEditorActionListener(
-        (v, actionId, event) -> {
-          if (actionId == EditorInfo.IME_ACTION_DONE) {
-            if (!checkTextInputIsNull(counterMaxTextField, /* showError= */ true)) {
-              int length = Integer.parseInt(counterEditText.getText().toString());
-              setAllTextFieldsCounterMax(length);
-              showToast(R.string.cat_textfield_toast_counter_text);
-            }
-            return true;
-          }
-          return false;
-        });
-
-    // Initialize button for updating all customizable fields.
-    Button updateButton = view.findViewById(R.id.button_update);
-    updateButton.setOnClickListener(
-        v -> {
-          boolean updated = false;
-          if (!checkTextInputIsNull(labelTextField, /* showError= */ false)) {
-            setAllTextFieldsLabel(String.valueOf(labelEditText.getText()));
-            updated = true;
-          }
-          if (!checkTextInputIsNull(textInputError, /* showError= */ false)) {
-            updateErrorText(String.valueOf(inputErrorEditText.getText()), toggleErrorButton);
-            updated = true;
-          }
-          if (!checkTextInputIsNull(helperTextTextField, /* showError= */ false)) {
-            setAllTextFieldsHelperText(String.valueOf(helperTextEditText.getText()));
-            updated = true;
-          }
-          if (!checkTextInputIsNull(counterMaxTextField, /* showError= */ false)) {
-            int length = Integer.parseInt(counterEditText.getText().toString());
-            setAllTextFieldsCounterMax(length);
-            updated = true;
-          }
-          if (!checkTextInputIsNull(placeholderTextField, /* showError= */ false)) {
-            setAllTextFieldsPlaceholder(String.valueOf(placeholderEditText.getText()));
-            updated = true;
-          }
-          if (updated) {
-            showToast(R.string.cat_textfield_toast_update_button);
-          }
-        });
-
-    // Initializing switch to toggle between disabling or enabling text fields.
-    MaterialSwitch enabledSwitch = view.findViewById(R.id.cat_textfield_enabled_switch);
-    enabledSwitch.setOnCheckedChangeListener(
-        (buttonView, isChecked) -> {
-          for (TextInputLayout textfield : textfields) {
-            textfield.setEnabled(isChecked);
-          }
-          int messageId = isChecked
-              ? R.string.cat_textfield_label_enabled : R.string.cat_textfield_label_disabled;
-          Snackbar.make(buttonView, messageId, Snackbar.LENGTH_SHORT).show();
-        });
-  }
-
-  private void setAllTextFieldsLabel(String label) {
-    for (TextInputLayout textfield : textfields) {
-      textfield.setHint(label);
+    val helperTextTextField = view.findViewById<TextInputLayout>(R.id.text_input_helper_text)
+    val helperTextEditText = helperTextTextField.editText
+    helperTextEditText?.setOnEditorActionListener { v, actionId, event ->
+      if (actionId == EditorInfo.IME_ACTION_DONE) {
+        if (!helperTextTextField.checkTextInputIsNull(true)) {
+          setAllTextFieldsHelperText(helperTextEditText.text.toString())
+          showToast(R.string.cat_textfield_toast_helper_text)
+        }
+        return@setOnEditorActionListener true
+      }
+      return@setOnEditorActionListener false
+    }
+    val placeholderTextField = view.findViewById<TextInputLayout>(R.id.text_input_placeholder)
+    val placeholderEditText = placeholderTextField.editText
+    placeholderEditText?.setOnEditorActionListener { v, actionId, event ->
+      if (!placeholderTextField.checkTextInputIsNull(true)) {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+          setAllTextFieldsPlaceholder(placeholderEditText.text.toString())
+          showToast(R.string.cat_textfield_toast_placeholder_text)
+        }
+        return@setOnEditorActionListener true
+      }
+      return@setOnEditorActionListener false
+    }
+    val counterMaxTextField = view.findViewById<TextInputLayout>(R.id.text_input_counter_max)
+    val counterEditText = counterMaxTextField.editText
+    counterEditText?.setOnEditorActionListener { v, actionId, event ->
+      if (actionId == EditorInfo.IME_ACTION_DONE) {
+        if (!counterMaxTextField.checkTextInputIsNull(true)) {
+          val length = counterEditText.text.toString().toInt()
+          setAllTextFieldsCounterMax(length)
+          showToast(R.string.cat_textfield_toast_counter_text)
+        }
+        return@setOnEditorActionListener true
+      }
+      return@setOnEditorActionListener false
+    }
+    val updateButton = view.findViewById<Button>(R.id.button_update)
+    updateButton.setOnClickListener {
+      var updated = false
+      if (!labelTextField.checkTextInputIsNull(false)) {
+        setAllTextFieldsLabel(labelEditText?.text.toString())
+        updated = true
+      }
+      if (!textInputError.checkTextInputIsNull(false)) {
+        updateErrorText(inputErrorEditText?.text.toString(), toggleErrorButton)
+        updated = true
+      }
+      if (!helperTextTextField.checkTextInputIsNull(false)) {
+        setAllTextFieldsHelperText(helperTextEditText?.text.toString())
+        updated = true
+      }
+      if (!counterMaxTextField.checkTextInputIsNull(false)) {
+        val length = counterEditText?.text.toString().toInt()
+        setAllTextFieldsCounterMax(length)
+      }
+      if (!placeholderTextField.checkTextInputIsNull(false)) {
+        setAllTextFieldsPlaceholder(placeholderEditText?.text.toString())
+        updated = true
+      }
+      if (updated) {
+        showToast(R.string.cat_textfield_toast_update_button)
+      }
+    }
+    val enabledSwitch = view.findViewById<MaterialSwitch>(R.id.cat_textfield_enabled_switch)
+    enabledSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+      textfields.forEach {
+        it.isEnabled = isChecked
+      }
+      val messageId =
+        if (isChecked) resources.getString(R.string.cat_textfield_label_enabled) else resources.getString(
+          R.string.cat_textfield_label_disabled
+        )
+      Snackbar.make(buttonView, messageId, Snackbar.LENGTH_SHORT).show()
     }
   }
 
-  private void setAllTextFieldsError(String error) {
-    ViewGroup parent = (ViewGroup) textfields.get(0).getParent();
-    boolean textfieldWithErrorHasFocus = false;
-    for (TextInputLayout textfield : textfields) {
-      setErrorIconClickListeners(textfield);
-      textfield.setError(error);
-      textfieldWithErrorHasFocus |= textfield.hasFocus();
-    }
-    if (!textfieldWithErrorHasFocus) {
-      // Request accessibility focus on the first text field to show an error.
-      parent.getChildAt(0).requestFocus();
+  private fun setAllTextFieldsLabel(label: String) {
+    textfields.forEach {
+      it.hint = label
     }
   }
 
-  private void updateErrorText(String errorText, Button toggleErrorButton) {
-    this.errorText = errorText;
-    // if error already showing, call setError again to update its text.
-    if (toggleErrorButton
-        .getText()
-        .toString()
-        .equals(getResources().getString(R.string.cat_textfield_hide_error_text))) {
-      for (TextInputLayout textfield : textfields) {
-        setErrorIconClickListeners(textfield);
-        textfield.setError(errorText);
+  private fun setAllTextFieldsError(error: String?) {
+    val parent = textfields[0].parent as ViewGroup
+    var textFieldWithErrorHasFocus = false
+    textfields.forEach {
+      setErrorIconClickListeners(it)
+      it.error = error
+      textFieldWithErrorHasFocus = textFieldWithErrorHasFocus or it.hasFocus()
+    }
+    if (!textFieldWithErrorHasFocus) {
+      //请求可访问性重点关注第一个文本字段以显示错误。
+      parent.getChildAt(0).requestFocus()
+    }
+  }
+
+  private fun updateErrorText(errorText: String, toggleErrorButton: Button) {
+    this.errorText = errorText
+    //如果已经显示错误，请再次调用 setError 来更新其文本
+    if (toggleErrorButton.text.toString() == resources.getString(R.string.cat_textfield_hide_error_text)) {
+      textfields.forEach {
+        setErrorIconClickListeners(it)
+        it.error = errorText
       }
     }
   }
 
-  private void setErrorIconClickListeners(TextInputLayout textfield) {
-    textfield.setErrorIconOnClickListener(
-        v -> showToast(R.string.cat_textfield_toast_error_icon_click));
-    textfield.setErrorIconOnLongClickListener(
-        v -> {
-          showToast(R.string.cat_textfield_toast_error_icon_long_click);
-          return true;
-        });
-  }
-
-  private void setAllTextFieldsHelperText(String helperText) {
-    for (TextInputLayout textfield : textfields) {
-      textfield.setHelperText(helperText);
+  private fun setErrorIconClickListeners(inputLayout: TextInputLayout) {
+    inputLayout.setErrorIconOnClickListener {
+      showToast(R.string.cat_textfield_toast_error_icon_click)
+    }
+    inputLayout.setErrorIconOnLongClickListener {
+      showToast(R.string.cat_textfield_toast_error_icon_long_click)
+      true
     }
   }
 
-  private void setAllTextFieldsPlaceholder(String placeholder) {
-    for (TextInputLayout textfield : textfields) {
-      textfield.setPlaceholderText(placeholder);
+  private fun setAllTextFieldsHelperText(helperText: String) {
+    textfields.forEach {
+      it.helperText = helperText
     }
   }
 
-  private void setAllTextFieldsCounterMax(int length) {
-    for (TextInputLayout textfield : textfields) {
-      textfield.setCounterMaxLength(length);
+  private fun setAllTextFieldsPlaceholder(placeholder: String) {
+    textfields.forEach {
+      it.placeholderText = placeholder
     }
   }
 
-  private boolean checkTextInputIsNull(TextInputLayout textInputLayout, boolean showError) {
-    if (textInputLayout.getEditText().getText() == null
-        || textInputLayout.getEditText().length() == 0) {
+  private fun setAllTextFieldsCounterMax(length: Int) {
+    textfields.forEach {
+      it.counterMaxLength = length
+    }
+  }
+
+  //  private fun checkTextInputIsNull(textInputLayout: TextInputLayout, showError: Boolean): Boolean {
+//    return if (textInputLayout.editText?.text.isNullOrEmpty()) {
+//      if (showError) {
+//        textInputLayout.error = resources.getString(R.string.cat_textfield_null_input_error_text)
+//      }
+//      true
+//    } else {
+//      textInputLayout.error = null
+//      false
+//    }
+//  }
+  fun TextInputLayout.checkTextInputIsNull(showError: Boolean): Boolean {
+    return if (this.editText?.text.isNullOrEmpty()) {
       if (showError) {
-        textInputLayout.setError(
-            getResources().getString(R.string.cat_textfield_null_input_error_text));
+        this.error = resources.getString(R.string.cat_textfield_null_input_error_text)
       }
-      return true;
+      true
+    } else {
+      this.error = null
+      false
     }
-    textInputLayout.setError(null);
-    return false;
   }
 
-  private void showToast(@StringRes int messageResId) {
-    Toast.makeText(getContext(), messageResId, Toast.LENGTH_LONG).show();
+  private fun showToast(@StringRes msgResId: Int) {
+    Toast.makeText(context, msgResId, Toast.LENGTH_LONG).show()
   }
 
-  @Override
-  @LayoutRes
-  public int getTextFieldDemoControlsLayout() {
-    return R.layout.cat_textfield_controls;
-  }
+  override val textFieldDemoControlsLayout: Int
+    get() = R.layout.cat_textfield_controls
 }

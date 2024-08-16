@@ -16,8 +16,6 @@
 
 package io.material.catalog.button;
 
-import io.material.catalog.R;
-
 import static android.widget.LinearLayout.HORIZONTAL;
 import static android.widget.LinearLayout.VERTICAL;
 
@@ -26,17 +24,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.shape.RelativeCornerSize;
 import com.google.android.material.slider.Slider;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
+
+import io.material.catalog.R;
 import io.material.catalog.feature.DemoFragment;
 import io.material.catalog.feature.DemoUtils;
-import java.util.List;
 
 /** A fragment that displays a button toggle group demo for the Catalog app. */
 public class ButtonToggleGroupDemoFragment extends DemoFragment {

@@ -32,7 +32,7 @@ import com.google.common.collect.EvictingQueue;
 import java.util.Queue;
 
 /**
- * A widget that shows the memory usage of the app.
+ * 显示应用程序内存使用情况的小部件。
  */
 public final class MemoryView extends AppCompatTextView {
 

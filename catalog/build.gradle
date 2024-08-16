@@ -53,6 +53,7 @@ dependencies {
   testImplementation "org.mockito:mockito-core:${project.rootProject.ext.mockitoCoreVersion}"
   testImplementation "org.robolectric:robolectric:${project.rootProject.ext.robolectricVersion}"
   implementation "org.jetbrains.kotlin:kotlin-reflect:1.8.22"
+
 }
 
 def srcDirs = [
@@ -103,7 +104,9 @@ def srcDirs = [
   'topappbar',
   'transition',
   'windowpreferences',
-  'animation'
+  'animation',
+  'layout',
+  'widget'
 ]
 
 android {
@@ -120,7 +123,9 @@ android {
     minSdkVersion 21
     targetSdkVersion 33
   }
-
+  buildFeatures {
+    viewBinding = true
+  }
   testOptions {
     unitTests.returnDefaultValues = true
   }

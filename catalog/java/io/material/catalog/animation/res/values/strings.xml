@@ -47,7 +47,7 @@
   <string name="cat_animation_interpolator_CycleInterpolator">CycleInterpolator</string>
   <string name="cat_animation_interpolator_PathInterpolator">PathInterpolator</string>
   <string name="cat_animation_interpolator_custom">Custom</string>
-
+  <string name="cat_anim_config_apply">应用</string>
 
   <!--公用配置-->
   <string name="cat_anim_shared_config_title">公共配置</string>

@@ -16,22 +16,25 @@
 
 package io.material.catalog.button;
 
-import io.material.catalog.R;
-
 import android.os.Bundle;
-import androidx.appcompat.widget.SwitchCompat;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
+
+import io.material.catalog.R;
 import io.material.catalog.feature.DemoFragment;
 import io.material.catalog.feature.DemoUtils;
-import java.util.List;
 
 /** A fragment that displays main button demos for the Catalog app. */
 public class ButtonsMainDemoFragment extends DemoFragment {
@@ -41,6 +44,13 @@ public class ButtonsMainDemoFragment extends DemoFragment {
   public View onCreateDemoView(
       LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
     View view = layoutInflater.inflate(getButtonsContent(), viewGroup, false /* attachToRoot */);
+
+    ViewGroup labelButtonContent = view.findViewById(R.id.labelButtonContent);
+    View.inflate(getContext(), getLabelButtonContent(), labelButtonContent);
+    ViewGroup labelIconButtonContent = view.findViewById(R.id.labelIconButtonContent);
+    View.inflate(getContext(), getLabelIconButtonContent(), labelIconButtonContent);
+    ViewGroup iconButtonContent = view.findViewById(R.id.iconButtonContent);
+    View.inflate(getContext(), getIconButtonContent(), iconButtonContent);
 
     List<MaterialButton> buttons = DemoUtils.findViewsWithType(view, MaterialButton.class);
     int maxMeasuredWidth = 0;
@@ -78,23 +88,22 @@ public class ButtonsMainDemoFragment extends DemoFragment {
           }
         });
 
-    ViewGroup iconOnlyButtonsView = view.findViewById(R.id.material_icon_only_buttons_view);
-    // Icon only buttons demo may not be there in derived demos.
-    if (iconOnlyButtonsView != null) {
-      List<MaterialButton> iconButtons =
-          DemoUtils.findViewsWithType(iconOnlyButtonsView, MaterialButton.class);
-      // using SwitchCompat here to avoid class cast issues in derived demos.
-      SwitchCompat toggleableSwitch = view.findViewById(R.id.cat_button_toggleable_icon_buttons);
-      toggleableSwitch.setOnCheckedChangeListener(
-          (buttonView, isCheckable) -> {
-            for (MaterialButton button : iconButtons) {
-              button.setCheckable(isCheckable);
-              button.setChecked(false);
-            }
-          });
-    }
-
     return view;
+  }
+
+  @LayoutRes
+  protected int getLabelButtonContent() {
+    return R.layout.cat_label_buttons_content;
+  }
+
+  @LayoutRes
+  protected int getLabelIconButtonContent() {
+    return R.layout.cat_label_icon_buttons_content;
+  }
+
+  @LayoutRes
+  protected int getIconButtonContent() {
+    return R.layout.cat_icon_buttons_content;
   }
 
   @LayoutRes

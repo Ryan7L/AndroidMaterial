@@ -19,7 +19,7 @@
 
   <string name="cat_lists_title">Lists</string>
   <string name="cat_lists_description">
-    Lists are continuous, vertical indexes of text or images.
+    列表是文本或图像的连续垂直索引。
   </string>
   <string name="mtrl_list_item_clicked">List item clicked</string>
   <string name="mtrl_list_item_one_line">One Line Item</string>

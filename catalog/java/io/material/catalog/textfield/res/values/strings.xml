@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2017 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,20 +18,19 @@
   <string name="cat_textfield_title" translatable="false">Text Field</string>
   <string name="cat_textfield_filled_demo_title" translatable="false">Filled Text Field Demo</string>
   <string name="cat_textfield_filled_icons_demo_title" translatable="false">Filled Icons Text Field Demo</string>
-  <string name="cat_textfield_exposed_dropdown_menu_demo_title" translatable="false">Exposed Dropdown Menu Demo</string>
+  <string name="cat_textfield_exposed_dropdown_menu_demo_title" translatable="false">展开下拉菜单演示</string>
   <string name="cat_textfield_outlined_demo_title" translatable="false">Outlined Text Field Demo</string>
   <string name="cat_textfield_outlined_icons_demo_title" translatable="false">Outlined Icons Text Field Demo</string>
-  <string name="cat_textfield_prefix_suffix_demo_title" translatable="false">Prefix and Suffix Text Field Demo</string>
-  <string name="cat_textfield_legacy_demo_title" translatable="false">Legacy Text Field Demo</string>
+  <string name="cat_textfield_prefix_suffix_demo_title" translatable="false">前缀和后缀文本字段演示</string>
+  <string name="cat_textfield_legacy_demo_title" translatable="false">旧版文本字段演示</string>
   <string name="cat_textfield_description" translatable="false">
-    Text fields allow users to input, edit, and select text. Text fields typically reside in forms
-    but can appear in other places, like dialog boxes and search.
+    文本字段允许用户输入、编辑和选择文本。文本字段通常驻留在表单中，但也可以出现在其他位置，例如对话框和搜索。
   </string>
 
-  <string name="cat_textfield_filled_helper_text" translatable="false">Filled text field</string>
-  <string name="cat_textfield_filled_dense_helper_text" translatable="false">Dense filled text field</string>
+  <string name="cat_textfield_filled_helper_text" translatable="false">填充文本字段</string>
+  <string name="cat_textfield_filled_dense_helper_text" translatable="false">密集填充的文本字段</string>
   <string name="cat_textfield_filled_dense_password_helper_text" translatable="false">
-    Dense filled password text field
+    密集填充的密码文本字段
   </string>
   <string name="cat_textfield_filled_start_icon_helper_text" translatable="false">Filled start icon text field</string>
   <string name="cat_textfield_filled_start_end_icons_helper_text" translatable="false">Filled start and end icons text field</string>
@@ -57,33 +55,33 @@
 
   <string name="cat_textfield_prefix" translatable="false">$</string>
   <string name="cat_textfield_suffix" translatable="false">/100</string>
-  <string name="cat_textfield_outlined_prefix_helper_text" translatable="false">Outlined text field with prefix</string>
-  <string name="cat_textfield_outlined_prefix_icon_helper_text" translatable="false">Outlined text field with prefix and icon</string>
-  <string name="cat_textfield_outlined_suffix_helper_text" translatable="false">Outlined text field with suffix</string>
-  <string name="cat_textfield_outlined_suffix_icon_helper_text" translatable="false">Outlined text field with suffix and icon</string>
-  <string name="cat_textfield_filled_prefix_helper_text" translatable="false">Filled text field with prefix</string>
-  <string name="cat_textfield_filled_prefix_icon_helper_text" translatable="false">Filled text field with prefix and icon</string>
-  <string name="cat_textfield_filled_suffix_helper_text" translatable="false">Filled text field with suffix</string>
-  <string name="cat_textfield_filled_suffix_icon_helper_text" translatable="false">Filled text field with suffix and icon</string>
+  <string name="cat_textfield_outlined_prefix_helper_text" translatable="false">带前缀的轮廓文本字段</string>
+  <string name="cat_textfield_outlined_prefix_icon_helper_text" translatable="false">带有前缀和图标的轮廓文本字段</string>
+  <string name="cat_textfield_outlined_suffix_helper_text" translatable="false">带后缀的轮廓文本字段</string>
+  <string name="cat_textfield_outlined_suffix_icon_helper_text" translatable="false">带有后缀和图标的轮廓文本字段</string>
+  <string name="cat_textfield_filled_prefix_helper_text" translatable="false">带前缀的填充文本字段</string>
+  <string name="cat_textfield_filled_prefix_icon_helper_text" translatable="false">带有前缀和图标的填充文本字段</string>
+  <string name="cat_textfield_filled_suffix_helper_text" translatable="false">带后缀的填充文本字段</string>
+  <string name="cat_textfield_filled_suffix_icon_helper_text" translatable="false">带有后缀和图标的填充文本字段</string>
 
-  <string name="cat_textfield_customize_section_title" translatable="false">Customize text fields</string>
+  <string name="cat_textfield_customize_section_title" translatable="false">自定义文本字段</string>
   <string name="cat_textfield_customize_section_description" translatable="false">
-    Enter values below to customize the text fields above. Press the keyboard \"done\" button to update each field, or press the update button at the bottom to update all fields at once.
+    输入下面的值以自定义上面的文本字段。按键盘“完成”按钮更新每个字段，或按底部的更新按钮一次更新所有字段.
   </string>
   <string name="cat_textfield_label" translatable="false">Label</string>
   <string name="cat_textfield_password" translatable="false">Password</string>
-  <string name="cat_textfield_error" translatable="false">Error</string>
-  <string name="cat_textfield_placeholder_text" translatable="false">Placeholder text</string>
+  <string name="cat_textfield_error" translatable="false">错误</string>
+  <string name="cat_textfield_placeholder_text" translatable="false">占位符文本</string>
 
-  <string name="cat_textfield_customize_counter_text" translatable="false">Update character counter max</string>
-  <string name="cat_textfield_customize_label_text" translatable="false">Update label text</string>
-  <string name="cat_textfield_customize_error_text" translatable="false">Update error text</string>
-  <string name="cat_textfield_customize_helper_text" translatable="false">Update helper text</string>
-  <string name="cat_textfield_customize_placeholder_text" translatable="false">Update placeholder text</string>
+  <string name="cat_textfield_customize_counter_text" translatable="false">更新字符计数器最大值</string>
+  <string name="cat_textfield_customize_label_text" translatable="false">更新标签文本</string>
+  <string name="cat_textfield_customize_error_text" translatable="false">更新错误文本</string>
+  <string name="cat_textfield_customize_helper_text" translatable="false">更新帮助文本</string>
+  <string name="cat_textfield_customize_placeholder_text" translatable="false">更新占位符文本</string>
 
-  <string name="cat_textfield_null_input_error_text" translatable="false">Enter a value</string>
-  <string name="cat_textfield_show_error_text" translatable="false">Show error</string>
-  <string name="cat_textfield_hide_error_text" translatable="false">Hide error</string>
+  <string name="cat_textfield_null_input_error_text" translatable="false">输入一个值</string>
+  <string name="cat_textfield_show_error_text" translatable="false">显示错误</string>
+  <string name="cat_textfield_hide_error_text" translatable="false">隐藏错误</string>
 
   <string-array name="cat_textfield_exposed_dropdown_content" translatable="false">
     <item>Item 1</item>
@@ -96,16 +94,16 @@
   <string name="cat_textfield_hide_leading_icon" translatable="false">Hide leading icon</string>
   <string name="cat_textfield_update_button" description="Button to update customizable fields.[CHAR_LIMIT=NONE]">Update</string>
 
-  <string name="cat_textfield_label_enabled" description="Label on a switch to enable text fields.[CHAR_LIMIT=10]">Text fields enabled</string>
-  <string name="cat_textfield_label_disabled" translatable="false">Text fields disabled</string>
+  <string name="cat_textfield_label_enabled" description="Label on a switch to enable text fields.[CHAR_LIMIT=10]">启用文本字段</string>
+  <string name="cat_textfield_label_disabled" translatable="false">禁用文本字段</string>
 
-  <string name="cat_textfield_toast_update_button" description="Announcement for when update button is clicked.[CHAR_LIMIT=NONE]">Text fields updated.</string>
-  <string name="cat_textfield_toast_label_text" description="Announcement for when label is updated.[CHAR_LIMIT=NONE]">Labels updated.</string>
-  <string name="cat_textfield_toast_error_text" description="Announcement for when error text is updated.[CHAR_LIMIT=NONE]">Error messages updated.</string>
-  <string name="cat_textfield_toast_helper_text" description="Announcement for when helper text is updated.[CHAR_LIMIT=NONE]">Helper texts updated.</string>
-  <string name="cat_textfield_toast_counter_text" description="Announcement for when counter max is updated.[CHAR_LIMIT=NONE]">Max counters updated.</string>
-  <string name="cat_textfield_toast_placeholder_text" description="Announcement for when placeholder text is updated.[CHAR_LIMIT=NONE]">Placeholders updated.</string>
-  <string name="cat_textfield_toast_error_icon_click" description="Announcement for when error icon is clicked.[CHAR_LIMIT=NONE]">Error icon clicked.</string>
-  <string name="cat_textfield_toast_error_icon_long_click" description="Announcement for when error icon is long clicked.[CHAR_LIMIT=NONE]">Error icon long clicked.</string>
+  <string name="cat_textfield_toast_update_button" description="Announcement for when update button is clicked.[CHAR_LIMIT=NONE]">文本字段已更新。</string>
+  <string name="cat_textfield_toast_label_text" description="Announcement for when label is updated.[CHAR_LIMIT=NONE]">标签已更新.</string>
+  <string name="cat_textfield_toast_error_text" description="Announcement for when error text is updated.[CHAR_LIMIT=NONE]">错误消息已更新.</string>
+  <string name="cat_textfield_toast_helper_text" description="Announcement for when helper text is updated.[CHAR_LIMIT=NONE]">帮助文本已更新.</string>
+  <string name="cat_textfield_toast_counter_text" description="Announcement for when counter max is updated.[CHAR_LIMIT=NONE]">最大计数器已更新.</string>
+  <string name="cat_textfield_toast_placeholder_text" description="Announcement for when placeholder text is updated.[CHAR_LIMIT=NONE]">占位符已更新.</string>
+  <string name="cat_textfield_toast_error_icon_click" description="Announcement for when error icon is clicked.[CHAR_LIMIT=NONE]">单击了错误图标.</string>
+  <string name="cat_textfield_toast_error_icon_long_click" description="Announcement for when error icon is long clicked.[CHAR_LIMIT=NONE]">长按错误图标.</string>
 
 </resources>
