@@ -2,6 +2,7 @@ package io.material.catalog.tableofcontents
 
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
+import io.material.catalog.a_base.BaseModule
 import io.material.catalog.adaptive.AdaptiveFragment
 import io.material.catalog.animation.AnimationFragmentModule
 import io.material.catalog.application.scope.FragmentScope
@@ -40,7 +41,7 @@ import io.material.catalog.transition.TransitionModule
 
 @dagger.Module(
   includes = [AdaptiveFragment.Module::class, BottomAppBarFragment.Module::class, ButtonsFragment.Module::class, BottomNavigationFragment.Module::class, BottomSheetFragment.Module::class, CardFragment.Module::class, CarouselFragment.Module::class, CheckBoxFragment.Module::class, ChipFragment.Module::class, ColorsFragment.Module::class, DatePickerDemoLandingFragment.Module::class, DialogDemoLandingFragment.Module::class, DividerFragment.Module::class, ElevationFragment.Module::class, FabFragment.Module::class, FontFragment.Module::class, MenuFragment.Module::class, NavigationDrawerFragment.Module::class, NavigationRailFragment.Module::class, ProgressIndicatorFragment.Module::class, RadioButtonFragment.Module::class,
-    SearchFragmentModule::class, ShapeableImageViewFragment.Module::class, ShapeThemingFragment.Module::class, SideSheetFragment.Module::class, SliderFragment.Module::class, SwitchFragment.Module::class, TabsFragment.Module::class, TextFieldFragment.Module::class, TimePickerDemoLandingFragment.Module::class, TopAppBarModule::class, TransitionModule::class, AnimationFragmentModule::class]
+    SearchFragmentModule::class, ShapeableImageViewFragment.Module::class, BaseModule::class, ShapeThemingFragment.Module::class, SideSheetFragment.Module::class, SliderFragment.Module::class, SwitchFragment.Module::class, TabsFragment.Module::class, TextFieldFragment.Module::class, TimePickerDemoLandingFragment.Module::class, TopAppBarModule::class, TransitionModule::class, AnimationFragmentModule::class]
 )
 abstract class TocModule {
   @FragmentScope

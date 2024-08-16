@@ -163,7 +163,7 @@ abstract class DemoLandingFragment : DaggerFragment() {
     )
   }
 
-  private fun clearAndAddDemoViews(view: View, layoutInflater: LayoutInflater) {
+  open fun clearAndAddDemoViews(view: View, layoutInflater: LayoutInflater) {
     val mainDemoContainer = view.findViewById<ViewGroup>(R.id.cat_demo_landing_main_demo_container)
     val additionalDemosSection =
       view.findViewById<ViewGroup>(R.id.cat_demo_landing_additional_demos_section)
@@ -229,7 +229,7 @@ abstract class DemoLandingFragment : DaggerFragment() {
   }
 
 
-  private fun addDemoView(
+   fun addDemoView(
     layoutInflater: LayoutInflater,
     demoContainer: ViewGroup,
     demo: Demo,
