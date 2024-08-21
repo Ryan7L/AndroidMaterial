@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionManager xmlns:android="http://schemas.android.com/apk/res/android">
+  <transition
+    android:fromScene="@layout/transition_scene_base_layout"
+    android:toScene="@layout/transition_scene_1_layout"
+    android:transition="@transition/custom_transition" />
+  <transition
+    android:fromScene="@layout/transition_scene_1_layout"
+    android:toScene="@layout/transition_scene_2_layout"
+    android:transition="@transition/custom_transition" />
+  <transition
+    android:fromScene="@layout/transition_scene_2_layout"
+    android:toScene="@layout/transition_scene_3_layout"
+    android:transition="@transition/custom_transition" />
+  <transition
+    android:toScene="@layout/transition_scene_base_layout"
+    android:transition="@transition/custom_transition" />
+</transitionManager>
+
+  <!--
+  <transitionManager/>:根节点，标志这是个 TransitionManager
+
+  <transition/>：子节点，具体的某个过渡
+                常用属性：
+                fromScene：从哪一个场景开始 值为布局文件
+                toScene：到哪一个场景结束，可选
+                transition：过渡动画，可选
+  -->

@@ -18,4 +18,5 @@
 <resources>
 
   <dimen name="cat_transition_single_list_item_height">72dp</dimen>
+  <dimen name = "transition_new_size">200dp</dimen>
 </resources>

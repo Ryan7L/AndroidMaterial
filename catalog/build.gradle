@@ -107,7 +107,8 @@ def srcDirs = [
   'animation',
   'layout',
   'widget',
-  'a_base'
+  'a_base',
+//  'AndroidRes'
 ]
 
 android {
@@ -142,6 +143,7 @@ android {
         '**/build/**',
       ]
       res.srcDirs = ['java/io/material/catalog/res']
+
       srcDirs.forEach {
         res.srcDirs += 'java/io/material/catalog/' + it + '/res'
       }

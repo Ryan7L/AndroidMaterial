@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2020 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,8 +18,8 @@
   android:id="@+id/contact_card"
   android:layout_width="220dp"
   android:layout_height="wrap_content"
-  android:layout_margin="16dp"
   android:layout_gravity="bottom|end"
+  android:layout_margin="16dp"
   android:padding="16dp"
   android:visibility="gone">
 
@@ -32,39 +31,39 @@
     <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="16dp"
-      android:drawablePadding="16dp"
       android:drawableStart="@drawable/ic_account_circle_24dp"
+      android:drawablePadding="16dp"
+      android:padding="16dp"
       android:text="@string/cat_transition_contact_card_sandra"
       android:textAppearance="?attr/textAppearanceSubtitle1" />
 
     <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="16dp"
       android:background="?attr/colorSurface"
-      android:drawablePadding="16dp"
       android:drawableStart="@drawable/ic_account_circle_24dp"
+      android:drawablePadding="16dp"
+      android:padding="16dp"
       android:text="@string/cat_transition_contact_card_charlie"
       android:textAppearance="?attr/textAppearanceSubtitle1" />
 
     <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="16dp"
       android:background="?attr/colorSurface"
-      android:drawablePadding="16dp"
       android:drawableStart="@drawable/ic_account_circle_24dp"
+      android:drawablePadding="16dp"
+      android:padding="16dp"
       android:text="@string/cat_transition_contact_card_trevor"
       android:textAppearance="?attr/textAppearanceSubtitle1" />
 
     <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="16dp"
       android:background="?attr/colorSurface"
-      android:drawablePadding="16dp"
       android:drawableStart="@drawable/ic_account_circle_24dp"
+      android:drawablePadding="16dp"
+      android:padding="16dp"
       android:text="@string/cat_transition_contact_card_david"
       android:textAppearance="?attr/textAppearanceSubtitle1" />
 
@@ -72,13 +71,13 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_gravity="bottom"
-      android:padding="16dp"
       android:background="?attr/colorSecondaryContainer"
-      android:drawablePadding="16dp"
       android:drawableStart="@drawable/ic_edit_vd_theme_24dp"
-      app:drawableTint="?attr/colorOnSecondaryContainer"
+      android:drawablePadding="16dp"
+      android:padding="16dp"
       android:text="@string/cat_transition_contact_card_compose"
+      android:textAppearance="?attr/textAppearanceButton"
       android:textColor="?attr/colorOnSecondaryContainer"
-      android:textAppearance="?attr/textAppearanceButton" />
+      app:drawableTint="?attr/colorOnSecondaryContainer" />
   </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

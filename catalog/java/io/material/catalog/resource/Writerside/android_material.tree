@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="android_material"
+                 name="AndroidMaterial"
+                 start-page="AndroidMaterial.md">
+
+    <toc-element topic="AndroidMaterial.md">
+        <toc-element topic="base.md">
+            <toc-element topic="View.md"/>
+        </toc-element>
+    </toc-element>
+</instance-profile>

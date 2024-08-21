@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2019 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -105,5 +104,22 @@ Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus
   <string name="cat_transition_fade_title">Fade</string>
   <string name="cat_transition_fade_button_hide_fab">Hide FAB</string>
   <string name="cat_transition_fade_button_show_fab">Show FAB</string>
+  <string name="cat_transition_non_material_base_transition_title">Transition 的基础使用</string>
+  <string name="cat_transition_non_material_scene_1">1</string>
+  <string name="cat_transition_non_material_scene_2">2</string>
+  <string name="cat_transition_non_material_scene_3">3</string>
+  <string name="cat_transition_non_material_scene_4">4</string>
+  <string name="cat_transition_non_material_scene_base">Base</string>
+  <string name="cat_transition_non_material_text">该文本淡入淡出.</string>
+  <string name="cat_transition_non_material_transition_config_scene">Scene切换</string>
+  <string name="cat_transition_non_material_transition_config_custom_transition">自定义Transition</string>
+  <string name="cat_transition_non_material_transition_config_transition_custom_manager">自定义TransitionManager</string>
+  <string name="cat_transition_non_material_transition_config_transition_manager_default">默认</string>
+  <string name="cat_transition_non_material_transition_config_transition_manager_custom">自定义</string>
+  <string name="cat_transition_non_material_transition_config_transition_create_type">自定义</string>
+  <string name="cat_transition_non_material_transition_config_transition_create_type_xml">XML</string>
+  <string name="cat_transition_non_material_transition_config_transition_create_type_code">CODE</string>
 
+
+  <string name="cat_transition_non_material_next_scene">下一个Scene</string>
 </resources>

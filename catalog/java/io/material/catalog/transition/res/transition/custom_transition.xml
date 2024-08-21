@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+ Copyright 2014 The Android Open Source Project
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+  android:transitionOrdering="together">
+  <changeBounds />
+  <changeClipBounds />
+  <fade android:fadingMode="fade_in">
+    <targets>
+      <target android:targetId="@id/logView" />
+    </targets>
+  </fade>
+  <slide android:slideEdge="start">
+    <targets>
+      <target android:targetId="@id/logView" />
+    </targets>
+  </slide>
+</transitionSet><!--
+如果需要动画化视图的位置、大小和边距，使用 <changeBounds />。
+如果需要动画化视图的缩放、旋转和平移，使用 <changeTransform />。
+如果需要动画化视图的裁剪边界，使用 <changeClipBounds />。
+如果需要动画化 ImageView 的缩放和裁剪，使用 <changeImageTransform />。
+如果需要组合多个动画效果，使用 <transitionSet />。
+
+-->
+
+
+  <!--
+  <transitionSet/>:根节点：于定义动画集合的 XML 元素。它允许你将多个动画效果组合在一起， 并控制它们的播放顺序和持续时间
+                   常用属性：
+                          transitionOrdering:过渡动画执行顺序：together：一起执行  sequential：顺序执行
+                          duration:过渡动画执行时间
+                          startDelay:过渡动画开始延迟时间
+                          interpolator:插值器
+
+  <changeBounds />: 检测View的位置边界创建过渡动画，例如位置、大小、边距等
+                  常用属性：
+                        duration:过渡动画执行时间
+                        startDelay:过渡动画开始延迟时间
+                        interpolator:插值器
+                        matchOrder:用于指定 Transition 查找目标视图的顺序,它是一个用逗号分隔的字符串列表，其中每个字符串代表一个匹配规则。  Transition 会按照 matchOrder 中指定的顺序依次应用这些规则，直到找到匹配的视图为止。  可用的匹配规则
+                                  id: 根据视图的 ID 匹配。
+                                  instance: 根据视图的类类型匹配。
+                                  name: 根据 transitionName 属性匹配。
+                                  item: 匹配 RecyclerView 中的 item。
+                                  parent: 匹配目标视图的父视图。
+  <changeTransform />: 动画化视图的缩放、旋转和平移变换
+  <changeClipBounds />:动画化视图的裁剪边界。 适用于实现类似 “遮罩” 的效果，例如显示或隐藏部分视图内容
+  <changeImageTransform />:动画化 ImageView 的缩放和裁剪变换。
+
+
+  <fade/>:淡入淡出
+  <slide/>:滑动
+  <explode/>:爆炸效果
+  <autoTransition/>:Transition框架默认的转换效果，实际效果为淡入淡出
+
+
+  <targets/>：Transition 框架中用于指定 Transition 目标视图的 XML 元素。它允许你将 Transition 应用于特定的视图，而不是整个场景中的所有视图
+-->

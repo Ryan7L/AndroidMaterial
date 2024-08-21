@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:weightSum="10">
+
+  <!--  <RadioGroup-->
+  <!--    android:id="@+id/radio_group"-->
+  <!--    android:layout_width="match_parent"-->
+  <!--    android:layout_height="wrap_content"-->
+  <!--    android:layout_marginTop="16dp"-->
+  <!--    android:layout_weight="3"-->
+  <!--    android:checkedButton="@id/scene1"-->
+  <!--    android:orientation="horizontal">-->
+
+  <!--    <com.google.android.material.radiobutton.MaterialRadioButton-->
+  <!--      android:id="@+id/scene1"-->
+  <!--      android:layout_width="wrap_content"-->
+  <!--      android:layout_height="wrap_content"-->
+  <!--      android:text="@string/cat_transition_non_material_scene_1" />-->
+
+  <!--    <com.google.android.material.radiobutton.MaterialRadioButton-->
+  <!--      android:id="@+id/scene2"-->
+  <!--      android:layout_width="wrap_content"-->
+  <!--      android:layout_height="wrap_content"-->
+  <!--      android:text="@string/cat_transition_non_material_scene_2" />-->
+
+  <!--    <com.google.android.material.radiobutton.MaterialRadioButton-->
+  <!--      android:id="@+id/scene3"-->
+  <!--      android:layout_width="wrap_content"-->
+  <!--      android:layout_height="wrap_content"-->
+  <!--      android:text="@string/cat_transition_non_material_scene_3" />-->
+
+  <!--    <com.google.android.material.radiobutton.MaterialRadioButton-->
+  <!--      android:id="@+id/scene4"-->
+  <!--      android:layout_width="wrap_content"-->
+  <!--      android:layout_height="wrap_content"-->
+  <!--      android:text="@string/cat_transition_non_material_scene_4" />-->
+  <!--  </RadioGroup>-->
+  <com.google.android.material.button.MaterialButton
+    android:id="@+id/nestScene"
+    style="@style/Widget.Material3.Button.OutlinedButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:text="@string/cat_transition_non_material_next_scene" />
+
+  <FrameLayout
+    android:id="@+id/scene_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:layout_weight="7">
+
+    <include layout="@layout/transition_scene_1_layout" />
+  </FrameLayout>
+</LinearLayout>

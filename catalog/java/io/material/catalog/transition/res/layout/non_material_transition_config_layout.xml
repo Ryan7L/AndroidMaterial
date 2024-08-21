@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/config_container"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/cat_transition_non_material_transition_config_scene" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+      android:id="@+id/sceneGroup"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="8dp"
+      android:layout_marginEnd="16dp"
+      android:weightSum="5"
+      app:checkedButton="@+id/baseScene"
+      app:selectionRequired="true"
+      app:singleSelection="true">
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/baseScene"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/cat_transition_non_material_scene_base"
+        android:textSize="8sp" />
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/scene1"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/cat_transition_non_material_scene_1"
+        android:textSize="8sp" />
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/scene2"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/cat_transition_non_material_scene_2"
+        android:textSize="8sp" />
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/scene3"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/cat_transition_non_material_scene_3"
+        android:textSize="8sp" />
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/scene4"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/cat_transition_non_material_scene_4"
+        android:textSize="8sp" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+      android:id="@+id/customTransition"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:checked="false"
+      android:text="@string/cat_transition_non_material_transition_config_custom_transition" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+      android:id="@+id/transitionGroup"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="8dp"
+      android:layout_marginEnd="16dp"
+      android:enabled="false"
+      android:visibility="gone"
+      android:weightSum="4"
+      app:checkedButton="@+id/fade"
+      app:selectionRequired="true"
+      app:singleSelection="true">
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/fade"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Fade"
+        android:textSize="8sp" />
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/slide"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Slide"
+        android:textSize="8sp" />
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/explode"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Explode"
+        android:textSize="8sp" />
+
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/changeBounds"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="ChangeBounds"
+        android:textSize="8sp" />
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/color"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="CustomTransition"
+        android:textSize="8sp" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+      android:id="@+id/customTransitionManager"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:checked="false"
+      android:text="@string/cat_transition_non_material_transition_config_transition_custom_manager" />
+
+
+  </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

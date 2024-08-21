@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2019 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,62 +15,62 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/start_root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/start_root"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:padding="16dp">
 
   <ImageView
-      android:layout_width="72dp"
-      android:layout_height="72dp"
-      android:layout_gravity="center_horizontal"
-      android:layout_marginTop="48dp"
-      android:alpha="@dimen/material_emphasis_medium"
-      android:tint="?attr/colorOnSurface"
-      android:contentDescription="@string/cat_transition_image_content_desc"
-      app:srcCompat="@drawable/ic_account_circle_24dp" />
+    android:layout_width="72dp"
+    android:layout_height="72dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="48dp"
+    android:alpha="@dimen/material_emphasis_medium"
+    android:contentDescription="@string/cat_transition_image_content_desc"
+    android:tint="?attr/colorOnSurface"
+    app:srcCompat="@drawable/ic_account_circle_24dp" />
 
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:layout_marginTop="8dp"
-      android:text="@string/cat_transition_shared_axis_sign_in_greeting"
-      android:textAppearance="?attr/textAppearanceHeadline5" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="8dp"
+    android:text="@string/cat_transition_shared_axis_sign_in_greeting"
+    android:textAppearance="?attr/textAppearanceHeadline5" />
 
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:layout_marginTop="8dp"
-      android:text="@string/cat_transition_shared_axis_sign_in_title"
-      android:textAppearance="?attr/textAppearanceCaption" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="8dp"
+    android:text="@string/cat_transition_shared_axis_sign_in_title"
+    android:textAppearance="?attr/textAppearanceCaption" />
 
   <com.google.android.material.textfield.TextInputLayout
-      style="?attr/textInputSignInStyle"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="32dp"
-      android:hint="@string/cat_transition_shared_axis_sign_in_hint"
-      app:endIconMode="password_toggle">
+    style="?attr/textInputSignInStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="32dp"
+    android:hint="@string/cat_transition_shared_axis_sign_in_hint"
+    app:endIconMode="password_toggle">
 
     <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
   </com.google.android.material.textfield.TextInputLayout>
 
   <Button
-      style="?attr/borderlessButtonStyle"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      android:text="@string/cat_transition_shared_axis_sign_in_forgot_email" />
+    style="?attr/borderlessButtonStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:text="@string/cat_transition_shared_axis_sign_in_forgot_email" />
 
   <Button
-      style="?attr/borderlessButtonStyle"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_transition_shared_axis_sign_in_create_account" />
+    style="?attr/borderlessButtonStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_transition_shared_axis_sign_in_create_account" />
 </LinearLayout>
