@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2017 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,15 +31,15 @@
     android:theme="@style/Theme.${application_theme}">
     <meta-data
       android:name="io.material.catalog.application.componentOverride"
-      android:value="${catalog_application_component}"/>
+      android:value="${catalog_application_component}" />
 
     <activity
       android:name=".main.MainActivity"
       android:exported="true"
       android:windowSoftInputMode="adjustResize">
       <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.LAUNCHER"/>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
     <activity
@@ -59,25 +58,25 @@
       android:name=".topappbar.TopAppBarActionBarDemoActivity"
       android:exported="true"
       android:label="@string/cat_topappbar_action_bar_title"
-      android:theme="@style/Theme.Material3.DayNight"/>
+      android:theme="@style/Theme.Material3.DayNight" />
     <activity
       android:name=".topappbar.TopAppBarScrollingTransparentStatusDemoActivity"
       android:exported="true"
       android:label="@string/cat_topappbar_scrolling_transparent_title"
-      android:theme="@style/Theme.Catalog.TransparentStatus"/>
+      android:theme="@style/Theme.Catalog.TransparentStatus" />
     <activity
       android:name=".card.CardSelectionModeActivity"
-      android:exported="true"/>
+      android:exported="true" />
     <activity
       android:name=".musicplayer.MusicPlayerDemoActivity"
       android:exported="true"
-      android:theme="@style/Theme.Catalog.MusicPlayer"/>
+      android:theme="@style/Theme.Catalog.MusicPlayer" />
     <activity
       android:name=".transition.TransitionContainerTransformStartDemoActivity"
-      android:exported="true"/>
+      android:exported="true" />
     <activity
       android:name=".transition.TransitionContainerTransformEndDemoActivity"
-      android:exported="true"/>
+      android:exported="true" />
     <activity
       android:name="io.material.catalog.transition.TransitionSharedAxisStartDemoActivity"
       android:exported="true" />
@@ -104,16 +103,24 @@
       android:exported="true" />
     <activity
       android:name="io.material.catalog.search.SearchMainDemoActivity"
-      android:windowSoftInputMode="adjustNothing"
-      android:exported="true" />
+      android:exported="true"
+      android:windowSoftInputMode="adjustNothing" />
     <activity
       android:name="io.material.catalog.search.SearchRecyclerDemoActivity"
-      android:windowSoftInputMode="adjustNothing"
+      android:exported="true"
+      android:windowSoftInputMode="adjustNothing" />
+    <activity
+      android:name=".transition.CustomTransitionStartActivity"
       android:exported="true" />
-    <activity android:name=".transition.CustomTransitionStartActivity"
-      android:exported="true"/>
-    <activity android:name=".transition.CustomTransitionEndActivity"
-      android:exported="true"/>
+    <activity
+      android:name=".transition.CustomTransitionEndActivity"
+      android:exported="true" />
+    <activity
+      android:name=".transition.non_material.NonMaterialTransitionDemoEndActivity"
+      android:exported="true" />
+    <activity
+      android:name=".transition.non_material.NonMaterialTransitionDemoStartActivity"
+      android:exported="true" />
   </application>
 
 </manifest>

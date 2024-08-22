@@ -54,11 +54,9 @@ public class CheckBoxFragment extends DemoLandingFragment {
   /** The Dagger module for {@link CheckBoxFragment} dependencies. */
   @dagger.Module
   public abstract static class Module {
-
     @FragmentScope
     @ContributesAndroidInjector
     abstract CheckBoxFragment contributeInjector();
-
     @IntoSet
     @Provides
     @ActivityScope

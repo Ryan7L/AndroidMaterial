@@ -26,7 +26,7 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import com.google.android.material.internal.EdgeToEdgeUtils;
 
-/** Helper that saves the current window preferences for the Catalog. */
+/** 保存当前窗口首选项的帮助程序。 */
 public class WindowPreferencesManager {
 
   private static final String PREFERENCES_NAME = "window_preferences";

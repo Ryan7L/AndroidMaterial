@@ -51,6 +51,5 @@
   <style name="Theme.Catlog.Transition" parent="Theme.Catalog">
     <!--  打开过渡动画，或在 Activity中的onCreate()中调用 getWindow.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)  -->
     <item name="android:windowContentTransitions">true</item>
-
   </style>
 </resources>

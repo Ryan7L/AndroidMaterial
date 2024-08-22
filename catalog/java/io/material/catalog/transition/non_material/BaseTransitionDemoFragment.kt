@@ -1,4 +1,4 @@
-package io.material.catalog.transition
+package io.material.catalog.transition.non_material
 
 import android.os.Bundle
 import android.util.TypedValue
@@ -20,6 +20,7 @@ import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.materialswitch.MaterialSwitch
 import io.material.catalog.R
 import io.material.catalog.feature.DemoFragment
+import io.material.catalog.transition.CustomTransition
 
 class BaseTransitionDemoFragment : DemoFragment() {
   private lateinit var sceneContainer: ViewGroup
@@ -119,24 +120,25 @@ class BaseTransitionDemoFragment : DemoFragment() {
   }
 
   private fun changeScene(scene: Scene?, transition: Transition?) {
-    scene?.display(transition) ?: kotlin.run {
-      if (transition == null) {
-        TransitionManager.beginDelayedTransition(sceneContainer)
-      } else {
-        TransitionManager.beginDelayedTransition(sceneContainer, transition)
-      }
-      addView(requireView())
+    scene?.display(transition)
+    addView(transition)
+  }
+
+  private fun addView(transition: Transition?) {
+    if (transition == null) {
+      TransitionManager.beginDelayedTransition(sceneContainer)
+    } else {
+      TransitionManager.beginDelayedTransition(sceneContainer, transition)
     }
+    addView(requireView())
   }
 
   private fun Scene.display(transition: Transition?) {
     transition?.let {
       //go()和transitionTo()：go()是类的静态方法，可以指定过渡动画，transitionTo()是实例方法，不能指定过渡动画,除非调用transitionManager.setTransition()设置过渡动画
-
       transitionManager?.transitionTo(this) ?: TransitionManager.go(this, it)
 
     } ?: kotlin.run {
-
       transitionManager?.transitionTo(this) ?: TransitionManager.go(this)
     }
   }

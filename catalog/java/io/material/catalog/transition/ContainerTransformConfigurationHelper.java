@@ -54,8 +54,7 @@ import com.google.android.material.transition.MaterialContainerTransform;
 import io.material.catalog.R;
 
 /**
- * A helper class which manages all configuration UI presented in {@link
- * TransitionContainerTransformDemoFragment}.
+ * 管理TransitionContainerTransformDemoFragment中显示的所有配置 UI 的辅助类。
  */
 public class ContainerTransformConfigurationHelper {
 
@@ -531,7 +530,7 @@ public class ContainerTransformConfigurationHelper {
   private static class CustomAnticipateOvershootInterpolator
       extends AnticipateOvershootInterpolator {
 
-    // This is the default tension value in AnticipateOvershootInterpolator
+    // 这是 AnticipateOvershootInterpolator 中的默认张力值
     static final float DEFAULT_TENSION = 2.0f;
 
     final float tension;

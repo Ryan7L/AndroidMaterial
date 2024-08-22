@@ -13,6 +13,8 @@ import io.material.catalog.feature.Demo
 import io.material.catalog.feature.DemoLandingFragment
 import io.material.catalog.feature.FeatureDemo
 import io.material.catalog.musicplayer.MusicPlayerDemoActivity
+import io.material.catalog.transition.non_material.BaseTransitionDemoFragment
+import io.material.catalog.transition.non_material.NonMaterialTransitionDemoStartActivity
 
 
 open class TransitionFragment : DemoLandingFragment() {
@@ -91,6 +93,12 @@ open class TransitionFragment : DemoLandingFragment() {
             get() = BaseTransitionDemoFragment()
         }
       )
+      add(
+        object : Demo() {
+          override val activityIntent: Intent?
+            get() = Intent(context, NonMaterialTransitionDemoStartActivity::class.java)
+        }
+      )
     }
 }
 
@@ -117,7 +125,7 @@ abstract class TransitionModule {
 
 /**
  * Transition:过渡
- *    分类：
+ *    分类：（也可以分类为 Activity/Fragment切换时内容过渡动画，Activity/Fragment切换时，共享元素过渡动画，同一个Activity/Fragment中的场景过渡动画）
  *        1.内容变换动画(Content Transition)：包含进入动画和退出动画
  *        2.共享元素动画
  * Transition类：transition主要负责捕捉每个View在开始场景和结束场景时的状态，根据两个场景（开始和结束）之间的区别创建一个Animator，所以Transition内部利用了属性动画

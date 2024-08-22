@@ -27,7 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 
-/** A fragment that displays the provided layout. */
+/**显示提供的布局的片段。 */
 public class TransitionSimpleLayoutFragment extends Fragment {
 
   private static final String KEY_LAYOUT_RES_ID = "KEY_LAYOUT_RES_ID";

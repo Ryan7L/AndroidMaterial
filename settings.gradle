@@ -28,3 +28,4 @@ rootProject.children.each { p ->
     project.name = project.path.substring(1).replace(':', '-')
   }
 }
+include ':nonmaterial'
