@@ -19,14 +19,11 @@
 
   <string name="cat_tabs_title">Tabs</string>
   <string name="cat_tabs_description">
-    Tabs enable content organization at a high level, such as switching between views, data sets, or
-    functional aspects of an app.\n\nPresent tabs as a single row above their associated content.
-    Tab labels should succinctly describe the content within.\n\nTabs allow navigation between
-    different top-level groups of content, such as different sections of a newspaper, different
-    music genres, or different types of documents.
+    Tabs可在较高级别上组织内容，例如在视图、数据集或应用的功能方面之间进行切换。\n\n将Tabs显示为其关联内容上方的单行。选项卡标签应简洁地描述其中的内容。
+    \n\n选项卡允许在不同的顶级内容组之间导航，例如报纸的不同部分、不同的音乐流派或不同类型的文档。
   </string>
   <string name="cat_tab_item_label">Tab %d</string>
-  <string name="cat_tab_item_content">Swipe here - Tab %d</string>
+  <string name="cat_tab_item_content">滑动此处 - Tab %d</string>
   <string name="cat_tabs_icon_switch_label">Show icons</string>
   <string name="cat_tabs_labels_switch_label">Show labels</string>
   <string name="cat_tabs_gravity_selector_label">Gravity</string>

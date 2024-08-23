@@ -20,9 +20,7 @@
   <string name="cat_bottom_nav_label_visibility_demo_title">Label Visibility Demo</string>
   <string name="cat_bottom_nav_animated_demo_title">Animated Demo</string>
   <string name="cat_bottom_nav_description">
-    Navigation bars make it easy to explore and switch between top-level views in a single
-    tap. This navigational element resides at the bottom of the screen, and provides direct access
-    for three to five destinations within an app.
+    导航栏使您只需点击一下即可轻松浏览并在顶级视图之间切换。该导航元素位于屏幕底部，可直接访问应用程序内的三到五个目的地。
   </string>
 
   <string name="cat_bottom_nav_item_name">Item %1$d</string>

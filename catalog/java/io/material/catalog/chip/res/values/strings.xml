@@ -19,9 +19,7 @@
 
   <string name="cat_chip_title">Chips</string>
   <string name="cat_chip_description">
-    Chips are used when multiple interactive elements appear together in the same area, such as a
-    list of selectable movie times, a series of email contacts, or even an intelligent cross-app
-    action.
+    当多个交互元素一起出现在同一区域时，例如可选择的电影时间列表、一系列电子邮件联系人，甚至智能的跨应用程序操作，就会使用Chips。
   </string>
 
   <string name="cat_chip_text">Hello, World!</string>

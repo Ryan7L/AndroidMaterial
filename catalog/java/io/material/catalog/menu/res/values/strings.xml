@@ -17,7 +17,7 @@
 
 <resources>
   <string name="cat_menus_title">Menus</string>
-  <string name="cat_menus_description">A menu displays a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.</string>
+  <string name="cat_menus_description">菜单在临时表面上显示选项列表。当用户与按钮、操作或其他控件交互时，它们就会出现.</string>
   <string name="menu_button_label">&#8942;</string>
   <string name="show_menu" description="Label for button that shows the menu [CHAR_LIMIT=20].">Show Menu</string>
   <string name="menu_with_icons" description="Text to indicate button below shows a menu with icons [CHAR_LIMIT=NONE].">Menu with icons</string>
@@ -25,14 +25,13 @@
   <string name="context_menu" description="label for section where the context menu is featured [CHAR_LIMIT=20].">Context Menu</string>
   <string name="list_popup_window" description="Text to indicate button below shows a ListPopupWindow [CHAR_LIMIT=NONE].">ListPopupWindow</string>
   <string name="menu_demo_description">
-    Menus within a Material theme will default to a text style of textAppearanceSubtitle1.
-    \n\n The menu background adds top and bottom padding, rounded corners, and 8dp elevation.
-    \n\n You can try the popup menus, context menu, or the overflow menu in this demo.
+    Material 主题中的菜单将默认使用 textAppearanceSubtitle1 的文本样式。
+    \n\n 菜单背景添加顶部和底部填充、圆角和 8dp 标高。
+    \n\n 您可以尝试此演示中的弹出菜单、上下文菜单或溢出菜单。
   </string>
 
   <string name="menu_context_menu_description" description="Text explaining how to use context menus [CHAR_LIMIT=NONE].">
-    This TextView opens a context menu when long pressed.
-    \n\nIt provides actions that affect the selected content or context frame.
+    长按此 TextView 时会打开上下文菜单。 \n\n它提供影响所选内容或上下文框架的操作。
   </string>
   <string name="context_menu_highlight" description="text for a menu option to highlight text [CHAR_LIMIT=20].">Highlight</string>
 

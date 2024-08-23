@@ -19,10 +19,7 @@
 
   <string name="cat_font_title">Typography</string>
   <string name="cat_font_description">
-    Roboto is the standard typeface on Android.
-
-    Roboto has been refined extensively to work across the wider set of supported platforms. It is
-    slightly wider and rounder, giving it greater clarity and making it more optimistic.
+    Roboto 是 Android 上的标准字体。 Roboto 经过广泛改进，可以在更广泛的支持平台上工作。它稍微更宽、更圆，使其更加清晰，也更加乐观。
   </string>
 
   <string name="cat_font_style_message">Use ?attr/%s in your layout.</string>

@@ -19,16 +19,14 @@
           description="The title for the navigation drawer demo. [CHAR_LIMIT=100]">Navigation Drawer</string>
   <string name="cat_navigationdrawer_description"
           description="Brief summary about navigation drawer component demo. [CHAR_LIMIT=500]">
-    Navigation drawers provide access to destinations and app functionality,
-    such as switching accounts. They can either be permanently on-screen or
-    controlled by a navigation menu icon.
+    抽屉式导航提供对目的地和应用程序功能的访问，例如切换帐户。它们可以永久显示在屏幕上，也可以通过导航菜单图标进行控制。
   </string>
 
   <string name="cat_navigationdrawer_instructions"
           description="Instructions for the navigation drawer demo. [CHAR_LIMIT=300]">
-    Press the Top App Bar menu icon above to open a start-aligned navigation drawer.
+    按上面的顶部应用栏菜单图标可打开开始对齐的导航抽屉。
     \n\n
-    Or press the button below to open an end-aligned navigation drawer.
+    或者按下面的按钮打开末端对齐的导航抽屉
   </string>
   <string name="cat_navigationdrawer_show_end_drawer"
           description="Label for opening the navigation drawer at the end of the screen. [CHAR_LIMIT=100]">
@@ -52,6 +50,6 @@
   <string name="cat_navigationdrawer_custom_title"
     description="The title for the custom navigation drawer demo. [CHAR_LIMIT=100]">Custom Navigation Drawer</string>
   <string name="cat_navigationdrawer_custom_text"
-    description="Text for the custom navigation drawer demo. [CHAR_LIMIT=100]">Maintain aspect ratio</string>
+    description="Text for the custom navigation drawer demo. [CHAR_LIMIT=100]">保持纵横比</string>
 
 </resources>

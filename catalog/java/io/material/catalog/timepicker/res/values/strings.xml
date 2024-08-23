@@ -19,7 +19,7 @@
   <!-- Title of the demo displaying pop-up pickers. [CHAR LIMIT=40] -->
   <string name="cat_time_picker_demo_title">Time Picker</string>
   <!-- Description of the catalog demo containing time picker. [CHAR LIMIT=128] -->
-  <string name="cat_time_picker_description">Time pickers allow users to choose times.</string>
+  <string name="cat_time_picker_description">时间选择器允许用户选择时间。</string>
   <!-- Label for a time format toggle group [CHAR LIMIT=NONE] -->
   <string name="time_format_label">Time format</string>
   <!-- Label for an option to choose the 12-hour time format [CHAR LIMIT=16] -->

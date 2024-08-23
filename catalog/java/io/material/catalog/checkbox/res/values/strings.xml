@@ -18,8 +18,7 @@
 <resources>
   <string name="cat_checkbox_title" translatable="false">Checkbox</string>
   <string name="cat_checkbox_description" translatable="false">
-    The CheckBox provides a selectable element, usually part of a list,
-    that toggles between two states.</string>
+    CheckBox 提供一个可选元素，通常是列表的一部分，可以在两种状态之间切换.</string>
   <string name="cat_checkbox_intro" translatable="false">
     Below are Material checkboxes.</string>
   <string name="cat_checkbox_disabled_guide" translatable="false">

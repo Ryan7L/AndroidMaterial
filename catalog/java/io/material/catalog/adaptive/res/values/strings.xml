@@ -50,10 +50,10 @@
     Feed Demo
   </string>
   <string name="cat_feed_fragment_title" description="Title of an element of the Feed fragment [CHAR_LIMIT=NONE]">
-    Title
+    标题
   </string>
   <string name="cat_feed_fragment_subhead" description="Subhead of the Feed fragment [CHAR_LIMIT=NONE]">
-    Subhead
+    小标题
   </string>
   <string name="cat_feed_sample_image_content_desc" description="Description of a sample image in the Feed dmeo [CHAR_LIMIT=NONE]">
     Sample image

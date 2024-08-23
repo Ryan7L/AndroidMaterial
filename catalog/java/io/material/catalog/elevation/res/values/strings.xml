@@ -17,20 +17,16 @@
 
 <resources>
   <string name="cat_elevation_fragment_title">Elevation and Shadow</string>
-  <string name="cat_elevation_fragment_description">Elevation in Material Design is measured as
-    the distance between Material surfaces. The distance from the front of one Material surface to
-    the front of another is measured along the z-axis in density-independent pixels (dps) and
-    depicted (by default) using shadows. This demo illustrates the proper rendering of shadows at
-    different elevations.
+  <string name="cat_elevation_fragment_description">Material Design 中的高程测量为 Material 表面之间的距离。
+    从一个材质表面的正面到另一个材质表面正面的距离是沿 z 轴以与密度无关的像素 (dps) 为单位测量的，
+    并使用阴影进行描绘（默认情况下）。该演示演示了不同高度处阴影的正确渲染。
     </string>
   <string name="cat_elevation_overlay_title">Elevation Overlay Demo</string>
   <string name="cat_elevation_animation_title">Elevation Animation Demo</string>
   <string name="cat_elevation_increase_elevation">Increase Elevation</string>
   <string name="cat_elevation_decrease_elevation">Decrease Elevation</string>
   <string name="cat_elevation_fragment_level">"Elevation: %1$ddp."</string>
-  <string name="cat_elevation_explanation">On Android, the rendering of elevation and shadows
-    changes visually depending on a component\'s position on the screen. Note components toward the
-    top of the visual field have more defined anterior shadows, while latter elements have more
-    pronounced shadows at the base.</string>
+  <string name="cat_elevation_explanation">在 Android 上，高度和阴影的渲染会根据组件在屏幕上的位置而在视觉上发生变化。请注意，
+    视野顶部的组件具有更清晰的前部阴影，而后面的元素在底部具有更明显的阴影</string>
   <string name="cat_elevation_animation_label">Animating translationZ from 0 to %ddp.</string>
 </resources>

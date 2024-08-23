@@ -18,7 +18,7 @@
 <resources>
   <string name="cat_music_player_album_cover_content_description" description="Content description of album cover [CHAR_LIMIT=NONE]">Album cover</string>
 
-  <string name="cat_music_player_progress_indicator_content_description" description="Content description of the progress indicator [CHAR_LIMIT=NONE]">Music progress indicator</string>
+  <string name="cat_music_player_progress_indicator_content_description" description="Content description of the progress indicator [CHAR_LIMIT=NONE]">音乐进度指示器</string>
   <string name="cat_music_player_pause_button_content_description" description="Content description of the pause button [CHAR_LIMIT=NONE]">Pause button</string>
   <string name="cat_music_player_play_button_content_description" description="Content description of the play button [CHAR_LIMIT=NONE]">Play button</string>
   <string name="cat_music_player_rewind_button_content_description" description="Content description of the rewind button [CHAR_LIMIT=NONE]">Rewind button</string>

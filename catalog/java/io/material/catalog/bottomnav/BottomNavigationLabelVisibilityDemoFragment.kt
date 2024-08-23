@@ -1,106 +1,111 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.bottomnav
 
-package io.material.catalog.bottomnav;
+import android.util.TypedValue
+import android.view.View
+import android.widget.Button
+import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
+import android.widget.TextView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import io.material.catalog.R
 
-import io.material.catalog.R;
+class BottomNavigationLabelVisibilityDemoFragment : BottomNavigationDemoFragment() {
 
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
-import android.view.View;
-import android.widget.Button;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.TextView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomnavigation.LabelVisibilityMode;
-
-/** A fragment that displays controls for the bottom nav's label visibility. */
-public class BottomNavigationLabelVisibilityDemoFragment extends BottomNavigationDemoFragment {
-  @Override
-  protected void initBottomNavDemoControls(View view) {
-    super.initBottomNavDemoControls(view);
-    initLabelVisibilityModeButtons(view);
-    initIconSlider(view);
+  override fun initBottomNavDemoControls(view: View) {
+    super.initBottomNavDemoControls(view)
+    initLabelVisibilityModeButtons(view)
+    initIconSlider(view)
   }
 
-  @Override
-  protected int getBottomNavDemoControlsLayout() {
-    return R.layout.cat_bottom_navs_label_visibility_controls;
-  }
+  override val bottomNavDemoControlsLayout: Int
+    get() = R.layout.cat_bottom_navs_label_visibility_controls
 
-  private void setAllBottomNavsLabelVisibilityMode(@LabelVisibilityMode int labelVisibilityMode) {
-    for (BottomNavigationView bn : bottomNavigationViews) {
-      setBottomNavsLabelVisibilityMode(bn, labelVisibilityMode);
+  private fun setAllBottomNavsLabelVisibilityMode(labelVisibilityMode: Int) {
+    bottomNavigationViews?.forEach {
+      setBottomNavsLabelVisibilityMode(it, labelVisibilityMode)
     }
   }
 
-  private void setBottomNavsLabelVisibilityMode(
-      BottomNavigationView bn, @LabelVisibilityMode int labelVisibilityMode) {
-    bn.setLabelVisibilityMode(labelVisibilityMode);
+  private fun setBottomNavsLabelVisibilityMode(
+    bottomNavigationView: BottomNavigationView,
+    labelVisibilityMode: Int
+  ) {
+    bottomNavigationView.labelVisibilityMode = labelVisibilityMode
   }
 
-  private void setAllBottomNavsIconSize(int size) {
-    for (BottomNavigationView bn : bottomNavigationViews) {
-      bn.setItemIconSize(size);
+  private fun setAllBottomNavsIconSize(size: Int) {
+    bottomNavigationViews?.forEach {
+      it.itemIconSize = size
     }
   }
 
-  private void initLabelVisibilityModeButtons(View view) {
+  private fun initLabelVisibilityModeButtons(view: View) {
     initLabelVisibilityModeButton(
-        view.findViewById(R.id.label_mode_auto_button), LabelVisibilityMode.LABEL_VISIBILITY_AUTO);
+      view.findViewById(R.id.label_mode_auto_button),
+      BottomNavigationView.LABEL_VISIBILITY_AUTO
+    )
     initLabelVisibilityModeButton(
-        view.findViewById(R.id.label_mode_selected_button),
-        LabelVisibilityMode.LABEL_VISIBILITY_SELECTED);
+      view.findViewById(R.id.label_mode_selected_button),
+      BottomNavigationView.LABEL_VISIBILITY_SELECTED
+    )
     initLabelVisibilityModeButton(
-        view.findViewById(R.id.label_mode_labeled_button),
-        LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+      view.findViewById(R.id.label_mode_labeled_button),
+      BottomNavigationView.LABEL_VISIBILITY_LABELED
+    )
     initLabelVisibilityModeButton(
-        view.findViewById(R.id.label_mode_unlabeled_button),
-        LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED);
+      view.findViewById(R.id.label_mode_unlabeled_button),
+      BottomNavigationView.LABEL_VISIBILITY_UNLABELED
+    )
   }
 
-  private void initLabelVisibilityModeButton(
-      Button labelVisibilityModeButton, @LabelVisibilityMode int labelVisibilityMode) {
-    labelVisibilityModeButton.setOnClickListener(
-        v -> setAllBottomNavsLabelVisibilityMode(labelVisibilityMode));
+  private fun initLabelVisibilityModeButton(
+    labelVisibilityModeButton: Button, labelVisibilityMode: Int
+  ) {
+    labelVisibilityModeButton.setOnClickListener {
+      setAllBottomNavsLabelVisibilityMode(labelVisibilityMode)
+    }
   }
 
-  private void initIconSlider(View view) {
-    SeekBar iconSizeSlider = view.findViewById(R.id.icon_size_slider);
-    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-    TextView iconSizeTextView = view.findViewById(R.id.icon_size_text_view);
-    String iconSizeUnit = "dp";
 
-    iconSizeSlider.setOnSeekBarChangeListener(
-        new OnSeekBarChangeListener() {
-          @Override
-          public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            setAllBottomNavsIconSize(
-                (int)
-                    TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP, progress, displayMetrics));
-            iconSizeTextView.setText(String.valueOf(progress).concat(iconSizeUnit));
-          }
+  private fun initIconSlider(view: View) {
+    val iconSizeSlider = view.findViewById<SeekBar>(R.id.icon_size_slider)
+    val displayMetrics = resources.displayMetrics
+    val iconSizeTextView = view.findViewById<TextView>(R.id.icon_size_text_view)
+    val iconSizeUnit = "dp"
+    iconSizeSlider.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+      /**
+       * 通知进度级别已发生变化。客户端可以使用 fromUser 参数来区分用户发起的更改和以编程方式发生的更改。
+       *
+       * @param seekBar 进度发生变化的SeekBar
+       * @param progress 当前的进度水平。这将在 min..max 范围内，其中 min 和 max 分别由 [ProgressBar.setMin]
+       * 和 [ProgressBar.setMax] 设置。 （最小值的默认值为 0，最大值为 100。）
+       * @param fromUser 如果进度更改是由用户发起的，则为 True。
+       */
+      override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+        setAllBottomNavsIconSize(
+          TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            progress.toFloat(),
+            displayMetrics
+          ).toInt()
+        )
+        iconSizeTextView.text = progress.toString() + iconSizeUnit
+      }
 
-          @Override
-          public void onStartTrackingTouch(SeekBar seekBar) {}
+      /**
+       * 通知用户已开始触摸手势。客户端可能希望使用此通知来禁用滚动条的前进。
+       * @param seekBar 触摸手势开始的 SeekBar
+       */
+      override fun onStartTrackingTouch(seekBar: SeekBar?) {
+      }
 
-          @Override
-          public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
+      /**
+       * 通知用户已完成触摸手势。客户端可能希望使用此通知重新启用滚动条的推进。
+       * @param seekBar 触摸手势开始的 SeekBar
+       */
+      override fun onStopTrackingTouch(seekBar: SeekBar?) {
+      }
+
+    })
   }
 }

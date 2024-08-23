@@ -19,7 +19,7 @@
   <!-- Title of the demo displaying pop-up dialog windows. [CHAR LIMIT=40] -->
   <string name="cat_dialog_title">Dialogs</string>
   <!-- Description of dialog windows and their uses. [CHAR LIMIT=NONE] -->
-  <string name="cat_dialog_description">Dialogs create modals that users must interact with before performing any other actions. Dialogs should only be used for user input and notices that cannot be delayed.</string>
+  <string name="cat_dialog_description">对话框创建用户在执行任何其他操作之前必须与之交互的模式。对话框只能用于用户输入和不能延迟的通知</string>
   <!-- Library name of the existing, most commonly used, AlertDialog implementation. [CHAR LIMIT=60] -->
   <string name="app_compat_alert_dialog">AppCompat AlertDialog</string>
   <!-- Denotes what parts of an AlertDialog this button will display. [CHAR LIMIT=60] -->

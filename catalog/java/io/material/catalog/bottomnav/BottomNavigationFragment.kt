@@ -1,95 +1,67 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.bottomnav
 
-package io.material.catalog.bottomnav;
+import androidx.fragment.app.Fragment
+import dagger.Provides
+import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoSet
+import io.material.catalog.R
+import io.material.catalog.application.scope.ActivityScope
+import io.material.catalog.application.scope.FragmentScope
+import io.material.catalog.feature.Demo
+import io.material.catalog.feature.DemoLandingFragment
+import io.material.catalog.feature.FeatureDemo
 
-import io.material.catalog.R;
+class BottomNavigationFragment : DemoLandingFragment() {
+  /**
+   * ActionBar 或 ToolBar 的标题的资源ID
+   */
+  override val titleResId: Int
+    get() = R.string.cat_bottom_nav_title
 
-import androidx.fragment.app.Fragment;
-import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import dagger.multibindings.IntoSet;
-import io.material.catalog.application.scope.ActivityScope;
-import io.material.catalog.application.scope.FragmentScope;
-import io.material.catalog.feature.Demo;
-import io.material.catalog.feature.DemoLandingFragment;
-import io.material.catalog.feature.FeatureDemo;
-import java.util.ArrayList;
-import java.util.List;
+  /**
+   * 演示功能的描述的资源ID
+   */
+  override val descriptionResId: Int
+    get() = R.string.cat_bottom_nav_description
 
-/** A landing fragment that links to bottom nav demos for the Catalog app. */
-public class BottomNavigationFragment extends DemoLandingFragment {
+  /**
+   * 主要的Demo
+   */
+  override val mainDemo: Demo
+    get() = object : Demo() {
+      override val fragment: Fragment
+        get() = BottomNavigationMainDemoFragment()
+    }
 
-  @Override
-  public int getTitleResId() {
-    return R.string.cat_bottom_nav_title;
-  }
-
-  @Override
-  public int getDescriptionResId() {
-    return R.string.cat_bottom_nav_description;
-  }
-
-  @Override
-  public Demo getMainDemo() {
-    return new Demo() {
-      @Override
-      public Fragment getFragment() {
-        return new BottomNavigationMainDemoFragment();
+  override val additionalDemos: List<Demo>
+    get() = listOf(
+      object : Demo(R.string.cat_bottom_nav_label_visibility_demo_title) {
+        override val fragment: Fragment
+          get() = BottomNavigationLabelVisibilityDemoFragment()
+      },
+      object : Demo(R.string.cat_bottom_nav_animated_demo_title) {
+        override val fragment: Fragment
+          get() = BottomNavigationAnimatedDemoFragment()
       }
-    };
-  }
+    )
+}
 
-  @Override
-  public List<Demo> getAdditionalDemos() {
-    List<Demo> additionalDemos = new ArrayList<>();
-    additionalDemos.add(
-        new Demo(R.string.cat_bottom_nav_label_visibility_demo_title) {
-          @Override
-          public Fragment getFragment() {
-            return new BottomNavigationLabelVisibilityDemoFragment();
-          }
-        });
-    additionalDemos.add(
-        new Demo(R.string.cat_bottom_nav_animated_demo_title) {
-          @Override
-          public Fragment getFragment() {
-            return new BottomNavigationAnimatedDemoFragment();
-          }
-        });
-    return additionalDemos;
-  }
+@dagger.Module
+abstract class BottomNavigationModule {
+  @FragmentScope
+  @ContributesAndroidInjector
+  abstract fun contributeInjector(): BottomNavigationFragment
 
-  /** The Dagger module for {@link BottomNavigationFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract BottomNavigationFragment contributeInjector();
-
+  companion object {
     @IntoSet
     @Provides
+    @JvmStatic
     @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(R.string.cat_bottom_nav_title, R.drawable.ic_bottomnavigation) {
-        @Override
-        public Fragment getLandingFragment() {
-          return new BottomNavigationFragment();
-        }
-      };
+    fun provideFeatureDemo(): FeatureDemo {
+      return object : FeatureDemo(R.string.cat_bottom_nav_title, R.drawable.ic_bottomnavigation) {
+        override val landingFragment: Fragment
+          get() = BottomNavigationFragment()
+      }
     }
   }
 }
