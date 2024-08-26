@@ -44,10 +44,8 @@ class BottomSheetScrollableContentDemoFragment : DemoFragment() {
         bottomSheetContent
       ) { view, insets, initialPadding ->
         /**
-         * When [set][View.setOnApplyWindowInsetsListener] on a
-         * View, this listener method will be called instead of the view's own [ ][View.onApplyWindowInsets] method. The `initialPadding` is the view's
-         * original padding which can be updated and will be applied to the view automatically. This
-         * method should return a new [WindowInsetsCompat] with any insets consumed.
+         * 当在 View 上设置 [set][View.setOnApplyWindowInsetsListener] 时，将调用此侦听器方法，而不是调用视图自己的 [ ][View.onApplyWindowInsets] 方法。
+         * `initialPadding` 是视图的原始填充，可以更新并将自动应用于视图。此方法应返回一个新的 [WindowInsetsCompat] 以及消耗的所有插图。
          */
         //在内部 NestedScrollView 中添加插图，以使边缘到边缘的行为一致 - 即，额外的填充将仅显示在所有内容的底部，即仅当您无法再向下滚动以显示更多内容时。
         bottomSheetContent.setPaddingRelative(

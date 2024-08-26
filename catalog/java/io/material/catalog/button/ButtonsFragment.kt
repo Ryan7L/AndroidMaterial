@@ -1,90 +1,64 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.button
 
-package io.material.catalog.button;
+import androidx.fragment.app.Fragment
+import dagger.Provides
+import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoSet
+import io.material.catalog.R
+import io.material.catalog.application.scope.ActivityScope
+import io.material.catalog.application.scope.FragmentScope
+import io.material.catalog.feature.Demo
+import io.material.catalog.feature.DemoLandingFragment
+import io.material.catalog.feature.FeatureDemo
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+class ButtonsFragment : DemoLandingFragment() {
+  /**
+   * ActionBar 或 ToolBar 的标题的资源ID
+   */
+  override val titleResId: Int
+    get() = R.string.cat_buttons_title
 
-import java.util.Arrays;
-import java.util.List;
+  /**
+   * 演示功能的描述的资源ID
+   */
+  override val descriptionResId: Int
+    get() = R.string.cat_buttons_description
 
-import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import dagger.multibindings.IntoSet;
-import io.material.catalog.R;
-import io.material.catalog.application.scope.ActivityScope;
-import io.material.catalog.application.scope.FragmentScope;
-import io.material.catalog.feature.Demo;
-import io.material.catalog.feature.DemoLandingFragment;
-import io.material.catalog.feature.FeatureDemo;
-
-/** A landing fragment that links to button demos for the Catalog app. */
-public class ButtonsFragment extends DemoLandingFragment {
-
-  @Override
-  public int getTitleResId() {
-    return R.string.cat_buttons_title;
-  }
-
-  @Override
-  public int getDescriptionResId() {
-    return R.string.cat_buttons_description;
-  }
-
-  @Override
-  public Demo getMainDemo() {
-    return new Demo() {
-      @Override
-      public Fragment getFragment() {
-        return new ButtonsMainDemoFragment();
+  /**
+   * 主要的Demo
+   */
+  override val mainDemo: Demo
+    get() = object : Demo() {
+      override val fragment: Fragment
+        get() = ButtonsMainDemoFragment()
+    }
+  override val additionalDemos: List<Demo>
+    get() = listOf(
+      object : Demo(R.string.cat_buttons_toggle_group) {
+        override val fragment: Fragment
+          get() = ButtonToggleGroupDemoFragment()
       }
-    };
-  }
+    )
+}
 
-  @Override
-  public List<Demo> getAdditionalDemos() {
-    return Arrays.asList(
-        new Demo(R.string.cat_buttons_toggle_group) {
-          @Nullable
-          @Override
-          public Fragment getFragment() {
-            return new ButtonToggleGroupDemoFragment();
-          }
-        });
-  }
+@dagger.Module
+abstract class ButtonModule {
+  @FragmentScope
+  @ContributesAndroidInjector
+  abstract fun contributeInjector(): ButtonsFragment
 
-  /** The Dagger module for {@link ButtonsFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
-
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract ButtonsFragment contributeInjector();
-
-    @IntoSet
+  companion object {
     @Provides
+    @JvmStatic
     @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(R.string.cat_buttons_title, R.drawable.ic_button) {
-        @Override
-        public Fragment getLandingFragment() {
-          return new ButtonsFragment();
-        }
-      };
+    @IntoSet
+    fun provideFeatureDemo(): FeatureDemo {
+      return object : FeatureDemo(R.string.cat_buttons_title, R.drawable.ic_button) {
+        override val landingFragment: Fragment
+          get() = ButtonsFragment()
+
+      }
     }
   }
+
 }
