@@ -1,65 +1,38 @@
-package io.material.catalog.card;
+package io.material.catalog.card
 
-import io.material.catalog.R;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.RadioGroup
+import com.google.android.material.card.MaterialCardView
+import io.material.catalog.R
+import io.material.catalog.feature.DemoFragment
 
-/*
- * Copyright 2018 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RadioGroup;
-import androidx.annotation.Nullable;
-import com.google.android.material.card.MaterialCardView;
-import io.material.catalog.feature.DemoFragment;
-
-/**
- * A fragment showing {@link MaterialCardView} states
- */
-public class CardStatesFragment extends DemoFragment {
-
-  @Override
-  public int getDemoTitleResId() {
-    return R.string.cat_card_states;
-  }
-
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view = layoutInflater
-        .inflate(R.layout.cat_card_states_fragment, viewGroup, false /* attachToRoot */);
-    RadioGroup radioGroup = view.findViewById(R.id.cat_card_radio_group);
-    final MaterialCardView card = view.findViewById(R.id.card);
-    final MaterialCardView checkableCard = view.findViewById(R.id.checkable_card);
-
-    checkableCard.setOnLongClickListener(
-        v -> {
-          checkableCard.setChecked(!checkableCard.isChecked());
-          return true;
-        });
-
-    radioGroup.setOnCheckedChangeListener(
-        (group, checkedId) -> {
-          card.setHovered(checkedId == R.id.hovered);
-          card.setPressed(checkedId == R.id.pressed);
-          checkableCard.setHovered(checkedId == R.id.hovered);
-          checkableCard.setPressed(checkedId == R.id.pressed);
-        });
-
-    return view;
+class CardStatesFragment: DemoFragment() {
+  override val demoTitleResId: Int
+    get() = R.string.cat_card_states
+  override fun onCreateDemoView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    val view = inflater.inflate(R.layout.cat_card_states_fragment, container, false)
+    val radioGroup = view.findViewById<RadioGroup>(R.id.cat_card_radio_group)
+    val cardView = view.findViewById<MaterialCardView>(R.id.card)
+    val checkableCardView = view.findViewById<MaterialCardView>(R.id.checkable_card)
+    radioGroup.setOnCheckedChangeListener { group, checkedId ->
+      checkableCardView.setOnLongClickListener {
+        checkableCardView.isChecked = !checkableCardView.isChecked
+        true
+      }
+      radioGroup.setOnCheckedChangeListener { group, checkedId ->
+        cardView.isHovered = checkedId == R.id.hovered
+        cardView.setPressed(checkedId == R.id.pressed)
+        checkableCardView.isHovered = checkedId == R.id.hovered
+        checkableCardView.setPressed(checkedId == R.id.pressed)
+      }
+    }
+    return view
   }
 }

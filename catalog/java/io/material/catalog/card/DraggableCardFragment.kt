@@ -1,155 +1,124 @@
-/*
- * Copyright 2018 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.card
 
-package io.material.catalog.card;
+import android.animation.LayoutTransition
+import android.os.Build
+import android.os.Bundle
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.View.AccessibilityDelegate
+import android.view.ViewGroup
+import android.view.accessibility.AccessibilityNodeInfo
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.google.android.material.card.MaterialCardView
+import io.material.catalog.R
+import io.material.catalog.draggable.DraggableCoordinatorLayout
+import io.material.catalog.draggable.DraggableCoordinatorLayout.ViewDragListener
+import io.material.catalog.feature.DemoFragment
 
-import io.material.catalog.R;
+class DraggableCardFragment : DemoFragment() {
+  private lateinit var cardView: MaterialCardView
 
-import android.animation.LayoutTransition;
-import android.os.Build;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
-import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.AccessibilityDelegate;
-import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.google.android.material.card.MaterialCardView;
-import io.material.catalog.draggable.DraggableCoordinatorLayout;
-import io.material.catalog.draggable.DraggableCoordinatorLayout.ViewDragListener;
-import io.material.catalog.feature.DemoFragment;
+  override val demoTitleResId: Int
+    get() = R.string.cat_card_draggable_card
 
-/**
- * A fragment with a draggable MaterialCardView
- */
-public class DraggableCardFragment extends DemoFragment {
-
-  private MaterialCardView card;
-
-  @Override
-  public int getDemoTitleResId() {
-    return R.string.cat_card_draggable_card;
-  }
-
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view =
-        layoutInflater.inflate(
-            R.layout.cat_card_draggable_fragment, viewGroup, false /* attachToRoot */);
-    DraggableCoordinatorLayout container = (DraggableCoordinatorLayout) view;
-    LayoutTransition transition = ((CoordinatorLayout) view).getLayoutTransition();
-    transition.enableTransitionType(LayoutTransition.CHANGING);
-
-    card = view.findViewById(R.id.draggable_card);
-    card.setAccessibilityDelegate(cardDelegate);
-    container.addDraggableChild(card);
-
-    if (VERSION.SDK_INT < VERSION_CODES.LOLLIPOP) {
-      return view;
-    }
-
-    container.setViewDragListener(
-        new ViewDragListener() {
-          @Override
-          public void onViewCaptured(@NonNull View view, int i) {
-            card.setDragged(true);
-          }
-
-          @Override
-          public void onViewReleased(@NonNull View view, float v, float v1) {
-            card.setDragged(false);
-          }
-        });
-
-    return view;
-  }
-
-  private final AccessibilityDelegate cardDelegate = new AccessibilityDelegate() {
-    @Override
-    public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfo info) {
-      super.onInitializeAccessibilityNodeInfo(host, info);
-      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-        return;
+  override fun onCreateDemoView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    val view = inflater.inflate(R.layout.cat_card_draggable_fragment, container, false)
+    val containerView = view as DraggableCoordinatorLayout
+    val transition = (view as CoordinatorLayout).layoutTransition
+    transition.enableTransitionType(LayoutTransition.CHANGING)
+    cardView = view.findViewById(R.id.draggable_card)
+    cardView.accessibilityDelegate = cardDelegate
+    containerView.addDraggableChild(cardView)
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return view
+    containerView.setViewDragListener(object : ViewDragListener {
+      override fun onViewCaptured(view: View, i: Int) {
+        cardView.isDragged = true
       }
 
-      CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) card
-          .getLayoutParams();
-      int gravity = layoutParams.gravity;
-      boolean isOnLeft = (gravity & Gravity.LEFT) == Gravity.LEFT;
-      boolean isOnRight = (gravity & Gravity.RIGHT) == Gravity.RIGHT;
-      boolean isOnTop = (gravity & Gravity.TOP) == Gravity.TOP;
-      boolean isOnBottom = (gravity & Gravity.BOTTOM) == Gravity.BOTTOM;
-      boolean isOnCenter = (gravity & Gravity.HORIZONTAL_GRAVITY_MASK) == Gravity.CENTER_HORIZONTAL;
+      override fun onViewReleased(view: View, v: Float, v1: Float) {
+        cardView.isDragged = false
+      }
 
+    })
+    return view
+  }
+
+  private val cardDelegate = object : AccessibilityDelegate() {
+
+    override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfo) {
+      super.onInitializeAccessibilityNodeInfo(host, info)
+      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return
+
+      val layoutParams = cardView.layoutParams as CoordinatorLayout.LayoutParams
+      val gravity = layoutParams.gravity
+      val isOnLeft = (gravity and Gravity.LEFT) == Gravity.LEFT
+      val isOnRight = (gravity and Gravity.RIGHT) == Gravity.RIGHT
+      val isOnTop = (gravity and Gravity.TOP) == Gravity.TOP
+      val isOnBottom = (gravity and Gravity.BOTTOM) == Gravity.BOTTOM
+      val isOnCenter = (gravity and Gravity.HORIZONTAL_GRAVITY_MASK) == Gravity.CENTER_HORIZONTAL
       if (!(isOnTop && isOnLeft)) {
-        info.addAction(new AccessibilityAction(R.id.move_card_top_left_action,
-            getString(R.string.cat_card_action_move_top_left)));
+        info.addAction(
+          AccessibilityNodeInfo.AccessibilityAction(
+            R.id.move_card_top_left_action,
+            getString(R.string.cat_card_action_move_top_left)
+          )
+        )
       }
       if (!(isOnTop && isOnRight)) {
-        info.addAction(new AccessibilityAction(R.id.move_card_top_right_action,
-            getString(R.string.cat_card_action_move_top_right)));
+        info.addAction(
+          AccessibilityNodeInfo.AccessibilityAction(
+            R.id.move_card_top_right_action,
+            getString(R.string.cat_card_action_move_top_right)
+          )
+        )
       }
       if (!(isOnBottom && isOnLeft)) {
-        info.addAction(new AccessibilityAction(R.id.move_card_bottom_left_action,
-            getString(R.string.cat_card_action_move_bottom_left)));
+        info.addAction(
+          AccessibilityNodeInfo.AccessibilityAction(
+            R.id.move_card_bottom_left_action,
+            getString(R.string.cat_card_action_move_bottom_left)
+          )
+        )
       }
       if (!(isOnBottom && isOnRight)) {
-        info.addAction(new AccessibilityAction(
+        info.addAction(
+          AccessibilityNodeInfo.AccessibilityAction(
             R.id.move_card_bottom_right_action,
-            getString(R.string.cat_card_action_move_bottom_right)));
+            getString(R.string.cat_card_action_move_bottom_right)
+          )
+        )
       }
       if (!isOnCenter) {
-        info.addAction(new AccessibilityAction(
+        info.addAction(
+          AccessibilityNodeInfo.AccessibilityAction(
             R.id.move_card_center_action,
-            getString(R.string.cat_card_action_move_center)));
+            getString(R.string.cat_card_action_move_center)
+          )
+        )
       }
     }
 
-    @Override
-    public boolean performAccessibilityAction(View host, int action, Bundle arguments) {
-      int gravity;
-      if (action == R.id.move_card_top_left_action) {
-        gravity = Gravity.TOP | Gravity.LEFT;
-      } else if (action == R.id.move_card_top_right_action) {
-        gravity = Gravity.TOP | Gravity.RIGHT;
-      } else if (action == R.id.move_card_bottom_left_action) {
-        gravity = Gravity.BOTTOM | Gravity.LEFT;
-      } else if (action == R.id.move_card_bottom_right_action) {
-        gravity = Gravity.BOTTOM | Gravity.RIGHT;
-      } else if (action == R.id.move_card_center_action) {
-        gravity = Gravity.CENTER;
-      } else {
-        return super.performAccessibilityAction(host, action, arguments);
+    override fun performAccessibilityAction(host: View, action: Int, args: Bundle?): Boolean {
+      val gravity = when (action) {
+        R.id.move_card_top_left_action -> Gravity.TOP or Gravity.LEFT
+        R.id.move_card_top_right_action -> Gravity.TOP or Gravity.RIGHT
+        R.id.move_card_bottom_left_action -> Gravity.BOTTOM or Gravity.LEFT
+        R.id.move_card_bottom_right_action -> Gravity.BOTTOM or Gravity.RIGHT
+        R.id.move_card_center_action -> Gravity.CENTER
+        else -> return super.performAccessibilityAction(host, action, args)
       }
-
-      CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) card
-          .getLayoutParams();
+      val layoutParams = cardView.layoutParams as CoordinatorLayout.LayoutParams
       if (layoutParams.gravity != gravity) {
-        layoutParams.gravity = gravity;
-        card.requestLayout();
+        layoutParams.gravity = gravity
+        cardView.requestLayout()
       }
-
-      return true;
+      return true
     }
-  };
+  }
+
 }

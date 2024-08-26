@@ -1,118 +1,86 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.card
 
-package io.material.catalog.card;
+import android.content.Intent
+import androidx.fragment.app.Fragment
+import dagger.Provides
+import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoSet
+import io.material.catalog.R
+import io.material.catalog.application.scope.ActivityScope
+import io.material.catalog.application.scope.FragmentScope
+import io.material.catalog.feature.Demo
+import io.material.catalog.feature.DemoLandingFragment
+import io.material.catalog.feature.FeatureDemo
 
-import io.material.catalog.R;
+class CardFragment : DemoLandingFragment() {
+  /**
+   * ActionBar 或 ToolBar 的标题的资源ID
+   */
+  override val titleResId: Int
+    get() = R.string.cat_card_title
 
-import android.content.Intent;
-import androidx.fragment.app.Fragment;
-import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import dagger.multibindings.IntoSet;
-import io.material.catalog.application.scope.ActivityScope;
-import io.material.catalog.application.scope.FragmentScope;
-import io.material.catalog.feature.Demo;
-import io.material.catalog.feature.DemoLandingFragment;
-import io.material.catalog.feature.FeatureDemo;
-import java.util.Arrays;
-import java.util.List;
+  /**
+   * 演示功能的描述的资源ID
+   */
+  override val descriptionResId: Int
+    get() = R.string.cat_card_description
 
-/** A landing fragment that links to card demos for the Catalog app. */
-public class CardFragment extends DemoLandingFragment {
+  /**
+   * 主要的Demo
+   */
+  override val mainDemo: Demo
+    get() = object : Demo() {
+      override val fragment: Fragment
+        get() = CardMainDemoFragment()
+    }
 
-  @Override
-  public int getTitleResId() {
-    return R.string.cat_card_title;
-  }
-
-  @Override
-  public int getDescriptionResId() {
-    return R.string.cat_card_description;
-  }
-
-  @Override
-  public Demo getMainDemo() {
-    return new Demo() {
-      @Override
-      public Fragment getFragment() {
-        return new CardMainDemoFragment();
+  override val additionalDemos: List<Demo>
+    get() = listOf(
+      object : Demo(R.string.cat_card_selection_mode){
+        override val activityIntent: Intent
+          get() = Intent(context,CardSelectionModeActivity::class.java)
+      },
+      object : Demo(R.string.cat_card_draggable_card){
+        override val fragment: Fragment
+          get() = DraggableCardFragment()
+      },
+      object : Demo(R.string.cat_card_states){
+        override val fragment: Fragment
+          get() = CardStatesFragment()
+      },
+      object : Demo(R.string.cat_card_rich_media_demo){
+        override val fragment: Fragment
+          get() = CardRichMediaDemoFragment()
+      },
+      object : Demo(R.string.cat_card_list){
+        override val fragment: Fragment
+          get() = CardListDemoFragment()
+      },
+      object : Demo(R.string.cat_card_swipe_dismiss){
+        override val fragment: Fragment
+          get() = CardSwipeDismissFragment()
       }
-    };
-  }
 
-  @Override
-  public List<Demo> getAdditionalDemos() {
-    return Arrays.asList(
-        new Demo(R.string.cat_card_selection_mode) {
-          @Override
-          public Intent getActivityIntent() {
-            return new Intent(getContext(), CardSelectionModeActivity.class);
-          }
-        },
-        new Demo(R.string.cat_card_draggable_card) {
-          @Override
-          public Fragment getFragment() {
-            return new DraggableCardFragment();
-          }
-        },
-        new Demo(R.string.cat_card_states) {
-          @Override
-          public Fragment getFragment() {
-            return new CardStatesFragment();
-          }
-        },
-        new Demo(R.string.cat_card_rich_media_demo) {
-          @Override
-          public Fragment getFragment() {
-            return new CardRichMediaDemoFragment();
-          }
-        },
-        new Demo(R.string.cat_card_list) {
-          @Override
-          public Fragment getFragment() {
-            return new CardListDemoFragment();
-          }
-        },
-        new Demo(R.string.cat_card_swipe_dismiss) {
-          @Override
-          public Fragment getFragment() {
-            return new CardSwipeDismissFragment();
-          }
-        });
-  }
+    )
+}
 
-  /** The Dagger module for {@link CardFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
+@dagger.Module
+abstract class CardModule {
 
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract CardFragment contributeInjector();
+  @FragmentScope
+  @ContributesAndroidInjector
+  abstract fun contributeInjector(): CardFragment
 
-    @IntoSet
+  companion object {
+    @JvmStatic
     @Provides
+    @IntoSet
     @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(R.string.cat_card_title, R.drawable.ic_card) {
-        @Override
-        public Fragment getLandingFragment() {
-          return new CardFragment();
-        }
-      };
+    fun provideFeatureDemo(): FeatureDemo {
+      return object : FeatureDemo(R.string.cat_card_title, R.drawable.ic_card) {
+        override val landingFragment: Fragment
+          get() = CardFragment()
+      }
     }
   }
 }

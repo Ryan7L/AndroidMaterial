@@ -39,4 +39,5 @@
         android:textAppearance="?attr/textAppearanceBody1"/>
   </com.google.android.material.card.MaterialCardView>
 
+
 </io.material.catalog.draggable.DraggableCoordinatorLayout>

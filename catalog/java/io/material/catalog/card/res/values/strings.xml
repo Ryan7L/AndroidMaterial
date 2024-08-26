@@ -31,35 +31,29 @@
   <string name="cat_card_checkable_card">This is a checkable Card</string>
   <string name="cat_card_m1_section_title">Material 1 CardView</string>
   <string name="cat_card_description">
-    Cards represent entry points into deeper levels of detail or navigation, such as an album in
-    Music or an upcoming vacation in Trips. They can be used in a grid, carousel, or feed to
-    contain groups of individual packaged information.
+    卡片代表更深层次的细节或导航的入口点，例如“音乐”中的专辑或“旅行”中即将到来的假期。它们可以在网格、轮播或提要中使用，以包含单独的打包信息组。
   </string>
   <string name="cat_card_spacing_desc">
-    Cards on mobile default to 8dp margins. layout_margin needs to be set directly on a View in its
-    layout and will not work when included as part of a style.
+    移动设备上的卡片默认为 8dp 边距。 layout_margin 需要直接在布局中的视图上设置，并且在作为样式的一部分包含时不起作用。
   </string>
   <string name="cat_card_clickable_desc">
-    Cards can be clickable.
+    卡片可以点击。
   </string>
   <string name="cat_card_filled_style_desc">
-    This is a filled style card.
+    这是一张填充风格的卡片。
   </string>
   <string name="cat_card_elevated_style_desc">
-    This is an elevated style card.
+    这是一张带有elevated风格的卡片。
   </string>
   <string name="cat_card_elevation_desc">
-        Cards use outlined styling with no elevation and with 8dp rounded corners.
+        卡片使用轮廓样式，无elevation且带有 8dp 圆角。
   </string>
   <string name="cat_card_m1_desc">
-    CardView from the Support Library works side-by-side with MaterialCardView. These cards default
-    to Material 1 styles and support fewer style attributes than MaterialCardView.
+    支持库中的 CardView 与 MaterialCardView 并行工作。这些卡默认为 Material 1 样式，并且支持的样式属性比 MaterialCardView 少。
   </string>
   <string name="cat_card_style_only_desc">
-    MaterialCardView uses the correct styles by default and makes use of additional style attributes
-    that are not provided in CardView. If you do not need to use the new style attributes, you can
-    use MaterialCardView in your layout, or apply a style tag to a CardView. We recommend using
-    the MaterialCardView class for the latest Material designs and maximum flexibility in your UI.
+    MaterialCardView 默认使用正确的样式，并使用 CardView 中未提供的其他样式属性。如果不需要使用新的样式属性，可以在布局中使用 MaterialCardView，或将样式标签应用于 CardView。
+    我们建议使用 MaterialCardView 类来实现最新的 Material 设计并在 UI 中实现最大的灵活性。
   </string>
   <string name="cat_card_select">Select a state</string>
   <string name="cat_card_selectable_content">

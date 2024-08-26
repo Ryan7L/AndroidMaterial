@@ -1,232 +1,264 @@
-/*
- * Copyright 2019 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.card
 
-package io.material.catalog.card;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.view.AccessibilityDelegateCompat
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate
+import com.google.android.material.card.MaterialCardView
+import io.material.catalog.R
+import io.material.catalog.feature.DemoFragment
+import java.util.Locale
 
-import io.material.catalog.R;
-
-import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.ViewHolder;
-import androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.AccessibilityDelegateCompat;
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat;
-import com.google.android.material.card.MaterialCardView;
-import io.material.catalog.feature.DemoFragment;
-import java.util.Locale;
-
-/**
- * A fragment showing a list of {@link MaterialCardView MaterialCardView's}.
- */
-public class CardListDemoFragment extends DemoFragment {
-
-  private static final int CARD_COUNT = 30;
-
-  @Override
-  public int getDemoTitleResId() {
-    return R.string.cat_card_list;
+class CardListDemoFragment : DemoFragment() {
+  private val CARD_COUNT = 30
+  override val demoTitleResId: Int
+    get() = R.string.cat_card_list
+  override fun onCreateDemoView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    val view = inflater.inflate(R.layout.cat_card_list_fragment, container, false)
+    initRv(view)
+    return view
   }
 
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view =
-        layoutInflater.inflate(
-            R.layout.cat_card_list_fragment, viewGroup, /* attachToRoot= */ false);
-
-    RecyclerView recyclerView = view.findViewById(R.id.cat_card_list_recycler_view);
-
-    CardAdapter cardAdapter = new CardAdapter(generateCardNumbers());
-    ItemTouchHelper itemTouchHelper =
-        new ItemTouchHelper(new CardItemTouchHelperCallback(cardAdapter));
-    // Provide an ItemTouchHelper to the Adapter; can't use constructor due to circular dependency.
-    cardAdapter.setItemTouchHelper(itemTouchHelper);
-    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-    recyclerView.setAdapter(cardAdapter);
-    recyclerView
-        .setAccessibilityDelegateCompat(new RecyclerViewAccessibilityDelegate(recyclerView) {
-          @NonNull
-          @Override
-          public AccessibilityDelegateCompat getItemDelegate() {
-            return new ItemDelegate(this) {
-
-              @Override
-              public void onInitializeAccessibilityNodeInfo(View host,
-                  AccessibilityNodeInfoCompat info) {
-                super.onInitializeAccessibilityNodeInfo(host, info);
-                int position = recyclerView.getChildLayoutPosition(host);
-                if (position != 0) {
-                  info.addAction(new AccessibilityActionCompat(R.id.move_card_up_action,
-                      host.getResources().getString(R.string.cat_card_action_move_up)));
-                }
-                if (position != (CARD_COUNT - 1)) {
-                  info.addAction(new AccessibilityActionCompat(
-                      R.id.move_card_down_action,
-                      host.getResources().getString(R.string.cat_card_action_move_down)));
-                }
-              }
-
-              @Override
-              public boolean performAccessibilityAction(View host, int action, Bundle args) {
-                int fromPosition = recyclerView.getChildLayoutPosition(host);
-                if (action == R.id.move_card_down_action) {
-                  swapCards(fromPosition, fromPosition + 1, cardAdapter);
-                  return true;
-                } else if (action == R.id.move_card_up_action) {
-                  swapCards(fromPosition, fromPosition - 1, cardAdapter);
-                  return true;
-                }
-
-                return super.performAccessibilityAction(host, action, args);
-              }
-            };
+  private fun initRv(view: View) {
+    val rv = view.findViewById<RecyclerView>(R.id.cat_card_list_recycler_view)
+    val adapter = CardAdapter(generateCardNumbers())
+    val itemTouchHelper = ItemTouchHelper(CardItemTouchHelperCallback(adapter))
+    adapter.itemTouchHelper = itemTouchHelper
+    rv.layoutManager = LinearLayoutManager(activity)
+    rv.adapter = adapter
+    rv.setAccessibilityDelegateCompat(object : RecyclerViewAccessibilityDelegate(rv) {
+      override fun getItemDelegate(): AccessibilityDelegateCompat {
+        return object : ItemDelegate(this) {
+          override fun onInitializeAccessibilityNodeInfo(
+            host: View,
+            info: AccessibilityNodeInfoCompat
+          ) {
+            super.onInitializeAccessibilityNodeInfo(host, info)
+            val position = rv.getChildLayoutPosition(host)
+            if (position != 0) {
+              info.addAction(
+                AccessibilityNodeInfoCompat.AccessibilityActionCompat(
+                  R.id.move_card_up_action,
+                  host.resources.getString(R.string.cat_card_action_move_up)
+                )
+              )
+            }
+            if (position != CARD_COUNT - 1) {
+              info.addAction(
+                AccessibilityNodeInfoCompat.AccessibilityActionCompat(
+                  R.id.move_card_down_action,
+                  host.resources.getString(R.string.cat_card_action_move_down)
+                )
+              )
+            }
           }
-        });
-    itemTouchHelper.attachToRecyclerView(recyclerView);
 
-    return view;
-  }
-
-  private static int[] generateCardNumbers() {
-    int[] cardNumbers = new int[CARD_COUNT];
-    for (int i = 0; i < CARD_COUNT; i++) {
-      cardNumbers[i] = i + 1;
-    }
-    return cardNumbers;
-  }
-
-  private static class CardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    private final int[] cardNumbers;
-
-    private ItemTouchHelper itemTouchHelper;
-
-    private CardAdapter(int[] cardNumbers) {
-      this.cardNumbers = cardNumbers;
-    }
-
-    @NonNull
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-      LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-      View view = inflater.inflate(R.layout.cat_card_list_item, parent, /* attachToRoot= */ false);
-      return new CardViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-      ((CardViewHolder) viewHolder).bind(cardNumbers[position], itemTouchHelper);
-    }
-
-    @Override
-    public int getItemCount() {
-      return cardNumbers.length;
-    }
-
-    private void setItemTouchHelper(ItemTouchHelper itemTouchHelper) {
-      this.itemTouchHelper = itemTouchHelper;
-    }
-
-  private static class CardViewHolder extends RecyclerView.ViewHolder {
-
-      private final TextView titleView;
-      private final View dragHandleView;
-
-      private CardViewHolder(View itemView) {
-        super(itemView);
-        titleView = itemView.findViewById(R.id.cat_card_list_item_title);
-        dragHandleView = itemView.findViewById(R.id.cat_card_list_item_drag_handle);
-      }
-
-      private void bind(int cardNumber, final ItemTouchHelper itemTouchHelper) {
-        titleView.setText(String.format(Locale.getDefault(), "Card #%02d", cardNumber));
-        dragHandleView.setOnTouchListener(
-            (v, event) -> {
-              if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                itemTouchHelper.startDrag(CardViewHolder.this);
-                return true;
+          override fun performAccessibilityAction(host: View, action: Int, args: Bundle?): Boolean {
+            val position = rv.getChildLayoutPosition(host)
+            return when (action) {
+              R.id.move_card_down_action -> {
+                swapCards(position, position + 1, adapter)
+                true
               }
-              return false;
-            });
+
+              R.id.move_card_up_action -> {
+                swapCards(position, position - 1, adapter)
+                true
+              }
+
+              else -> super.performAccessibilityAction(host, action, args)
+            }
+          }
+        }
+      }
+    })
+    itemTouchHelper.attachToRecyclerView(rv)
+  }
+
+  private fun generateCardNumbers(): IntArray {
+    val cardNums = IntArray(30)
+    for (i in 0 until 30) {
+      cardNums[i] = i + 1
+    }
+    return cardNums
+  }
+
+  companion object {
+
+
+    class CardAdapter(val cardNums: IntArray) : RecyclerView.Adapter<CardViewHolder>() {
+
+      var itemTouchHelper: ItemTouchHelper? = null
+
+      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
+        return CardViewHolder(
+          LayoutInflater.from(parent.context).inflate(R.layout.cat_card_list_item, parent, false)
+        )
+      }
+
+
+      override fun getItemCount(): Int {
+        return cardNums.size
+      }
+
+
+      override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
+        holder.bind(cardNums[position], itemTouchHelper!!)
+      }
+
+    }
+
+    class CardViewHolder(val itemView: View) : RecyclerView.ViewHolder(itemView) {
+      val titleView = itemView.findViewById<TextView>(R.id.cat_card_list_item_title)
+      val dragHandleView = itemView.findViewById<View>(R.id.cat_card_list_item_drag_handle)
+
+      fun bind(cardNum: Int, itemTouchHelper: ItemTouchHelper) {
+        titleView.text = String.format(Locale.getDefault(), "Card #%02d", cardNum)
+        dragHandleView.setOnTouchListener { v, event ->
+          return@setOnTouchListener if (event.action == MotionEvent.ACTION_DOWN) {
+            itemTouchHelper.startDrag(this)
+            true
+          } else false
+        }
       }
     }
-  }
 
-  private static class CardItemTouchHelperCallback extends ItemTouchHelper.Callback {
+    class CardItemTouchHelperCallback(val adapter: CardAdapter) : ItemTouchHelper.Callback() {
 
-    private static final int DRAG_FLAGS = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-    private static final int SWIPE_FLAGS = 0;
 
-    private final CardAdapter cardAdapter;
+      private val DRAG_FLAGS = ItemTouchHelper.UP or ItemTouchHelper.DOWN
 
-    @Nullable private MaterialCardView dragCardView;
+      private val SWIPE_FLAGS = 0
 
-    private CardItemTouchHelperCallback(CardAdapter cardAdapter) {
-      this.cardAdapter = cardAdapter;
-    }
+      private var dragCardView: MaterialCardView? = null
 
-    @Override
-    public int getMovementFlags(
-        @NonNull RecyclerView recyclerView, @NonNull ViewHolder viewHolder) {
-      return makeMovementFlags(DRAG_FLAGS, SWIPE_FLAGS);
-    }
+      /**
+       * Should return a composite flag which defines the enabled move directions in each state
+       * (idle, swiping, dragging).
+       *
+       *
+       * Instead of composing this flag manually, you can use [.makeMovementFlags]
+       * or [.makeFlag].
+       *
+       *
+       * This flag is composed of 3 sets of 8 bits, where first 8 bits are for IDLE state, next
+       * 8 bits are for SWIPE state and third 8 bits are for DRAG state.
+       * Each 8 bit sections can be constructed by simply OR'ing direction flags defined in
+       * [ItemTouchHelper].
+       *
+       *
+       * For example, if you want it to allow swiping LEFT and RIGHT but only allow starting to
+       * swipe by swiping RIGHT, you can return:
+       * <pre>
+       * makeFlag(ACTION_STATE_IDLE, RIGHT) | makeFlag(ACTION_STATE_SWIPE, LEFT | RIGHT);
+      </pre> *
+       * This means, allow right movement while IDLE and allow right and left movement while
+       * swiping.
+       *
+       * @param recyclerView The RecyclerView to which ItemTouchHelper is attached.
+       * @param viewHolder   The ViewHolder for which the movement information is necessary.
+       * @return flags specifying which movements are allowed on this ViewHolder.
+       * @see .makeMovementFlags
+       * @see .makeFlag
+       */
+      override fun getMovementFlags(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder
+      ): Int {
+        return makeMovementFlags(DRAG_FLAGS, SWIPE_FLAGS)
+      }
 
-    @Override
-    public boolean onMove(
-        @NonNull RecyclerView recyclerView,
-        @NonNull ViewHolder viewHolder,
-        @NonNull ViewHolder target) {
-      int fromPosition = viewHolder.getAdapterPosition();
-      int toPosition = target.getAdapterPosition();
+      /**
+       * Called when ItemTouchHelper wants to move the dragged item from its old position to
+       * the new position.
+       *
+       *
+       * If this method returns true, ItemTouchHelper assumes `viewHolder` has been moved
+       * to the adapter position of `target` ViewHolder
+       * ([ ViewHolder#getAdapterPositionInRecyclerView()][ViewHolder.getAbsoluteAdapterPosition]).
+       *
+       *
+       * If you don't support drag & drop, this method will never be called.
+       *
+       * @param recyclerView The RecyclerView to which ItemTouchHelper is attached to.
+       * @param viewHolder   The ViewHolder which is being dragged by the user.
+       * @param target       The ViewHolder over which the currently active item is being
+       * dragged.
+       * @return True if the `viewHolder` has been moved to the adapter position of
+       * `target`.
+       * @see .onMoved
+       */
+      override fun onMove(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        target: RecyclerView.ViewHolder
+      ): Boolean {
+        val fromPosition = viewHolder.adapterPosition
+        val toPosition = target.adapterPosition
+        swapCards(fromPosition, toPosition, adapter)
+        return true
+      }
 
-      swapCards(fromPosition, toPosition, cardAdapter);
-      return true;
-    }
+      /**
+       * Called when a ViewHolder is swiped by the user.
+       *
+       *
+       * If you are returning relative directions ([.START] , [.END]) from the
+       * [.getMovementFlags] method, this method
+       * will also use relative directions. Otherwise, it will use absolute directions.
+       *
+       *
+       * If you don't support swiping, this method will never be called.
+       *
+       *
+       * ItemTouchHelper will keep a reference to the View until it is detached from
+       * RecyclerView.
+       * As soon as it is detached, ItemTouchHelper will call
+       * [.clearView].
+       *
+       * @param viewHolder The ViewHolder which has been swiped by the user.
+       * @param direction  The direction to which the ViewHolder is swiped. It is one of
+       * [.UP], [.DOWN],
+       * [.LEFT] or [.RIGHT]. If your
+       * [.getMovementFlags]
+       * method
+       * returned relative flags instead of [.LEFT] / [.RIGHT];
+       * `direction` will be relative as well. ([.START] or [                   ][.END]).
+       */
+      override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+      }
 
-    @Override
-    public void onSwiped(@NonNull ViewHolder viewHolder, int direction) {}
-
-    @Override
-    public void onSelectedChanged(@Nullable ViewHolder viewHolder, int actionState) {
-      super.onSelectedChanged(viewHolder, actionState);
-
-      if (actionState == ItemTouchHelper.ACTION_STATE_DRAG && viewHolder != null) {
-        dragCardView = (MaterialCardView) viewHolder.itemView;
-        dragCardView.setDragged(true);
-      } else if (actionState == ItemTouchHelper.ACTION_STATE_IDLE && dragCardView != null) {
-        dragCardView.setDragged(false);
-        dragCardView = null;
+      override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
+        super.onSelectedChanged(viewHolder, actionState)
+        if (actionState == ItemTouchHelper.ACTION_STATE_DRAG && viewHolder != null) {
+          dragCardView = viewHolder.itemView as MaterialCardView
+          dragCardView?.isDragged = true
+        } else if (actionState == ItemTouchHelper.ACTION_STATE_IDLE && dragCardView != null) {
+          dragCardView?.isDragged = false
+          dragCardView = null
+        }
       }
     }
+
+    private fun swapCards(fromPosition: Int, toPosition: Int, adapter: CardAdapter) {
+      val fromNumber = adapter.cardNums[fromPosition]
+      adapter.cardNums[fromPosition] = adapter.cardNums[toPosition]
+      adapter.cardNums[toPosition] = fromNumber
+      adapter.notifyItemMoved(fromPosition, toPosition)
+    }
   }
 
-  private static void swapCards(int fromPosition, int toPosition, CardAdapter cardAdapter) {
-    int fromNumber = cardAdapter.cardNumbers[fromPosition];
-    cardAdapter.cardNumbers[fromPosition] = cardAdapter.cardNumbers[toPosition];
-    cardAdapter.cardNumbers[toPosition] = fromNumber;
-    cardAdapter.notifyItemMoved(fromPosition, toPosition);
-  }
+
 }
