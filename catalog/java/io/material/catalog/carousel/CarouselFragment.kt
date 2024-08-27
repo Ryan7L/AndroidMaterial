@@ -1,110 +1,75 @@
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.carousel
 
-package io.material.catalog.carousel;
+import androidx.fragment.app.Fragment
+import dagger.Provides
+import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoSet
+import io.material.catalog.R
+import io.material.catalog.application.scope.ActivityScope
+import io.material.catalog.application.scope.FragmentScope
+import io.material.catalog.feature.Demo
+import io.material.catalog.feature.DemoLandingFragment
+import io.material.catalog.feature.FeatureDemo
 
-import io.material.catalog.R;
+class CarouselFragment : DemoLandingFragment() {
+  /**
+   * ActionBar 或 ToolBar 的标题的资源ID
+   */
+  override val titleResId: Int
+    get() = R.string.cat_carousel_title
 
-import androidx.fragment.app.Fragment;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import dagger.multibindings.IntoSet;
-import io.material.catalog.application.scope.ActivityScope;
-import io.material.catalog.application.scope.FragmentScope;
-import io.material.catalog.feature.Demo;
-import io.material.catalog.feature.DemoLandingFragment;
-import io.material.catalog.feature.FeatureDemo;
-import java.util.Arrays;
-import java.util.List;
+  /**
+   * 演示功能的描述的资源ID
+   */
+  override val descriptionResId: Int
+    get() = R.string.cat_carousel_description
 
-/** A landing fragment that links to Carousel demos for the Catalog app. */
-public class CarouselFragment extends DemoLandingFragment {
+  /**
+   * 主要的Demo
+   */
+  override val mainDemo: Demo
+    get() = object : Demo() {
+      override val fragment: Fragment
+        get() = CarouselMainDemoFragment()
+    }
 
-  @Override
-  public int getTitleResId() {
-    return R.string.cat_carousel_title;
-  }
-
-  @Override
-  public int getDescriptionResId() {
-    return R.string.cat_carousel_description;
-  }
-
-  @NonNull
-  @Override
-  public Demo getMainDemo() {
-    return new Demo() {
-      @Nullable
-      @Override
-      public Fragment getFragment() {
-        return new CarouselMainDemoFragment();
+  override val additionalDemos: List<Demo>
+    get() = listOf(
+      object : Demo(R.string.cat_carousel_multi_browse_demo_title) {
+        override val fragment: Fragment
+          get() = MultiBrowseCarouselDemoFragment()
+      },
+      object : Demo(R.string.cat_carousel_hero_demo_title) {
+        override val fragment: Fragment
+          get() = HeroCarouselDemoFragment()
+      },
+      object : Demo(R.string.cat_carousel_fullscreen_demo_title) {
+        override val fragment: Fragment
+          get() = FullScreenStrategyDemoFragment()
+      },
+      object : Demo(R.string.cat_carousel_uncontained_demo_title) {
+        override val fragment: Fragment
+          get() = UncontainedCarouselDemoFragment()
       }
-    };
-  }
+    )
+}
 
-  @NonNull
-  @Override
-  public List<Demo> getAdditionalDemos() {
-    return Arrays.asList(
-        new Demo(R.string.cat_carousel_multi_browse_demo_title) {
-          @Override
-          public Fragment getFragment() {
-            return new MultiBrowseCarouselDemoFragment();
-          }
-        },
-        new Demo(R.string.cat_carousel_hero_demo_title) {
-          @Override
-          public Fragment getFragment() {
-            return new HeroCarouselDemoFragment();
-          }
-        },
-        new Demo(R.string.cat_carousel_fullscreen_demo_title) {
-          @Override
-          public Fragment getFragment() {
-            return new FullScreenStrategyDemoFragment();
-          }
-        },
-        new Demo(R.string.cat_carousel_uncontained_demo_title) {
-          @Override
-          public Fragment getFragment() {
-            return new UncontainedCarouselDemoFragment();
-          }
-        });
-  }
+@dagger.Module
+abstract class CarouselModule {
+  @FragmentScope
+  @ContributesAndroidInjector
+  abstract fun contributeInjector(): CarouselFragment
 
-  /** The Dagger module for {@link CarouselFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
-
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract CarouselFragment contributeInjector();
-
-    @IntoSet
+  companion object {
+    @JvmStatic
     @Provides
+    @IntoSet
     @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(R.string.cat_carousel_title, R.drawable.ic_lists) {
-        @Override
-        public Fragment getLandingFragment() {
-          return new CarouselFragment();
-        }
-      };
+    fun provideFeatureDemo(): FeatureDemo {
+      return object : FeatureDemo(R.string.cat_carousel_title, R.drawable.ic_lists) {
+        override val landingFragment: Fragment
+          get() = CarouselFragment()
+      }
     }
   }
 }

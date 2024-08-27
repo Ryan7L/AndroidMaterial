@@ -1,73 +1,80 @@
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.carousel
 
-package io.material.catalog.carousel;
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import io.material.catalog.R
 
-import io.material.catalog.R;
+class CarouselAdapter @JvmOverloads constructor(
+  private val listener: CarouselItemListener,
+  private val itemLayoutResId: Int = R.layout.cat_carousel_item
+) : ListAdapter<CarouselItem,CarouselItemViewHolder>(DIFF_CALLBACK) {
 
-import androidx.recyclerview.widget.ListAdapter;
-import androidx.recyclerview.widget.DiffUtil;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-
-/** An adapter that displays {@link CarouselItem}s for a Carousel. */
-class CarouselAdapter extends ListAdapter<CarouselItem, CarouselItemViewHolder> {
-
-  private static final DiffUtil.ItemCallback<CarouselItem> DIFF_CALLBACK =
-      new DiffUtil.ItemCallback<CarouselItem>() {
-        @Override
-        public boolean areItemsTheSame(
-            @NonNull CarouselItem oldItem, @NonNull CarouselItem newItem) {
-          // User properties may have changed if reloaded from the DB, but ID is fixed
-          return oldItem == newItem;
-        }
-
-        @Override
-        public boolean areContentsTheSame(
-            @NonNull CarouselItem oldItem, @NonNull CarouselItem newItem) {
-          return false;
-        }
-      };
-
-  private final CarouselItemListener listener;
-  @LayoutRes private final int itemLayoutRes;
-
-  CarouselAdapter(CarouselItemListener listener) {
-    this(listener, R.layout.cat_carousel_item);
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarouselItemViewHolder {
+    return CarouselItemViewHolder(LayoutInflater.from(parent.context).inflate(itemLayoutResId, parent, false), listener)
   }
 
-  CarouselAdapter(CarouselItemListener listener, @LayoutRes int itemLayoutRes) {
-    super(DIFF_CALLBACK);
-    this.listener = listener;
-    this.itemLayoutRes = itemLayoutRes;
+  override fun onBindViewHolder(holder: CarouselItemViewHolder, position: Int) {
+    holder.bind(getItem(position))
   }
+  companion object{
+    private val DIFF_CALLBACK = object :DiffUtil.ItemCallback<CarouselItem>(){
+      /**
+       * Called to check whether two objects represent the same item.
+       *
+       *
+       * For example, if your items have unique ids, this method should check their id equality.
+       *
+       *
+       * Note: `null` items in the list are assumed to be the same as another `null`
+       * item and are assumed to not be the same as a non-`null` item. This callback will
+       * not be invoked for either of those cases.
+       *
+       * @param oldItem The item in the old list.
+       * @param newItem The item in the new list.
+       * @return True if the two items represent the same object or false if they are different.
+       * @see Callback.areItemsTheSame
+       */
+      override fun areItemsTheSame(oldItem: CarouselItem, newItem: CarouselItem): Boolean {
+        //如果从数据库重新加载，用户属性可能会发生变化，但 ID 是固定的
+        return oldItem == newItem
+      }
 
-  @NonNull
-  @Override
-  public CarouselItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int pos) {
-    return new CarouselItemViewHolder(
-        LayoutInflater.from(viewGroup.getContext())
-            .inflate(itemLayoutRes, viewGroup, false), listener);
-  }
+      /**
+       * Called to check whether two items have the same data.
+       *
+       *
+       * This information is used to detect if the contents of an item have changed.
+       *
+       *
+       * This method to check equality instead of [Object.equals] so that you can
+       * change its behavior depending on your UI.
+       *
+       *
+       * For example, if you are using DiffUtil with a
+       * [RecyclerView.Adapter], you should
+       * return whether the items' visual representations are the same.
+       *
+       *
+       * This method is called only if [.areItemsTheSame] returns `true` for
+       * these items.
+       *
+       *
+       * Note: Two `null` items are assumed to represent the same contents. This callback
+       * will not be invoked for this case.
+       *
+       * @param oldItem The item in the old list.
+       * @param newItem The item in the new list.
+       * @return True if the contents of the items are the same or false if they are different.
+       * @see Callback.areContentsTheSame
+       */
+      override fun areContentsTheSame(oldItem: CarouselItem, newItem: CarouselItem): Boolean {
+        return false
+      }
 
-  @Override
-  public void onBindViewHolder(@NonNull CarouselItemViewHolder carouselItemViewHolder, int pos) {
-    carouselItemViewHolder.bind(getItem(pos));
+    }
   }
 
 }
