@@ -1,72 +1,55 @@
-/*
- * Copyright 2018 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.checkbox
 
-package io.material.catalog.checkbox;
+import androidx.fragment.app.Fragment
+import dagger.Provides
+import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoSet
+import io.material.catalog.R
+import io.material.catalog.application.scope.ActivityScope
+import io.material.catalog.application.scope.FragmentScope
+import io.material.catalog.feature.Demo
+import io.material.catalog.feature.DemoLandingFragment
+import io.material.catalog.feature.FeatureDemo
 
-import io.material.catalog.R;
+class CheckBoxFragment : DemoLandingFragment() {
+  /**
+   * ActionBar 或 ToolBar 的标题的资源ID
+   */
+  override val titleResId: Int
+    get() = R.string.cat_checkbox_title
 
-import androidx.fragment.app.Fragment;
-import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import dagger.multibindings.IntoSet;
-import io.material.catalog.application.scope.ActivityScope;
-import io.material.catalog.application.scope.FragmentScope;
-import io.material.catalog.feature.Demo;
-import io.material.catalog.feature.DemoLandingFragment;
-import io.material.catalog.feature.FeatureDemo;
+  /**
+   * 演示功能的描述的资源ID
+   */
+  override val descriptionResId: Int
+    get() = R.string.cat_checkbox_description
 
-/** A landing fragment that links to Checkbox demos for the Catalog app. */
-public class CheckBoxFragment extends DemoLandingFragment {
+  /**
+   * 主要的Demo
+   */
+  override val mainDemo: Demo
+    get() = object : Demo() {
+      override val fragment: Fragment?
+        get() = CheckBoxMainDemoFragment()
+    }
+}
 
-  @Override
-  public int getTitleResId() {
-    return R.string.cat_checkbox_title;
-  }
+@dagger.Module
+abstract class CheckBoxModule {
+  @FragmentScope
+  @ContributesAndroidInjector
+  abstract fun contributeInjector(): CheckBoxFragment
 
-  @Override
-  public int getDescriptionResId() {
-    return R.string.cat_checkbox_description;
-  }
-
-  @Override
-  public Demo getMainDemo() {
-    return new Demo() {
-      @Override
-      public Fragment getFragment() {
-        return new CheckBoxMainDemoFragment();
-      }
-    };
-  }
-
-  /** The Dagger module for {@link CheckBoxFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract CheckBoxFragment contributeInjector();
+  companion object {
+    @JvmStatic
     @IntoSet
     @Provides
     @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(R.string.cat_checkbox_title, R.drawable.ic_checkbox) {
-        @Override
-        public Fragment getLandingFragment() {
-          return new CheckBoxFragment();
-        }
-      };
+    fun provideFeatureDemo(): FeatureDemo {
+      return object : FeatureDemo(R.string.cat_checkbox_title, R.drawable.ic_checkbox) {
+        override val landingFragment: Fragment
+          get() = CheckBoxFragment()
+      }
     }
   }
 }
