@@ -1,113 +1,66 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.chip
 
-package io.material.catalog.chip;
+import androidx.fragment.app.Fragment
+import dagger.Provides
+import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoSet
+import io.material.catalog.R
+import io.material.catalog.application.scope.ActivityScope
+import io.material.catalog.application.scope.FragmentScope
+import io.material.catalog.feature.Demo
+import io.material.catalog.feature.DemoLandingFragment
+import io.material.catalog.feature.FeatureDemo
 
-import io.material.catalog.R;
+class ChipFragment : DemoLandingFragment() {
+  /**
+   * ActionBar 或 ToolBar 的标题的资源ID
+   */
+  override val titleResId: Int
+    get() = R.string.cat_chip_title
 
-import androidx.fragment.app.Fragment;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.StringRes;
-import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import dagger.multibindings.IntoSet;
-import io.material.catalog.application.scope.ActivityScope;
-import io.material.catalog.application.scope.FragmentScope;
-import io.material.catalog.feature.Demo;
-import io.material.catalog.feature.DemoLandingFragment;
-import io.material.catalog.feature.FeatureDemo;
-import java.util.ArrayList;
-import java.util.List;
+  /**
+   * 演示功能的描述的资源ID
+   */
+  override val descriptionResId: Int
+    get() = R.string.cat_chip_description
 
-/** A landing fragment that links to Chip demos for the Catalog app. */
-public class ChipFragment extends DemoLandingFragment {
+  /**
+   * 主要的Demo
+   */
+  override val mainDemo: Demo
+    get() = object : Demo() {
+      override val fragment: Fragment
+        get() = ChipMainDemoFragment()
+    }
 
-  @Override
-  public int getTitleResId() {
-    return R.string.cat_chip_title;
-  }
-
-  @Override
-  public int getDescriptionResId() {
-    return R.string.cat_chip_description;
-  }
-
-  @Override
-  public Demo getMainDemo() {
-    return new Demo() {
-      @Override
-      public Fragment getFragment() {
-        return new ChipMainDemoFragment();
+  override val additionalDemos: List<Demo>
+    get() = listOf(
+      object : Demo(R.string.cat_chip_group_demo_title) {
+        override val fragment: Fragment
+          get() = ChipGroupDemoFragment()
+      },
+      object : Demo(R.string.cat_chip_recyclerview_demo_title) {
+        override val fragment: Fragment
+          get() = ChipRecyclerviewDemoFragment()
       }
-    };
-  }
+    )
+}
+@dagger.Module
+abstract class ChipModule{
 
-  @Override
-  public List<Demo> getAdditionalDemos() {
-    List<Demo> additionalDemos = new ArrayList<>();
-    additionalDemos.add(
-        new Demo(R.string.cat_chip_group_demo_title) {
-          @Override
-          public Fragment getFragment() {
-            return new ChipGroupDemoFragment();
-          }
-        });
-    additionalDemos.add(
-        new Demo(R.string.cat_chip_recyclerview_demo_title) {
-          @Override
-          public Fragment getFragment() {
-            return new ChipRecyclerviewDemoFragment();
-          }
-        });
-    return additionalDemos;
-  }
-
-  @StringRes
-  protected static int getDemoTitleResId() {
-    return R.string.cat_chip_title;
-  }
-
-  @DrawableRes
-  protected static int getDemoDrawableResId() {
-    return R.drawable.ic_chips;
-  }
-
-  @StringRes
-  protected static int getChipGroupTitleRes() {
-    return R.string.cat_chip_group_demo_title;
-  }
-
-  /** The Dagger module for {@link ChipFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
-
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract ChipFragment contributeInjector();
-
-    @IntoSet
+  @FragmentScope
+  @ContributesAndroidInjector
+  abstract fun contributeInjector(): ChipFragment
+  companion object{
+    @JvmStatic
     @Provides
     @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(getDemoTitleResId(), getDemoDrawableResId()) {
-        @Override
-        public Fragment getLandingFragment() {
-          return new ChipFragment();
-        }
-      };
+    @IntoSet
+    fun provideFeatureDemo(): FeatureDemo {
+      return object : FeatureDemo(R.string.cat_chip_title, R.drawable.ic_chips) {
+        override val landingFragment: Fragment
+          get() = ChipFragment()
+      }
     }
   }
 }
