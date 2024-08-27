@@ -37,6 +37,10 @@ class ButtonsFragment : DemoLandingFragment() {
       object : Demo(R.string.cat_buttons_toggle_group) {
         override val fragment: Fragment
           get() = ButtonToggleGroupDemoFragment()
+      },
+      object : Demo(R.string.cat_buttons_group) {
+        override val fragment: Fragment
+          get() = ButtonGroupDemoFragment()
       }
     )
 }

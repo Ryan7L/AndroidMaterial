@@ -23,6 +23,7 @@ import io.material.catalog.elevation.ElevationFragment
 import io.material.catalog.fab.FabFragment
 import io.material.catalog.font.FontFragment
 import io.material.catalog.imageview.ShapeableImageViewFragment
+import io.material.catalog.loadingindicator.LoadingIndicatorFragment
 import io.material.catalog.materialswitch.SwitchFragment
 import io.material.catalog.menu.MenuFragment
 import io.material.catalog.navigationdrawer.NavigationDrawerFragment
@@ -42,7 +43,7 @@ import io.material.catalog.transition.TransitionModule
 
 @dagger.Module(
   includes = [AdaptiveFragment.Module::class, BottomAppBarModule::class, ButtonModule::class, BottomNavigationModule::class, BottomSheetModule::class, CardModule::class, CarouselModule::class, CheckBoxFragment.Module::class, ChipFragment.Module::class, ColorsFragment.Module::class, DatePickerDemoLandingFragment.Module::class, DialogDemoLandingFragment.Module::class, DividerFragment.Module::class, ElevationFragment.Module::class, FabFragment.Module::class, FontFragment.Module::class, MenuFragment.Module::class, NavigationDrawerFragment.Module::class, NavigationRailFragment.Module::class, ProgressIndicatorFragment.Module::class, RadioButtonFragment.Module::class,
-    SearchFragmentModule::class, ShapeableImageViewFragment.Module::class, BaseModule::class, ShapeThemingFragment.Module::class, SideSheetFragment.Module::class, SliderFragment.Module::class, SwitchFragment.Module::class, TabsFragment.Module::class, TextFieldFragment.Module::class, TimePickerDemoLandingFragment.Module::class, TopAppBarModule::class, TransitionModule::class, AnimationFragmentModule::class]
+    SearchFragmentModule::class, ShapeableImageViewFragment.Module::class, BaseModule::class,  LoadingIndicatorFragment.Module::class,ShapeThemingFragment.Module::class, SideSheetFragment.Module::class, SliderFragment.Module::class, SwitchFragment.Module::class, TabsFragment.Module::class, TextFieldFragment.Module::class, TimePickerDemoLandingFragment.Module::class, TopAppBarModule::class, TransitionModule::class, AnimationFragmentModule::class]
 )
 abstract class TocModule {
   @FragmentScope
