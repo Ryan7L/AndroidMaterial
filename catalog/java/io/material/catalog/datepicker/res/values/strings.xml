@@ -19,20 +19,20 @@
   <!-- Title of the demo displaying pop-up pickers. [CHAR LIMIT=40] -->
   <string name="cat_picker_demo_title">Date Picker</string>
   <!-- Description of what pickers are used for in applications. [CHAR LIMIT=NONE] -->
-  <string name="cat_picker_description">Date pickers allow users to choose dates.</string>
+  <string name="cat_picker_description">日期选择器允许用户选择日期。</string>
   <!-- Button label that indicates clicking the button
   will launch a Material Date Picker [CHAR LIMIT=120] -->
-  <string name="cat_picker_launch">Launch Material Date Picker</string>
+  <string name="cat_picker_launch">启动 Material 日期选择器</string>
 
   <!-- Informs that the user clicked the cancel button [CHAR LIMIT=120]-->
-  <string name="cat_picker_user_clicked_cancel">The user clicked the cancel button.</string>
+  <string name="cat_picker_user_clicked_cancel">用户点击了取消按钮.</string>
   <!-- Informs that the picker was cancelled [CHAR LIMIT=120]-->
-  <string name="cat_picker_cancel">The picker was cancelled.</string>
+  <string name="cat_picker_cancel">选择器已取消.</string>
   <!-- Informs that the user action is being awaited [CHAR LIMIT=120] -->
-  <string name="cat_picker_no_action">Awaiting user action.</string>
+  <string name="cat_picker_no_action">等待用户操作.</string>
 
   <!-- Grouping label for a set of radio buttons that choose the selection mode [CHAR LIMIT=45] -->
-  <string name="cat_picker_date_selector">Selection Mode</string>
+  <string name="cat_picker_date_selector">选择方式</string>
   <!-- Indicates that the selection mode is a single date [CHAR LIMIT=80] -->
   <string name="cat_picker_date_selector_single">Single Date</string>
   <!-- Indicates that the selection mode is a date range [CHAR LIMIT=80] -->
