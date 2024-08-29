@@ -23,7 +23,7 @@
     <item name="android:maxWidth">@null</item>
   </style>
 
-  <!-- A theme overlay for dialogs with buttons that span the width of the dialog. -->
+  <!-- 带有跨越对话框宽度的按钮的对话框的主题覆盖. -->
   <style name="ThemeOverlay.Catalog.MaterialAlertDialog.FullWidthButtons" parent="ThemeOverlay.Material3.MaterialAlertDialog">
     <item name="materialAlertDialogButtonSpacerVisibility">@integer/mtrl_view_gone</item>
     <item name="buttonBarPositiveButtonStyle">@style/Widget.Catalog.Button.TextButton.Dialog.FullWidth</item>
@@ -31,9 +31,9 @@
     <item name="buttonBarNeutralButtonStyle">@style/Widget.Catalog.Button.TextButton.Dialog.FullWidth</item>
   </style>
 
-  <!-- A theme overlay for dialogs with a center aligned title text, icon and buttons that span the width of the dialog. -->
+  <!-- 对话框的主题覆盖层，具有中心对齐的标题文本、图标和跨越对话框宽度的按钮。 -->
   <style name="ThemeOverlay.Catalog.MaterialAlertDialog.Centered.FullWidthButtons" parent="ThemeOverlay.Material3.MaterialAlertDialog.Centered">
-    <!-- Mark spacer as gone when showing full width buttons -->
+    <!-- 显示全宽按钮时将间隔标记为消失 -->
     <item name="materialAlertDialogButtonSpacerVisibility">@integer/mtrl_view_gone</item>
     <item name="buttonBarPositiveButtonStyle">@style/Widget.Catalog.Button.TextButton.Dialog.FullWidth</item>
     <item name="buttonBarNegativeButtonStyle">@style/Widget.Catalog.Button.TextButton.Dialog.FullWidth</item>
