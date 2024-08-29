@@ -1,127 +1,103 @@
-/*
- * Copyright 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+package io.material.catalog.draggable
+
+import android.content.Context
+import android.util.AttributeSet
+import android.view.MotionEvent
+import android.view.View
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.customview.widget.ViewDragHelper
+import androidx.customview.widget.ViewDragHelper.Callback
+
+/**
+ * 一个 CoordinatorLayout，其子项可以被拖动。
  */
-package io.material.catalog.draggable;
-
-import android.content.Context;
-import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.View;
-import androidx.annotation.NonNull;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.customview.widget.ViewDragHelper;
-import androidx.customview.widget.ViewDragHelper.Callback;
-import java.util.ArrayList;
-import java.util.List;
-
-/** A CoordinatorLayout whose children can be dragged. */
-public class DraggableCoordinatorLayout extends CoordinatorLayout {
-
-  /** A listener to use when a child view is being dragged */
-  public interface ViewDragListener {
-    void onViewCaptured(@NonNull View view, int i);
-    void onViewReleased(@NonNull View view, float v, float v1);
+class DraggableCoordinatorLayout @JvmOverloads constructor(
+  context: Context,
+  attrs: AttributeSet? = null
+) : CoordinatorLayout(context, attrs) {
+  /**
+   * V拖动子视图时使用的侦听器r
+   */
+  interface ViewDragListener {
+    fun onViewCaptured(view: View, i: Int)
+    fun onViewReleased(view: View, v: Float, v1: Float)
   }
 
-  private final ViewDragHelper viewDragHelper;
-  private final List<View> draggableChildren = new ArrayList<>();
-  private ViewDragListener viewDragListener;
-
-  public DraggableCoordinatorLayout(Context context) {
-    this(context, null);
-  }
-
-  public DraggableCoordinatorLayout(Context context, AttributeSet attrs) {
-    super(context, attrs);
-
-    viewDragHelper = ViewDragHelper.create(this, dragCallback);
-  }
-
-  public void addDraggableChild(View child) {
-    if (child.getParent() != this) {
-      throw new IllegalArgumentException();
+  private val dragCallback = object : Callback() {
+    /**
+     * Called when the user's input indicates that they want to capture the given child view
+     * with the pointer indicated by pointerId. The callback should return true if the user
+     * is permitted to drag the given view with the indicated pointer.
+     *
+     *
+     * ViewDragHelper may call this method multiple times for the same view even if
+     * the view is already captured; this indicates that a new pointer is trying to take
+     * control of the view.
+     *
+     *
+     * If this method returns true, a call to [.onViewCaptured]
+     * will follow if the capture is successful.
+     *
+     * @param child Child the user is attempting to capture
+     * @param pointerId ID of the pointer attempting the capture
+     * @return true if capture should be allowed, false otherwise
+     */
+    override fun tryCaptureView(child: View, pointerId: Int): Boolean {
+      return child.visibility == View.VISIBLE && viewIsDraggableChild(child)
     }
-    draggableChildren.add(child);
-  }
 
-  public void removeDraggableChild(View child) {
-    if (child.getParent() != this) {
-      throw new IllegalArgumentException();
+    override fun onViewCaptured(capturedChild: View, activePointerId: Int) {
+      viewDragListener?.onViewCaptured(capturedChild,activePointerId)
     }
-    draggableChildren.remove(child);
+
+    override fun onViewReleased(releasedChild: View, xvel: Float, yvel: Float) {
+      viewDragListener?.onViewReleased(releasedChild,xvel,yvel)
+    }
+
+    override fun getViewHorizontalDragRange(child: View): Int {
+      return child.width
+    }
+
+    override fun getViewVerticalDragRange(child: View): Int {
+      return child.height
+    }
+
+    override fun clampViewPositionHorizontal(child: View, left: Int, dx: Int): Int {
+      return left
+    }
+
+    override fun clampViewPositionVertical(child: View, top: Int, dy: Int): Int {
+      return top
+    }
+  }
+  private val viewDragHelper: ViewDragHelper = ViewDragHelper.create(this, dragCallback)
+  private val draggableChildren = mutableListOf<View>()
+  private var viewDragListener: ViewDragListener? = null
+
+  fun addDraggableChild(child: View) {
+    if (child.parent != this) {
+      throw IllegalArgumentException()
+    }
+    draggableChildren.add(child)
   }
 
-  @Override
-  public boolean onInterceptTouchEvent(MotionEvent ev) {
-    return viewDragHelper.shouldInterceptTouchEvent(ev) || super.onInterceptTouchEvent(ev);
+  fun removeDraggableChild(child: View) {
+    if (child.parent != this) {
+      throw IllegalArgumentException()
+    }
+    draggableChildren.remove(child)
   }
 
-  @Override
-  public boolean onTouchEvent(MotionEvent ev) {
-    viewDragHelper.processTouchEvent(ev);
-    return super.onTouchEvent(ev);
+  override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
+    return viewDragHelper.shouldInterceptTouchEvent(ev) || super.onInterceptTouchEvent(ev)
   }
 
-  private final Callback dragCallback =
-      new Callback() {
-        @Override
-        public boolean tryCaptureView(View view, int i) {
-          return view.getVisibility() == VISIBLE && viewIsDraggableChild(view);
-        }
-
-        @Override
-        public void onViewCaptured(@NonNull View view, int i) {
-          if (viewDragListener != null) {
-            viewDragListener.onViewCaptured(view, i);
-          }
-        }
-
-        @Override
-        public void onViewReleased(@NonNull View view, float v, float v1) {
-          if (viewDragListener != null) {
-            viewDragListener.onViewReleased(view, v, v1);
-          }
-        }
-
-        @Override
-        public int getViewHorizontalDragRange(View view) {
-          return view.getWidth();
-        }
-
-        @Override
-        public int getViewVerticalDragRange(View view) {
-          return view.getHeight();
-        }
-
-        @Override
-        public int clampViewPositionHorizontal(View view, int left, int dx) {
-          return left;
-        }
-
-        @Override
-        public int clampViewPositionVertical(View view, int top, int dy) {
-          return top;
-        }
-      };
-
-  private boolean viewIsDraggableChild(View view) {
-    return draggableChildren.isEmpty() || draggableChildren.contains(view);
+  override fun onTouchEvent(ev: MotionEvent): Boolean {
+    viewDragHelper.processTouchEvent(ev)
+    return super.onTouchEvent(ev)
   }
-
-  public void setViewDragListener(
-      ViewDragListener viewDragListener) {
-    this.viewDragListener = viewDragListener;
+  private fun viewIsDraggableChild(view: View) = draggableChildren.isEmpty() || draggableChildren.contains(view)
+  fun setViewDragListener(viewDragListener: ViewDragListener) {
+    this.viewDragListener = viewDragListener
   }
 }
