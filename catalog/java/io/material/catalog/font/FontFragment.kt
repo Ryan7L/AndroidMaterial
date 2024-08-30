@@ -1,74 +1,55 @@
-/*
- * Copyright 2018 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.font
 
-package io.material.catalog.font;
+import androidx.fragment.app.Fragment
+import dagger.Provides
+import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoSet
+import io.material.catalog.R
+import io.material.catalog.application.scope.ActivityScope
+import io.material.catalog.application.scope.FragmentScope
+import io.material.catalog.feature.Demo
+import io.material.catalog.feature.DemoLandingFragment
+import io.material.catalog.feature.FeatureDemo
 
-import io.material.catalog.R;
+class FontFragment : DemoLandingFragment() {
+  /**
+   * ActionBar 或 ToolBar 的标题的资源ID
+   */
+  override val titleResId: Int
+    get() = R.string.cat_font_title
 
-import androidx.fragment.app.Fragment;
-import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import dagger.multibindings.IntoSet;
-import io.material.catalog.application.scope.ActivityScope;
-import io.material.catalog.application.scope.FragmentScope;
-import io.material.catalog.feature.Demo;
-import io.material.catalog.feature.DemoLandingFragment;
-import io.material.catalog.feature.FeatureDemo;
+  /**
+   * 演示功能的描述的资源ID
+   */
+  override val descriptionResId: Int
+    get() = R.string.cat_font_description
 
-/** A landing fragment that links to Font demos for the Catalog app. */
-public class FontFragment extends DemoLandingFragment {
+  /**
+   * 主要的Demo
+   */
+  override val mainDemo: Demo
+    get() = object : Demo() {
+      override val fragment: Fragment
+        get() = FontMainDemoFragment()
+    }
+}
 
-  @Override
-  public int getTitleResId() {
-    return R.string.cat_font_title;
-  }
+@dagger.Module
+abstract class FontModule {
+  @FragmentScope
+  @ContributesAndroidInjector
+  abstract fun contributeInjector(): FontFragment
 
-  @Override
-  public int getDescriptionResId() {
-    return R.string.cat_font_description;
-  }
-
-  @Override
-  public Demo getMainDemo() {
-    return new Demo() {
-      @Override
-      public Fragment getFragment() {
-        return new FontMainDemoFragment();
-      }
-    };
-  }
-
-  /** The Dagger module for {@link FontFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
-
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract FontFragment contributeInjector();
-
-    @IntoSet
+  companion object {
+    @JvmStatic
     @Provides
+    @IntoSet
     @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(R.string.cat_font_title, R.drawable.ic_fonts) {
-        @Override
-        public Fragment getLandingFragment() {
-          return new FontFragment();
-        }
-      };
+    fun provideFeatureDemo(): FeatureDemo {
+      return object : FeatureDemo(R.string.cat_font_title, R.drawable.ic_fonts) {
+        override val landingFragment: Fragment
+          get() = FontFragment()
+      }
     }
   }
 }
