@@ -1,118 +1,65 @@
-/*
- * Copyright 2019 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.elevation
 
-package io.material.catalog.elevation;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.view.ViewCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.elevation.ElevationOverlayProvider
+import com.google.android.material.internal.ViewUtils
+import io.material.catalog.R
+import io.material.catalog.feature.DemoActivity
 
-import io.material.catalog.R;
-
-import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
-import com.google.android.material.elevation.ElevationOverlayProvider;
-import com.google.android.material.internal.ViewUtils;
-import io.material.catalog.feature.DemoActivity;
-import java.util.Locale;
-
-/** A fragment that displays the Elevation Overlay demo for the Catalog app. */
-public class ElevationOverlayDemoActivity extends DemoActivity {
-
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view =
-        layoutInflater.inflate(
-            R.layout.cat_elevation_overlay_activity, viewGroup, /* attachToRoot= */ false);
-
-    RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
-    recyclerView.setAdapter(new Adapter(getElevationDpValues()));
-    recyclerView.setLayoutManager(
-        new LinearLayoutManager(this, RecyclerView.VERTICAL, /* reverseLayout= */ false));
-
-    return view;
+class ElevationOverlayDemoActivity: DemoActivity() {
+  /**
+   * 创建 要演示的功能的视图
+   * @param layoutInflater LayoutInflater
+   * @param viewGroup ViewGroup?
+   * @param bundle Bundle?
+   * @return View
+   */
+  override fun onCreateDemoView(
+    layoutInflater: LayoutInflater,
+    viewGroup: ViewGroup?,
+    bundle: Bundle?
+  ): View? {
+    val view = layoutInflater.inflate(R.layout.cat_elevation_overlay_activity, viewGroup, false)
+    val rv = view.findViewById<RecyclerView>(R.id.recycler_view)
+    rv.adapter = ItemAdapter(elevationValues)
+    rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+    return view
   }
 
-  @Override
-  public int getDemoTitleResId() {
-    return R.string.cat_elevation_overlay_title;
+  override val demoTitleResId: Int
+    get() = R.string.cat_elevation_overlay_title
+  private val elevationValues: IntArray = intArrayOf(1, 2, 3, 4, 6, 8, 12, 16, 24)
+  class ItemAdapter(private val elevationValues: IntArray): RecyclerView.Adapter<ItemViewHolder>(){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+      return ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.cat_elevation_overlay_item, parent, false))
+    }
+
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+      holder.bind(elevationValues[position])
+    }
+    override fun getItemCount(): Int {
+      return elevationValues.size
+    }
   }
-
-  protected int[] getElevationDpValues() {
-    return new int[] {1, 2, 3, 4, 6, 8, 12, 16, 24};
-  }
-
-  private class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    private final int[] elevationDpValues;
-
-    public Adapter(int[] elevationDpValues) {
-      this.elevationDpValues = elevationDpValues;
-    }
-
-    @NonNull
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-      LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-      View view =
-          inflater.inflate(R.layout.cat_elevation_overlay_item, parent, /* attachToRoot= */ false);
-      return new ItemViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-      ((ItemViewHolder) viewHolder).bind(elevationDpValues[position]);
-    }
-
-    @Override
-    public int getItemCount() {
-      return elevationDpValues.length;
-    }
-
-    private class ItemViewHolder extends RecyclerView.ViewHolder {
-
-      private final ElevationOverlayProvider overlayProvider;
-
-      private final TextView dpLabelView;
-      private final TextView alphaLabelView;
-
-      private ItemViewHolder(View itemView) {
-        super(itemView);
-        overlayProvider = new ElevationOverlayProvider(itemView.getContext());
-        dpLabelView = itemView.findViewById(R.id.elevation_overlay_dp_label);
-        alphaLabelView = itemView.findViewById(R.id.elevation_overlay_alpha_label);
-      }
-
-      @SuppressWarnings("RestrictTo")
-      private void bind(int elevationDp) {
-        float elevation = ViewUtils.dpToPx(ElevationOverlayDemoActivity.this, elevationDp);
-        int color = overlayProvider.compositeOverlayWithThemeSurfaceColorIfNeeded(elevation);
-        int alphaPercent =
-            Math.round(overlayProvider.calculateOverlayAlphaFraction(elevation) * 100);
-
-        ViewCompat.setElevation(itemView, elevation);
-        itemView.setBackgroundColor(color);
-        dpLabelView.setText(String.format(Locale.getDefault(), "%02d dp", elevationDp));
-        alphaLabelView.setText(String.format(Locale.getDefault(), "%d%% On Surface", alphaPercent));
-      }
+  class ItemViewHolder(val itemView: View): RecyclerView.ViewHolder(itemView){
+    private val overlayProvider = ElevationOverlayProvider(itemView.context)
+    private val dpLabelView = itemView.findViewById<TextView>(R.id.elevation_overlay_dp_label)
+    private val alphaLabelView = itemView.findViewById<TextView>(R.id.elevation_overlay_alpha_label)
+    fun bind(elevationDp: Int){
+      val elevation = ViewUtils.dpToPx(itemView.context, elevationDp)
+      val color = overlayProvider.compositeOverlayWithThemeSurfaceColorIfNeeded(elevation)
+      val alphaPercent = Math.round(overlayProvider.calculateOverlayAlphaFraction(elevation) * 100)
+      ViewCompat.setElevation(itemView,elevation)
+      itemView.setBackgroundColor(color)
+      dpLabelView.text = String.format("%02d dp", elevationDp)
+      alphaLabelView.text = String.format("%d%% On Surface", alphaPercent)
     }
   }
 }
