@@ -323,6 +323,7 @@ for more attributes.
 **Label visibility mode** | `app:labelVisibilityMode` | `setLabelVisibilityMode`<br/>`getLabelVisibilityMode` | `LABEL_VISIBILITY_AUTO`
 **Item minimum height**   | `app:itemMinHeight`       | `setItemMinimumHeight`<br/>`getItemMinimumHeight`     | `NO_ITEM_MINIMUM_HEIGHT`
 **Item spacing**          | `app:itemSpacing`         | `setItemSpacing`<br/>`getItemSpacing`                 | `0dp`
+**Item Gravity**          | `app:itemGravity`         | `setItemGravity`<br/>`getItemGravity`                 | `TOP_CENTER`
 
 **Note:** If there's not enough room, `itemMinHeight` and `itemSpacing` may not be respected in order to fit the items.
 
@@ -356,14 +357,14 @@ expands to wrap the content of the Navigation Rail item when the
 
 #### Text label attributes
 
-| **Element**               | **Attribute**                             | **Related methods**                                                 | **Default value**                |
-|---------------------------|-------------------------------------------|---------------------------------------------------------------------|----------------------------------|
-| **Text label**            | `android:title` in the `menu` resource    | N/A                                                                 | N/A                              |
-| **Color (inactive)**      | `app:itemTextColor`                       | `setItemTextColor`<br/>`getItemTextColor`                           | `?attr/colorOnSurfaceVariant`    |
-| **Color (active)**        | `app:itemTextColor`                       | `setItemTextColor`<br/>`getItemTextColor`                           | `?attr/colorOnSurface`           |
-| **Typography (inactive)** | `app:itemTextAppearanceInactive`          | `setItemTextAppearanceInactive`<br/>`getItemTextAppearanceInactive` | `?attr/textAppearanceTitleSmall` |
-| **Typography (active)**   | `app:itemTextAppearanceActive`            | `setItemTextAppearanceActive`<br/>`getItemTextAppearanceActive`     | `?attr/textAppearanceTitleSmall` |
-| **Typography (active)**   | `app:itemTextAppearanceActiveBoldEnabled` | `setItemTextAppearanceActiveBoldEnabled`                            | `true`                           |
+**Element**               | **Attribute**                                                                   | **Related methods**                                                                                                                                             | **Default value**
+------------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -----------------
+**Text label**            | `android:title` in the `menu` resource                                          | N/A                                                                                                                                                             | N/A
+**Color (inactive)**      | `app:itemTextColor`                                                             | `setItemTextColor`<br/>`getItemTextColor`                                                                                                                       | `?attr/colorOnSurfaceVariant`
+**Color (active)**        | `app:itemTextColor`                                                             | `setItemTextColor`<br/>`getItemTextColor`                                                                                                                       | `?attr/colorOnSurface`
+**Typography (inactive)** | `app:itemTextAppearanceInactive`<br/>`app:horizontalItemTextAppearanceInactive` | `setItemTextAppearanceInactive`<br/>`getItemTextAppearanceInactive`<br/>`setHorizontalItemTextAppearanceInactive`<br/>`getHorizontalItemTextAppearanceInactive` | `?attr/textAppearanceTitleSmall` for regular item configuration, `?attr/textAppearanceLabelLarge` for horizontal
+**Typography (active)**   | `app:itemTextAppearanceActive`<br/>`app:horizontalItemTextAppearanceActive`     | `setItemTextAppearanceActive`<br/>`getItemTextAppearanceActive`<br/>`setHorizontalItemTextAppearanceActive`<br/>`getHorizontalItemTextAppearanceActive`         | `?attr/textAppearanceTitleSmall` for regular item configuration, `?attr/textAppearanceLabelLarge` for horizontal
+**Typography (active)**   | `app:itemTextAppearanceActiveBoldEnabled`                                       | `setItemTextAppearanceActiveBoldEnabled`                                                                                                                        | `true`
 
 #### Styles
 

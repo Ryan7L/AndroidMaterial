@@ -276,7 +276,7 @@ The following is an anatomy diagram for the bottom navigation bar:
 **Ripple (inactive)**     | `app:itemRippleColor`     | `setItemRippleColor`<br/>`getItemRippleColor`         | Variations of `?attr/colorPrimary` and `?attr/colorOnSurfaceVariant` (see all [states](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/bottomnavigation/res/color/m3_navigation_bar_ripple_color_selector.xml))
 **Ripple (active)**       | "                         | "                                                     | Variations of `?attr/colorPrimary` (see all [states](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/bottomnavigation/res/color/m3_navigation_bar_ripple_color_selector.xml))
 **Label visibility mode** | `app:labelVisibilityMode` | `setLabelVisibilityMode`<br/>`getLabelVisibilityMode` | `LABEL_VISIBILITY_AUTO`
-
+**Item Gravity**          | `app:itemGravity`         | `setItemGravity`<br/>`getItemGravity`                 | `TOP_CENTER`
 
 #### Active indicator attributes
 
@@ -308,14 +308,14 @@ expands to wrap the content of the Bottom Navigation item when the
 
 #### Text label attributes
 
-**Element**               | **Attribute**                             | **Related methods**                                                 | **Default value**
-------------------------- | ----------------------------------------- | ------------------------------------------------------------------- | -----------------
-**Text label**            | `android:title` in the `menu` resource    | N/A                                                                 | N/A
-**Color (inactive)**      | `app:itemTextColor`                       | `setItemTextColor`<br/>`getItemTextColor`                           | `?attr/colorOnSurfaceVariant` (see all [states](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/bottomnavigation/res/color/m3_navigation_bar_item_with_indicator_label_tint.xml))
-**Color (active)**        | "                                         | "                                                                   | `?attr/colorOnSurface` (see all [states](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/bottomnavigation/res/color/m3_navigation_bar_item_with_indicator_label_tint.xml))
-**Typography (inactive)** | `app:itemTextAppearanceInactive`          | `setItemTextAppearanceInactive`<br/>`getItemTextAppearanceInactive` | `?attr/textAppearanceTitleSmall`
-**Typography (active)**   | `app:itemTextAppearanceActive`            | `setItemTextAppearanceActive`<br/>`getItemTextAppearanceActive`     | `?attr/textAppearanceTitleSmall`
-**Typography (active)**   | `app:itemTextAppearanceActiveBoldEnabled` | `setItemTextAppearanceActiveBoldEnabled`                            | `true`
+**Element**               | **Attribute**                                                                   | **Related methods**                                                                                                                                             | **Default value**
+------------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -----------------
+**Text label**            | `android:title` in the `menu` resource                                          | N/A                                                                                                                                                             | N/A
+**Color (inactive)**      | `app:itemTextColor`                                                             | `setItemTextColor`<br/>`getItemTextColor`                                                                                                                       | `?attr/colorOnSurfaceVariant` (see all [states](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/bottomnavigation/res/color/m3_navigation_bar_item_with_indicator_label_tint.xml))
+**Color (active)**        | "                                                                               | "                                                                                                                                                               | `?attr/colorOnSurface` (see all [states](https://github.com/material-components/material-components-android/tree/master/lib/java/com/google/android/material/bottomnavigation/res/color/m3_navigation_bar_item_with_indicator_label_tint.xml))
+**Typography (inactive)** | `app:itemTextAppearanceInactive`<br/>`app:horizontalItemTextAppearanceInactive` | `setItemTextAppearanceInactive`<br/>`getItemTextAppearanceInactive`<br/>`setHorizontalItemTextAppearanceInactive`<br/>`getHorizontalItemTextAppearanceInactive` | `?attr/textAppearanceTitleSmall`
+**Typography (active)**   | `app:itemTextAppearanceActive`<br/>`app:horizontalItemTextAppearanceActive`     | `setItemTextAppearanceActive`<br/>`getItemTextAppearanceActive`<br/>`setHorizontalItemTextAppearanceActive`<br/>`getHorizontalItemTextAppearanceActive`         | `?attr/textAppearanceTitleSmall`
+**Typography (active)**   | `app:itemTextAppearanceActiveBoldEnabled`                                       | `setItemTextAppearanceActiveBoldEnabled`                                                                                                                        | `true`
 
 #### Styles
 
