@@ -27,6 +27,7 @@ import io.material.catalog.imageview.ShapeableImageViewFragment
 import io.material.catalog.loadingindicator.LoadingIndicatorFragment
 import io.material.catalog.loadingindicator.LoadingIndicatorModule
 import io.material.catalog.materialswitch.SwitchFragment
+import io.material.catalog.materialswitch.SwitchModule
 import io.material.catalog.menu.MenuFragment
 import io.material.catalog.navigationdrawer.NavigationDrawerFragment
 import io.material.catalog.navigationrail.NavigationRailFragment
@@ -45,7 +46,7 @@ import io.material.catalog.transition.TransitionModule
 
 @dagger.Module(
   includes = [AdaptiveFragment.Module::class, BottomAppBarModule::class, ButtonModule::class, BottomNavigationModule::class, BottomSheetModule::class, CardModule::class, CarouselModule::class, CheckBoxModule::class, ChipModule::class, ColorsFragment.Module::class, DatePickerModule::class, DialogModule::class, DividerModule::class, ElevationModule::class, FabModule::class, FontModule::class, MenuFragment.Module::class, NavigationDrawerFragment.Module::class, NavigationRailFragment.Module::class, ProgressIndicatorFragment.Module::class, RadioButtonFragment.Module::class,
-    SearchFragmentModule::class, ImageViewModule::class, BaseModule::class, LoadingIndicatorModule::class, ShapeThemingFragment.Module::class, SideSheetFragment.Module::class, SliderFragment.Module::class, SwitchFragment.Module::class, TabsFragment.Module::class, TextFieldFragment.Module::class, TimePickerDemoLandingFragment.Module::class, TopAppBarModule::class, TransitionModule::class, AnimationFragmentModule::class]
+    SearchFragmentModule::class, ImageViewModule::class, BaseModule::class, LoadingIndicatorModule::class, ShapeThemingFragment.Module::class, SideSheetFragment.Module::class, SliderFragment.Module::class, SwitchModule::class, TabsFragment.Module::class, TextFieldFragment.Module::class, TimePickerDemoLandingFragment.Module::class, TopAppBarModule::class, TransitionModule::class, AnimationFragmentModule::class]
 )
 abstract class TocModule {
   @FragmentScope
