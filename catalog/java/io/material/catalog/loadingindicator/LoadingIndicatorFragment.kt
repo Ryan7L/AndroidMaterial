@@ -1,74 +1,55 @@
-/*
- * Copyright 2024 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package io.material.catalog.loadingindicator;
+package io.material.catalog.loadingindicator
 
-import io.material.catalog.R;
+import androidx.fragment.app.Fragment
+import dagger.Provides
+import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoSet
+import io.material.catalog.R
+import io.material.catalog.application.scope.ActivityScope
+import io.material.catalog.application.scope.FragmentScope
+import io.material.catalog.feature.Demo
+import io.material.catalog.feature.DemoLandingFragment
+import io.material.catalog.feature.FeatureDemo
 
-import androidx.fragment.app.Fragment;
-import androidx.annotation.NonNull;
-import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import dagger.multibindings.IntoSet;
-import io.material.catalog.application.scope.ActivityScope;
-import io.material.catalog.application.scope.FragmentScope;
-import io.material.catalog.feature.Demo;
-import io.material.catalog.feature.DemoLandingFragment;
-import io.material.catalog.feature.FeatureDemo;
+class LoadingIndicatorFragment: DemoLandingFragment() {
+  /**
+   * ActionBar 或 ToolBar 的标题的资源ID
+   */
+  override val titleResId: Int
+    get() = R.string.cat_loading_indicator_title
 
-/** A fragment that displays loading indicator demos for the Catalog app. */
-public class LoadingIndicatorFragment extends DemoLandingFragment {
-  @Override
-  public int getTitleResId() {
-    return R.string.cat_loading_indicator_title;
-  }
+  /**
+   * 演示功能的描述的资源ID
+   */
+  override val descriptionResId: Int
+    get() = R.string.cat_loading_indicator_description
 
-  @Override
-  public int getDescriptionResId() {
-    return R.string.cat_loading_indicator_description;
-  }
+  /**
+   * 主要的Demo
+   */
+  override val mainDemo: Demo
+    get() = object : Demo(){
+      override val fragment: Fragment
+        get() = LoadingIndicatorMainDemoFragment()
+    }
+}
+@dagger.Module
+abstract class LoadingIndicatorModule{
 
-  @Override
-  @NonNull
-  public Demo getMainDemo() {
-    return new Demo() {
-      @Override
-      public Fragment getFragment() {
-        return new LoadingIndicatorMainDemoFragment();
-      }
-    };
-  }
-
-  /** The Dagger module for {@link LoadingIndicatorFragment} dependencies. */
-  @dagger.Module
-  public abstract static class Module {
-    @FragmentScope
-    @ContributesAndroidInjector
-    abstract LoadingIndicatorFragment contributeInjector();
-
+  @FragmentScope
+  @ContributesAndroidInjector
+  abstract fun contributeInjector(): LoadingIndicatorFragment
+  companion object{
+    @JvmStatic
     @IntoSet
     @Provides
     @ActivityScope
-    static FeatureDemo provideFeatureDemo() {
-      return new FeatureDemo(
-          R.string.cat_loading_indicator_title, R.drawable.ic_progress_activity_24px) {
-        @Override
-        public Fragment getLandingFragment() {
-          return new LoadingIndicatorFragment();
-        }
-      };
+    fun provideFeatureDemo(): FeatureDemo {
+      return object : FeatureDemo(R.string.cat_loading_indicator_title, R.drawable.ic_progress_activity_24px) {
+        override val landingFragment: Fragment
+          get() = LoadingIndicatorFragment()
+      }
     }
   }
+
 }
