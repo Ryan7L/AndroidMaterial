@@ -70,6 +70,7 @@
   </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
   <RelativeLayout
+    android:fitsSystemWindows="true"
     android:id="@+id/custom_drawer_start"
     android:layout_width="@dimen/m3_comp_navigation_drawer_container_width"
     android:layout_height="match_parent"
@@ -139,6 +140,7 @@
     android:layout_width="@dimen/m3_comp_navigation_drawer_container_width"
     android:layout_height="match_parent"
     android:layout_gravity="end"
+    android:fitsSystemWindows="true"
     android:background="?attr/colorSurface">
 
     <TextView
