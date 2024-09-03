@@ -1,101 +1,71 @@
-/*
- * Copyright 2018 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.shapetheming
 
-package io.material.catalog.shapetheming;
+import android.os.Build
+import android.os.Bundle
+import android.util.TypedValue
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.StyleRes
+import androidx.appcompat.view.ContextThemeWrapper
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import io.material.catalog.R
+import io.material.catalog.feature.DemoFragment
 
-import io.material.catalog.R;
+abstract class ShapeThemingDemoFragment : DemoFragment() {
+  private var statusBarColor: Int = 0
+  private var wrappedContext: ContextThemeWrapper? = null
 
-import android.os.Build;
-import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import androidx.annotation.Nullable;
-import androidx.annotation.StyleRes;
-import androidx.appcompat.view.ContextThemeWrapper;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import io.material.catalog.feature.DemoFragment;
-
-/** A base class for Shape Theming demos in the Catalog app. */
-public abstract class ShapeThemingDemoFragment extends DemoFragment {
-
-  private int statusBarColor;
-  private ContextThemeWrapper wrappedContext;
-
-  @Nullable
-  @Override
-  public View onCreateView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    this.wrappedContext = new ContextThemeWrapper(getContext(), getShapeTheme());
-    LayoutInflater layoutInflaterWithThemedContext =
-        layoutInflater.cloneInContext(wrappedContext);
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    this.wrappedContext = ContextThemeWrapper(context, shapeTheme)
+    val layoutInflater = inflater.cloneInContext(wrappedContext)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      Window window = getActivity().getWindow();
-      statusBarColor = window.getStatusBarColor();
-      final TypedValue value = new TypedValue();
-      wrappedContext
-          .getTheme()
-          .resolveAttribute(R.attr.colorPrimaryDark, value, true);
-      window.setStatusBarColor(value.data);
+      statusBarColor = activity?.window?.statusBarColor ?: 0
+      val value = TypedValue()
+      wrappedContext?.theme?.resolveAttribute(R.attr.colorPrimaryDark, value, true)
+      activity?.window?.statusBarColor = value.data
     }
-
-    return super.onCreateView(layoutInflaterWithThemedContext, viewGroup, bundle);
+    return super.onCreateView(layoutInflater, container, savedInstanceState)
   }
 
-  @Override
-  public void onDestroyView() {
+  override fun onDestroyView() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      Window window = getActivity().getWindow();
-      window.setStatusBarColor(statusBarColor);
+      activity?.window?.statusBarColor = statusBarColor
     }
-    super.onDestroyView();
+    super.onDestroyView()
   }
 
-  @Nullable
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view =
-        layoutInflater.inflate(
-            R.layout.cat_shape_theming_container, viewGroup, false /* attachToRoot */);
-    ViewGroup container = view.findViewById(R.id.container);
-    layoutInflater.inflate(R.layout.cat_shape_theming_content, container, true  /* attachToRoot */);
-
-    MaterialButton materialButton = container.findViewById(R.id.material_button);
-    MaterialAlertDialogBuilder materialAlertDialogBuilder =
-        new MaterialAlertDialogBuilder(getContext(), getShapeTheme())
-            .setTitle(R.string.cat_shape_theming_dialog_title)
-            .setMessage(R.string.cat_shape_theming_dialog_message)
-            .setPositiveButton(R.string.cat_shape_theming_dialog_ok, null);
-    materialButton.setOnClickListener(v -> materialAlertDialogBuilder.show());
-    BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(wrappedContext);
-    bottomSheetDialog.setContentView(R.layout.cat_shape_theming_bottomsheet_content);
-    View bottomSheetInternal = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
-    BottomSheetBehavior.from(bottomSheetInternal).setPeekHeight(300);
-    MaterialButton button = container.findViewById(R.id.material_button_2);
-    button.setOnClickListener(v -> bottomSheetDialog.show());
-
-    return view;
+  override fun onCreateDemoView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    val view = inflater.inflate(R.layout.cat_shape_theming_container, container, false)
+    val content = view.findViewById<ViewGroup>(R.id.container)
+    inflater.inflate(R.layout.cat_shape_theming_content, content, true)
+    val button = content.findViewById<MaterialButton>(R.id.material_button)
+    val dialogBuilder = MaterialAlertDialogBuilder(requireContext(), shapeTheme)
+      .setTitle(R.string.cat_shape_theming_title)
+      .setTitle(R.string.cat_shape_theming_dialog_message)
+      .setPositiveButton(R.string.cat_shape_theming_dialog_ok, null)
+    button.setOnClickListener { dialogBuilder.show() }
+    val bottomSheet = BottomSheetDialog(wrappedContext!!)
+    bottomSheet.setContentView(R.layout.cat_shape_theming_bottomsheet_content)
+    val bottomSheetInternal = bottomSheet.findViewById<View>(R.id.design_bottom_sheet)
+    BottomSheetBehavior.from(bottomSheetInternal!!).peekHeight = 300
+    val btn = content.findViewById<MaterialButton>(R.id.material_button_2)
+    btn.setOnClickListener { bottomSheet.show() }
+    return view
   }
 
-  @StyleRes
-  protected abstract int getShapeTheme();
+
+  @get:StyleRes
+  protected abstract val shapeTheme: Int
 }
