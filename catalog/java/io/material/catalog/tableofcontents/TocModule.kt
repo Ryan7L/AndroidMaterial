@@ -39,13 +39,14 @@ import io.material.catalog.slider.SliderModule
 import io.material.catalog.tabs.TabsFragment
 import io.material.catalog.tabs.TabsModule
 import io.material.catalog.textfield.TextFieldFragment
+import io.material.catalog.textfield.TextFieldModule
 import io.material.catalog.timepicker.TimePickerDemoLandingFragment
 import io.material.catalog.topappbar.TopAppBarModule
 import io.material.catalog.transition.TransitionModule
 
 @dagger.Module(
   includes = [AdaptiveFragment.Module::class, BottomAppBarModule::class, ButtonModule::class, BottomNavigationModule::class, BottomSheetModule::class, CardModule::class, CarouselModule::class, CheckBoxModule::class, ChipModule::class, ColorsFragment.Module::class, DatePickerModule::class, DialogModule::class, DividerModule::class, ElevationModule::class, FabModule::class, FontModule::class, MenuModule::class, NavigationDrawerModule::class, NavigationRailModule::class, ProgressIndicatorModule::class, RadioButtonModule::class,
-    SearchFragmentModule::class, ImageViewModule::class, BaseModule::class, LoadingIndicatorModule::class, ShapeThemingModule::class, SideSheetModule::class, SliderModule::class, SwitchModule::class, TabsModule::class, TextFieldFragment.Module::class, TimePickerDemoLandingFragment.Module::class, TopAppBarModule::class, TransitionModule::class, AnimationFragmentModule::class]
+    SearchFragmentModule::class, ImageViewModule::class, BaseModule::class, LoadingIndicatorModule::class, ShapeThemingModule::class, SideSheetModule::class, SliderModule::class, SwitchModule::class, TabsModule::class, TextFieldModule::class, TimePickerDemoLandingFragment.Module::class, TopAppBarModule::class, TransitionModule::class, AnimationFragmentModule::class]
 )
 abstract class TocModule {
   @FragmentScope
