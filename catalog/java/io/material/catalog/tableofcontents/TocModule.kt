@@ -30,6 +30,7 @@ import io.material.catalog.navigationrail.NavigationRailFragment
 import io.material.catalog.navigationrail.NavigationRailModule
 import io.material.catalog.preferences.CatalogPreferencesDialogFragment
 import io.material.catalog.progressindicator.ProgressIndicatorFragment
+import io.material.catalog.progressindicator.ProgressIndicatorModule
 import io.material.catalog.radiobutton.RadioButtonFragment
 import io.material.catalog.radiobutton.RadioButtonModule
 import io.material.catalog.search.SearchFragmentModule
@@ -43,7 +44,7 @@ import io.material.catalog.topappbar.TopAppBarModule
 import io.material.catalog.transition.TransitionModule
 
 @dagger.Module(
-  includes = [AdaptiveFragment.Module::class, BottomAppBarModule::class, ButtonModule::class, BottomNavigationModule::class, BottomSheetModule::class, CardModule::class, CarouselModule::class, CheckBoxModule::class, ChipModule::class, ColorsFragment.Module::class, DatePickerModule::class, DialogModule::class, DividerModule::class, ElevationModule::class, FabModule::class, FontModule::class, MenuModule::class, NavigationDrawerModule::class, NavigationRailModule::class, ProgressIndicatorFragment.Module::class, RadioButtonModule::class,
+  includes = [AdaptiveFragment.Module::class, BottomAppBarModule::class, ButtonModule::class, BottomNavigationModule::class, BottomSheetModule::class, CardModule::class, CarouselModule::class, CheckBoxModule::class, ChipModule::class, ColorsFragment.Module::class, DatePickerModule::class, DialogModule::class, DividerModule::class, ElevationModule::class, FabModule::class, FontModule::class, MenuModule::class, NavigationDrawerModule::class, NavigationRailModule::class, ProgressIndicatorModule::class, RadioButtonModule::class,
     SearchFragmentModule::class, ImageViewModule::class, BaseModule::class, LoadingIndicatorModule::class, ShapeThemingFragment.Module::class, SideSheetFragment.Module::class, SliderFragment.Module::class, SwitchModule::class, TabsFragment.Module::class, TextFieldFragment.Module::class, TimePickerDemoLandingFragment.Module::class, TopAppBarModule::class, TransitionModule::class, AnimationFragmentModule::class]
 )
 abstract class TocModule {
