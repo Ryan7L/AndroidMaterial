@@ -22,6 +22,7 @@
     Navigation Rails make it easy to explore and switch between top-level views in a single
     tap. This navigational element resides at the bottom of the screen, and provides direct access
     for three to five destinations within an app.
+    Navigation Rails (导航栏)使您只需点击一下即可轻松浏览并在顶级视图之间切换。该导航元素位于屏幕底部，可直接访问应用程序内的三到五个目的地。
   </string>
 
   <string name="cat_navigation_rail_additional_controls_demo_title"
@@ -104,5 +105,5 @@
   <string name="cat_navigation_rail_fab_content_desc"
           description="Content description for a floating action button in the navigation rail.[CHAR_LIMIT=50]">Navigation Rail FAB</string>
 
-  <string name="cat_navigation_rail_compact_message" description="Usage guidance for Navigation Rail advising using a Bottom Navigation Bar on compact screens instead. [CHAR_LIMIT=NONE]">The orientation of this Navigation Rail demo has been locked to portrait mode, because landscape mode results in a compact height on this device. For any compact screen dimensions, use a Bottom Navigation Bar instead.</string>
+  <string name="cat_navigation_rail_compact_message" description="Usage guidance for Navigation Rail advising using a Bottom Navigation Bar on compact screens instead. [CHAR_LIMIT=NONE]">该导航导轨演示的方向已锁定为纵向模式，因为横向模式会导致该设备的高度紧凑。对于任何紧凑的屏幕尺寸，请改用底部导航栏.</string>
 </resources>
