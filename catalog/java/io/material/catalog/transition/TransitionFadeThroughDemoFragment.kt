@@ -1,141 +1,83 @@
-/*
- * Copyright 2019 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.transition
 
-package io.material.catalog.transition;
+import android.os.Bundle
+import android.util.SparseIntArray
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView.OnItemSelectedListener
+import com.google.android.material.transition.MaterialFadeThrough
+import io.material.catalog.R
+import io.material.catalog.feature.DemoFragment
 
-import io.material.catalog.R;
+class TransitionFadeThroughDemoFragment : DemoFragment() {
+  private val LAYOUT_RES_MAP = SparseIntArray().apply {
+    append(R.id.action_albums, R.layout.cat_transition_fade_through_albums_fragment)
+    append(R.id.action_photos, R.layout.cat_transition_fade_through_photos_fragment)
+    append(R.id.action_search, R.layout.cat_transition_fade_through_search_fragment)
+  }
+  private val onItemSelectedListener =
+    OnItemSelectedListener { item ->
+      replaceFragment(item.itemId, true)
+      true
+    }
 
-import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks;
-import androidx.fragment.app.FragmentTransaction;
-import android.util.SparseIntArray;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.annotation.IdRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.transition.MaterialFadeThrough;
-import io.material.catalog.feature.DemoFragment;
-
-/** A fragment that displays the Fade Through Transition demo for the Catalog app. */
-public class TransitionFadeThroughDemoFragment extends DemoFragment {
-
-  private static final SparseIntArray LAYOUT_RES_MAP = new SparseIntArray();
-
-  private final NavigationBarView.OnItemSelectedListener onItemSelectedListener =
-      item -> {
-        replaceFragment(item.getItemId(), /* addToBackStack= */ true);
-        return true;
-      };
-
-  static {
-    LAYOUT_RES_MAP.append(R.id.action_albums, R.layout.cat_transition_fade_through_albums_fragment);
-    LAYOUT_RES_MAP.append(R.id.action_photos, R.layout.cat_transition_fade_through_photos_fragment);
-    LAYOUT_RES_MAP.append(R.id.action_search, R.layout.cat_transition_fade_through_search_fragment);
+  override fun onCreateDemoView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    return inflater.inflate(R.layout.cat_transition_fade_through_fragment, container, false)
   }
 
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    return layoutInflater.inflate(R.layout.cat_transition_fade_through_fragment, viewGroup, false);
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottomnavigation)
+    bottomNavigationView.setOnItemSelectedListener(onItemSelectedListener)
+    requireActivity().supportFragmentManager.registerFragmentLifecycleCallbacks(
+      object : FragmentLifecycleCallbacks(){
+        override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
+          super.onFragmentStarted(fm, f)
+          val itemId = try {
+              f.tag?.toInt()
+          }catch (e: Exception){
+            null
+          }
+          itemId?.let {
+            if (bottomNavigationView.selectedItemId != it){
+              //解决方法是通过在背面重新创建片段来避免破坏演示，因为 FragmentManager 会处理替换片段
+              bottomNavigationView.setOnItemSelectedListener(null)
+              bottomNavigationView.selectedItemId = it
+              bottomNavigationView.setOnItemSelectedListener(onItemSelectedListener)
+            }
+          }
+        }
+      },true
+    )
+    replaceFragment(R.id.action_albums,false)
   }
-
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle bundle) {
-    BottomNavigationView bottomNavigationView = view.findViewById(R.id.bottomnavigation);
-    bottomNavigationView.setOnItemSelectedListener(onItemSelectedListener);
-
-    requireActivity()
-        .getSupportFragmentManager()
-        .registerFragmentLifecycleCallbacks(
-            new FragmentLifecycleCallbacks() {
-              @Override
-              public void onFragmentStarted(
-                  @NonNull FragmentManager fragmentManager, @NonNull Fragment fragment) {
-                super.onFragmentStarted(fragmentManager, fragment);
-                Integer itemId = getItemIdFromFragmentTag(fragment.getTag());
-                if (itemId != null && bottomNavigationView.getSelectedItemId() != itemId) {
-                  // Workaround to avoid breaking the demo by recreating the fragment on back,
-                  // since the FragmentManager handles replacing the fragment instead.
-                  bottomNavigationView.setOnItemSelectedListener(null);
-                  bottomNavigationView.setSelectedItemId(itemId);
-                  bottomNavigationView.setOnItemSelectedListener(onItemSelectedListener);
-                }
-              }
-            },
-            true);
-    replaceFragment(R.id.action_albums, /* addToBackStack= */ false);
-  }
-
-  @Nullable
-  private Integer getItemIdFromFragmentTag(@Nullable String fragmentTag) {
-    try {
-      if (fragmentTag != null) {
-        return Integer.parseInt(fragmentTag);
+  private fun replaceFragment(itemId: Int, addToBackStack: Boolean) {
+    val fragment = TransitionSimpleLayoutFragment.newInstance(LAYOUT_RES_MAP[itemId])
+    //将过渡设置为片段的进入过渡。当将片段添加到容器中时将使用它，并在从容器中删除片段时重新使用该片段。
+    fragment.enterTransition = createTransition()
+    requireActivity().supportFragmentManager.beginTransaction().setReorderingAllowed(true)
+      .replace(R.id.fragment_container, fragment, itemId.toString()).let {
+        if (addToBackStack) {
+          it.addToBackStack(itemId.toString())
+        }
+        it.commit()
       }
-    } catch (NumberFormatException numberFormatException) {
-      // Ignore; we only care about TransitionSimpleLayoutFragments with item id tags.
+  }
+
+  private fun createTransition(): MaterialFadeThrough {
+    return MaterialFadeThrough().apply {
+      //添加此转换的目标以仅在这些视图上显式运行转换。如果没有目标，则将对片段布局中的每个视图运行 MaterialFadeThrough。
+      addTarget(R.id.albums_fragment)
+      addTarget(R.id.photos_fragment)
+      addTarget(R.id.search_fragment)
     }
-    return null;
-  }
-
-  @NonNull
-  private String convertItemIdToFragmentTag(@IdRes int itemId) {
-    return String.valueOf(itemId);
-  }
-
-  @LayoutRes
-  private static int getLayoutForItemId(@IdRes int itemId) {
-    return LAYOUT_RES_MAP.get(itemId);
-  }
-
-  private void replaceFragment(@IdRes int itemId, boolean addToBackStack) {
-    Fragment fragment = TransitionSimpleLayoutFragment.newInstance(getLayoutForItemId(itemId));
-    // Set the transition as the Fragment's enter transition. This will be used when the fragment
-    // is added to the container and re-used when the fragment is removed from the container.
-    fragment.setEnterTransition(createTransition());
-
-    FragmentTransaction fragmentTransaction =
-        requireActivity()
-            .getSupportFragmentManager()
-            .beginTransaction()
-            .setReorderingAllowed(true)
-            .replace(R.id.fragment_container, fragment, convertItemIdToFragmentTag(itemId));
-
-    if (addToBackStack) {
-      fragmentTransaction.addToBackStack(convertItemIdToFragmentTag(itemId));
-    }
-    fragmentTransaction.commit();
-  }
-
-  private MaterialFadeThrough createTransition() {
-    MaterialFadeThrough fadeThrough = new MaterialFadeThrough();
-
-    // Add targets for this transition to explicitly run transitions only on these views. Without
-    // targeting, a MaterialFadeThrough would be run for every view in the Fragment's layout.
-    fadeThrough.addTarget(R.id.albums_fragment);
-    fadeThrough.addTarget(R.id.photos_fragment);
-    fadeThrough.addTarget(R.id.search_fragment);
-
-    return fadeThrough;
   }
 }

@@ -1,583 +1,452 @@
-/*
- * Copyright 2019 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.transition
 
-package io.material.catalog.transition;
+import android.content.Context
+import android.content.DialogInterface.OnDismissListener
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.SparseIntArray
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.animation.AnticipateOvershootInterpolator
+import android.view.animation.BounceInterpolator
+import android.view.animation.Interpolator
+import android.view.animation.OvershootInterpolator
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.RadioGroup
+import android.widget.TextView
+import androidx.core.view.animation.PathInterpolatorCompat
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.button.MaterialButtonToggleGroup
+import com.google.android.material.slider.Slider
+import com.google.android.material.slider.Slider.OnChangeListener
+import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.platform.MaterialArcMotion
+import io.material.catalog.R
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.DialogInterface.OnDismissListener;
-import android.os.Build.VERSION_CODES;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.SparseIntArray;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AnticipateOvershootInterpolator;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.Interpolator;
-import android.view.animation.OvershootInterpolator;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-
-import androidx.annotation.IdRes;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.view.animation.PathInterpolatorCompat;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
-import androidx.transition.Transition;
-import androidx.transition.TransitionManager;
-
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.button.MaterialButtonToggleGroup;
-import com.google.android.material.slider.Slider;
-import com.google.android.material.slider.Slider.OnChangeListener;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.android.material.transition.MaterialArcMotion;
-import com.google.android.material.transition.MaterialContainerTransform;
-
-import io.material.catalog.R;
-
-/**
- * 管理TransitionContainerTransformDemoFragment中显示的所有配置 UI 的辅助类。
- */
-public class ContainerTransformConfigurationHelper {
-
-  private static final String CUBIC_CONTROL_FORMAT = "%.3f";
-  private static final String DURATION_FORMAT = "%.0f";
-  private static final long NO_DURATION = -1;
-  private static final SparseIntArray FADE_MODE_MAP = new SparseIntArray();
-
-  static {
-    FADE_MODE_MAP.append(R.id.fade_in_button, MaterialContainerTransform.FADE_MODE_IN);
-    FADE_MODE_MAP.append(R.id.fade_out_button, MaterialContainerTransform.FADE_MODE_OUT);
-    FADE_MODE_MAP.append(R.id.fade_cross_button, MaterialContainerTransform.FADE_MODE_CROSS);
-    FADE_MODE_MAP.append(R.id.fade_through_button, MaterialContainerTransform.FADE_MODE_THROUGH);
-  }
-
-  private boolean arcMotionEnabled;
-  private long enterDuration;
-  private long returnDuration;
-  private Interpolator interpolator;
-  private int fadeModeButtonId;
-  private boolean drawDebugEnabled;
-  public ContainerTransformConfigurationHelper() {
-    setUpDefaultValues();
-  }
-
-  private static void updateCustomTextFieldsVisibility(
-      int checkedId,
-      TextInputLayout overshootTensionTextInputLayout,
-      TextInputLayout anticipateOvershootTensionTextInputLayout,
-      ViewGroup customContainer) {
-    overshootTensionTextInputLayout.setVisibility(
-        checkedId == R.id.radio_overshoot ? View.VISIBLE : View.GONE);
-    anticipateOvershootTensionTextInputLayout.setVisibility(
-        checkedId == R.id.radio_anticipate_overshoot ? View.VISIBLE : View.GONE);
-    customContainer.setVisibility(checkedId == R.id.radio_custom ? View.VISIBLE : View.GONE);
-  }
-
-  @SuppressLint("DefaultLocale")
-  private static void setTextFloat(EditText editText, float value) {
-    editText.setText(String.format(CUBIC_CONTROL_FORMAT, value));
-  }
-
-  @Nullable
-  private static Float getTextFloat(@Nullable EditText editText) {
-    if (editText == null) {
-      return null;
+class ContainerTransformConfigurationHelper {
+  companion object {
+    private const val CUBIC_CONTROL_FORMAT = "%.3f"
+    private const val DURATION_FORMAT = "%.0f"
+    private const val NO_DURATION = -1L
+    private val FADE_MODE_MAP = SparseIntArray().apply {
+      append(R.id.fade_in_button, MaterialContainerTransform.FADE_MODE_IN)
+      append(R.id.fade_out_button, MaterialContainerTransform.FADE_MODE_OUT)
+      append(R.id.fade_cross_button, MaterialContainerTransform.FADE_MODE_CROSS)
+      append(R.id.fade_through_button, MaterialContainerTransform.FADE_MODE_THROUGH)
     }
 
-    String text = editText.getText().toString();
-    try {
-      return Float.valueOf(text);
-    } catch (Exception e) {
-      return null;
-    }
-  }
-
-  private static void setTextInputLayoutError(TextInputLayout layout) {
-    layout.setError(" ");
-  }
-
-  private static void setTextInputClearOnTextChanged(TextInputLayout layout) {
-    layout
-        .getEditText()
-        .addTextChangedListener(
-            new TextWatcher() {
-              @Override
-              public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-              }
-
-              @Override
-              public void onTextChanged(CharSequence s, int start, int before, int count) {
-                layout.setError(null);
-              }
-
-              @Override
-              public void afterTextChanged(Editable s) {
-              }
-            });
-  }
-
-  private static boolean isValidCubicBezierControlValue(@Nullable Float value) {
-    return value != null && value >= 0 && value <= 1;
-  }
-
-  private static boolean areValidCubicBezierControls(
-      View view, Float x1, Float y1, Float x2, Float y2) {
-    boolean isValid = true;
-    if (!isValidCubicBezierControlValue(x1)) {
-      isValid = false;
-      setTextInputLayoutError(view.findViewById(R.id.x1_text_input_layout));
-    }
-    if (!isValidCubicBezierControlValue(y1)) {
-      isValid = false;
-      setTextInputLayoutError(view.findViewById(R.id.y1_text_input_layout));
-    }
-    if (!isValidCubicBezierControlValue(x2)) {
-      isValid = false;
-      setTextInputLayoutError(view.findViewById(R.id.x2_text_input_layout));
-    }
-    if (!isValidCubicBezierControlValue(y2)) {
-      isValid = false;
-      setTextInputLayoutError(view.findViewById(R.id.y2_text_input_layout));
+    /**
+     * 一个定制的过冲插值器，暴露了它的张力
+     */
+    private class CustomOvershootInterpolator @JvmOverloads constructor(val tension: Float = DEFAULT_TENSION) :
+      OvershootInterpolator(tension) {
+      companion object {
+        val DEFAULT_TENSION = 2f
+      }
     }
 
-    return isValid;
-  }
-
-  /**
-   * 显示与来自 {@link TransitionContainerTransformDemoFragment} 的容器转换关联的配置选择器.
-   */
-  void showConfigurationChooser(Context context, @Nullable OnDismissListener onDismissListener) {
-    BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
-    bottomSheetDialog.setContentView(
-        createConfigurationBottomSheetView(context, bottomSheetDialog));
-    bottomSheetDialog.setOnDismissListener(onDismissListener);
-    bottomSheetDialog.show();
-  }
-
-  /**
-   * 根据配置助手的参数设置 androidx 转换.
-   */
-  void configure(MaterialContainerTransform transform, boolean entering) {
-    long duration = entering ? getEnterDuration() : getReturnDuration();
-    if (duration != NO_DURATION) {
-      transform.setDuration(duration);
+    /**
+     * 自定义预期超调插值器会暴露其张力。
+     */
+    private class CustomAnticipateOvershootInterpolator @JvmOverloads constructor(val tension: Float = DEFAULT_TENSION) :
+      AnticipateOvershootInterpolator(tension) {
+      companion object {
+        val DEFAULT_TENSION = 2f
+      }
     }
-    if (getInterpolator() != null) {
-      transform.setInterpolator(getInterpolator());
-    }
-    if (isArcMotionEnabled()) {
-      transform.setPathMotion(new MaterialArcMotion());
-    }
-    transform.setFadeMode(getFadeMode());
-    transform.setDrawDebugEnabled(isDrawDebugEnabled());
-  }
 
-  /**
-   * 根据配置助手的参数设置平台转换。
-   */
-  @RequiresApi(VERSION_CODES.LOLLIPOP)
-  void configure(
-      com.google.android.material.transition.platform.MaterialContainerTransform transform,
-      boolean entering) {
-    long duration = entering ? getEnterDuration() : getReturnDuration();
-    if (duration != NO_DURATION) {
-      transform.setDuration(duration);
-    }
-    if (getInterpolator() != null) {
-      transform.setInterpolator(getInterpolator());
-    }
-    if (isArcMotionEnabled()) {
-      transform.setPathMotion(
-          new com.google.android.material.transition.platform.MaterialArcMotion());
-    }
-    transform.setFadeMode(getFadeMode());
-    transform.setDrawDebugEnabled(isDrawDebugEnabled());
-  }
+    /**
+     * 自定义三次贝塞尔曲线插值器，暴露其控制点
+     */
+    private class CustomCubicBezier(
+      val controlX1: Float,
+      val controlY1: Float,
+      val controlX2: Float,
+      val controlY2: Float
+    ) : Interpolator {
+      private val interpolator =
+        PathInterpolatorCompat.create(controlX1, controlY1, controlX2, controlY2)
 
-  /**
-   * 自定义容器转换是否应使用 {@link com.google.android.material.transition.MaterialArcMotion}.
-   */
-  boolean isArcMotionEnabled() {
-    return arcMotionEnabled;
-  }
-
-  /**
-   * 自定义容器转换要使用的输入持续时间。
-   */
-  long getEnterDuration() {
-    return enterDuration;
-  }
-
-  /**
-   * 自定义容器转换使用的返回持续时间.
-   */
-  long getReturnDuration() {
-    return returnDuration;
-  }
-
-  /**
-   * 自定义容器转换使用的插值器.
-   */
-  Interpolator getInterpolator() {
-    return interpolator;
-  }
-
-  /**
-   * 自定义容器变换使用的淡入淡出模式。
-   */
-  int getFadeMode() {
-    return FADE_MODE_MAP.get(fadeModeButtonId);
-  }
-
-  /**
-   * 自定义转换是否应绘制调试线.
-   */
-  boolean isDrawDebugEnabled() {
-    return drawDebugEnabled;
-  }
-
-  private void setUpDefaultValues() {
-    arcMotionEnabled = false;
-    enterDuration = NO_DURATION;
-    returnDuration = NO_DURATION;
-    interpolator = null;
-    fadeModeButtonId = R.id.fade_in_button;
-    drawDebugEnabled = false;
-  }
-
-  /**
-   * 创建一个底部工作表对话框，显示用于配置容器转换的控件。
-   */
-  private View createConfigurationBottomSheetView(Context context, BottomSheetDialog dialog) {
-    View layout =
-        LayoutInflater.from(context).inflate(R.layout.cat_transition_configuration_layout, null);
-    setUpBottomSheetPathMotionButtonGroup(layout);
-    setUpBottomSheetEnterDurationSlider(layout);
-    setUpBottomSheetReturnDurationSlider(layout);
-    setUpBottomSheetInterpolation(layout);
-    setUpBottomSheetFadeModeButtonGroup(layout);
-    setUpBottomSheetDebugging(layout);
-    setUpBottomSheetConfirmationButtons(layout, dialog);
-    return layout;
-  }
-
-  /**
-   * 根据所选单选按钮更新是否使用弧线运动
-   */
-  private void setUpBottomSheetPathMotionButtonGroup(View view) {
-    MaterialButtonToggleGroup toggleGroup = view.findViewById(R.id.path_motion_button_group);
-    if (toggleGroup != null) {
-      // Set initial value.
-      toggleGroup.check(arcMotionEnabled ? R.id.arc_motion_button : R.id.linear_motion_button);
-      toggleGroup.addOnButtonCheckedListener(
-          (group, checkedId, isChecked) -> {
-            if (checkedId == R.id.arc_motion_button) {
-              arcMotionEnabled = isChecked;
-            }
-          });
-    }
-  }
-
-  /**
-   * 根据所选单选按钮更新淡入淡出模式
-   */
-  private void setUpBottomSheetFadeModeButtonGroup(View view) {
-    MaterialButtonToggleGroup toggleGroup = view.findViewById(R.id.fade_mode_button_group);
-    if (toggleGroup != null) {
-      // Set initial value.
-      toggleGroup.check(fadeModeButtonId);
-      toggleGroup.addOnButtonCheckedListener(
-          (group, checkedId, isChecked) -> {
-            if (isChecked) {
-              fadeModeButtonId = checkedId;
-            }
-          });
-    }
-  }
-
-  /**
-   * 当滑块值更改时更新输入持续时间和持续时间文本.
-   */
-  private void setUpBottomSheetEnterDurationSlider(View view) {
-    setUpBottomSheetDurationSlider(
-        view,
-        R.id.enter_duration_slider,
-        R.id.enter_duration_value,
-        enterDuration,
-        (slider, value, fromUser) -> enterDuration = (long) value);
-  }
-
-  /**
-   * 当滑块值更改时更新返回持续时间和持续时间文本.
-   */
-  private void setUpBottomSheetReturnDurationSlider(View view) {
-    setUpBottomSheetDurationSlider(
-        view,
-        R.id.return_duration_slider,
-        R.id.return_duration_value,
-        returnDuration,
-        (slider, value, fromUser) -> returnDuration = (long) value);
-  }
-
-  @SuppressLint("DefaultLocale")
-  private void setUpBottomSheetDurationSlider(
-      View view,
-      @IdRes int sliderResId,
-      @IdRes int labelResId,
-      float duration,
-      OnChangeListener listener) {
-    Slider durationSlider = view.findViewById(sliderResId);
-    TextView durationValue = view.findViewById(labelResId);
-    if (durationSlider != null && durationValue != null) {
-      // Set initial value.
-      durationSlider.setValue(duration != NO_DURATION ? duration : 0);
-      durationValue.setText(String.format(DURATION_FORMAT, durationSlider.getValue()));
-      // Update the duration and durationValue's text whenever the slider is slid.
-      durationSlider.addOnChangeListener(
-          (slider, value, fromUser) -> {
-            listener.onValueChange(slider, value, fromUser);
-            durationValue.setText(String.format(DURATION_FORMAT, value));
-          });
-    }
-  }
-
-  /**
-   * 设置插值
-   */
-  private void setUpBottomSheetInterpolation(View view) {
-    RadioGroup interpolationGroup = view.findViewById(R.id.interpolation_radio_group);
-    ViewGroup customContainer = view.findViewById(R.id.custom_curve_container);
-    TextInputLayout overshootTensionTextInputLayout =
-        view.findViewById(R.id.overshoot_tension_text_input_layout);
-    EditText overshootTensionEditText = view.findViewById(R.id.overshoot_tension_edit_text);
-    TextInputLayout anticipateOvershootTensionTextInputLayout =
-        view.findViewById(R.id.anticipate_overshoot_tension_text_input_layout);
-    EditText anticipateOvershootTensionEditText =
-        view.findViewById(R.id.anticipate_overshoot_tension_edit_text);
-
-    if (interpolationGroup != null && customContainer != null) {
-      setTextInputClearOnTextChanged(view.findViewById(R.id.x1_text_input_layout));
-      setTextInputClearOnTextChanged(view.findViewById(R.id.x2_text_input_layout));
-      setTextInputClearOnTextChanged(view.findViewById(R.id.y1_text_input_layout));
-      setTextInputClearOnTextChanged(view.findViewById(R.id.y2_text_input_layout));
-
-      overshootTensionEditText.setText(String.valueOf(CustomOvershootInterpolator.DEFAULT_TENSION));
-      anticipateOvershootTensionEditText.setText(
-          String.valueOf(CustomAnticipateOvershootInterpolator.DEFAULT_TENSION));
-
-      // Check the correct current radio button and fill in custom bezier fields if applicable.
-      if (interpolator instanceof FastOutSlowInInterpolator) {
-        interpolationGroup.check(R.id.radio_fast_out_slow_in);
-      } else if (interpolator instanceof OvershootInterpolator) {
-        interpolationGroup.check(R.id.radio_overshoot);
-        if (interpolator instanceof CustomOvershootInterpolator) {
-          CustomOvershootInterpolator customOvershootInterpolator =
-              (CustomOvershootInterpolator) interpolator;
-          overshootTensionEditText.setText(String.valueOf(customOvershootInterpolator.tension));
-        }
-      } else if (interpolator instanceof AnticipateOvershootInterpolator) {
-        interpolationGroup.check(R.id.radio_anticipate_overshoot);
-        if (interpolator instanceof CustomAnticipateOvershootInterpolator) {
-          CustomAnticipateOvershootInterpolator customAnticipateOvershootInterpolator =
-              (CustomAnticipateOvershootInterpolator) interpolator;
-          anticipateOvershootTensionEditText.setText(
-              String.valueOf(customAnticipateOvershootInterpolator.tension));
-        }
-      } else if (interpolator instanceof BounceInterpolator) {
-        interpolationGroup.check(R.id.radio_bounce);
-      } else if (interpolator instanceof CustomCubicBezier) {
-        interpolationGroup.check(R.id.radio_custom);
-        CustomCubicBezier currentInterp = (CustomCubicBezier) interpolator;
-        setTextFloat(view.findViewById(R.id.x1_edit_text), currentInterp.controlX1);
-        setTextFloat(view.findViewById(R.id.y1_edit_text), currentInterp.controlY1);
-        setTextFloat(view.findViewById(R.id.x2_edit_text), currentInterp.controlX2);
-        setTextFloat(view.findViewById(R.id.y2_edit_text), currentInterp.controlY2);
-      } else {
-        interpolationGroup.check(R.id.radio_default);
+      override fun getInterpolation(input: Float): Float {
+        return interpolator.getInterpolation(input)
       }
 
-      // Show/hide custom text input fields depending on initial checked radio button.
-      updateCustomTextFieldsVisibility(
-          interpolationGroup.getCheckedRadioButtonId(),
-          overshootTensionTextInputLayout,
-          anticipateOvershootTensionTextInputLayout,
-          customContainer);
+      fun getDescription(context: Context) = context.getString(
+        R.string.cat_transition_config_custom_interpolator_desc,
+        controlX1,
+        controlY1,
+        controlX2,
+        controlY2
+      )
+    }
 
-      // Watch for any changes to selected radio button and update custom text fields visibility.
-      // The custom text field values will be captured when the configuration is applied.
-      interpolationGroup.setOnCheckedChangeListener(
-          (group, checkedId) ->
-              updateCustomTextFieldsVisibility(
-                  checkedId,
-                  overshootTensionTextInputLayout,
-                  anticipateOvershootTensionTextInputLayout,
-                  customContainer));
+    private fun getTextFloat(editText: EditText?): Float? {
+      return try {
+        editText?.text?.toString()?.toFloat()
+      } catch (e: Exception) {
+        null
+      }
+    }
+
+    private fun setTextFloat(editText: EditText, value: Float) {
+      editText.setText(String.format(CUBIC_CONTROL_FORMAT, value))
+    }
+
+    private fun setTextInputLayoutError(layout: TextInputLayout) {
+      layout.error = " "
+    }
+
+    private fun isValidCubicBezierControlValue(value: Float?): Boolean {
+      return value != null && value in 0f..1f
+    }
+
+    private fun areValidCubicBezierControls(
+      view: View,
+      x1: Float?,
+      y1: Float?,
+      x2: Float?,
+      y2: Float?
+    ): Boolean {
+      var isValid = true
+      if (!isValidCubicBezierControlValue(x1)) {
+        isValid = false
+        setTextInputLayoutError(view.findViewById(R.id.x1_text_input_layout))
+      }
+      if (!isValidCubicBezierControlValue(y1)) {
+        isValid = false
+        setTextInputLayoutError(view.findViewById(R.id.y1_text_input_layout))
+      }
+      if (!isValidCubicBezierControlValue(x2)) {
+        isValid = false
+        setTextInputLayoutError(view.findViewById(R.id.x2_text_input_layout))
+      }
+      if (!isValidCubicBezierControlValue(y2)) {
+        isValid = false
+        setTextInputLayoutError(view.findViewById(R.id.y2_text_input_layout))
+      }
+      return isValid
+    }
+
+    fun TextInputLayout.textInputClearOnTextChanged() {
+      editText?.addTextChangedListener(object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+          error = null
+        }
+      })
+    }
+
+    private fun updateCustomTextFieldsVisibility(
+      checkedId: Int,
+      overshootTensionTextInputLayout: TextInputLayout,
+      anticipateOvershootTensionTextInputLayout: TextInputLayout,
+      customContainer: ViewGroup
+    ) {
+      overshootTensionTextInputLayout.visibility =
+        if (checkedId == R.id.radio_overshoot) View.VISIBLE else View.GONE
+      anticipateOvershootTensionTextInputLayout.visibility =
+        if (checkedId == R.id.radio_anticipate_overshoot) View.VISIBLE else View.GONE
+      customContainer.visibility = if (checkedId == R.id.radio_custom) View.VISIBLE else View.GONE
+    }
+
+  }
+
+   var arcMotionEnabled = false
+   var enterDuration = NO_DURATION
+   var returnDuration = NO_DURATION
+  var interpolator: Interpolator? = null
+   var fadeModeButtonId = R.id.fade_in_button
+   var drawDebugEnabled = false
+  val fadeMode: Int
+    get() = FADE_MODE_MAP[fadeModeButtonId]
+  fun showConfigurationChooser(context: Context,onDismissListener: OnDismissListener?){
+    BottomSheetDialog(context).run {
+      setContentView(createConfigurationBottomSheetView(context,this))
+      setOnDismissListener(onDismissListener)
+      show()
+    }
+  }
+  fun configure(transform: MaterialContainerTransform,entering: Boolean){
+    val duration = if (entering) enterDuration else returnDuration
+    if (duration != NO_DURATION){
+      transform.duration = duration
+    }
+    interpolator?.let {
+      transform.interpolator = it
+    }
+    if (arcMotionEnabled) {
+      transform.setPathMotion(com.google.android.material.transition.MaterialArcMotion())
+    }
+    transform.fadeMode = fadeMode
+    transform.isDrawDebugEnabled = drawDebugEnabled
+  }
+  fun configure(transform: com.google.android.material.transition.platform.MaterialContainerTransform,
+                entering: Boolean){
+    val duration = if (entering) enterDuration else returnDuration
+    if (duration != NO_DURATION){
+      transform.duration = duration
+    }
+    interpolator?.let {
+      transform.interpolator = it
+    }
+    if (arcMotionEnabled){
+      transform.pathMotion = MaterialArcMotion()
+    }
+    transform.fadeMode = fadeMode
+    transform.isDrawDebugEnabled = drawDebugEnabled
+  }
+  private fun resetDefaultValues() {
+    arcMotionEnabled = false
+    enterDuration = NO_DURATION
+    returnDuration = NO_DURATION
+    interpolator = null
+    fadeModeButtonId = R.id.fade_in_button
+    drawDebugEnabled = false
+  }
+
+  private fun createConfigurationBottomSheetView(
+    context: Context,
+    dialog: BottomSheetDialog
+  ): View {
+    val layout =
+      LayoutInflater.from(context).inflate(R.layout.cat_transition_configuration_layout, null)
+    setUpBottomSheetPathMotionButtonGroup(layout)
+    setUpBottomSheetEnterDurationSlider(layout)
+    setUpBottomSheetReturnDurationSlider(layout)
+    setUpBottomSheetInterpolation(layout)
+    setUpBottomSheetFadeModeButtonGroup(layout)
+    setUpBottomSheetDebugging(layout)
+    setUpBottomSheetConfirmationButtons(layout, dialog)
+    return layout
+  }
+
+  private fun setUpBottomSheetPathMotionButtonGroup(view: View) {
+    view.findViewById<MaterialButtonToggleGroup>(R.id.path_motion_button_group)?.let {
+      it.check(if (arcMotionEnabled) R.id.arc_motion_button else R.id.linear_motion_button)
+      it.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        if (checkedId == R.id.arc_motion_button) {
+          arcMotionEnabled = isChecked
+        }
+      }
+    }
+  }
+
+  private fun setUpBottomSheetFadeModeButtonGroup(view: View) {
+    view.findViewById<MaterialButtonToggleGroup>(R.id.fade_mode_button_group)?.let {
+      it.check(fadeModeButtonId)
+      it.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        if (isChecked) {
+          fadeModeButtonId = checkedId
+        }
+      }
+    }
+  }
+
+  private fun setUpBottomSheetReturnDurationSlider(view: View) {
+    setUpBottomSheetDurationSlider(
+      view, R.id.return_duration_slider,
+      R.id.return_duration_value,
+      returnDuration
+    ) { _, value, _ ->
+      returnDuration = value.toLong()
+    }
+  }
+
+  private fun setUpBottomSheetEnterDurationSlider(view: View) {
+    setUpBottomSheetDurationSlider(
+      view, R.id.enter_duration_slider,
+      R.id.enter_duration_value,
+      enterDuration
+    ) { _, value, _ ->
+      enterDuration = value.toLong()
+    }
+  }
+
+  private fun setUpBottomSheetDurationSlider(
+    view: View,
+    sliderResId: Int,
+    labelResId: Int,
+    duration: Long,
+    listener: OnChangeListener
+  ) {
+    val durationSlider = view.findViewById<Slider>(sliderResId)
+    val durationTv = view.findViewById<TextView>(labelResId)
+    if (durationSlider != null && durationTv != null) {
+      durationSlider.value = if (duration != NO_DURATION) duration.toFloat() else 0f
+      durationTv.text = String.format(DURATION_FORMAT, durationSlider.value)
+      durationSlider.addOnChangeListener { slider, value, fromUser ->
+        listener.onValueChange(slider, value, fromUser)
+        durationTv.text = String.format(DURATION_FORMAT, value)
+      }
     }
   }
 
   /**
-   * Set up whether or not to draw debugging paint
+   * 设置插值器
    */
-  private void setUpBottomSheetDebugging(View view) {
-    CheckBox debugCheckbox = view.findViewById(R.id.draw_debug_checkbox);
-    if (debugCheckbox != null) {
-      debugCheckbox.setChecked(drawDebugEnabled);
-      debugCheckbox.setOnCheckedChangeListener(
-          (buttonView, isChecked) -> drawDebugEnabled = isChecked);
+  private fun setUpBottomSheetInterpolation(view: View) {
+    val interpolationGroup = view.findViewById<RadioGroup>(R.id.interpolation_radio_group)
+    val customContainer = view.findViewById<ViewGroup>(R.id.custom_curve_container)
+    val overshootTensionTextInputLayout =
+      view.findViewById<TextInputLayout>(R.id.overshoot_tension_text_input_layout)
+    val anticipateOvershootTensionTextInputLayout =
+      view.findViewById<TextInputLayout>(R.id.anticipate_overshoot_tension_text_input_layout)
+    val overshootTensionEditText = view.findViewById<EditText>(R.id.overshoot_tension_edit_text)
+    val anticipateOvershootTensionEditText =
+      view.findViewById<EditText>(R.id.anticipate_overshoot_tension_edit_text)
+
+    if (interpolationGroup != null && customContainer != null) {
+      view.findViewById<TextInputLayout>(R.id.x1_text_input_layout).textInputClearOnTextChanged()
+      view.findViewById<TextInputLayout>(R.id.y1_text_input_layout).textInputClearOnTextChanged()
+      view.findViewById<TextInputLayout>(R.id.x2_text_input_layout).textInputClearOnTextChanged()
+      view.findViewById<TextInputLayout>(R.id.y2_text_input_layout).textInputClearOnTextChanged()
+      overshootTensionEditText.setText(CustomOvershootInterpolator.DEFAULT_TENSION.toString())
+      anticipateOvershootTensionEditText.setText(CustomAnticipateOvershootInterpolator.DEFAULT_TENSION.toString())
+      //检查正确的当前单选按钮并填写自定义贝塞尔曲线字段（如果适用）
+      when (interpolator) {
+        is FastOutSlowInInterpolator -> {
+          interpolationGroup.check(R.id.radio_fast_out_slow_in)
+        }
+
+        is OvershootInterpolator -> {
+          interpolationGroup.check(R.id.radio_overshoot)
+          if (interpolator is CustomOvershootInterpolator) {
+            overshootTensionEditText.setText((interpolator as CustomOvershootInterpolator).tension.toString())
+          }
+        }
+
+        is AnticipateOvershootInterpolator -> {
+          interpolationGroup.check(R.id.radio_anticipate_overshoot)
+          if (interpolator is CustomAnticipateOvershootInterpolator) {
+            anticipateOvershootTensionEditText.setText((interpolator as CustomAnticipateOvershootInterpolator).tension.toString())
+          }
+        }
+
+        is BounceInterpolator -> interpolationGroup.check(R.id.radio_bounce)
+        is CustomCubicBezier -> {
+          interpolationGroup.check(R.id.radio_custom)
+
+          setTextFloat(
+            view.findViewById(R.id.x1_edit_text),
+            (interpolator as CustomCubicBezier).controlX1
+          )
+          setTextFloat(
+            view.findViewById(R.id.y1_edit_text),
+            (interpolator as CustomCubicBezier).controlY1
+          )
+          setTextFloat(
+            view.findViewById(R.id.x2_edit_text),
+            (interpolator as CustomCubicBezier).controlX2
+          )
+          setTextFloat(
+            view.findViewById(R.id.y2_edit_text),
+            (interpolator as CustomCubicBezier).controlY2
+          )
+        }
+
+        else -> interpolationGroup.check(R.id.radio_default)
+      }
+
+      //根据初始选中的单选按钮显示隐藏自定义文本输入字段
+      updateCustomTextFieldsVisibility(
+        interpolationGroup.checkedRadioButtonId,
+        overshootTensionTextInputLayout,
+        anticipateOvershootTensionTextInputLayout,
+        customContainer
+      )
+      //监视所选单选按钮的任何更改并更新自定义文本字段的可见性。应用配置时将捕获自定义文本字段值。
+      interpolationGroup.setOnCheckedChangeListener { group, checkedId ->
+        updateCustomTextFieldsVisibility(
+          checkedId,
+          overshootTensionTextInputLayout,
+          anticipateOvershootTensionTextInputLayout,
+          customContainer
+        )
+      }
+    }
+  }
+
+  /**
+   * 设置是否绘制debug 辅助线
+   * @param view View
+   */
+  private fun setUpBottomSheetDebugging(view: View) {
+    val debugCheckBox = view.findViewById<CheckBox>(R.id.draw_debug_checkbox)
+    debugCheckBox?.let {
+      it.isChecked = drawDebugEnabled
+      it.setOnCheckedChangeListener { _, isChecked ->
+        drawDebugEnabled = isChecked
+      }
     }
   }
 
   /**
    * 设置按钮以应用和验证配置值并关闭底部工作表
    */
-  private void setUpBottomSheetConfirmationButtons(View view, BottomSheetDialog dialog) {
-    view.findViewById(R.id.apply_button)
-        .setOnClickListener(
-            v -> {
-              // Capture and update interpolation
-              RadioGroup interpolationGroup = view.findViewById(R.id.interpolation_radio_group);
-              int checkedRadioButtonId = interpolationGroup.getCheckedRadioButtonId();
-              if (checkedRadioButtonId == R.id.radio_custom) {
-                Float x1 = getTextFloat(view.findViewById(R.id.x1_edit_text));
-                Float y1 = getTextFloat(view.findViewById(R.id.y1_edit_text));
-                Float x2 = getTextFloat(view.findViewById(R.id.x2_edit_text));
-                Float y2 = getTextFloat(view.findViewById(R.id.y2_edit_text));
+  private fun setUpBottomSheetConfirmationButtons(view: View, dialog: BottomSheetDialog) {
+    view.findViewById<View>(R.id.apply_button).setOnClickListener {
+      val interpolationGroup = view.findViewById<RadioGroup>(R.id.interpolation_radio_group)
+      when (interpolationGroup.checkedRadioButtonId) {
+        R.id.radio_custom -> {
+          val x1 = getTextFloat(view.findViewById(R.id.x1_edit_text))
+          val x2 = getTextFloat(view.findViewById(R.id.x2_edit_text))
+          val y1 = getTextFloat(view.findViewById(R.id.y1_edit_text))
+          val y2 = getTextFloat(view.findViewById(R.id.y2_edit_text))
+          if (areValidCubicBezierControls(view, x1, y1, x2, y2)) {
+            interpolator = CustomCubicBezier(x1!!, y1!!, x2!!, y2!!)
+            dialog.dismiss()
+          }
+        }
 
-                if (areValidCubicBezierControls(view, x1, y1, x2, y2)) {
-                  interpolator = new CustomCubicBezier(x1, y1, x2, y2);
-                  dialog.dismiss();
-                }
-              } else if (checkedRadioButtonId == R.id.radio_overshoot) {
-                EditText overshootTensionEditText =
-                    view.findViewById(R.id.overshoot_tension_edit_text);
-                Float tension = getTextFloat(overshootTensionEditText);
-                interpolator =
-                    tension != null
-                        ? new CustomOvershootInterpolator(tension)
-                        : new CustomOvershootInterpolator();
-                dialog.dismiss();
-              } else if (checkedRadioButtonId == R.id.radio_anticipate_overshoot) {
-                EditText overshootTensionEditText =
-                    view.findViewById(R.id.anticipate_overshoot_tension_edit_text);
-                Float tension = getTextFloat(overshootTensionEditText);
-                interpolator =
-                    tension != null
-                        ? new CustomAnticipateOvershootInterpolator(tension)
-                        : new CustomAnticipateOvershootInterpolator();
-                dialog.dismiss();
-              } else if (checkedRadioButtonId == R.id.radio_bounce) {
-                interpolator = new BounceInterpolator();
-                dialog.dismiss();
-              } else if (checkedRadioButtonId == R.id.radio_fast_out_slow_in) {
-                interpolator = new FastOutSlowInInterpolator();
-                dialog.dismiss();
-              } else {
-                interpolator = null;
-                dialog.dismiss();
-              }
-            });
+        R.id.radio_overshoot -> {
+          val overshootTensionEditText =
+            view.findViewById<EditText>(R.id.overshoot_tension_edit_text)
+          val tension = getTextFloat(overshootTensionEditText)
+          interpolator =
+            tension?.let { CustomOvershootInterpolator(it) } ?: CustomOvershootInterpolator()
+          dialog.dismiss()
+        }
 
-    view.findViewById(R.id.clear_button)
-        .setOnClickListener(
-            v -> {
-              setUpDefaultValues();
-              dialog.dismiss();
-            });
-  }
+        R.id.radio_anticipate_overshoot -> {
+          val anticipateOvershootTensionEditText =
+            view.findViewById<EditText>(R.id.anticipate_overshoot_tension_edit_text)
+          val tension = getTextFloat(anticipateOvershootTensionEditText)
+          interpolator = tension?.let { CustomAnticipateOvershootInterpolator(it) }
+            ?: CustomAnticipateOvershootInterpolator()
+          dialog.dismiss()
+        }
 
-  /**
-   * A custom overshoot interpolator which exposes its tension.
-   */
-  private static class CustomOvershootInterpolator extends OvershootInterpolator {
+        R.id.radio_bounce -> {
+          interpolator = BounceInterpolator()
+          dialog.dismiss()
+        }
 
-    // This is the default tension value in OvershootInterpolator
-    static final float DEFAULT_TENSION = 2.0f;
+        R.id.radio_fast_out_slow_in -> {
+          interpolator = FastOutSlowInInterpolator()
+          dialog.dismiss()
+        }
 
-    final float tension;
+        else -> {
+          interpolator = null
+          dialog.dismiss()
+        }
 
-    CustomOvershootInterpolator() {
-      this(DEFAULT_TENSION);
+      }
     }
-
-    CustomOvershootInterpolator(float tension) {
-      super(tension);
-      this.tension = tension;
-    }
-  }
-
-  /**
-   * A custom anticipate overshoot interpolator which exposes its tension.
-   */
-  private static class CustomAnticipateOvershootInterpolator
-      extends AnticipateOvershootInterpolator {
-
-    // 这是 AnticipateOvershootInterpolator 中的默认张力值
-    static final float DEFAULT_TENSION = 2.0f;
-
-    final float tension;
-
-    CustomAnticipateOvershootInterpolator() {
-      this(DEFAULT_TENSION);
-    }
-
-    CustomAnticipateOvershootInterpolator(float tension) {
-      super(tension);
-      this.tension = tension;
-    }
-  }
-
-  /**
-   * A custom cubic bezier interpolator which exposes its control points.
-   */
-  private static class CustomCubicBezier implements Interpolator {
-
-    final float controlX1;
-    final float controlY1;
-    final float controlX2;
-    final float controlY2;
-
-    private final Interpolator interpolator;
-
-    CustomCubicBezier(float controlX1, float controlY1, float controlX2, float controlY2) {
-      this.controlX1 = controlX1;
-      this.controlY1 = controlY1;
-      this.controlX2 = controlX2;
-      this.controlY2 = controlY2;
-
-      this.interpolator = PathInterpolatorCompat.create(controlX1, controlY1, controlX2, controlY2);
-    }
-
-    @Override
-    public float getInterpolation(float input) {
-      return interpolator.getInterpolation(input);
-    }
-
-    String getDescription(Context context) {
-      return context.getString(
-          R.string.cat_transition_config_custom_interpolator_desc,
-          controlX1,
-          controlY1,
-          controlX2,
-          controlY2);
+    view.findViewById<View>(R.id.clear_button).setOnClickListener {
+      resetDefaultValues()
+      dialog.dismiss()
     }
   }
 }
+

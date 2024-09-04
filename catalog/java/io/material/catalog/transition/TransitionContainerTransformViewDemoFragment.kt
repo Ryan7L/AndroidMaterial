@@ -1,79 +1,50 @@
-/*
- * Copyright 2020 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.transition
 
-package io.material.catalog.transition;
+import android.content.Context
+import android.graphics.Color
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
+import androidx.activity.OnBackPressedCallback
+import androidx.core.view.ViewCompat
+import androidx.transition.TransitionManager
+import com.google.android.material.transition.MaterialContainerTransform
+import io.material.catalog.R
+import io.material.catalog.feature.DemoFragment
 
-import io.material.catalog.R;
+class TransitionContainerTransformViewDemoFragment : DemoFragment() {
 
-import android.content.Context;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
-import androidx.transition.TransitionManager;
-import com.google.android.material.transition.MaterialContainerTransform;
-import io.material.catalog.feature.DemoFragment;
-
-/** A fragment that displays the View container transform transition demos for the Catalog app. */
-public class TransitionContainerTransformViewDemoFragment extends DemoFragment {
-
-  @Nullable private View startCard;
-  private View startFab;
-
-  private View contactCard;
-  @Nullable private View endView;
-  private View expandedCard;
-
-  private FrameLayout root;
-
-  private ContainerTransformConfigurationHelper configurationHelper;
-
-  @Override
-  public void onAttach(Context context) {
-    super.onAttach(context);
-
-    configurationHelper = new ContainerTransformConfigurationHelper();
+  private lateinit var startCard: View
+  private lateinit var startFab: View
+  private lateinit var contactCard: View
+  private lateinit var endView: View
+  private lateinit var expandedCard: View
+  private lateinit var root: FrameLayout
+  private var configurationHelper: ContainerTransformConfigurationHelper? = null
+  override fun onAttach(context: Context) {
+    super.onAttach(context)
+    configurationHelper = ContainerTransformConfigurationHelper()
   }
 
-  @Override
-  public View onCreateDemoView(
-      LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-    View view =
-        layoutInflater.inflate(
-            R.layout.cat_transition_container_transform_view_fragment, viewGroup, false);
-    root = view.findViewById(R.id.root);
-
-    startFab = view.findViewById(R.id.start_fab);
-    expandedCard = view.findViewById(R.id.expanded_card);
-    contactCard = view.findViewById(R.id.contact_card);
-    return view;
+  override fun onCreateDemoView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    val view = inflater.inflate(R.layout.cat_transition_container_transform_view_fragment, container, false)
+    root = view.findViewById(R.id.root)
+    startFab = view.findViewById(R.id.start_fab)
+    expandedCard = view.findViewById(R.id.expanded_card)
+    contactCard = view.findViewById(R.id.contact_card)
+    return view
   }
 
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle bundle) {
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     addTransitionableTarget(view, R.id.start_fab);
     addTransitionableTarget(view, R.id.single_line_list_item);
     addTransitionableTarget(view, R.id.vertical_card_item);
@@ -82,100 +53,81 @@ public class TransitionContainerTransformViewDemoFragment extends DemoFragment {
     addTransitionableTarget(view, R.id.grid_tall_card_item);
     addTransitionableTarget(view, R.id.expanded_card);
     addTransitionableTarget(view, R.id.contact_card);
-  }
 
-  private void addTransitionableTarget(@NonNull View view, @IdRes int id) {
-    View target = view.findViewById(id);
-    if (target != null) {
-      ViewCompat.setTransitionName(target, String.valueOf(id));
+  }
+  private fun addTransitionableTarget(view: View, id: Int) {
+    view.findViewById<View>(id)?.let {
+      ViewCompat.setTransitionName(it, id.toString())
       if (id == R.id.expanded_card || id == R.id.contact_card) {
-        target.setOnClickListener(this::showStartView);
+        it.setOnClickListener(this::showStartView)
       } else {
-        target.setOnClickListener(this::showEndView);
+        it.setOnClickListener(this::showEndView)
       }
     }
   }
 
-  private void showEndView(View startView) {
-    if (startView.getId() == R.id.start_fab) {
-      this.endView = contactCard;
+  private fun showEndView(startView: View) {
+    if (startView.id == R.id.start_fab) {
+      this.endView = contactCard
     } else {
-      // Save the startView reference as the startCard that triggered the transition in order to
-      // know which card to transition into during the return transition.
-      this.startCard = startView;
-      this.endView = expandedCard;
+      //将 startView 引用保存为触发转换的 startCard，以便知道在返回转换期间要转换到哪张卡。
+      this.startCard = startView
+      this.endView = expandedCard
     }
-
-    // Construct a container transform transition between two views.
-    MaterialContainerTransform transition = buildContainerTransform(true);
-    transition.setStartView(startView);
-    transition.setEndView(endView);
-
-    // Add a single target to stop the container transform from running on both the start
-    // and end view.
-    transition.addTarget(endView);
-
-    // Trigger the container transform transition.
-    TransitionManager.beginDelayedTransition(root, transition);
-    startView.setVisibility(View.INVISIBLE);
-    endView.setVisibility(View.VISIBLE);
-
-    View finalEndView = this.endView;
-
-    requireActivity()
-        .getOnBackPressedDispatcher()
-        .addCallback(
-            this,
-            new OnBackPressedCallback(/* enabled= */ true) {
-              @Override
-              public void handleOnBackPressed() {
-                showStartView(finalEndView);
-                remove();
-              }
-            });
-  }
-
-  private void showStartView(View endView) {
-    View startView = endView.getId() == R.id.contact_card ? startFab : startCard;
-
-    // Construct a container transform transition between two views.
-    MaterialContainerTransform transition = buildContainerTransform(false);
-    transition.setStartView(endView);
-    transition.setEndView(startView);
-
-    // Add a single target to stop the container transform from running on both the start
-    // and end view.
-    transition.addTarget(startView);
-
-    // Trigger the container transform transition.
-    TransitionManager.beginDelayedTransition(root, transition);
-    startView.setVisibility(View.VISIBLE);
-    endView.setVisibility(View.INVISIBLE);
-  }
-
-  @NonNull
-  private MaterialContainerTransform buildContainerTransform(boolean entering) {
-    Context context = requireContext();
-    MaterialContainerTransform transform = new MaterialContainerTransform(context, entering);
-    transform.setScrimColor(Color.TRANSPARENT);
-    transform.setDrawingViewId(root.getId());
-    configurationHelper.configure(transform, entering);
-    return transform;
-  }
-
-  @Override
-  public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
-    menuInflater.inflate(R.menu.configure_menu, menu);
-    super.onCreateOptionsMenu(menu, menuInflater);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem menuItem) {
-    if (menuItem.getItemId() == R.id.configure) {
-      configurationHelper.showConfigurationChooser(
-          requireContext(), dialog -> buildContainerTransform(true));
-      return true;
+    //构造两个视图之间的容器变换过渡。
+    val transition = buildContainerTransform(true).apply {
+      setStartView(startView)
+      endView = this@TransitionContainerTransformViewDemoFragment.endView
+      //添加单个目标以阻止容器变换在开始视图和结束视图上运行。
+      addTarget(this@TransitionContainerTransformViewDemoFragment.endView)
     }
-    return super.onOptionsItemSelected(menuItem);
+    //触发容器转换转换.
+    TransitionManager.beginDelayedTransition(root, transition)
+    startView.visibility = View.INVISIBLE
+    endView.visibility = View.VISIBLE
+    requireActivity().onBackPressedDispatcher.addCallback(this,
+      object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+          showStartView(this@TransitionContainerTransformViewDemoFragment.endView)
+          remove()
+        }
+      })
+  }
+
+  private fun showStartView(endView: View) {
+    val startView = if (endView.id == R.id.contact_card) startFab else startCard
+    val transition = buildContainerTransform(false).apply {
+      setStartView(endView)
+      setEndView(startView)
+      addTarget(startView)
+    }
+    TransitionManager.beginDelayedTransition(root, transition)
+    startView.visibility = View.VISIBLE
+    endView.visibility = View.INVISIBLE
+  }
+
+  private fun buildContainerTransform(entering: Boolean): MaterialContainerTransform {
+    return MaterialContainerTransform(requireContext(), entering).apply {
+      scrimColor = Color.TRANSPARENT
+      drawingViewId = root.id
+      configurationHelper?.configure(this, entering)
+    }
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    inflater.inflate(R.menu.configure_menu, menu)
+    super.onCreateOptionsMenu(menu, inflater)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    if (item.itemId == R.id.configure) {
+      configurationHelper?.showConfigurationChooser(
+        requireContext()
+      ) {
+        buildContainerTransform(true)
+      }
+      return true
+    }
+    return super.onOptionsItemSelected(item)
   }
 }
