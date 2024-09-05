@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2022 The Android Open Source Project
+  ~ Copyright (C) 2024 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -19,13 +19,13 @@
 
 <resources>
 
-  <!-- Generated from token set (md.comp.menu) in context (platform=android, audience=3p). -->
-  <!-- Group: Enabled - Container -->
-  <macro name="m3_comp_menu_container_color">?attr/colorSurfaceContainer</macro>
-  <dimen name="m3_comp_menu_container_elevation">@dimen/m3_sys_elevation_level2</dimen>
+  <!-- Generated from token set (md.comp.button-group.standard.small) in context (platform=android,
+       audience=3p). -->
+  <dimen name="m3_comp_button_group_standard_small_between_space">12dp</dimen>
 
-  <!-- Generated from token set (md.comp.list) in context (platform=android, audience=3p). -->
-  <!-- Group: Enabled - Container -->
-  <macro name="m3_comp_list_list_item_selected_container_color">?attr/colorSecondaryContainer</macro>
+  <!-- Generated from token set (md.comp.button-group.connected.small) in context (platform=android,
+       audience=3p). -->
+  <dimen name="m3_comp_button_group_connected_small_between_space">2dp</dimen>
+  <style name="ShapeAppearance.M3.Comp.ButtonGroup.Connected.Small.Container.Shape" parent="ShapeAppearance.M3.Sys.Shape.Corner.Full"/>
 
 </resources>

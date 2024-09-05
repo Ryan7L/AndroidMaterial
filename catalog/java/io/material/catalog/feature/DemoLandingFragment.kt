@@ -300,7 +300,7 @@ abstract class DemoLandingFragment : DaggerFragment() {
   private fun startDemoActivity(intent: Intent, sharedElement: View?, transitionName: String?) {
     intent.putExtra(DemoActivity.EXTRA_DEMO_TITLE, getString(titleResId))
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && sharedElement != null && transitionName != null) {
+    if ( sharedElement != null && transitionName != null) {
       intent.putExtra(DemoActivity.EXTRA_TRANSITION_NAME, transitionName)
       //设置共享元素过渡并禁用覆盖，以便视图不会显示在系统栏上方
       activity?.let {

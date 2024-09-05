@@ -29,10 +29,6 @@ private val optionList = ImmutableList.of(
 class EdgeToEdgePreference : CatalogPreference(R.string.edge_to_edge_preference_description) {
   private var windowPreferencesManager: WindowPreferencesManager? = null
 
-
-  @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
-  override val isEnabled: Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-
   /**
    * 应用所选选项以在应用程序上生效。
    */

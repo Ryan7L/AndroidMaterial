@@ -69,7 +69,7 @@ abstract class DemoActivity : BaseCatalogActivity() {
    */
   protected open val isShouldSetUpContainerTransform: Boolean
     get() =
-      Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && intent?.getStringExtra(
+       intent?.getStringExtra(
         EXTRA_TRANSITION_NAME
       ) != null
   /**

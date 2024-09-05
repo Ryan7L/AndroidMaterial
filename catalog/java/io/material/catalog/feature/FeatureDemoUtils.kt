@@ -83,8 +83,7 @@ abstract class FeatureDemoUtils {
       // 您可以将 FragmentTransaction 视为一系列对 Fragment 的操作，这些操作会被一起执行。
       // 可以通过 FragmentManager 的 beginTransaction() 方法获取 FragmentTransaction 对象
       val transaction = activity.supportFragmentManager.beginTransaction()
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-        && sharedElement != null && sharedElementName != null
+      if (sharedElement != null && sharedElementName != null
       ) {
         val currentFragment = getCurrentFragment(activity)
         val context = currentFragment?.requireContext()

@@ -26,19 +26,17 @@ abstract class ShapeThemingDemoFragment : DemoFragment() {
   ): View? {
     this.wrappedContext = ContextThemeWrapper(context, shapeTheme)
     val layoutInflater = inflater.cloneInContext(wrappedContext)
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       statusBarColor = activity?.window?.statusBarColor ?: 0
       val value = TypedValue()
       wrappedContext?.theme?.resolveAttribute(R.attr.colorPrimaryDark, value, true)
       activity?.window?.statusBarColor = value.data
-    }
+
     return super.onCreateView(layoutInflater, container, savedInstanceState)
   }
 
   override fun onDestroyView() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       activity?.window?.statusBarColor = statusBarColor
-    }
+
     super.onDestroyView()
   }
 

@@ -34,7 +34,6 @@ class DraggableCardFragment : DemoFragment() {
     cardView = view.findViewById(R.id.draggable_card)
     cardView.accessibilityDelegate = cardDelegate
     containerView.addDraggableChild(cardView)
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return view
     containerView.setViewDragListener(object : ViewDragListener {
       override fun onViewCaptured(view: View, i: Int) {
         cardView.isDragged = true
@@ -52,8 +51,6 @@ class DraggableCardFragment : DemoFragment() {
 
     override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfo) {
       super.onInitializeAccessibilityNodeInfo(host, info)
-      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return
-
       val layoutParams = cardView.layoutParams as CoordinatorLayout.LayoutParams
       val gravity = layoutParams.gravity
       val isOnLeft = (gravity and Gravity.LEFT) == Gravity.LEFT

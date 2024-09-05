@@ -26,8 +26,6 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -203,11 +201,13 @@ public abstract class NavigationBarView extends FrameLayout {
             R.styleable.NavigationBarView_itemTextAppearanceActive);
 
     // Create the menu.
-    this.menu = new NavigationBarMenu(context, this.getClass(), getMaxItemCount());
+    this.menu =
+        new NavigationBarMenu(context, this.getClass(), getMaxItemCount(), isSubMenuSupported());
 
     // Create the menu view.
     menuView = createNavigationBarMenuView(context);
     menuView.setMinimumHeight(getSuggestedMinimumHeight());
+    menuView.setCollapsedMaxItemCount(getMaxItemCount());
 
     presenter.setMenuView(menuView);
     presenter.setId(MENU_PRESENTER_ID);
@@ -432,9 +432,7 @@ public abstract class NavigationBarView extends FrameLayout {
    */
   @Override
   public void setElevation(float elevation) {
-    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-      super.setElevation(elevation);
-    }
+    super.setElevation(elevation);
     MaterialShapeUtils.setElevation(this, elevation);
   }
 
@@ -1150,6 +1148,12 @@ public abstract class NavigationBarView extends FrameLayout {
 
   /** Returns the maximum number of items that can be shown in NavigationBarView. */
   public abstract int getMaxItemCount();
+
+  /** Returns whether or not submenus are supported. */
+  protected boolean isSubMenuSupported() {
+    // TODO: b/352634230 - NavigationRail should support submenus once ready
+    return false;
+  }
 
   /**
    * Returns reference to a newly created {@link NavigationBarMenuView}

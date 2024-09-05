@@ -99,11 +99,8 @@ class TocFragment : DaggerFragment() {
         .setPadding(0, insets.systemWindowInsetTop, 0, 0)
       insets
     }
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       addGridTopDividerVisibilityListener()
-    } else {
-      gridTopDivider.visibility = View.VISIBLE
-    }
+
     val spanCount = calculateGridSpanCount()
     rv.layoutManager = GridLayoutManager(context, spanCount)
     rv.addItemDecoration(
