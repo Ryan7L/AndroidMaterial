@@ -4,6 +4,7 @@ import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import io.material.catalog.a_base.BaseModule
 import io.material.catalog.adaptive.AdaptiveFragment
+import io.material.catalog.adaptive.AdaptiveModule
 import io.material.catalog.animation.AnimationFragmentModule
 import io.material.catalog.application.scope.FragmentScope
 import io.material.catalog.bottomappbar.BottomAppBarModule
@@ -47,7 +48,7 @@ import io.material.catalog.topappbar.TopAppBarModule
 import io.material.catalog.transition.TransitionModule
 
 @dagger.Module(
-  includes = [AdaptiveFragment.Module::class, BottomAppBarModule::class, ButtonModule::class, BottomNavigationModule::class, BottomSheetModule::class, CardModule::class, CarouselModule::class, CheckBoxModule::class, ChipModule::class, ColorModule::class, DatePickerModule::class, DialogModule::class, DividerModule::class, ElevationModule::class, FabModule::class, FontModule::class, MenuModule::class, NavigationDrawerModule::class, NavigationRailModule::class, ProgressIndicatorModule::class, RadioButtonModule::class,
+  includes = [AdaptiveModule::class, BottomAppBarModule::class, ButtonModule::class, BottomNavigationModule::class, BottomSheetModule::class, CardModule::class, CarouselModule::class, CheckBoxModule::class, ChipModule::class, ColorModule::class, DatePickerModule::class, DialogModule::class, DividerModule::class, ElevationModule::class, FabModule::class, FontModule::class, MenuModule::class, NavigationDrawerModule::class, NavigationRailModule::class, ProgressIndicatorModule::class, RadioButtonModule::class,
     SearchFragmentModule::class, ImageViewModule::class, BaseModule::class, LoadingIndicatorModule::class, ShapeThemingModule::class, SideSheetModule::class, SliderModule::class, SwitchModule::class, TabsModule::class, TextFieldModule::class, TimePickerModule::class, TopAppBarModule::class, TransitionModule::class, AnimationFragmentModule::class]
 )
 abstract class TocModule {

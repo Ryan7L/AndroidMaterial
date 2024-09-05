@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import io.material.catalog.R
 import io.material.catalog.musicplayer.MusicPlayerAlbumDemoFragment
 
-private const val TAG = "AdaptiveMusicPlayerAlbumDemoFragment"
 private const val ALBUM_ID_KEY = "album_id_key"
 
 class AdaptiveMusicPlayerAlbumDemoFragment : MusicPlayerAlbumDemoFragment() {
@@ -25,6 +24,8 @@ class AdaptiveMusicPlayerAlbumDemoFragment : MusicPlayerAlbumDemoFragment() {
         }
       }
     }
+     const val TAG = "AdaptiveMusicPlayerAlbumDemoFragment"
+
   }
 
   override fun onCreateView(
