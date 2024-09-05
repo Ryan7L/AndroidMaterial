@@ -1,81 +1,47 @@
-/*
- * Copyright 2021 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.color
 
-package io.material.catalog.color;
-
-import io.material.catalog.R;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import androidx.annotation.AttrRes;
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import com.google.android.material.color.MaterialColors;
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.annotation.AttrRes
+import androidx.annotation.IdRes
+import androidx.annotation.StringRes
+import com.google.android.material.color.MaterialColors
+import io.material.catalog.R
 
 /**
- * A class for the items in a color row. A ColorRow consists of two {@link ColorRoleItem} objects.
- * The left colorRoleItem represents the Container Color and right colorRoleItem represents the
- * Content Color.
+ * 颜色行中项目的类。 ColorRow 由两个 [ColorRoleItem] 对象组成。左侧 colorRoleItem 代表容器颜色，右侧 colorRoleItem 代表内容颜色。
  */
-final class ColorRow {
+class ColorRow(private val colorRoleItemLeft: ColorRoleItem, private val colorRoleItemRight: ColorRoleItem?) {
 
-  @NonNull private final ColorRoleItem colorRoleItemLeft;
-  @Nullable private final ColorRoleItem colorRoleItemRight;
-
-  private View catColorsSchemeRow;
-
-  ColorRow(@NonNull ColorRoleItem colorRoleItemLeft, @Nullable ColorRoleItem colorRoleItemRight) {
-    this.colorRoleItemLeft = colorRoleItemLeft;
-    this.colorRoleItemRight = colorRoleItemRight;
+  private lateinit var catColorsSchemeRow: View
+  private fun bindColorRoleItem(
+    view: View,
+    @IdRes textViewId: Int,
+    @StringRes colorRoleTextResID: Int,
+    @AttrRes colorAttrResId: Int
+  ){
+    val colorRole = view.findViewById<TextView>(textViewId)
+    colorRole.setText(colorRoleTextResID)
+    colorRole.setTextColor(ColorDemoUtils.getTextColor(MaterialColors.getColor(catColorsSchemeRow,colorAttrResId)))
+    colorRole.setBackgroundColor(MaterialColors.getColor(catColorsSchemeRow,colorAttrResId))
   }
-
-  void addTo(@NonNull LayoutInflater layoutInflater, LinearLayout layout) {
-    catColorsSchemeRow =
-        layoutInflater.inflate(R.layout.cat_colors_scheme_row, layout, /* attachToRoot= */ false);
-
+  fun addTo(layoutInflater: LayoutInflater, layout: LinearLayout){
+    catColorsSchemeRow = layoutInflater.inflate(R.layout.cat_colors_scheme_row,layout,false)
     bindColorRoleItem(
-        catColorsSchemeRow,
-        R.id.cat_color_role_left,
-        colorRoleItemLeft.getColorRoleStringResId(),
-        colorRoleItemLeft.getColorRoleAttrResId());
-    if (colorRoleItemRight != null) {
+      catColorsSchemeRow,
+      R.id.cat_color_role_left,
+      colorRoleItemLeft.colorRoleStringResId,
+      colorRoleItemLeft.colorRoleAttrResId
+    )
+    colorRoleItemRight?.let {
       bindColorRoleItem(
-          catColorsSchemeRow,
-          R.id.cat_color_role_right,
-          colorRoleItemRight.getColorRoleStringResId(),
-          colorRoleItemRight.getColorRoleAttrResId());
+        catColorsSchemeRow,
+        R.id.cat_color_role_right,
+        it.colorRoleStringResId,
+        it.colorRoleAttrResId)
     }
-
-    layout.addView(catColorsSchemeRow);
-  }
-
-  private void bindColorRoleItem(
-      View view,
-      @IdRes int textViewId,
-      @StringRes int colorRoleTextResID,
-      @AttrRes int colorAttrResId) {
-    TextView colorRole = view.findViewById(textViewId);
-
-    colorRole.setText(colorRoleTextResID);
-    colorRole.setTextColor(
-        ColorDemoUtils.getTextColor(MaterialColors.getColor(catColorsSchemeRow, colorAttrResId)));
-    colorRole.setBackgroundColor(MaterialColors.getColor(catColorsSchemeRow, colorAttrResId));
+    layout.addView(catColorsSchemeRow)
   }
 }

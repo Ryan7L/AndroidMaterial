@@ -14,6 +14,7 @@ import io.material.catalog.card.CardModule
 import io.material.catalog.carousel.CarouselModule
 import io.material.catalog.checkbox.CheckBoxModule
 import io.material.catalog.chip.ChipModule
+import io.material.catalog.color.ColorModule
 import io.material.catalog.color.ColorsFragment
 import io.material.catalog.datepicker.DatePickerModule
 import io.material.catalog.dialog.DialogModule
@@ -46,7 +47,7 @@ import io.material.catalog.topappbar.TopAppBarModule
 import io.material.catalog.transition.TransitionModule
 
 @dagger.Module(
-  includes = [AdaptiveFragment.Module::class, BottomAppBarModule::class, ButtonModule::class, BottomNavigationModule::class, BottomSheetModule::class, CardModule::class, CarouselModule::class, CheckBoxModule::class, ChipModule::class, ColorsFragment.Module::class, DatePickerModule::class, DialogModule::class, DividerModule::class, ElevationModule::class, FabModule::class, FontModule::class, MenuModule::class, NavigationDrawerModule::class, NavigationRailModule::class, ProgressIndicatorModule::class, RadioButtonModule::class,
+  includes = [AdaptiveFragment.Module::class, BottomAppBarModule::class, ButtonModule::class, BottomNavigationModule::class, BottomSheetModule::class, CardModule::class, CarouselModule::class, CheckBoxModule::class, ChipModule::class, ColorModule::class, DatePickerModule::class, DialogModule::class, DividerModule::class, ElevationModule::class, FabModule::class, FontModule::class, MenuModule::class, NavigationDrawerModule::class, NavigationRailModule::class, ProgressIndicatorModule::class, RadioButtonModule::class,
     SearchFragmentModule::class, ImageViewModule::class, BaseModule::class, LoadingIndicatorModule::class, ShapeThemingModule::class, SideSheetModule::class, SliderModule::class, SwitchModule::class, TabsModule::class, TextFieldModule::class, TimePickerModule::class, TopAppBarModule::class, TransitionModule::class, AnimationFragmentModule::class]
 )
 abstract class TocModule {

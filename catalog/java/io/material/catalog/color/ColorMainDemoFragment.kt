@@ -1,178 +1,164 @@
-/*
- * Copyright 2021 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.color
 
-package io.material.catalog.color;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import io.material.catalog.R
+import io.material.catalog.feature.DemoFragment
 
-import io.material.catalog.R;
+class ColorMainDemoFragment : DemoFragment() {
+  private lateinit var colorsLayoutSurfaces: LinearLayout
+  private lateinit var colorsLayoutContent: LinearLayout
+  private lateinit var colorsLayoutUtility: LinearLayout
+  private val colorRolesSurfaces = listOf(
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_background, android.R.attr.colorBackground),
+      ColorRoleItem(R.string.cat_color_role_on_background, R.attr.colorOnBackground)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_surface, R.attr.colorSurface),
+      ColorRoleItem(R.string.cat_color_role_on_surface, R.attr.colorOnSurface)
+    ),
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import io.material.catalog.feature.DemoFragment;
-import java.util.Arrays;
-import java.util.List;
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_surface_variant, R.attr.colorSurfaceVariant),
+      ColorRoleItem(R.string.cat_color_role_on_surface_variant, R.attr.colorOnSurfaceVariant)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_inverse_surface, R.attr.colorSurfaceInverse),
+      ColorRoleItem(R.string.cat_color_role_inverse_on_surface, R.attr.colorOnSurfaceInverse)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_surface_bright, R.attr.colorSurfaceBright),
+      ColorRoleItem(R.string.cat_color_role_surface_dim, R.attr.colorSurfaceDim)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_surface_container_low, R.attr.colorSurfaceContainerLow),
+      ColorRoleItem(
+        R.string.cat_color_role_surface_container_high,
+        R.attr.colorSurfaceContainerHigh
+      )
+    ),
+    ColorRow(
+      ColorRoleItem(
+        R.string.cat_color_role_surface_container_lowest,
+        R.attr.colorSurfaceContainerLowest
+      ),
+      ColorRoleItem(
+        R.string.cat_color_role_surface_container_highest,
+        R.attr.colorSurfaceContainerHighest
+      )
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_surface_container, R.attr.colorSurfaceContainer),
+      null
+    )
+  )
+  private val colorsRolesContent = listOf(
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_primary, R.attr.colorPrimary),
+      ColorRoleItem(R.string.cat_color_role_on_primary, R.attr.colorOnPrimary)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_primary_container, R.attr.colorPrimaryContainer),
+      ColorRoleItem(R.string.cat_color_role_on_primary_container, R.attr.colorOnPrimaryContainer)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_primary_fixed, R.attr.colorPrimaryFixed),
+      ColorRoleItem(R.string.cat_color_role_primary_fixed_dim, R.attr.colorPrimaryFixedDim)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_on_primary_fixed, R.attr.colorOnPrimaryFixed),
+      ColorRoleItem(
+        R.string.cat_color_role_on_primary_fixed_variant,
+        R.attr.colorOnPrimaryFixedVariant
+      )
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_inverse_primary, R.attr.colorPrimaryInverse),
+      null
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_secondary, R.attr.colorSecondary),
+      ColorRoleItem(R.string.cat_color_role_on_secondary, R.attr.colorOnSecondary)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_secondary_container, R.attr.colorSecondaryContainer),
+      ColorRoleItem(
+        R.string.cat_color_role_on_secondary_container,
+        R.attr.colorOnSecondaryContainer
+      )
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_secondary_fixed, R.attr.colorSecondaryFixed),
+      ColorRoleItem(R.string.cat_color_role_secondary_fixed_dim, R.attr.colorSecondaryFixedDim)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_on_secondary_fixed, R.attr.colorOnSecondaryFixed),
 
-/** A placeholder fragment that displays the main Color demo for the Catalog app. */
-public final class ColorMainDemoFragment extends DemoFragment {
+      ColorRoleItem(
+        R.string.cat_color_role_on_secondary_fixed_variant,
+        R.attr.colorOnSecondaryFixedVariant
+      )
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_tertiary, R.attr.colorTertiary),
+      ColorRoleItem(R.string.cat_color_role_on_tertiary, R.attr.colorOnTertiary)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_tertiary_container, R.attr.colorTertiaryContainer),
+      ColorRoleItem(R.string.cat_color_role_on_tertiary_container, R.attr.colorOnTertiaryContainer)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_tertiary_fixed, R.attr.colorTertiaryFixed),
+      ColorRoleItem(R.string.cat_color_role_tertiary_fixed_dim, R.attr.colorTertiaryFixedDim)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_on_tertiary_fixed, R.attr.colorOnTertiaryFixed),
+      ColorRoleItem(
+        R.string.cat_color_role_on_tertiary_fixed_variant,
+        R.attr.colorOnTertiaryFixedVariant
+      )
+    )
+  )
+  private val colorRolesUtility = listOf(
 
-  private LinearLayout colorsLayoutSurfaces;
-  private LinearLayout colorsLayoutContent;
-  private LinearLayout colorsLayoutUtility;
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_error, R.attr.colorError),
+      ColorRoleItem(R.string.cat_color_role_on_error, R.attr.colorOnError)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_error_container, R.attr.colorErrorContainer),
+      ColorRoleItem(R.string.cat_color_role_on_error_container, R.attr.colorOnErrorContainer)
+    ),
+    ColorRow(
+      ColorRoleItem(R.string.cat_color_role_outline, R.attr.colorOutline),
+      ColorRoleItem(R.string.cat_color_role_outline_variant, R.attr.colorOutlineVariant)
+    )
+  )
 
-  @Nullable
-  @Override
-  public View onCreateDemoView(
-      @NonNull LayoutInflater layoutInflater,
-      @Nullable ViewGroup viewGroup,
-      @Nullable Bundle bundle) {
-    View view =
-        layoutInflater.inflate(R.layout.cat_colors_fragment, viewGroup, false/* attachToRoot= */ );
 
-    colorsLayoutSurfaces = view.findViewById(R.id.cat_colors_surfaces);
-    colorsLayoutContent = view.findViewById(R.id.cat_colors_content);
-    colorsLayoutUtility = view.findViewById(R.id.cat_colors_utility);
-
-    for (ColorRow colorRow : getColorRolesSurfaces()) {
-      colorRow.addTo(layoutInflater, colorsLayoutSurfaces);
+  override fun onCreateDemoView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    val view = inflater.inflate(R.layout.cat_colors_fragment,container,false)
+    colorsLayoutSurfaces = view.findViewById(R.id.cat_colors_surfaces)
+    colorsLayoutContent = view.findViewById(R.id.cat_colors_content)
+    colorsLayoutUtility = view.findViewById(R.id.cat_colors_utility)
+    colorRolesSurfaces.forEach {
+      it.addTo(inflater,colorsLayoutSurfaces)
+    }
+    colorsRolesContent.forEach {
+      it.addTo(inflater,colorsLayoutContent)
     }
 
-    for (ColorRow colorRow : getColorRolesContent()) {
-      colorRow.addTo(layoutInflater, colorsLayoutContent);
+    colorRolesUtility.forEach {
+      it.addTo(inflater,colorsLayoutUtility)
     }
-
-    for (ColorRow colorRow : getColorRolesUtility()) {
-      colorRow.addTo(layoutInflater, colorsLayoutUtility);
-    }
-
-    return view;
-  }
-
-  private List<ColorRow> getColorRolesSurfaces() {
-    return Arrays.asList(
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_background, android.R.attr.colorBackground),
-            new ColorRoleItem(R.string.cat_color_role_on_background, R.attr.colorOnBackground)),
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_surface, R.attr.colorSurface),
-            new ColorRoleItem(R.string.cat_color_role_on_surface, R.attr.colorOnSurface)),
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_surface_variant, R.attr.colorSurfaceVariant),
-            new ColorRoleItem(
-                R.string.cat_color_role_on_surface_variant, R.attr.colorOnSurfaceVariant)),
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_inverse_surface, R.attr.colorSurfaceInverse),
-            new ColorRoleItem(
-                R.string.cat_color_role_inverse_on_surface, R.attr.colorOnSurfaceInverse)),
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_surface_bright, R.attr.colorSurfaceBright),
-            new ColorRoleItem(R.string.cat_color_role_surface_dim, R.attr.colorSurfaceDim)),
-        new ColorRow(
-            new ColorRoleItem(
-                R.string.cat_color_role_surface_container_low, R.attr.colorSurfaceContainerLow),
-            new ColorRoleItem(
-                R.string.cat_color_role_surface_container_high, R.attr.colorSurfaceContainerHigh)),
-        new ColorRow(
-            new ColorRoleItem(
-                R.string.cat_color_role_surface_container_lowest,
-                R.attr.colorSurfaceContainerLowest),
-            new ColorRoleItem(
-                R.string.cat_color_role_surface_container_highest,
-                R.attr.colorSurfaceContainerHighest)),
-        new ColorRow(
-            new ColorRoleItem(
-                R.string.cat_color_role_surface_container, R.attr.colorSurfaceContainer),
-            null));
-  }
-
-  private List<ColorRow> getColorRolesContent() {
-    return Arrays.asList(
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_primary, R.attr.colorPrimary),
-            new ColorRoleItem(R.string.cat_color_role_on_primary, R.attr.colorOnPrimary)),
-        new ColorRow(
-            new ColorRoleItem(
-                R.string.cat_color_role_primary_container, R.attr.colorPrimaryContainer),
-            new ColorRoleItem(
-                R.string.cat_color_role_on_primary_container, R.attr.colorOnPrimaryContainer)),
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_primary_fixed, R.attr.colorPrimaryFixed),
-            new ColorRoleItem(
-                R.string.cat_color_role_primary_fixed_dim, R.attr.colorPrimaryFixedDim)),
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_on_primary_fixed, R.attr.colorOnPrimaryFixed),
-            new ColorRoleItem(
-                R.string.cat_color_role_on_primary_fixed_variant,
-                R.attr.colorOnPrimaryFixedVariant)),
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_inverse_primary, R.attr.colorPrimaryInverse),
-            /* colorRoleItemRight= */ null),
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_secondary, R.attr.colorSecondary),
-            new ColorRoleItem(R.string.cat_color_role_on_secondary, R.attr.colorOnSecondary)),
-        new ColorRow(
-            new ColorRoleItem(
-                R.string.cat_color_role_secondary_container, R.attr.colorSecondaryContainer),
-            new ColorRoleItem(
-                R.string.cat_color_role_on_secondary_container, R.attr.colorOnSecondaryContainer)),
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_secondary_fixed, R.attr.colorSecondaryFixed),
-            new ColorRoleItem(
-                R.string.cat_color_role_secondary_fixed_dim, R.attr.colorSecondaryFixedDim)),
-        new ColorRow(
-            new ColorRoleItem(
-                R.string.cat_color_role_on_secondary_fixed, R.attr.colorOnSecondaryFixed),
-            new ColorRoleItem(
-                R.string.cat_color_role_on_secondary_fixed_variant,
-                R.attr.colorOnSecondaryFixedVariant)),
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_tertiary, R.attr.colorTertiary),
-            new ColorRoleItem(R.string.cat_color_role_on_tertiary, R.attr.colorOnTertiary)),
-        new ColorRow(
-            new ColorRoleItem(
-                R.string.cat_color_role_tertiary_container, R.attr.colorTertiaryContainer),
-            new ColorRoleItem(
-                R.string.cat_color_role_on_tertiary_container, R.attr.colorOnTertiaryContainer)),
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_tertiary_fixed, R.attr.colorTertiaryFixed),
-            new ColorRoleItem(
-                R.string.cat_color_role_tertiary_fixed_dim, R.attr.colorTertiaryFixedDim)),
-        new ColorRow(
-            new ColorRoleItem(
-                R.string.cat_color_role_on_tertiary_fixed, R.attr.colorOnTertiaryFixed),
-            new ColorRoleItem(
-                R.string.cat_color_role_on_tertiary_fixed_variant,
-                R.attr.colorOnTertiaryFixedVariant)));
-  }
-
-  private List<ColorRow> getColorRolesUtility() {
-    return Arrays.asList(
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_error, R.attr.colorError),
-            new ColorRoleItem(R.string.cat_color_role_on_error, R.attr.colorOnError)),
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_error_container, R.attr.colorErrorContainer),
-            new ColorRoleItem(
-                R.string.cat_color_role_on_error_container, R.attr.colorOnErrorContainer)),
-        new ColorRow(
-            new ColorRoleItem(R.string.cat_color_role_outline, R.attr.colorOutline),
-            new ColorRoleItem(
-                R.string.cat_color_role_outline_variant, R.attr.colorOutlineVariant)));
+    return view
   }
 }

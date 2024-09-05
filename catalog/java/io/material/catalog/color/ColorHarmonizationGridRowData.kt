@@ -1,79 +1,43 @@
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package io.material.catalog.color
 
-package io.material.catalog.color;
+import androidx.annotation.ArrayRes
+import androidx.annotation.ColorRes
+import androidx.annotation.IdRes
 
-import androidx.annotation.ArrayRes;
-import androidx.annotation.ColorRes;
-import androidx.annotation.IdRes;
+class ColorHarmonizationGridRowData private constructor(
+  @IdRes val leftLayoutId: Int,
+  @IdRes val rightLayoutId: Int,
+  @ArrayRes val colorNameIds: Int,
+) {
+  @ColorRes var colorResId: Int = 0
+  var colorAttributeResIds: IntArray = intArrayOf()
+  constructor(leftLayoutId: Int, rightLayoutId: Int, @ColorRes colorResId: Int, @ArrayRes colorNameIds: Int) : this(leftLayoutId, rightLayoutId, colorNameIds){
+    this.colorResId = colorResId
+  }
+  constructor(leftLayoutId: Int, rightLayoutId: Int, colorAttributeResIds: IntArray, @ArrayRes colorNameIds: Int) : this(leftLayoutId, rightLayoutId,colorNameIds){
+    this.colorAttributeResIds = colorAttributeResIds
+  }
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (javaClass != other?.javaClass) return false
 
-/** A class that provides data for a row in the Color Harmonization demo grid. */
-final class ColorHarmonizationGridRowData {
+    other as ColorHarmonizationGridRowData
 
-  @IdRes private final int leftLayoutId;
-  @IdRes private final int rightLayoutId;
-  @ColorRes private final int colorResId;
-  @ArrayRes private final int colorNameIds;
-  private final int[] colorAttributeResIds;
+    if (leftLayoutId != other.leftLayoutId) return false
+    if (rightLayoutId != other.rightLayoutId) return false
+    if (colorResId != other.colorResId) return false
+    if (colorNameIds != other.colorNameIds) return false
+    if (!colorAttributeResIds.contentEquals(other.colorAttributeResIds)) return false
 
-  ColorHarmonizationGridRowData(
-      @IdRes int leftLayoutId,
-      @IdRes int rightLayoutId,
-      @ColorRes int colorResId,
-      @ArrayRes int colorNameIds) {
-    this.leftLayoutId = leftLayoutId;
-    this.rightLayoutId = rightLayoutId;
-    this.colorResId = colorResId;
-    this.colorAttributeResIds = new int[] {};
-    this.colorNameIds = colorNameIds;
+    return true
   }
 
-  ColorHarmonizationGridRowData(
-      @IdRes int leftLayoutId,
-      @IdRes int rightLayoutId,
-      int[] colorAttributeResIds,
-      @ArrayRes int colorNameIds) {
-    this.leftLayoutId = leftLayoutId;
-    this.rightLayoutId = rightLayoutId;
-    this.colorResId = 0;
-    this.colorAttributeResIds = colorAttributeResIds;
-    this.colorNameIds = colorNameIds;
-  }
-
-  @IdRes
-  int getLeftLayoutId() {
-    return leftLayoutId;
-  }
-
-  @IdRes
-  int getRightLayoutId() {
-    return rightLayoutId;
-  }
-
-  @ColorRes
-  int getColorResId() {
-    return colorResId;
-  }
-
-  @ArrayRes
-  int getColorNameIds() {
-    return colorNameIds;
-  }
-
-  int[] getColorAttributeResIds() {
-    return colorAttributeResIds;
+  override fun hashCode(): Int {
+    var result = leftLayoutId
+    result = 31 * result + rightLayoutId
+    result = 31 * result + colorResId
+    result = 31 * result + colorNameIds
+    result = 31 * result + colorAttributeResIds.contentHashCode()
+    return result
   }
 }
