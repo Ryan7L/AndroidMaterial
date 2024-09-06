@@ -42,22 +42,6 @@ class ButtonGroupDemoFragment : DemoFragment() {
     }
     return view
   }
-//  for (i in 0 until it.childCount) {
-//    val inset = getInsetForOrientation(orientation)
-//    val button = it.getChildAt(i) as MaterialButton
-//    button.insetBottom = inset
-//    button.insetTop = inset
-//    adjustParams(button.layoutParams, orientation)
-//  }
-//  private fun getInsetForOrientation(orientation: Int): Int {
-//    return if (orientation == MaterialButtonGroup.VERTICAL) 0 else defaultInset
-//  }
-
-//  private fun adjustParams(layoutParams: ViewGroup.LayoutParams, orientation: Int) {
-//    layoutParams.width =
-//      if (orientation == MaterialButtonGroup.VERTICAL) ViewGroup.LayoutParams.MATCH_PARENT else ViewGroup.LayoutParams.WRAP_CONTENT
-//  }
-
   private val iconOnlyButtonGroupContent = R.layout.cat_button_group_content_icon_only
 
   private val labelOnlyButtonGroupContent = R.layout.cat_button_group_content_label_only
