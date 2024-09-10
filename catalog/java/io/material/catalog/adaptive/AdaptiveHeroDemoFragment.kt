@@ -23,31 +23,33 @@ class AdaptiveHeroDemoFragment : Fragment() {
     val sideRv = view.findViewById<RecyclerView>(R.id.hero_side_content)
     sideRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     sideRv.adapter = HeroAdapter()
-    ViewCompat.setNestedScrollingEnabled(sideRv,false)
+    ViewCompat.setNestedScrollingEnabled(sideRv, false)
     val constraintLayout = view.findViewById<ConstraintLayout>(R.id.hero_constraint_layout)
     val smallLayout = getSmallLayout(constraintLayout)
     val mediumLayout = getMediumLayout(smallLayout)
     val largeLayout = getLargeLayout(mediumLayout)
     val screenWidth = resources.configuration.screenWidthDp
-    if (screenWidth < AdaptiveUtils.MEDIUM_SCREEN_WIDTH_SIZE){
+    if (screenWidth < AdaptiveUtils.MEDIUM_SCREEN_WIDTH_SIZE) {
       smallLayout.applyTo(constraintLayout)
-    }else if (screenWidth < AdaptiveUtils.LARGE_SCREEN_WIDTH_SIZE){
+    } else if (screenWidth < AdaptiveUtils.LARGE_SCREEN_WIDTH_SIZE) {
       mediumLayout.applyTo(constraintLayout)
-    }else{
+    } else {
       largeLayout.applyTo(constraintLayout)
     }
     return view
   }
 
-  private fun getSmallLayout(constraintLayout: ConstraintLayout): ConstraintSet{
+  private fun getSmallLayout(constraintLayout: ConstraintLayout): ConstraintSet {
     return ConstraintSet().apply {
       clone(constraintLayout)
     }
   }
-  private fun getMediumLayout(smallLayout: ConstraintSet): ConstraintSet{
+
+  private fun getMediumLayout(smallLayout: ConstraintSet): ConstraintSet {
     val marginHorizontal = resources.getDimensionPixelOffset(R.dimen.cat_adaptive_hero_margin)
     val noMargin = resources.getDimensionPixelOffset(R.dimen.cat_adaptive_margin_none)
-    val marginHorizontalAdditional = resources.getDimensionPixelOffset(R.dimen.cat_adaptive_hero_margin_horizontal_additional)
+    val marginHorizontalAdditional =
+      resources.getDimensionPixelOffset(R.dimen.cat_adaptive_hero_margin_horizontal_additional)
     return ConstraintSet().apply {
       clone(smallLayout)
       connect(
@@ -60,7 +62,8 @@ class AdaptiveHeroDemoFragment : Fragment() {
         R.id.hero_main_content,
         ConstraintSet.END,
         R.id.hero_side_content_container,
-        ConstraintSet.START)
+        ConstraintSet.START
+      )
       connect(
         R.id.hero_main_content,
         ConstraintSet.BOTTOM,
@@ -90,7 +93,8 @@ class AdaptiveHeroDemoFragment : Fragment() {
       setMargin(R.id.hero_side_content_container, ConstraintSet.END, marginHorizontalAdditional)
     }
   }
-  private fun getLargeLayout(mediumLayout: ConstraintSet): ConstraintSet{
+
+  private fun getLargeLayout(mediumLayout: ConstraintSet): ConstraintSet {
     val noMargin = resources.getDimensionPixelOffset(R.dimen.cat_adaptive_margin_none)
     val marginHorizontal = resources.getDimensionPixelOffset(R.dimen.cat_adaptive_hero_margin)
     return ConstraintSet().apply {
@@ -121,6 +125,7 @@ class AdaptiveHeroDemoFragment : Fragment() {
       setMargin(R.id.hero_top_content, ConstraintSet.END, marginHorizontal)
     }
   }
+
   class HeroAdapter :
     RecyclerView.Adapter<HeroViewHolder>() {
 

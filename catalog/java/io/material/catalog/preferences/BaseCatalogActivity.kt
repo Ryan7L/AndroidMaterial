@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import dagger.android.AndroidInjection
-import dagger.android.AndroidInjectionKey
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
 private const val TAG = "BaseCatalogActivity"
+
 open class BaseCatalogActivity : AppCompatActivity(), HasAndroidInjector {
-  @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
+  @Inject
+  lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
   override fun onCreate(savedInstanceState: Bundle?) {
     safeInject()

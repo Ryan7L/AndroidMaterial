@@ -27,21 +27,24 @@ class AdaptiveFeedDemoFragment : Fragment() {
     val view = inflater.inflate(R.layout.cat_adaptive_feed_fragment, container, false)
     fold = view.findViewById(R.id.fold)
     val smallRv = view.findViewById<RecyclerView>(R.id.small_content_list)
-    setUpContentRv(smallRv,true,15)
+    setUpContentRv(smallRv, true, 15)
     val largeRv = view.findViewById<RecyclerView>(R.id.large_content_list)
-    setUpContentRv(largeRv,false,5)
+    setUpContentRv(largeRv, false, 5)
     constraintLayout = view.findViewById(R.id.feed_constraint_layout)
     closedLayout = ConstraintSet()
     closedLayout.clone(constraintLayout)
     return view
   }
+
   private fun setUpContentRv(
     rv: RecyclerView, isSmallContent: Boolean, itemCount: Int
   ) {
-    rv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-    rv.adapter = FeedAdapter(if (isSmallContent) R.layout.cat_adaptive_feed_small_item else
-    R.layout.cat_adaptive_feed_large_item,itemCount)
-    ViewCompat.setNestedScrollingEnabled(rv,false)
+    rv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+    rv.adapter = FeedAdapter(
+      if (isSmallContent) R.layout.cat_adaptive_feed_small_item else
+        R.layout.cat_adaptive_feed_large_item, itemCount
+    )
+    ViewCompat.setNestedScrollingEnabled(rv, false)
   }
 
   private fun getOpenLayout(closedLayout: ConstraintSet, foldWidth: Int): ConstraintSet {

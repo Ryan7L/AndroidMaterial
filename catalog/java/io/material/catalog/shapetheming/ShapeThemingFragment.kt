@@ -11,7 +11,7 @@ import io.material.catalog.feature.Demo
 import io.material.catalog.feature.DemoLandingFragment
 import io.material.catalog.feature.FeatureDemo
 
-class ShapeThemingFragment: DemoLandingFragment() {
+class ShapeThemingFragment : DemoLandingFragment() {
   /**
    * ActionBar 或 ToolBar 的标题的资源ID
    */
@@ -49,12 +49,14 @@ class ShapeThemingFragment: DemoLandingFragment() {
 
     )
 }
+
 @dagger.Module
-abstract class ShapeThemingModule{
+abstract class ShapeThemingModule {
   @FragmentScope
   @ContributesAndroidInjector
   abstract fun contributeInjector(): ShapeThemingFragment
-  companion object{
+
+  companion object {
     @JvmStatic
     @IntoSet
     @ActivityScope

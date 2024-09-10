@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SwitchCompat
 import com.google.android.material.slider.RangeSlider
-import com.google.android.material.slider.Slider
 import io.material.catalog.R
 import io.material.catalog.feature.DemoFragment
 

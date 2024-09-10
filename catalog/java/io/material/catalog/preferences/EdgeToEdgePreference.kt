@@ -1,8 +1,6 @@
 package io.material.catalog.preferences
 
 import android.content.Context
-import android.os.Build
-import androidx.annotation.ChecksSdkIntAtLeast
 import com.google.common.collect.ImmutableList
 import io.material.catalog.R
 import io.material.catalog.windowpreferences.WindowPreferencesManager

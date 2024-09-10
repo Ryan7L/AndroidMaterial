@@ -54,16 +54,18 @@ class TopAppBarCollapsingMultilineDemoFragment : DemoFragment() {
     return view
   }
 
-  @Deprecated("Deprecated in Java", ReplaceWith(
+  @Deprecated(
+    "Deprecated in Java", ReplaceWith(
       "@Suppress(\"DEPRECATION\") super.onCreateOptionsMenu(menu, inflater)",
       "io.material.catalog.feature.DemoFragment"
-  )
+    )
   )
   override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
     inflater.inflate(R.menu.cat_topappbar_menu_maxlines, menu)
     @Suppress("DEPRECATION")
     super.onCreateOptionsMenu(menu, inflater)
   }
+
   @Deprecated("Deprecated in Java")
   override fun onPrepareOptionsMenu(menu: Menu) {
     @Suppress("DEPRECATION")
@@ -74,11 +76,11 @@ class TopAppBarCollapsingMultilineDemoFragment : DemoFragment() {
     linesMap?.forEach { key, value ->
       val item = menu.findItem(key)
       item.title = getString(R.string.menu_max_lines, value).let {
-        if (maxLines == value){
+        if (maxLines == value) {
           val spannable = SpannableString(it)
-          spannable.setSpan(ForegroundColorSpan(colorPrimary),0,it.length,0)
+          spannable.setSpan(ForegroundColorSpan(colorPrimary), 0, it.length, 0)
           spannable
-        }else{
+        } else {
           it
         }
       }

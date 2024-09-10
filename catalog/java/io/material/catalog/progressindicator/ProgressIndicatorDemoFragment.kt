@@ -26,8 +26,8 @@ abstract class ProgressIndicatorDemoFragment : DemoFragment() {
     return view
   }
 
-  open fun initDemoContents(view: View){}
-  open fun initDemoControls(view: View){}
+  open fun initDemoContents(view: View) {}
+  open fun initDemoControls(view: View) {}
 
   @get:LayoutRes
   abstract val progressIndicatorContentLayout: Int

@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import io.material.catalog.R
 import io.material.catalog.feature.DemoFragment
 
-class RadioButtonMainDemoFragment: DemoFragment() {
+class RadioButtonMainDemoFragment : DemoFragment() {
   override fun onCreateDemoView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    return inflater.inflate(R.layout.cat_radiobutton,container,false)
+    return inflater.inflate(R.layout.cat_radiobutton, container, false)
   }
 }

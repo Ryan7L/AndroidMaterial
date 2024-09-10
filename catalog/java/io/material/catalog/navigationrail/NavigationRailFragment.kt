@@ -11,7 +11,7 @@ import io.material.catalog.feature.Demo
 import io.material.catalog.feature.DemoLandingFragment
 import io.material.catalog.feature.FeatureDemo
 
-class NavigationRailFragment: DemoLandingFragment() {
+class NavigationRailFragment : DemoLandingFragment() {
   /**
    * ActionBar 或 ToolBar 的标题的资源ID
    */
@@ -35,22 +35,24 @@ class NavigationRailFragment: DemoLandingFragment() {
 
   override val additionalDemos: List<Demo>
     get() = listOf(
-      object : Demo(R.string.cat_navigation_rail_additional_controls_demo_title){
+      object : Demo(R.string.cat_navigation_rail_additional_controls_demo_title) {
         override val fragment: Fragment
           get() = NavigationRailDemoControlsFragment()
       },
-      object : Demo(R.string.cat_navigation_rail_animated_demo_title){
+      object : Demo(R.string.cat_navigation_rail_animated_demo_title) {
         override val fragment: Fragment
           get() = NavigationRailAnimatedDemoFragment()
       }
     )
 }
+
 @dagger.Module
-abstract class NavigationRailModule{
+abstract class NavigationRailModule {
   @FragmentScope
   @ContributesAndroidInjector
   abstract fun contributeInjector(): NavigationRailFragment
-  companion object{
+
+  companion object {
     @JvmStatic
     @Provides
     @IntoSet

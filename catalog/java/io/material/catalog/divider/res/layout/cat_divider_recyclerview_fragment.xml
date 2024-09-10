@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2021 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,25 +25,27 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
-    android:textAppearance="?attr/textAppearanceTitleLarge"
-    android:text="@string/cat_divider_item_decoration_horizontal" />
+    android:text="@string/cat_divider_item_decoration_horizontal"
+    android:textAppearance="?attr/textAppearanceTitleLarge" />
+
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/divider_recyclerview_horizontal"
-    android:layout_marginBottom="16dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_width="match_parent" />
+    android:layout_marginBottom="16dp" />
 
   <!-- Vertical orientation dividers. -->
   <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
-    android:textAppearance="?attr/textAppearanceTitleLarge"
-    android:text="@string/cat_divider_item_decoration_vertical" />
+    android:text="@string/cat_divider_item_decoration_vertical"
+    android:textAppearance="?attr/textAppearanceTitleLarge" />
+
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/divider_recyclerview_vertical"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:nestedScrollingEnabled="false"
-    android:layout_marginBottom="48dp" />
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="48dp"
+    android:nestedScrollingEnabled="false" />
 </LinearLayout>

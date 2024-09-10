@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2019 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,18 +14,17 @@
   limitations under the License.
   -->
 
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="32dp"
-    android:padding="16dp"
-    android:minHeight="200dp">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_margin="32dp"
+  android:minHeight="200dp"
+  android:padding="16dp">
 
   <TextView
-      android:id="@+id/translation_z_label"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:includeFontPadding="false"/>
+    android:id="@+id/translation_z_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:includeFontPadding="false" />
 </FrameLayout>

@@ -33,7 +33,7 @@ class TabsViewPagerDemoFragment : DemoFragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-   val view = inflater.inflate(R.layout.cat_tabs_viewpager_fragment, container, false)
+    val view = inflater.inflate(R.layout.cat_tabs_viewpager_fragment, container, false)
     initViews(view)
     return view
   }
@@ -58,11 +58,11 @@ class TabsViewPagerDemoFragment : DemoFragment() {
     }
     val labelToggle = view.findViewById<SwitchCompat>(R.id.toggle_labels_switch)
     labelToggle.setOnCheckedChangeListener { buttonView, isChecked ->
-      if (isChecked){
+      if (isChecked) {
         tabLayouts.forEach {
           setLabelVisibility(it, TabLayout.TAB_LABEL_VISIBILITY_LABELED)
         }
-      }else{
+      } else {
         tabLayouts.forEach {
           setLabelVisibility(it, TabLayout.TAB_LABEL_VISIBILITY_UNLABELED)
         }
@@ -78,15 +78,18 @@ class TabsViewPagerDemoFragment : DemoFragment() {
       setAllTabLayoutGravity(TabLayout.GRAVITY_CENTER)
     }
 
-    val tabAnimationModeLinearButton = view.findViewById<RadioButton>(R.id.tabs_animation_mode_linear_button)
+    val tabAnimationModeLinearButton =
+      view.findViewById<RadioButton>(R.id.tabs_animation_mode_linear_button)
     tabAnimationModeLinearButton.setOnClickListener {
       setAllTabAnimationMode(TabLayout.INDICATOR_ANIMATION_MODE_LINEAR)
     }
-    val tabAnimationModeElasticButton = view.findViewById<RadioButton>(R.id.tabs_animation_mode_elastic_button)
+    val tabAnimationModeElasticButton =
+      view.findViewById<RadioButton>(R.id.tabs_animation_mode_elastic_button)
     tabAnimationModeElasticButton.setOnClickListener {
       setAllTabAnimationMode(TabLayout.INDICATOR_ANIMATION_MODE_ELASTIC)
     }
-    val tabAnimationModeFadeButton = view.findViewById<RadioButton>(R.id.tabs_animation_mode_fade_button)
+    val tabAnimationModeFadeButton =
+      view.findViewById<RadioButton>(R.id.tabs_animation_mode_fade_button)
     tabAnimationModeFadeButton.setOnClickListener {
       setAllTabAnimationMode(TabLayout.INDICATOR_ANIMATION_MODE_FADE)
     }
@@ -101,12 +104,14 @@ class TabsViewPagerDemoFragment : DemoFragment() {
     }
 
     val selectedIndicatorSpinner = view.findViewById<Spinner>(R.id.selector_spinner)
-    val adapter = ArrayAdapter.createFromResource(selectedIndicatorSpinner.context,
+    val adapter = ArrayAdapter.createFromResource(
+      selectedIndicatorSpinner.context,
       R.array.cat_tabs_selected_indicator_drawable_titles,
-      android.R.layout.simple_spinner_item)
+      android.R.layout.simple_spinner_item
+    )
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     selectedIndicatorSpinner.adapter = adapter
-    selectedIndicatorSpinner.onItemSelectedListener = object : OnItemSelectedListener{
+    selectedIndicatorSpinner.onItemSelectedListener = object : OnItemSelectedListener {
       override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         setAllTabLayoutSelectedIndicators(position)
       }
@@ -116,6 +121,7 @@ class TabsViewPagerDemoFragment : DemoFragment() {
       }
     }
   }
+
   private fun setScrollablePadding(coordinatorLayout: CoordinatorLayout) {
     val scrollable = coordinatorLayout.findViewById<View>(R.id.cat_tabs_controllable_scrollview)
     scrollable.setPadding(

@@ -1,6 +1,5 @@
 package io.material.catalog.feature
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -64,29 +63,34 @@ abstract class DemoActivity : BaseCatalogActivity() {
       true
     } else super.onOptionsItemSelected(item)
   }
+
   /**
    * 是否应该对容器内的东西设置转换动画效果
    */
   protected open val isShouldSetUpContainerTransform: Boolean
     get() =
-       intent?.getStringExtra(
+      intent?.getStringExtra(
         EXTRA_TRANSITION_NAME
       ) != null
+
   /**
    * 是否显示操作栏
    */
   protected open val isShouldShowDefaultDemoActionBar: Boolean
     get() = true
+
   /**
    * 是否显示操作栏上的关闭按钮
    */
   protected open val isShouldShowDefaultDemoActionBarCloseButton: Boolean
     get() = true
+
   /**
    * 是否需要配置边到边
    */
   protected open val isShouldApplyEdgeToEdgePreference: Boolean
     get() = true
+
   /**
    * 创建转换动画
    * @param entering Boolean 是否是进入效果
@@ -119,6 +123,7 @@ abstract class DemoActivity : BaseCatalogActivity() {
     }
 
   }
+
   /**
    * 创建 要演示的功能的视图
    * @param layoutInflater LayoutInflater

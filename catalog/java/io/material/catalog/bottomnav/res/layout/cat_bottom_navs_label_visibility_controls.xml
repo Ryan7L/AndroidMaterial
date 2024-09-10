@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2017 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,91 +14,103 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cat_bottom_navs_label_visibility_controls_group"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/cat_bottom_navs_label_visibility_controls_group"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_gravity="center_horizontal"
+  android:gravity="center_horizontal"
+  android:orientation="vertical">
+
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
-  <LinearLayout
-      android:layout_width="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/cat_bottom_nav_standard_spacing"
+    android:paddingBottom="@dimen/cat_bottom_nav_standard_spacing">
+
+    <TextView
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      android:gravity="center"
-      android:paddingTop="@dimen/cat_bottom_nav_standard_spacing"
-      android:paddingBottom="@dimen/cat_bottom_nav_standard_spacing">
+      android:padding="2dp"
+      android:text="@string/cat_bottom_nav_icon_size_slider_title" />
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:text="@string/cat_bottom_nav_icon_size_slider_title"/>
-    <TextView
-        android:id="@+id/icon_size_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:text="24dp"/>
+      android:id="@+id/icon_size_text_view"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:padding="2dp"
+      android:text="24dp" />
   </LinearLayout>
-    <SeekBar
-        android:id="@+id/icon_size_slider"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:paddingLeft="@dimen/cat_bottom_nav_standard_spacing"
-        android:paddingRight="@dimen/cat_bottom_nav_standard_spacing"
-        android:max="48"
-        android:maxWidth="300dp"
-        android:progress="24"/>
+
+  <SeekBar
+    android:id="@+id/icon_size_slider"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:max="48"
+    android:maxWidth="300dp"
+    android:paddingLeft="@dimen/cat_bottom_nav_standard_spacing"
+    android:paddingRight="@dimen/cat_bottom_nav_standard_spacing"
+    android:progress="24" />
+
   <RelativeLayout
-      android:layout_width="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:orientation="horizontal">
+      android:layout_alignParentLeft="true"
+      android:padding="@dimen/cat_bottom_nav_standard_spacing"
+      android:text="@string/cat_bottom_nav_slider_min" />
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:padding="@dimen/cat_bottom_nav_standard_spacing"
-        android:text="@string/cat_bottom_nav_slider_min"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:padding="@dimen/cat_bottom_nav_standard_spacing"
-        android:text="@string/cat_bottom_nav_slider_max"/>
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:padding="@dimen/cat_bottom_nav_standard_spacing"
+      android:text="@string/cat_bottom_nav_slider_max" />
   </RelativeLayout>
+
   <TextView
-      android:id="@+id/cat_radio_group_label"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:padding="@dimen/cat_bottom_nav_standard_spacing"
-      android:text="@string/cat_bottom_nav_label_visibility_mode_title"/>
+    android:id="@+id/cat_radio_group_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/cat_bottom_nav_standard_spacing"
+    android:text="@string/cat_bottom_nav_label_visibility_mode_title" />
+
   <RadioGroup
-      android:id="@+id/cat_radio_group"
+    android:id="@+id/cat_radio_group"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/cat_bottom_nav_standard_spacing">
+
+    <RadioButton
+      android:id="@+id/label_mode_auto_button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:padding="@dimen/cat_bottom_nav_standard_spacing"
-      android:orientation="vertical">
+      android:checked="true"
+      android:text="@string/cat_bottom_nav_label_visibility_mode_auto" />
+
     <RadioButton
-        android:id="@+id/label_mode_auto_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="@string/cat_bottom_nav_label_visibility_mode_auto"/>
+      android:id="@+id/label_mode_selected_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_bottom_nav_label_visibility_mode_selected" />
+
     <RadioButton
-        android:id="@+id/label_mode_selected_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cat_bottom_nav_label_visibility_mode_selected"/>
+      android:id="@+id/label_mode_labeled_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_bottom_nav_label_visibility_mode_labeled" />
+
     <RadioButton
-        android:id="@+id/label_mode_labeled_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cat_bottom_nav_label_visibility_mode_labeled"/>
-    <RadioButton
-        android:id="@+id/label_mode_unlabeled_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cat_bottom_nav_label_visibility_mode_unlabeled"/>
+      android:id="@+id/label_mode_unlabeled_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_bottom_nav_label_visibility_mode_unlabeled" />
   </RadioGroup>
 </LinearLayout>

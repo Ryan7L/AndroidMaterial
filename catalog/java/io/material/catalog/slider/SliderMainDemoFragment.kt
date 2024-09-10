@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import io.material.catalog.R
 import io.material.catalog.feature.DemoFragment
 
-class SliderMainDemoFragment: DemoFragment() {
+class SliderMainDemoFragment : DemoFragment() {
   private val touchListener = object : OnSliderTouchListener {
     override fun onStartTrackingTouch(slider: Slider) {
       showSnackBar(slider, R.string.cat_slider_start_touch_description)
@@ -30,6 +30,7 @@ class SliderMainDemoFragment: DemoFragment() {
       showSnackBar(slider, R.string.cat_slider_stop_touch_description)
     }
   }
+
   override fun onCreateDemoView(
     inflater: LayoutInflater,
     container: ViewGroup?,
@@ -46,7 +47,8 @@ class SliderMainDemoFragment: DemoFragment() {
     button.setOnClickListener { slider.value = slider.valueTo }
     return view
   }
-  private fun showSnackBar(view: View, messageRes: Int){
-    Snackbar.make(view,messageRes,Snackbar.LENGTH_SHORT).show()
+
+  private fun showSnackBar(view: View, messageRes: Int) {
+    Snackbar.make(view, messageRes, Snackbar.LENGTH_SHORT).show()
   }
 }

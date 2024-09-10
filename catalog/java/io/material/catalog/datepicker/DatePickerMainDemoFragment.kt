@@ -49,7 +49,7 @@ class DatePickerMainDemoFragment : DemoFragment() {
     return view
   }
 
-  private fun initView(view: View){
+  private fun initView(view: View) {
     val root = view.findViewById<LinearLayout>(R.id.picker_launcher_buttons_layout)
     val launcherBtn = root.findViewById<MaterialButton>(R.id.cat_picker_launch_button)
     val dialogTheme = resolveOrThrow(requireContext(), R.attr.materialCalendarTheme)
@@ -63,7 +63,8 @@ class DatePickerMainDemoFragment : DemoFragment() {
     val opening = root.findViewById<RadioGroup>(R.id.cat_picker_opening_month_group)
     val selection = root.findViewById<RadioGroup>(R.id.cat_picker_selection_group)
     val inputMode = root.findViewById<RadioGroup>(R.id.cat_picker_input_mode_group)
-    val dayViewDecoratorGroup = root.findViewById<RadioGroup>(R.id.cat_picker_day_view_decorator_group)
+    val dayViewDecoratorGroup =
+      root.findViewById<RadioGroup>(R.id.cat_picker_day_view_decorator_group)
     val positiveButton = root.findViewById<RadioGroup>(R.id.cat_picker_positive_button_group)
     val negativeButton = root.findViewById<RadioGroup>(R.id.cat_picker_negative_button_group)
     launcherBtn.setOnClickListener {
@@ -79,9 +80,10 @@ class DatePickerMainDemoFragment : DemoFragment() {
       val dayViewDecoratorChoice = dayViewDecoratorGroup.checkedRadioButtonId
       val positiveButtonChoice = positiveButton.checkedRadioButtonId
       val negativeButtonChoice = negativeButton.checkedRadioButtonId
-      val builder = setupDateSelectorBuilder(selectionModeChoice,selectionChoice,inputModeChoices)
-      val constraintsBuilder = setupConstraintsBuilder(boundsChoice,openingChoice,validationChoice)
-      val pikerTheme = when(themeChoice){
+      val builder = setupDateSelectorBuilder(selectionModeChoice, selectionChoice, inputModeChoices)
+      val constraintsBuilder =
+        setupConstraintsBuilder(boundsChoice, openingChoice, validationChoice)
+      val pikerTheme = when (themeChoice) {
         R.id.cat_picker_theme_dialog -> dialogTheme
         R.id.cat_picker_theme_fullscreen -> fullscreenTheme
         R.id.cat_picker_theme_custom -> R.style.ThemeOverlay_Catalog_MaterialCalendar_Custom
@@ -89,18 +91,18 @@ class DatePickerMainDemoFragment : DemoFragment() {
       }
       builder.setTheme(pikerTheme)
 
-      if (titleChoice == R.id.cat_picker_title_custom){
+      if (titleChoice == R.id.cat_picker_title_custom) {
         builder.setTitleText(R.string.cat_picker_title_custom)
-      }else if (titleChoice == R.id.cat_picker_title_with_description){
+      } else if (titleChoice == R.id.cat_picker_title_with_description) {
         builder.setTheme(R.style.ThemeOverlay_Catalog_MaterialCalendar_WithDescription)
         builder.setTitleText(titleWithDescription)
       }
 
-      if (positiveButtonChoice == R.id.cat_picker_positive_button_custom){
+      if (positiveButtonChoice == R.id.cat_picker_positive_button_custom) {
         builder.setPositiveButtonText(R.string.cat_picker_positive_button_text)
         builder.setPositiveButtonContentDescription(R.string.cat_picker_positive_button_content_description)
       }
-      if (negativeButtonChoice == R.id.cat_picker_negative_button_custom){
+      if (negativeButtonChoice == R.id.cat_picker_negative_button_custom) {
         builder.setNegativeButtonText(R.string.cat_picker_negative_button_text)
         builder.setNegativeButtonContentDescription(R.string.cat_picker_negative_button_content_description)
       }
@@ -109,13 +111,14 @@ class DatePickerMainDemoFragment : DemoFragment() {
         builder.setCalendarConstraints(constraintsBuilder.build())
         val piker = builder.build()
         addSnackBarListeners(piker)
-        piker.show(childFragmentManager,piker.toString())
-      }catch (e: Exception){
+        piker.show(childFragmentManager, piker.toString())
+      } catch (e: Exception) {
         snackBar.setText(e.message.toString())
         snackBar.show()
       }
     }
   }
+
   private fun initSetting() {
     today = MaterialDatePicker.todayInUtcMilliseconds()
     val calendar = utcCalendar.apply {

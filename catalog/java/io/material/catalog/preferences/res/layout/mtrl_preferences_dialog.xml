@@ -14,24 +14,26 @@
   limitations under the License.
   -->
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-  android:paddingTop="16dp"
-  android:paddingLeft="16dp"
-  android:paddingRight="16dp"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:overScrollMode="always">
+  android:overScrollMode="always"
+  android:paddingLeft="16dp"
+  android:paddingTop="16dp"
+  android:paddingRight="16dp">
+
   <LinearLayout
     android:id="@+id/preferences_layout"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center"
       android:paddingBottom="8dp"
       android:text="@string/preferences_screen_title"
-      android:textAppearance="?attr/textAppearanceHeadline3"/>
+      android:textAppearance="?attr/textAppearanceHeadline3" />
   </LinearLayout>
 </androidx.core.widget.NestedScrollView>
 

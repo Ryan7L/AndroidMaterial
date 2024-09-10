@@ -67,14 +67,16 @@ class CatalogPreferencesDialogFragment : BottomSheetDialogFragment(), HasAndroid
     preference: CatalogPreference
   ): View {
     val isEnable = preference.isEnabled
-    val preferenceView = inflater.inflate(R.layout.mtrl_preferences_dialog_preference, rootView, false)
+    val preferenceView =
+      inflater.inflate(R.layout.mtrl_preferences_dialog_preference, rootView, false)
     preferenceView.findViewById<TextView>(R.id.preference_description).apply {
       isEnabled = isEnable
       setText(preference.preferenceDescription)
     }
     //MaterialButtonToggleGroup:一组相关的、可切换的MaterialButton的通用容器。此组中的MaterialButton将显示在一行上。
     //此布局目前仅支持MaterialButton类型的子视图
-    val buttonToggleGroup = preferenceView.findViewById<MaterialButtonToggleGroup>(R.id.preference_options)
+    val buttonToggleGroup =
+      preferenceView.findViewById<MaterialButtonToggleGroup>(R.id.preference_options)
     val selectedOptionId = preference.getSelectedOption(preferenceView.context).optionId
     preference.options.forEach {
       val button = createOptionButton(inflater, buttonToggleGroup, it)

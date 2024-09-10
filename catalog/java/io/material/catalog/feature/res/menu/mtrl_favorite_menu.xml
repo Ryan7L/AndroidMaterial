@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2018 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,12 +14,12 @@
   limitations under the License.
   -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+  xmlns:app="http://schemas.android.com/apk/res-auto">
   <item
-      android:id="@+id/favorite_toggle"
-      android:checkable="true"
-      android:icon="@drawable/ic_favorite_vd_theme_24px"
-      android:title="@string/cat_demo_landing_favorite"
-      app:showAsAction="always"/>
+    android:id="@+id/favorite_toggle"
+    android:checkable="true"
+    android:icon="@drawable/ic_favorite_vd_theme_24px"
+    android:title="@string/cat_demo_landing_favorite"
+    app:showAsAction="always" />
 </menu>
 

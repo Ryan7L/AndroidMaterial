@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import com.google.android.material.transition.platform.MaterialSharedAxis
 import io.material.catalog.R
 import io.material.catalog.feature.DemoActivity
+
 const val SHARED_AXIS_KEY = "activity_shared_axis_axis"
+
 class TransitionSharedAxisStartDemoActivity : DemoActivity() {
   private var sharedAxisHelper: SharedAxisHelper? = null
 
@@ -25,7 +27,11 @@ class TransitionSharedAxisStartDemoActivity : DemoActivity() {
     viewGroup: ViewGroup?,
     bundle: Bundle?
   ): View? {
-   return  layoutInflater.inflate(R.layout.cat_transition_shared_axis_start_activity, viewGroup, false)
+    return layoutInflater.inflate(
+      R.layout.cat_transition_shared_axis_start_activity,
+      viewGroup,
+      false
+    )
   }
 
   override val isShouldSetUpContainerTransform: Boolean

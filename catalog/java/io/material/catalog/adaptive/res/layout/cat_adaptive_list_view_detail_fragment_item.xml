@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2021 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,22 +19,25 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:layout_margin="16dp">
+
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
     android:orientation="vertical">
+
     <TextView
       android:id="@+id/email_title"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:textAppearance="?attr/textAppearanceHeadlineLarge"
-      android:text="@string/cat_list_view_email_title"/>
+      android:text="@string/cat_list_view_email_title"
+      android:textAppearance="?attr/textAppearanceHeadlineLarge" />
+
     <TextView
       android:id="@+id/email_content"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="16dp"
-      android:text="@string/cat_list_view_email_text"/>
+      android:text="@string/cat_list_view_email_text" />
   </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2019 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,48 +14,48 @@
   limitations under the License.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  android:paddingTop="16dp"
+  android:orientation="vertical"
   android:paddingLeft="16dp"
-  android:paddingRight="16dp"
-  android:orientation="vertical">
+  android:paddingTop="16dp"
+  android:paddingRight="16dp">
 
   <com.google.android.material.slider.Slider
-      android:id="@+id/slider"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="32dp"
-      android:layout_gravity="center"
-      android:value="8.09"
-      android:valueFrom="0.0"
-      android:valueTo="11.0" />
+    android:id="@+id/slider"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="32dp"
+    android:value="8.09"
+    android:valueFrom="0.0"
+    android:valueTo="11.0" />
 
   <com.google.android.material.slider.RangeSlider
     android:id="@+id/range_slider"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="32dp"
     android:layout_gravity="center"
-    app:values="@array/initial_slider_values"
+    android:layout_marginTop="32dp"
     android:valueFrom="0.0"
-    android:valueTo="11.0" />
+    android:valueTo="11.0"
+    app:values="@array/initial_slider_values" />
 
   <com.google.android.material.slider.RangeSlider
     android:id="@+id/range_slider_multi"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="32dp"
     android:layout_gravity="center"
-    app:values="@array/initial_slider_multi_values"
+    android:layout_marginTop="32dp"
     android:valueFrom="0.0"
-    android:valueTo="11.0" />
+    android:valueTo="11.0"
+    app:values="@array/initial_slider_multi_values" />
 
   <Button
-      android:id="@+id/button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
-      android:text="@string/cat_slider_set"/>
+    android:id="@+id/button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:text="@string/cat_slider_set" />
 </LinearLayout>

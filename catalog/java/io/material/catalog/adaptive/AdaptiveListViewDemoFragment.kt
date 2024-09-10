@@ -17,7 +17,7 @@ import io.material.catalog.R
 
 class AdaptiveListViewDemoFragment : Fragment() {
   @IdRes
-   var detailViewContainerId = 0
+  var detailViewContainerId = 0
   private var emailRv: RecyclerView? = null
   private var currentSelectedEmailId = -1L
 
@@ -141,6 +141,7 @@ class EmailData() {
       Email(8L, false),
       Email(9L, false)
     )
+
     @JvmStatic
     fun getEmailById(emailId: Long): Email = emailData.first { it.id == emailId }
   }

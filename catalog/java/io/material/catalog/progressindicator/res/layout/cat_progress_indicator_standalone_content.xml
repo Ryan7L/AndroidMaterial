@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2024 The Android Open Source Project
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -14,14 +13,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:paddingTop="16dp"
-  android:paddingLeft="16dp"
-  android:paddingRight="16dp"
   android:clipChildren="false"
   android:clipToPadding="false"
+  android:divider="@drawable/layout_divider"
   android:orientation="vertical"
-  android:showDividers="middle"
-  android:divider="@drawable/layout_divider">
+  android:paddingLeft="16dp"
+  android:paddingTop="16dp"
+  android:paddingRight="16dp"
+  android:showDividers="middle">
 
   <com.google.android.material.chip.Chip
     android:id="@+id/cat_progress_indicator_chip"
@@ -29,7 +28,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:ellipsize="end"
-    android:text="@string/cat_progress_indicator_standalone_indeterminate_chip"/>
+    android:text="@string/cat_progress_indicator_standalone_indeterminate_chip" />
 
   <com.google.android.material.button.MaterialButton
     android:id="@+id/cat_progress_indicator_button"
@@ -37,14 +36,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:ellipsize="end"
-    android:text="@string/cat_progress_indicator_standalone_indeterminate_button"/>
+    android:text="@string/cat_progress_indicator_standalone_indeterminate_button" />
 
   <com.google.android.material.materialswitch.MaterialSwitch
     android:id="@+id/cat_progress_indicator_standalone_chip_switch"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
-    android:text="@string/cat_progress_indicator_standalone_switch_label"
-    android:checked="true"/>
+    android:checked="true"
+    android:text="@string/cat_progress_indicator_standalone_switch_label" />
 
 </LinearLayout>

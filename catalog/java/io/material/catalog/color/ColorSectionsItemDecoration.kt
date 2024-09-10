@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import io.material.catalog.R
 
-class ColorSectionsItemDecoration (context: Context, private val adapter: ColorsAdapter): ItemDecoration() {
+class ColorSectionsItemDecoration(context: Context, private val adapter: ColorsAdapter) :
+  ItemDecoration() {
   private val space: Int = context.resources.getDimensionPixelSize(R.dimen.cat_colors_header_space)
   override fun getItemOffsets(
     outRect: Rect,

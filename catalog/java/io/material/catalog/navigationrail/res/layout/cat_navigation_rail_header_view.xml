@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2021 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,13 +13,12 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<com.google.android.material.floatingactionbutton.FloatingActionButton
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="?attr/floatingActionButtonTertiaryStyle"
-    android:id="@+id/cat_navigation_rail_fab"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:elevation="@dimen/m3_sys_elevation_level0"
-    android:contentDescription="@string/cat_navigation_rail_fab_content_desc"
-    app:srcCompat="@drawable/ic_add_24px"/>
+<com.google.android.material.floatingactionbutton.FloatingActionButton xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/cat_navigation_rail_fab"
+  style="?attr/floatingActionButtonTertiaryStyle"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:contentDescription="@string/cat_navigation_rail_fab_content_desc"
+  app:elevation="@dimen/m3_sys_elevation_level0"
+  app:srcCompat="@drawable/ic_add_24px" />

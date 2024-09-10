@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2024 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,70 +14,81 @@
   limitations under the License.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:gravity="center_horizontal"
+  android:orientation="vertical"
+  android:paddingTop="16dp"
+  android:paddingBottom="16dp">
+
+  <TextView
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingTop="16dp"
-    android:paddingBottom="16dp"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:text="@string/cat_label_buttons_text"
+    android:textSize="16sp"
+    android:textStyle="bold" />
+
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_label_buttons_text"
-      android:textStyle="bold"
-      android:textSize="16sp"/>
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:paddingTop="8dp"
-      android:text="@string/cat_filled_button_default_text"
-      android:textSize="12sp" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:text="@string/cat_filled_button_default_text"
+    android:textSize="12sp" />
+
   <Button
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_button_label_enabled" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_button_label_enabled" />
+
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:paddingTop="8dp"
-      android:text="@string/cat_tonal_button_text"
-      android:textSize="12sp" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:text="@string/cat_tonal_button_text"
+    android:textSize="12sp" />
+
   <Button
-      style="?attr/materialButtonTonalStyle"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_button_label_enabled" />
+    style="?attr/materialButtonTonalStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_button_label_enabled" />
+
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:paddingTop="8dp"
-      android:text="@string/cat_outlined_button_text"
-      android:textSize="12sp" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:text="@string/cat_outlined_button_text"
+    android:textSize="12sp" />
+
   <Button
-      style="?attr/materialButtonOutlinedStyle"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_button_label_enabled" />
+    style="?attr/materialButtonOutlinedStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_button_label_enabled" />
+
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:paddingTop="8dp"
-      android:text="@string/cat_elevated_button_text"
-      android:textSize="12sp" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:text="@string/cat_elevated_button_text"
+    android:textSize="12sp" />
+
   <Button
-      style="?attr/materialButtonElevatedStyle"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_button_label_enabled" />
+    style="?attr/materialButtonElevatedStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_button_label_enabled" />
+
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:paddingTop="8dp"
-      android:text="@string/cat_text_button_text"
-      android:textSize="12sp" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:text="@string/cat_text_button_text"
+    android:textSize="12sp" />
+
   <Button
-      style="?attr/borderlessButtonStyle"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_button_label_enabled" />
+    style="?attr/borderlessButtonStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_button_label_enabled" />
 </LinearLayout>

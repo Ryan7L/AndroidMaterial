@@ -3,9 +3,9 @@ package io.material.catalog.color
 import android.content.Context
 import androidx.annotation.ColorRes
 
-class ColorItem(context: Context,@ColorRes val colorRes: Int): ColorAdapterItem {
+class ColorItem(context: Context, @ColorRes val colorRes: Int) : ColorAdapterItem {
 
-  private val colorSpec: MaterialColorSpec = MaterialColorSpec.createFromResource(context,colorRes)
+  private val colorSpec: MaterialColorSpec = MaterialColorSpec.createFromResource(context, colorRes)
 
   val colorResName: String
     get() = colorSpec.description

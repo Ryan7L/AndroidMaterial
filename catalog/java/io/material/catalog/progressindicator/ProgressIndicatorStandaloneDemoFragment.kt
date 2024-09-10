@@ -9,19 +9,21 @@ import com.google.android.material.progressindicator.CircularProgressIndicatorSp
 import com.google.android.material.progressindicator.IndeterminateDrawable
 import io.material.catalog.R
 
-class ProgressIndicatorStandaloneDemoFragment: ProgressIndicatorDemoFragment() {
+class ProgressIndicatorStandaloneDemoFragment : ProgressIndicatorDemoFragment() {
 
   override fun initDemoContents(view: View) {
     val spec = CircularProgressIndicatorSpec(requireContext(), /* attrs= */ null, 0, specStyleResId)
     val chip = view.findViewById<Chip>(R.id.cat_progress_indicator_chip)
     chip.chipIcon = IndeterminateDrawable.createCircularDrawable(requireContext(), spec)
-    val progressIndicatorDrawable = IndeterminateDrawable.createCircularDrawable(requireContext(), spec)
+    val progressIndicatorDrawable =
+      IndeterminateDrawable.createCircularDrawable(requireContext(), spec)
     val btn = view.findViewById<MaterialButton>(R.id.cat_progress_indicator_button)
     btn.icon = progressIndicatorDrawable
-    val chipIconSwitch = view.findViewById<MaterialSwitch>(R.id.cat_progress_indicator_standalone_chip_switch)
+    val chipIconSwitch =
+      view.findViewById<MaterialSwitch>(R.id.cat_progress_indicator_standalone_chip_switch)
     chipIconSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
       chip.isChipIconVisible = isChecked
-      btn.icon = if (isChecked)  progressIndicatorDrawable else null
+      btn.icon = if (isChecked) progressIndicatorDrawable else null
     }
   }
 

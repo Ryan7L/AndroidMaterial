@@ -12,7 +12,7 @@ import io.material.catalog.feature.Demo
 import io.material.catalog.feature.DemoLandingFragment
 import io.material.catalog.feature.FeatureDemo
 
-class NavigationDrawerFragment: DemoLandingFragment() {
+class NavigationDrawerFragment : DemoLandingFragment() {
   /**
    * ActionBar 或 ToolBar 的标题的资源ID
    */
@@ -31,29 +31,31 @@ class NavigationDrawerFragment: DemoLandingFragment() {
   override val mainDemo: Demo
     get() = object : Demo() {
       override val activityIntent: Intent
-        get() = Intent(requireContext(),NavigationDrawerDemoActivity::class.java)
+        get() = Intent(requireContext(), NavigationDrawerDemoActivity::class.java)
     }
   override val additionalDemos: List<Demo>
     get() = listOf(
       object : Demo(R.string.cat_navigationdrawer_custom_title) {
         override val activityIntent: Intent
-          get() = Intent(requireContext(),CustomNavigationDrawerDemoActivity::class.java)
+          get() = Intent(requireContext(), CustomNavigationDrawerDemoActivity::class.java)
       }
     )
 }
+
 @dagger.Module
-abstract class NavigationDrawerModule{
+abstract class NavigationDrawerModule {
 
   @FragmentScope
   @ContributesAndroidInjector
-  abstract fun contributeInjector():NavigationDrawerFragment
-  companion object{
+  abstract fun contributeInjector(): NavigationDrawerFragment
+
+  companion object {
     @JvmStatic
     @IntoSet
     @Provides
     @ActivityScope
     fun provideFeatureDemo(): FeatureDemo {
-      return object :FeatureDemo(R.string.cat_navigationdrawer_title,R.drawable.ic_side_drawer){
+      return object : FeatureDemo(R.string.cat_navigationdrawer_title, R.drawable.ic_side_drawer) {
         override val landingFragment: Fragment
           get() = NavigationDrawerFragment()
       }

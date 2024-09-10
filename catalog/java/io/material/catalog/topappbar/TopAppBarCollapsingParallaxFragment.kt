@@ -2,7 +2,7 @@ package io.material.catalog.topappbar
 
 import io.material.catalog.R
 
-class TopAppBarCollapsingParallaxFragment: BaseTopAppBarCollapsingDemoFragment() {
+class TopAppBarCollapsingParallaxFragment : BaseTopAppBarCollapsingDemoFragment() {
   /**
    * 折叠工具栏的布局ID
    */

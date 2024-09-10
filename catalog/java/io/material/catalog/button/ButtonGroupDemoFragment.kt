@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonGroup
 import com.google.android.material.materialswitch.MaterialSwitch
 import io.material.catalog.R
@@ -42,6 +41,7 @@ class ButtonGroupDemoFragment : DemoFragment() {
     }
     return view
   }
+
   private val iconOnlyButtonGroupContent = R.layout.cat_button_group_content_icon_only
 
   private val labelOnlyButtonGroupContent = R.layout.cat_button_group_content_label_only

@@ -8,7 +8,7 @@ import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.slider.Slider
 import io.material.catalog.R
 
-class ProgressIndicatorWaveDemoFragment: ProgressIndicatorDemoFragment() {
+class ProgressIndicatorWaveDemoFragment : ProgressIndicatorDemoFragment() {
   private lateinit var linearIndicator: LinearProgressIndicator
   private lateinit var circularIndicator: CircularProgressIndicator
   override fun initDemoContents(view: View) {
@@ -19,20 +19,22 @@ class ProgressIndicatorWaveDemoFragment: ProgressIndicatorDemoFragment() {
   override fun initDemoControls(view: View) {
     val progressSlider = view.findViewById<Slider>(R.id.progress_slider)
     val determinateSwitch = view.findViewById<MaterialSwitch>(R.id.determinate_mode_switch)
-    val circularAnimationMode = view.findViewById<MaterialButtonToggleGroup>(R.id.circular_animation_mode)
+    val circularAnimationMode =
+      view.findViewById<MaterialButtonToggleGroup>(R.id.circular_animation_mode)
     progressSlider.addOnChangeListener { slider, value, fromUser ->
       if (!linearIndicator.isIndeterminate) {
         linearIndicator.setProgressCompat(value.toInt(), true)
       }
       if (!circularIndicator.isIndeterminate) {
         circularIndicator.setProgressCompat(value.toInt(), true)
-    }}
+      }
+    }
     determinateSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
       if (isChecked) {
         val progress = progressSlider.value
         linearIndicator.setProgressCompat(progress.toInt(), true)
         circularIndicator.setProgressCompat(progress.toInt(), true)
-      }else{
+      } else {
         linearIndicator.setProgressCompat(0, false)
         circularIndicator.setProgressCompat(0, false)
         linearIndicator.setIndeterminate(true)
@@ -48,7 +50,8 @@ class ProgressIndicatorWaveDemoFragment: ProgressIndicatorDemoFragment() {
         linearIndicator.setWaveAmplitude(newAmplitude)
       }
       if (circularIndicator.getWaveAmplitude() != newAmplitude) {
-        circularIndicator.setWaveAmplitude(newAmplitude)}
+        circularIndicator.setWaveAmplitude(newAmplitude)
+      }
     }
     val waveLengthSlider = view.findViewById<Slider>(R.id.wavelength_slider)
     waveLengthSlider.addOnChangeListener { slider, value, fromUser ->
@@ -75,14 +78,16 @@ class ProgressIndicatorWaveDemoFragment: ProgressIndicatorDemoFragment() {
     }
     circularAnimationMode.addOnButtonCheckedListener { group, checkedId, isChecked ->
       if (!isChecked) {
-        return@addOnButtonCheckedListener}
+        return@addOnButtonCheckedListener
+      }
       if (checkedId == R.id.circular_advance_animation) {
         circularIndicator.setIndeterminateAnimationType(CircularProgressIndicator.INDETERMINATE_ANIMATION_TYPE_ADVANCE)
-      }else{
+      } else {
         circularIndicator.setIndeterminateAnimationType(CircularProgressIndicator.INDETERMINATE_ANIMATION_TYPE_RETREAT)
       }
     }
   }
+
   override val progressIndicatorContentLayout: Int
     get() = R.layout.cat_progress_indicator_main_content
 

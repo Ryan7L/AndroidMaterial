@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2022 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,21 +14,17 @@
   limitations under the License.
   -->
 <resources>
-  <string name="cat_navigationdrawer_title"
-          description="The title for the navigation drawer demo. [CHAR_LIMIT=100]">Navigation Drawer</string>
-  <string name="cat_navigationdrawer_description"
-          description="Brief summary about navigation drawer component demo. [CHAR_LIMIT=500]">
+  <string name="cat_navigationdrawer_title" description="The title for the navigation drawer demo. [CHAR_LIMIT=100]">Navigation Drawer</string>
+  <string name="cat_navigationdrawer_description" description="Brief summary about navigation drawer component demo. [CHAR_LIMIT=500]">
     抽屉式导航提供对目的地和应用程序功能的访问，例如切换帐户。它们可以永久显示在屏幕上，也可以通过导航菜单图标进行控制。
   </string>
 
-  <string name="cat_navigationdrawer_instructions"
-          description="Instructions for the navigation drawer demo. [CHAR_LIMIT=300]">
+  <string name="cat_navigationdrawer_instructions" description="Instructions for the navigation drawer demo. [CHAR_LIMIT=300]">
     按上面的顶部应用栏菜单图标可打开开始对齐的导航抽屉。
     \n\n
     或者按下面的按钮打开末端对齐的导航抽屉
   </string>
-  <string name="cat_navigationdrawer_show_end_drawer"
-          description="Label for opening the navigation drawer at the end of the screen. [CHAR_LIMIT=100]">
+  <string name="cat_navigationdrawer_show_end_drawer" description="Label for opening the navigation drawer at the end of the screen. [CHAR_LIMIT=100]">
     Open End Drawer
   </string>
   <string name="cat_navigationdrawer_label_active_bold" translatable="false">Bold active label</string>
@@ -47,9 +42,7 @@
   <string name="cat_navigationdrawer_header_title">Material 3 Components</string>
   <string name="cat_navigationdrawer_header_subtitle">example@material.io</string>
 
-  <string name="cat_navigationdrawer_custom_title"
-    description="The title for the custom navigation drawer demo. [CHAR_LIMIT=100]">Custom Navigation Drawer</string>
-  <string name="cat_navigationdrawer_custom_text"
-    description="Text for the custom navigation drawer demo. [CHAR_LIMIT=100]">保持纵横比</string>
+  <string name="cat_navigationdrawer_custom_title" description="The title for the custom navigation drawer demo. [CHAR_LIMIT=100]">Custom Navigation Drawer</string>
+  <string name="cat_navigationdrawer_custom_text" description="Text for the custom navigation drawer demo. [CHAR_LIMIT=100]">保持纵横比</string>
 
 </resources>

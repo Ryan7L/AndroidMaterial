@@ -15,7 +15,6 @@ import com.google.android.material.carousel.FullScreenCarouselStrategy
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.slider.Slider
-import com.google.android.material.switchmaterial.SwitchMaterial
 import io.material.catalog.R
 import io.material.catalog.feature.DemoFragment
 import io.material.catalog.windowpreferences.WindowPreferencesManager
@@ -78,14 +77,15 @@ class FullScreenStrategyDemoFragment : DemoFragment() {
       { item, position -> rv.scrollToPosition(position) },
       R.layout.cat_carousel_item_vertical
     )
-    rv.addOnScrollListener(object : OnScrollListener(){
+    rv.addOnScrollListener(object : OnScrollListener() {
       private var dragged = false
       override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-        if (newState == RecyclerView.SCROLL_STATE_DRAGGING){
+        if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
           dragged = true
-        }else if (dragged && newState == RecyclerView.SCROLL_STATE_IDLE){
-          if (recyclerView.computeVerticalScrollRange() != 0){
-            positionSlider!!.value = ((adapter.itemCount - 1) * recyclerView.computeVerticalScrollOffset() / recyclerView.computeVerticalScrollRange() + 1).toFloat()
+        } else if (dragged && newState == RecyclerView.SCROLL_STATE_IDLE) {
+          if (recyclerView.computeVerticalScrollRange() != 0) {
+            positionSlider!!.value =
+              ((adapter.itemCount - 1) * recyclerView.computeVerticalScrollOffset() / recyclerView.computeVerticalScrollRange() + 1).toFloat()
           }
           dragged = false
         }
@@ -96,16 +96,19 @@ class FullScreenStrategyDemoFragment : DemoFragment() {
     val flingEnabledSnapHelper = CarouselSnapHelper(false)
     flingDisabledSnapHelper.attachToRecyclerView(rv)
     enableFlingSwitch!!.setOnCheckedChangeListener { _, isChecked ->
-        if (isChecked) {
-          flingDisabledSnapHelper.attachToRecyclerView(null)
-          flingEnabledSnapHelper.attachToRecyclerView(rv)
-        } else {
-          flingEnabledSnapHelper.attachToRecyclerView(null)
-          flingDisabledSnapHelper.attachToRecyclerView(rv)
-        }
+      if (isChecked) {
+        flingDisabledSnapHelper.attachToRecyclerView(null)
+        flingEnabledSnapHelper.attachToRecyclerView(rv)
+      } else {
+        flingEnabledSnapHelper.attachToRecyclerView(null)
+        flingDisabledSnapHelper.attachToRecyclerView(rv)
+      }
     }
     itemCountDropdown!!.setOnItemClickListener { _, _, position, _ ->
-      adapter.submitList(createItems().subList(0,position),updateSliderRange(positionSlider!!,adapter))
+      adapter.submitList(
+        createItems().subList(0, position),
+        updateSliderRange(positionSlider!!, adapter)
+      )
     }
     positionSlider?.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
       override fun onStartTrackingTouch(slider: Slider) {
@@ -117,19 +120,19 @@ class FullScreenStrategyDemoFragment : DemoFragment() {
       }
     })
     rv.adapter = adapter
-    adapter.submitList(createItems(),updateSliderRange(positionSlider!!,adapter))
-}
-
-private fun updateSliderRange(slider: Slider, adapter: CarouselAdapter): Runnable {
-  return Runnable {
-    if (adapter.itemCount <= 1) {
-      slider.isEnabled = false
-      return@Runnable
-    }
-    slider.valueFrom = 1f
-    slider.value = 1f
-    slider.valueTo = adapter.itemCount.toFloat()
-    slider.isEnabled = true
+    adapter.submitList(createItems(), updateSliderRange(positionSlider!!, adapter))
   }
-}
+
+  private fun updateSliderRange(slider: Slider, adapter: CarouselAdapter): Runnable {
+    return Runnable {
+      if (adapter.itemCount <= 1) {
+        slider.isEnabled = false
+        return@Runnable
+      }
+      slider.valueFrom = 1f
+      slider.value = 1f
+      slider.valueTo = adapter.itemCount.toFloat()
+      slider.isEnabled = true
+    }
+  }
 }

@@ -15,18 +15,19 @@ class CustomTransitionEndActivity : DemoActivity() {
     window?.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
     findViewById<ViewGroup>(android.R.id.content).transitionName = SHARED_ELEMENT_END_ROOT
     setEnterSharedElementCallback(MaterialContainerTransformSharedElementCallback())
-    window.sharedElementEnterTransition = MaterialContainerTransform(this,true).apply {
+    window.sharedElementEnterTransition = MaterialContainerTransform(this, true).apply {
       addTarget(android.R.id.content)
       duration = 300
       isDrawDebugEnabled = true
     }
     super.onCreate(savedInstanceState)
   }
+
   override fun onCreateDemoView(
     layoutInflater: LayoutInflater,
     viewGroup: ViewGroup?,
     bundle: Bundle?
   ): View? {
-    return layoutInflater.inflate(R.layout.cat_custom_transition_end_activity, viewGroup,false)
+    return layoutInflater.inflate(R.layout.cat_custom_transition_end_activity, viewGroup, false)
   }
 }

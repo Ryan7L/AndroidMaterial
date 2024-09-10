@@ -33,6 +33,7 @@ class SwitchFragment : DemoLandingFragment() {
         get() = SwitchMainDemoFragment()
     }
 }
+
 @dagger.Module
 abstract class SwitchModule {
   @FragmentScope

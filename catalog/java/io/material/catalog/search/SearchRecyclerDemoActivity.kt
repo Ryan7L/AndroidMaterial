@@ -10,7 +10,6 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -91,7 +90,7 @@ class SearchRecyclerDemoActivity : DemoActivity() {
       insetsView.setPadding(0, sysInsetTop, 0, 0)
       return@setOnApplyWindowInsetsListener insets
     }
-    onBackPressedDispatcher.addCallback(this,onBackPressedCallback)
+    onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     return rootView
   }
 

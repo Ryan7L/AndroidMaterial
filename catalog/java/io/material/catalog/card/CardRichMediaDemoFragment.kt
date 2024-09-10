@@ -2,7 +2,7 @@ package io.material.catalog.card
 
 import io.material.catalog.R
 
-class CardRichMediaDemoFragment: CardMainDemoFragment() {
+class CardRichMediaDemoFragment : CardMainDemoFragment() {
 
   override val demoTitleResId: Int
     get() = R.string.cat_card_rich_media_demo

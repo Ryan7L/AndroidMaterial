@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2022 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,8 +17,8 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
   android:width="108dp"
   android:height="108dp"
-  android:viewportHeight="108"
-  android:viewportWidth="108">
+  android:viewportWidth="108"
+  android:viewportHeight="108">
   <group>
     <clip-path android:pathData="M39.34,38.82H59.86V44.79C60.9,44.61 61.98,44.51 63.07,44.51C63.37,44.51 63.67,44.52 63.97,44.53V34.71H35.23V63.55H44.96C44.94,63.25 44.94,62.95 44.94,62.65C44.94,61.55 45.03,60.48 45.22,59.44H39.34V38.82ZM63.97,48.64V63.55H49.07C49.05,63.26 49.04,62.97 49.04,62.68C49.04,54.91 55.34,48.62 63.11,48.62C63.4,48.62 63.68,48.63 63.97,48.64ZM49.38,67.66C51.43,73.28 56.82,77.3 63.15,77.3C71.24,77.3 77.8,70.74 77.8,62.65C77.8,56.32 73.78,50.93 68.16,48.88V67.66H49.38Z" />
     <path

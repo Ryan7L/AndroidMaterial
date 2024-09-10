@@ -2,19 +2,18 @@
 <scale xmlns:android="http://schemas.android.com/apk/res/android"
   android:fromXScale="1.0"
   android:fromYScale="1.0"
-  android:toXScale="1.5"
-  android:toYScale="1.5"
   android:pivotX="0.5"
   android:pivotY="0.5"
-  />
+  android:toXScale="1.5"
+  android:toYScale="1.5" />
 
 
-<!--ScaleAnimation属性：
-    fromXScale：动画开始时的 X 缩放比例
-    fromYScale：动画开始时的 Y 缩放比例
-    toXScale：动画结束时的 X 缩放比例
-    toYScale：动画结束时的 Y 缩放
-    pivotX：缩放中心X的坐标，浮点数或百分比数：0.5 or 50%
-    pivotY：缩放中心Y的坐标,浮点数或百分比数：0.5 or 50%
+  <!--ScaleAnimation属性：
+      fromXScale：动画开始时的 X 缩放比例
+      fromYScale：动画开始时的 Y 缩放比例
+      toXScale：动画结束时的 X 缩放比例
+      toYScale：动画结束时的 Y 缩放
+      pivotX：缩放中心X的坐标，浮点数或百分比数：0.5 or 50%
+      pivotY：缩放中心Y的坐标,浮点数或百分比数：0.5 or 50%
 
--->
+  -->

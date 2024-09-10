@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2023 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,23 +13,22 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:orientation="vertical">
 
   <TextView
-    android:textStyle="bold"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="@dimen/cat_tabs_standard_spacing"
     android:text="@string/cat_tabs_material_tabs_label"
-    android:textSize="16sp"/>
+    android:textSize="16sp"
+    android:textStyle="bold" />
 
   <com.google.android.material.tabs.TabLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"/>
+    android:layout_marginBottom="16dp" />
 
 </LinearLayout>

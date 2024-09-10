@@ -105,7 +105,7 @@ class NavigationRailDemoControlsFragment : NavigationRailDemoFragment() {
         navigationRailView?.itemIconSize = (
           TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, progress.toFloat(), displayMetrics)
             .toInt()
-        )
+          )
         iconSizeTv.text = progress.toString() + "dp"
       }
 

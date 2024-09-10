@@ -15,9 +15,9 @@
   <com.google.android.material.button.MaterialButtonToggleGroup
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:checkedButton="@+id/xmlBtn"
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="8dp"
+    app:checkedButton="@+id/xmlBtn"
     app:selectionRequired="true"
     app:singleSelection="true">
 

@@ -17,10 +17,11 @@ class ElevationAnimationDemoFragment : DemoFragment() {
     savedInstanceState: Bundle?
   ): View? {
     val view = inflater.inflate(R.layout.cat_elevation_animation_fragment, container, false)
-      val translationZLabelView = view.findViewById<TextView>(R.id.translation_z_label)
+    val translationZLabelView = view.findViewById<TextView>(R.id.translation_z_label)
     val maxTranslationZ = resources.getDimension(R.dimen.cat_elevation_max_translation_z)
     val maxTranslationZDp = (maxTranslationZ / resources.displayMetrics.density).toInt()
-    translationZLabelView.text = getString(R.string.cat_elevation_animation_label, maxTranslationZDp)
+    translationZLabelView.text =
+      getString(R.string.cat_elevation_animation_label, maxTranslationZDp)
     val materialShapeDrawable = MaterialShapeDrawable.createWithElevationOverlay(view.context)
     view.background = materialShapeDrawable
     setTranslationZ(view, materialShapeDrawable, maxTranslationZ)

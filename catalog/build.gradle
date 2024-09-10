@@ -109,7 +109,6 @@ def srcDirs = [
   'animation',
   'layout',
   'widget',
-  'a_base',
 //  'AndroidRes'
 ]
 

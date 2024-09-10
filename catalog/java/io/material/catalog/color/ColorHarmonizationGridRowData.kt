@@ -9,14 +9,28 @@ class ColorHarmonizationGridRowData private constructor(
   @IdRes val rightLayoutId: Int,
   @ArrayRes val colorNameIds: Int,
 ) {
-  @ColorRes var colorResId: Int = 0
+  @ColorRes
+  var colorResId: Int = 0
   var colorAttributeResIds: IntArray = intArrayOf()
-  constructor(leftLayoutId: Int, rightLayoutId: Int, @ColorRes colorResId: Int, @ArrayRes colorNameIds: Int) : this(leftLayoutId, rightLayoutId, colorNameIds){
+
+  constructor(
+    leftLayoutId: Int,
+    rightLayoutId: Int,
+    @ColorRes colorResId: Int,
+    @ArrayRes colorNameIds: Int
+  ) : this(leftLayoutId, rightLayoutId, colorNameIds) {
     this.colorResId = colorResId
   }
-  constructor(leftLayoutId: Int, rightLayoutId: Int, colorAttributeResIds: IntArray, @ArrayRes colorNameIds: Int) : this(leftLayoutId, rightLayoutId,colorNameIds){
+
+  constructor(
+    leftLayoutId: Int,
+    rightLayoutId: Int,
+    colorAttributeResIds: IntArray,
+    @ArrayRes colorNameIds: Int
+  ) : this(leftLayoutId, rightLayoutId, colorNameIds) {
     this.colorAttributeResIds = colorAttributeResIds
   }
+
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
     if (javaClass != other?.javaClass) return false

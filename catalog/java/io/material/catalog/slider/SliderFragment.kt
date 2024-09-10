@@ -11,7 +11,7 @@ import io.material.catalog.feature.Demo
 import io.material.catalog.feature.DemoLandingFragment
 import io.material.catalog.feature.FeatureDemo
 
-class SliderFragment: DemoLandingFragment() {
+class SliderFragment : DemoLandingFragment() {
   /**
    * ActionBar 或 ToolBar 的标题的资源ID
    */
@@ -52,12 +52,14 @@ class SliderFragment: DemoLandingFragment() {
       }
     )
 }
+
 @dagger.Module
-abstract class SliderModule{
+abstract class SliderModule {
   @FragmentScope
   @ContributesAndroidInjector
   abstract fun contributeInjector(): SliderFragment
-  companion object{
+
+  companion object {
     @ActivityScope
     @IntoSet
     @Provides

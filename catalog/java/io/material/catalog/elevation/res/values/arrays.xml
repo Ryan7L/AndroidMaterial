@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2018 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,15 +15,14 @@
   -->
 
 <resources>
-    <integer-array
-        name="cat_elevation_level_values">
-        <item>0</item>
-        <item>1</item>
-        <item>3</item>
-        <item>6</item>
-        <item>8</item>
-        <item>12</item>
-        <item>16</item>
-        <item>24</item>
-    </integer-array>
+  <integer-array name="cat_elevation_level_values">
+    <item>0</item>
+    <item>1</item>
+    <item>3</item>
+    <item>6</item>
+    <item>8</item>
+    <item>12</item>
+    <item>16</item>
+    <item>24</item>
+  </integer-array>
 </resources>

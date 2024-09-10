@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2021 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,5 +20,5 @@
   android:layout_width="match_parent"
   android:layout_height="139dp"
   android:layout_marginBottom="8dp"
-  app:strokeWidth="0dp"
-  app:cardBackgroundColor="?attr/colorSurfaceVariant"/>
+  app:cardBackgroundColor="?attr/colorSurfaceVariant"
+  app:strokeWidth="0dp" />

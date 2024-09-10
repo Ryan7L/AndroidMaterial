@@ -6,8 +6,7 @@
   android:pivotX="0.5"
   android:pivotY="0.5"
   android:repeatCount="infinite"
-  android:toDegrees="360" />
-  <!--
+  android:toDegrees="360" /><!--
     RotateAnimation属性：
         fromDegrees：开始角度
         toDegrees：结束角度

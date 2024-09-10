@@ -10,19 +10,20 @@ import com.google.android.material.loadingindicator.LoadingIndicatorSpec
 import io.material.catalog.R
 import io.material.catalog.feature.DemoFragment
 
-class LoadingIndicatorMainDemoFragment: DemoFragment() {
+class LoadingIndicatorMainDemoFragment : DemoFragment() {
   override fun onCreateDemoView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-   val view = inflater.inflate(R.layout.cat_loading_indicator_fragment, container, false)
+    val view = inflater.inflate(R.layout.cat_loading_indicator_fragment, container, false)
     initViews(view)
     return view
   }
 
-  private fun initViews(view: View){
-    val spec = LoadingIndicatorSpec(requireContext(), null, 0, R.style.Widget_Material3_LoadingIndicator)
+  private fun initViews(view: View) {
+    val spec =
+      LoadingIndicatorSpec(requireContext(), null, 0, R.style.Widget_Material3_LoadingIndicator)
     spec.setScaleToFit(true)
     val loadingIndicatorDrawable = LoadingIndicatorDrawable.create(requireContext(), spec)
     val loadingButton = view.findViewById<MaterialButton>(R.id.loading_btn)

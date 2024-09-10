@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.color.MaterialColors
 import io.material.catalog.R
 
 class TopAppBarScrollingTransparentStatusDemoActivity : BaseTopAppBarActionBarDemoActivity() {

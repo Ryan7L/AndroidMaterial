@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2022 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -64,7 +63,8 @@
     <item name="colorSecondary">@color/fortnightly_theme_light_secondary</item>
     <item name="colorOnSecondary">@color/fortnightly_theme_light_onSecondary</item>
     <item name="colorSecondaryContainer">@color/fortnightly_theme_light_secondaryContainer</item>
-    <item name="colorOnSecondaryContainer">@color/fortnightly_theme_light_onSecondaryContainer</item>
+    <item name="colorOnSecondaryContainer">@color/fortnightly_theme_light_onSecondaryContainer
+    </item>
     <item name="colorTertiary">@color/fortnightly_theme_light_tertiary</item>
     <item name="colorOnTertiary">@color/fortnightly_theme_light_onTertiary</item>
     <item name="colorTertiaryContainer">@color/fortnightly_theme_light_tertiaryContainer</item>

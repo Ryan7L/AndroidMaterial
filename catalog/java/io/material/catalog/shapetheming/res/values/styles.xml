@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2018 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +14,7 @@
   limitations under the License.
   -->
 <resources>
-  <style name="ThemeOverlay.Baseline" parent=""/>
+  <style name="ThemeOverlay.Baseline" parent="" />
 
   <!-- Shrine -->
 
@@ -29,7 +28,7 @@
     <item name="cornerSize">4dp</item>
   </style>
 
-  <style name="Widget.Shrine.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox"/>
+  <style name="Widget.Shrine.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox" />
 
   <style name="Theme.Shrine.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
     <item name="bottomSheetStyle">@style/Widget.Shrine.BottomSheet.Modal</item>
@@ -45,7 +44,7 @@
     <item name="cornerSize">0dp</item>
     <item name="cornerFamilyTopRight">cut</item>
     <item name="cornerSizeTopRight">24dp</item>
-   </style>
+  </style>
 
   <!-- Fortnightly -->
 
@@ -54,7 +53,7 @@
     <item name="chipCornerRadius">@null</item>
   </style>
 
-  <style name="Widget.Fortnightly.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox"/>
+  <style name="Widget.Fortnightly.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox" />
 
   <style name="Theme.Fortnightly.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
     <item name="bottomSheetStyle">@style/Widget.Fortnightly.BottomSheet.Modal</item>
@@ -66,11 +65,11 @@
   </style>
 
   <style name="ShapeAppearanceOverlay.Fortnightly.BottomSheet" parent="">
-     <item name="cornerSizeTopRight">0dp</item>
-     <item name="cornerSizeTopLeft">0dp</item>
-     <item name="cornerFamilyTopLeft">cut</item>
-     <item name="cornerFamilyTopRight">cut</item>
-   </style>
+    <item name="cornerSizeTopRight">0dp</item>
+    <item name="cornerSizeTopLeft">0dp</item>
+    <item name="cornerFamilyTopLeft">cut</item>
+    <item name="cornerFamilyTopRight">cut</item>
+  </style>
 
   <!-- Crane -->
 
@@ -79,22 +78,22 @@
     <item name="chipCornerRadius">@null</item>
   </style>
 
-  <style name="Widget.Crane.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox"/>
+  <style name="Widget.Crane.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox" />
 
   <style name="Theme.Crane.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
     <item name="bottomSheetStyle">@style/Widget.Crane.BottomSheet.Modal</item>
   </style>
 
-   <style name="Widget.Crane.BottomSheet.Modal" parent="Widget.Material3.BottomSheet.Modal">
+  <style name="Widget.Crane.BottomSheet.Modal" parent="Widget.Material3.BottomSheet.Modal">
     <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Crane.BottomSheet</item>
     <item name="backgroundTint">?attr/colorPrimary</item>
   </style>
 
   <style name="ShapeAppearanceOverlay.Crane.BottomSheet" parent="">
-     <item name="cornerSizeTopRight">20dp</item>
-     <item name="cornerSizeTopLeft">20dp</item>
-     <item name="cornerFamilyTopLeft">rounded</item>
-     <item name="cornerFamilyTopRight">rounded</item>
-   </style>
+    <item name="cornerSizeTopRight">20dp</item>
+    <item name="cornerSizeTopLeft">20dp</item>
+    <item name="cornerFamilyTopLeft">rounded</item>
+    <item name="cornerFamilyTopRight">rounded</item>
+  </style>
 
 </resources>

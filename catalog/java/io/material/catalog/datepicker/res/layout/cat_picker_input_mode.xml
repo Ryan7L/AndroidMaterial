@@ -16,38 +16,41 @@
   limitations under the License.
   -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cat_picker_input_mode"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/cat_picker_input_mode"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  android:padding="@dimen/cat_picker_demo_padding">
+
+  <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/cat_picker_demo_padding"
-    android:orientation="vertical">
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_picker_input_mode"
-      android:textAppearance="?attr/textAppearanceTitleLarge"/>
+    android:text="@string/cat_picker_input_mode"
+    android:textAppearance="?attr/textAppearanceTitleLarge" />
+
   <RadioGroup
-      android:id="@+id/cat_picker_input_mode_group"
-      android:layout_width="match_parent"
+    android:id="@+id/cat_picker_input_mode_group"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <RadioButton
+      android:id="@+id/cat_picker_input_mode_calendar"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:orientation="horizontal">
+      android:checked="true"
+      android:text="@string/cat_picker_input_mode_calendar"
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
+
     <RadioButton
-        android:id="@+id/cat_picker_input_mode_calendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="@string/cat_picker_input_mode_calendar"
-        android:textAppearance="?attr/textAppearanceBodyLarge"/>
-    <RadioButton
-        android:id="@+id/cat_picker_input_mode_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/cat_picker_demo_padding"
-        android:layout_marginLeft="@dimen/cat_picker_demo_padding"
-        android:text="@string/cat_picker_input_mode_text"
-        android:textAppearance="?attr/textAppearanceBodyLarge"/>
+      android:id="@+id/cat_picker_input_mode_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/cat_picker_demo_padding"
+      android:layout_marginLeft="@dimen/cat_picker_demo_padding"
+      android:text="@string/cat_picker_input_mode_text"
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
 
   </RadioGroup>
 </LinearLayout>

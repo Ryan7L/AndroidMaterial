@@ -8,7 +8,6 @@ import android.view.View
 import android.view.animation.Animation
 import androidx.core.view.children
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import io.material.catalog.R
 import io.material.catalog.databinding.AnimSharedConfigBinding
 import io.material.catalog.databinding.BottomSheetLayoutBinding
 import io.material.catalog.databinding.ConfigAnimTypeLayoutBinding

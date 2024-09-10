@@ -1,7 +1,5 @@
 package io.material.catalog.animation
 
-import android.content.DialogInterface
-import android.content.DialogInterface.OnDismissListener
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -39,6 +37,7 @@ class TweenDemoFragment : DemoFragment(), OnClickListener {
     val view = inflater.inflate(R.layout.layout_tween_fragmnet, container, false)
     return view
   }
+
   override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
     inflater.inflate(R.menu.configure_menu, menu)
     super.onCreateOptionsMenu(menu, inflater)

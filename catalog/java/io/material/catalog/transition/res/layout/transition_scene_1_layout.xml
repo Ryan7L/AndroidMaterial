@@ -8,9 +8,9 @@
     android:id="@+id/view_1"
     android:layout_width="100dp"
     android:layout_height="100dp"
-    android:layout_marginTop="16dp"
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true"
+    android:layout_marginTop="16dp"
     android:background="@color/error_reference" />
 
   <View
@@ -32,6 +32,7 @@
     android:layout_marginStart="16dp"
     android:layout_marginBottom="16dp"
     android:background="@color/yellow_reference" />
+
   <TextView
     android:id="@+id/logView"
     android:layout_width="wrap_content"

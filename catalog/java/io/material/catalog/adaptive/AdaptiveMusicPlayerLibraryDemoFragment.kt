@@ -32,7 +32,8 @@ class AdaptiveMusicPlayerLibraryDemoFragment : MusicPlayerLibraryDemoFragment() 
     savedInstanceState: Bundle?
   ): View? {
     val view = inflater.inflate(demoLayoutResId, container, false)
-    windowInfoTracker = WindowInfoTrackerCallbackAdapter(WindowInfoTracker.getOrCreate(requireActivity()))
+    windowInfoTracker =
+      WindowInfoTrackerCallbackAdapter(WindowInfoTracker.getOrCreate(requireActivity()))
     return view
   }
 
@@ -50,8 +51,9 @@ class AdaptiveMusicPlayerLibraryDemoFragment : MusicPlayerLibraryDemoFragment() 
       duration = transform.duration
       exitTransition = this
     }
-    parentFragmentManager.beginTransaction().addSharedElement(view,ViewCompat.getTransitionName(view)!!)
-      .replace(R.id.fragment_container,fragment,AdaptiveMusicPlayerAlbumDemoFragment.TAG)
+    parentFragmentManager.beginTransaction()
+      .addSharedElement(view, ViewCompat.getTransitionName(view)!!)
+      .replace(R.id.fragment_container, fragment, AdaptiveMusicPlayerAlbumDemoFragment.TAG)
       .addToBackStack(AdaptiveMusicPlayerAlbumDemoFragment.TAG)
       .commit()
   }
@@ -60,6 +62,7 @@ class AdaptiveMusicPlayerLibraryDemoFragment : MusicPlayerLibraryDemoFragment() 
     super.onStop()
     windowInfoTracker?.removeWindowLayoutInfoListener(stateContainer)
   }
+
   inner class StateContainer : Consumer<WindowLayoutInfo> {
     override fun accept(value: WindowLayoutInfo) {
       val displayFeatures = value.displayFeatures

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2021 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,12 +31,12 @@
       android:id="@+id/feed_small_content_title"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_toStartOf="@id/feed_small_content_image"
-      android:layout_toLeftOf="@id/feed_small_content_image"
       android:layout_alignParentStart="true"
       android:layout_alignParentLeft="true"
+      android:layout_toStartOf="@id/feed_small_content_image"
+      android:layout_toLeftOf="@id/feed_small_content_image"
       android:text="@string/cat_feed_fragment_title"
-      android:textAppearance="?attr/textAppearanceHeadlineSmall"/>
+      android:textAppearance="?attr/textAppearanceHeadlineSmall" />
 
     <com.google.android.material.imageview.ShapeableImageView
       android:id="@+id/feed_small_content_image"
@@ -45,11 +44,11 @@
       android:layout_height="120dp"
       android:layout_alignParentEnd="true"
       android:layout_alignParentRight="true"
+      android:background="@android:color/white"
       android:contentDescription="@string/cat_feed_sample_image_content_desc"
       android:scaleType="centerCrop"
-      app:shapeAppearanceOverlay="?attr/shapeAppearanceMediumComponent"
-      android:background="@android:color/white"
-      app:backgroundTint="?attr/colorSurfaceVariant"/>
+      app:backgroundTint="?attr/colorSurfaceVariant"
+      app:shapeAppearanceOverlay="?attr/shapeAppearanceMediumComponent" />
 
   </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>

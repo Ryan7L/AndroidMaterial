@@ -12,14 +12,17 @@ class TransitionSimpleLayoutFragment : Fragment() {
     private val KEY_LAYOUT_RES_ID = "KEY_LAYOUT_RES_ID"
     private val KEY_TRANSITION_NAME = "KEY_TRANSITION_NAME"
     private val KEY_TRANSITION_NAME_VIEW_ID = "KEY_TRANSITION_NAME_VIEW_ID"
+
     @JvmStatic
     fun newInstance(layoutResId: Int): TransitionSimpleLayoutFragment {
       return newInstance(layoutResId, null)
     }
+
     @JvmStatic
     fun newInstance(layoutResId: Int, transitionName: String?): TransitionSimpleLayoutFragment {
       return newInstance(layoutResId, transitionName, View.NO_ID)
     }
+
     @JvmStatic
     fun newInstance(
       layoutResId: Int,

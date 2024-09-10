@@ -3,7 +3,6 @@ package io.material.catalog.tableofcontents
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import io.material.catalog.a_base.BaseModule
-import io.material.catalog.adaptive.AdaptiveFragment
 import io.material.catalog.adaptive.AdaptiveModule
 import io.material.catalog.animation.AnimationFragmentModule
 import io.material.catalog.application.scope.FragmentScope
@@ -16,7 +15,6 @@ import io.material.catalog.carousel.CarouselModule
 import io.material.catalog.checkbox.CheckBoxModule
 import io.material.catalog.chip.ChipModule
 import io.material.catalog.color.ColorModule
-import io.material.catalog.color.ColorsFragment
 import io.material.catalog.datepicker.DatePickerModule
 import io.material.catalog.dialog.DialogModule
 import io.material.catalog.divider.DividerModule
@@ -34,15 +32,10 @@ import io.material.catalog.progressindicator.ProgressIndicatorModule
 import io.material.catalog.radiobutton.RadioButtonModule
 import io.material.catalog.search.SearchFragmentModule
 import io.material.catalog.shapetheming.ShapeThemingModule
-import io.material.catalog.sidesheet.SideSheetFragment
 import io.material.catalog.sidesheet.SideSheetModule
-import io.material.catalog.slider.SliderFragment
 import io.material.catalog.slider.SliderModule
-import io.material.catalog.tabs.TabsFragment
 import io.material.catalog.tabs.TabsModule
-import io.material.catalog.textfield.TextFieldFragment
 import io.material.catalog.textfield.TextFieldModule
-import io.material.catalog.timepicker.TimePickerDemoLandingFragment
 import io.material.catalog.timepicker.TimePickerModule
 import io.material.catalog.topappbar.TopAppBarModule
 import io.material.catalog.transition.TransitionModule

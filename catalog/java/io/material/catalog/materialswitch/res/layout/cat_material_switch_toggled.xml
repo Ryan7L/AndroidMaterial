@@ -16,23 +16,24 @@
   limitations under the License.
   -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/toggled_views"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/toggled_views"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_marginLeft="@dimen/cat_switch_indent"
+  android:orientation="vertical">
+
+  <com.google.android.material.materialswitch.MaterialSwitch
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/cat_switch_indent"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:checked="true"
+    android:enabled="false"
+    android:text="@string/cat_switch_toggle" />
+
   <com.google.android.material.materialswitch.MaterialSwitch
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:checked="true"
-      android:enabled="false"
-      android:text="@string/cat_switch_toggle"/>
-  <com.google.android.material.materialswitch.MaterialSwitch
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:checked="false"
-      android:enabled="false"
-      android:text="@string/cat_switch_toggle"/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:checked="false"
+    android:enabled="false"
+    android:text="@string/cat_switch_toggle" />
 </LinearLayout>

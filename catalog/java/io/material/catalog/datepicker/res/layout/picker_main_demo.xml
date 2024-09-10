@@ -15,36 +15,46 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fillViewport="true">
+
   <LinearLayout
-      android:id="@+id/picker_launcher_buttons_layout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:padding="@dimen/cat_picker_demo_padding"
-      android:orientation="vertical">
+    android:id="@+id/picker_launcher_buttons_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/cat_picker_demo_padding">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/cat_picker_launch_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/cat_picker_launch"/>
+      android:id="@+id/cat_picker_launch_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:text="@string/cat_picker_launch" />
 
-    <include layout="@layout/cat_picker_date_selector"/>
-    <include layout="@layout/cat_picker_theme"/>
-    <include layout="@layout/cat_picker_bounds"/>
-    <include layout="@layout/cat_picker_validation"/>
-    <include layout="@layout/cat_picker_title"/>
-    <include layout="@layout/cat_picker_positive_button"/>
-    <include layout="@layout/cat_picker_negative_button"/>
-    <include layout="@layout/cat_picker_opening_month"/>
-    <include layout="@layout/cat_picker_selection"/>
-    <include layout="@layout/cat_picker_input_mode"/>
-    <include layout="@layout/cat_picker_day_view_decorator"/>
+    <include layout="@layout/cat_picker_date_selector" />
+
+    <include layout="@layout/cat_picker_theme" />
+
+    <include layout="@layout/cat_picker_bounds" />
+
+    <include layout="@layout/cat_picker_validation" />
+
+    <include layout="@layout/cat_picker_title" />
+
+    <include layout="@layout/cat_picker_positive_button" />
+
+    <include layout="@layout/cat_picker_negative_button" />
+
+    <include layout="@layout/cat_picker_opening_month" />
+
+    <include layout="@layout/cat_picker_selection" />
+
+    <include layout="@layout/cat_picker_input_mode" />
+
+    <include layout="@layout/cat_picker_day_view_decorator" />
 
   </LinearLayout>
 

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2020 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,21 +15,21 @@
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
 
   <FrameLayout
-      android:id="@+id/content"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent" />
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 
   <LinearLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center|bottom"
-      android:layout_marginBottom="@dimen/cat_tabs_standard_spacing"
-      android:orientation="vertical">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|bottom"
+    android:layout_marginBottom="@dimen/cat_tabs_standard_spacing"
+    android:orientation="vertical">
 
     <Button
       android:id="@+id/add_tab_button"
@@ -41,57 +40,63 @@
       android:text="@string/cat_tabs_add_tab_button_label" />
 
     <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center|bottom"
+      android:layout_marginBottom="@dimen/cat_tabs_standard_spacing"
+      android:orientation="horizontal"
+      tools:ignore="ButtonStyle">
+
+      <Button
+        android:id="@+id/remove_first_tab_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="@dimen/cat_tabs_standard_spacing"
-        android:orientation="horizontal"
-        tools:ignore="ButtonStyle">
+        android:layout_marginEnd="@dimen/cat_tabs_small_spacing"
+        android:layout_marginRight="@dimen/cat_tabs_small_spacing"
+        android:text="@string/cat_tabs_remove_first_tab_button_label" />
+
       <Button
-          android:id="@+id/remove_first_tab_button"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="@dimen/cat_tabs_small_spacing"
-          android:layout_marginRight="@dimen/cat_tabs_small_spacing"
-          android:text="@string/cat_tabs_remove_first_tab_button_label" />
-      <Button
-          android:id="@+id/remove_last_tab_button"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/cat_tabs_remove_last_tab_button_label" />
+        android:id="@+id/remove_last_tab_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cat_tabs_remove_last_tab_button_label" />
     </LinearLayout>
 
 
     <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center|bottom"
+      android:layout_marginBottom="@dimen/cat_tabs_standard_spacing"
+      android:orientation="horizontal">
+
+      <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="@dimen/cat_tabs_standard_spacing"
-        android:orientation="horizontal">
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_vertical"
-          android:text="@string/cat_tabs_gravity_selector_label" />
+        android:layout_gravity="center_vertical"
+        android:text="@string/cat_tabs_gravity_selector_label" />
+
       <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkedButton="@+id/tabs_gravity_start_button"
+        android:orientation="horizontal">
+
+        <RadioButton
+          android:id="@+id/tabs_gravity_start_button"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:checkedButton="@+id/tabs_gravity_start_button"
-          android:orientation="horizontal">
+          android:layout_marginEnd="@dimen/cat_tabs_small_spacing"
+          android:layout_marginRight="@dimen/cat_tabs_small_spacing"
+          android:text="@string/cat_tabs_gravity_start" />
+
         <RadioButton
-            android:id="@+id/tabs_gravity_start_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/cat_tabs_small_spacing"
-            android:layout_marginRight="@dimen/cat_tabs_small_spacing"
-            android:text="@string/cat_tabs_gravity_start" />
-        <RadioButton
-            android:id="@+id/tabs_gravity_center_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/cat_tabs_small_spacing"
-            android:layout_marginRight="@dimen/cat_tabs_small_spacing"
-            android:text="@string/cat_tabs_gravity_center" />
+          android:id="@+id/tabs_gravity_center_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="@dimen/cat_tabs_small_spacing"
+          android:layout_marginRight="@dimen/cat_tabs_small_spacing"
+          android:text="@string/cat_tabs_gravity_center" />
       </RadioGroup>
     </LinearLayout>
   </LinearLayout>

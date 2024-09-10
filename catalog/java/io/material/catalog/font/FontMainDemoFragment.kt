@@ -37,13 +37,14 @@ class FontMainDemoFragment : DemoFragment() {
     rv.layoutManager = LinearLayoutManager(context)
     rv.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     rv.adapter = FontStyleAdapter(requireContext())
-    ViewCompat.setOnApplyWindowInsetsListener(rv){_, windowInsetsCompat ->
+    ViewCompat.setOnApplyWindowInsetsListener(rv) { _, windowInsetsCompat ->
       rv.clipToPadding = windowInsetsCompat.systemWindowInsetBottom == 0
       rv.setPadding(
         rv.paddingLeft,
         rv.paddingTop,
         rv.paddingRight,
-        windowInsetsCompat.systemWindowInsetBottom)
+        windowInsetsCompat.systemWindowInsetBottom
+      )
       return@setOnApplyWindowInsetsListener windowInsetsCompat
     }
   }

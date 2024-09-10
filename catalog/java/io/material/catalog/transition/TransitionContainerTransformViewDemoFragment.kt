@@ -36,7 +36,8 @@ class TransitionContainerTransformViewDemoFragment : DemoFragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    val view = inflater.inflate(R.layout.cat_transition_container_transform_view_fragment, container, false)
+    val view =
+      inflater.inflate(R.layout.cat_transition_container_transform_view_fragment, container, false)
     root = view.findViewById(R.id.root)
     startFab = view.findViewById(R.id.start_fab)
     expandedCard = view.findViewById(R.id.expanded_card)
@@ -55,6 +56,7 @@ class TransitionContainerTransformViewDemoFragment : DemoFragment() {
     addTransitionableTarget(view, R.id.contact_card);
 
   }
+
   private fun addTransitionableTarget(view: View, id: Int) {
     view.findViewById<View>(id)?.let {
       ViewCompat.setTransitionName(it, id.toString())

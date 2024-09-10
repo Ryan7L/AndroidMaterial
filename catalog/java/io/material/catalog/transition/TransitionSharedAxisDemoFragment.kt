@@ -26,12 +26,15 @@ class TransitionSharedAxisDemoFragment : DemoFragment() {
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-   sharedAxisHelper = SharedAxisHelper(view.findViewById(R.id.controls_layout))
-   val fragment = TransitionSimpleLayoutFragment.newInstance(LAYOUT_RES_ID_START)
-   requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container,fragment)
-     .commit()
-    sharedAxisHelper.backButtonOnClickListener = View.OnClickListener { replaceFragment(LAYOUT_RES_ID_START) }
-    sharedAxisHelper.nextButtonOnClickListener = View.OnClickListener { replaceFragment(LAYOUT_RES_ID_END) }
+    sharedAxisHelper = SharedAxisHelper(view.findViewById(R.id.controls_layout))
+    val fragment = TransitionSimpleLayoutFragment.newInstance(LAYOUT_RES_ID_START)
+    requireActivity().supportFragmentManager.beginTransaction()
+      .replace(R.id.fragment_container, fragment)
+      .commit()
+    sharedAxisHelper.backButtonOnClickListener =
+      View.OnClickListener { replaceFragment(LAYOUT_RES_ID_START) }
+    sharedAxisHelper.nextButtonOnClickListener =
+      View.OnClickListener { replaceFragment(LAYOUT_RES_ID_END) }
     sharedAxisHelper.updateButtonsEnabled(true)
   }
 

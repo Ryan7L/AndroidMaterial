@@ -10,17 +10,20 @@ import io.material.catalog.R
 class CarouselAdapter @JvmOverloads constructor(
   private val listener: CarouselItemListener,
   private val itemLayoutResId: Int = R.layout.cat_carousel_item
-) : ListAdapter<CarouselItem,CarouselItemViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<CarouselItem, CarouselItemViewHolder>(DIFF_CALLBACK) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarouselItemViewHolder {
-    return CarouselItemViewHolder(LayoutInflater.from(parent.context).inflate(itemLayoutResId, parent, false), listener)
+    return CarouselItemViewHolder(
+      LayoutInflater.from(parent.context).inflate(itemLayoutResId, parent, false), listener
+    )
   }
 
   override fun onBindViewHolder(holder: CarouselItemViewHolder, position: Int) {
     holder.bind(getItem(position))
   }
-  companion object{
-    private val DIFF_CALLBACK = object :DiffUtil.ItemCallback<CarouselItem>(){
+
+  companion object {
+    private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<CarouselItem>() {
       /**
        * Called to check whether two objects represent the same item.
        *

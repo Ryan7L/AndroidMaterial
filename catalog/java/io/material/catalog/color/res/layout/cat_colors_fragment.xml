@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2021 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +14,7 @@
   limitations under the License.
   -->
 
-<androidx.core.widget.NestedScrollView
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:layout_weight="1">
@@ -24,21 +22,21 @@
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="8dp">
 
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      android:baselineAligned="false">
+      android:baselineAligned="false"
+      android:orientation="horizontal">
 
       <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="8dp"
-        android:layout_weight="1">
+        android:padding="8dp">
 
         <LinearLayout
           android:id="@+id/cat_colors_surfaces"
@@ -71,9 +69,9 @@
         android:id="@+id/cat_colors_content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="8dp"
-        android:layout_weight="1">
+        android:padding="8dp">
 
         <TextView
           android:layout_width="match_parent"

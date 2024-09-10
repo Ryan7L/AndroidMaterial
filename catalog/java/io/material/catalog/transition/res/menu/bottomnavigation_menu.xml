@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2019 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,15 +16,15 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item
-      android:id="@+id/action_albums"
-      android:icon="@drawable/ic_photo_library_24px"
-      android:title="@string/cat_transition_fade_through_menu_item_albums"/>
+    android:id="@+id/action_albums"
+    android:icon="@drawable/ic_photo_library_24px"
+    android:title="@string/cat_transition_fade_through_menu_item_albums" />
   <item
-      android:id="@+id/action_photos"
-      android:icon="@drawable/ic_photo_24px"
-      android:title="@string/cat_transition_fade_through_menu_item_photos"/>
+    android:id="@+id/action_photos"
+    android:icon="@drawable/ic_photo_24px"
+    android:title="@string/cat_transition_fade_through_menu_item_photos" />
   <item
-      android:id="@+id/action_search"
-      android:icon="@drawable/ic_search_24px"
-      android:title="@string/cat_transition_fade_through_menu_item_search"/>
+    android:id="@+id/action_search"
+    android:icon="@drawable/ic_search_24px"
+    android:title="@string/cat_transition_fade_through_menu_item_search" />
 </menu>

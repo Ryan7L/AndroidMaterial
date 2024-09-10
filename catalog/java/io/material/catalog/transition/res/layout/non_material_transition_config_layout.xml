@@ -5,9 +5,9 @@
   android:layout_height="match_parent">
 
   <LinearLayout
+    android:id="@+id/config_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/config_container"
     android:orientation="vertical">
 
     <com.google.android.material.textview.MaterialTextView
@@ -134,6 +134,7 @@
         android:layout_weight="1"
         android:text="ChangeBounds"
         android:textSize="8sp" />
+
       <com.google.android.material.button.MaterialButton
         android:id="@+id/color"
         style="@style/Widget.Material3.Button.OutlinedButton"

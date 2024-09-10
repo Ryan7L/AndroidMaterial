@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RadioGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.forEach
@@ -60,6 +59,7 @@ class SharedAxisHelper(controlLayout: ViewGroup) {
       val id = BUTTON_AXIS_MAP.keyAt(index)
       directionRadioGroup.check(id)
     }
+
   fun setAxisButtonGroupEnabled(enabled: Boolean) {
     directionRadioGroup.forEach {
       it.isEnabled = enabled

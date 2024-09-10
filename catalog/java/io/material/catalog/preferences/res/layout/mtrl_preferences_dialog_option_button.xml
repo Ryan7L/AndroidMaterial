@@ -13,13 +13,12 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<Button
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   style="?attr/materialButtonOutlinedStyle"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
+  android:minWidth="0dp"
   android:paddingLeft="8dp"
   android:paddingRight="12dp"
-  android:minWidth="0dp"
-  app:iconPadding="4dp"/>
+  app:iconPadding="4dp" />

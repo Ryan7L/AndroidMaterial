@@ -47,11 +47,11 @@ class DraggableCoordinatorLayout @JvmOverloads constructor(
     }
 
     override fun onViewCaptured(capturedChild: View, activePointerId: Int) {
-      viewDragListener?.onViewCaptured(capturedChild,activePointerId)
+      viewDragListener?.onViewCaptured(capturedChild, activePointerId)
     }
 
     override fun onViewReleased(releasedChild: View, xvel: Float, yvel: Float) {
-      viewDragListener?.onViewReleased(releasedChild,xvel,yvel)
+      viewDragListener?.onViewReleased(releasedChild, xvel, yvel)
     }
 
     override fun getViewHorizontalDragRange(child: View): Int {
@@ -96,7 +96,10 @@ class DraggableCoordinatorLayout @JvmOverloads constructor(
     viewDragHelper.processTouchEvent(ev)
     return super.onTouchEvent(ev)
   }
-  private fun viewIsDraggableChild(view: View) = draggableChildren.isEmpty() || draggableChildren.contains(view)
+
+  private fun viewIsDraggableChild(view: View) =
+    draggableChildren.isEmpty() || draggableChildren.contains(view)
+
   fun setViewDragListener(viewDragListener: ViewDragListener) {
     this.viewDragListener = viewDragListener
   }

@@ -36,27 +36,27 @@ class CardFragment : DemoLandingFragment() {
 
   override val additionalDemos: List<Demo>
     get() = listOf(
-      object : Demo(R.string.cat_card_selection_mode){
+      object : Demo(R.string.cat_card_selection_mode) {
         override val activityIntent: Intent
-          get() = Intent(context,CardSelectionModeActivity::class.java)
+          get() = Intent(context, CardSelectionModeActivity::class.java)
       },
-      object : Demo(R.string.cat_card_draggable_card){
+      object : Demo(R.string.cat_card_draggable_card) {
         override val fragment: Fragment
           get() = DraggableCardFragment()
       },
-      object : Demo(R.string.cat_card_states){
+      object : Demo(R.string.cat_card_states) {
         override val fragment: Fragment
           get() = CardStatesFragment()
       },
-      object : Demo(R.string.cat_card_rich_media_demo){
+      object : Demo(R.string.cat_card_rich_media_demo) {
         override val fragment: Fragment
           get() = CardRichMediaDemoFragment()
       },
-      object : Demo(R.string.cat_card_list){
+      object : Demo(R.string.cat_card_list) {
         override val fragment: Fragment
           get() = CardListDemoFragment()
       },
-      object : Demo(R.string.cat_card_swipe_dismiss){
+      object : Demo(R.string.cat_card_swipe_dismiss) {
         override val fragment: Fragment
           get() = CardSwipeDismissFragment()
       }

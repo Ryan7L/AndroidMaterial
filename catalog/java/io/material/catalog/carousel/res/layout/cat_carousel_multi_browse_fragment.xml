@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2022 The Android Open Source Project
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -15,10 +14,11 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
+
   <LinearLayout
     android:id="@+id/container"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
@@ -43,32 +43,32 @@
       android:id="@+id/debug_switch"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:checked="false"
       android:layout_marginHorizontal="16dp"
       android:layout_marginVertical="8dp"
-      android:textAppearance="?attr/textAppearanceBodyLarge"
-      android:text="@string/cat_carousel_debug_mode_label"/>
+      android:checked="false"
+      android:text="@string/cat_carousel_debug_mode_label"
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
 
     <com.google.android.material.materialswitch.MaterialSwitch
       android:id="@+id/draw_dividers_switch"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:checked="false"
       android:layout_marginHorizontal="16dp"
       android:layout_marginVertical="8dp"
-      android:textAppearance="?attr/textAppearanceBodyLarge"
-      android:text="@string/cat_carousel_draw_dividers_label"/>
+      android:checked="false"
+      android:text="@string/cat_carousel_draw_dividers_label"
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
 
     <com.google.android.material.materialswitch.MaterialSwitch
       android:id="@+id/snap_switch"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:checked="false"
       android:layout_marginHorizontal="16dp"
       android:layout_marginVertical="8dp"
-      android:textAppearance="?attr/textAppearanceBodyLarge"
+      android:checked="false"
       android:contentDescription="@string/cat_carousel_snap_switch_description"
-      android:text="@string/cat_carousel_enable_snap_label"/>
+      android:text="@string/cat_carousel_enable_snap_label"
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
 
     <com.google.android.material.textfield.TextInputLayout
       style="?attr/textInputFilledExposedDropdownMenuStyle"
@@ -83,9 +83,9 @@
         android:id="@+id/item_count_dropdown"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="none"
         android:hint="@string/cat_carousel_adapter_item_count_hint_label"
-        app:simpleItems="@array/cat_carousel_adapter_count_content"/>
+        android:inputType="none"
+        app:simpleItems="@array/cat_carousel_adapter_count_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,7 +97,7 @@
       android:layout_marginTop="16dp"
       android:labelFor="@id/position_slider"
       android:text="@string/cat_carousel_position_slider_label"
-      android:textAppearance="?attr/textAppearanceBodyLarge"/>
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
 
     <com.google.android.material.slider.Slider
       android:id="@+id/position_slider"
@@ -106,7 +106,7 @@
       android:layout_marginHorizontal="16dp"
       android:layout_marginBottom="8dp"
       android:contentDescription="@string/cat_carousel_position_slider_content_description"
-      android:stepSize="1.0"/>
+      android:stepSize="1.0" />
 
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/multi_browse_start_carousel_recycler_view"

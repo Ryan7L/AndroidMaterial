@@ -32,6 +32,7 @@ class ViewScheduler {
     listenerRef = null
     task?.cancel(true)
   }
+
   val isRunning: Boolean
     get() = !(task?.isDone ?: true)
 }

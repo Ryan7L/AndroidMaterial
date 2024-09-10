@@ -38,16 +38,16 @@ class TransitionFadeThroughDemoFragment : DemoFragment() {
     val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottomnavigation)
     bottomNavigationView.setOnItemSelectedListener(onItemSelectedListener)
     requireActivity().supportFragmentManager.registerFragmentLifecycleCallbacks(
-      object : FragmentLifecycleCallbacks(){
+      object : FragmentLifecycleCallbacks() {
         override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
           super.onFragmentStarted(fm, f)
           val itemId = try {
-              f.tag?.toInt()
-          }catch (e: Exception){
+            f.tag?.toInt()
+          } catch (e: Exception) {
             null
           }
           itemId?.let {
-            if (bottomNavigationView.selectedItemId != it){
+            if (bottomNavigationView.selectedItemId != it) {
               //解决方法是通过在背面重新创建片段来避免破坏演示，因为 FragmentManager 会处理替换片段
               bottomNavigationView.setOnItemSelectedListener(null)
               bottomNavigationView.selectedItemId = it
@@ -55,10 +55,11 @@ class TransitionFadeThroughDemoFragment : DemoFragment() {
             }
           }
         }
-      },true
+      }, true
     )
-    replaceFragment(R.id.action_albums,false)
+    replaceFragment(R.id.action_albums, false)
   }
+
   private fun replaceFragment(itemId: Int, addToBackStack: Boolean) {
     val fragment = TransitionSimpleLayoutFragment.newInstance(LAYOUT_RES_MAP[itemId])
     //将过渡设置为片段的进入过渡。当将片段添加到容器中时将使用它，并在从容器中删除片段时重新使用该片段。

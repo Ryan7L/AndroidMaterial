@@ -31,18 +31,27 @@ class TransitionContainerTransformEndDemoActivity : DemoActivity() {
     viewGroup: ViewGroup?,
     bundle: Bundle?
   ): View? {
-    return layoutInflater.inflate(R.layout.cat_transition_container_transform_end_activity,viewGroup,false)
+    return layoutInflater.inflate(
+      R.layout.cat_transition_container_transform_end_activity,
+      viewGroup,
+      false
+    )
   }
 
   override val demoTitleResId: Int
     get() = R.string.cat_transition_container_transform_activity_title
 
   private fun buildContainerTransform(entering: Boolean): MaterialContainerTransform {
-      return MaterialContainerTransform(this,entering).apply {
-        //使用全部 3 个容器层颜色，因为可以使用任何淡入淡出模式配置此变换，并且某些开始视图没有背景，并且结束视图没有背景。
-        setAllContainerColors(MaterialColors.getColor(findViewById(android.R.id.content),R.attr.colorSurface))
-        addTarget(android.R.id.content)
-        TransitionContainerTransformStartDemoActivity.configurationHelper?.configure(this,entering)
-      }
+    return MaterialContainerTransform(this, entering).apply {
+      //使用全部 3 个容器层颜色，因为可以使用任何淡入淡出模式配置此变换，并且某些开始视图没有背景，并且结束视图没有背景。
+      setAllContainerColors(
+        MaterialColors.getColor(
+          findViewById(android.R.id.content),
+          R.attr.colorSurface
+        )
+      )
+      addTarget(android.R.id.content)
+      TransitionContainerTransformStartDemoActivity.configurationHelper?.configure(this, entering)
+    }
   }
 }

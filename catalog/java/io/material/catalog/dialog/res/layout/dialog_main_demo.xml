@@ -15,16 +15,15 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fillViewport="true">
+
   <LinearLayout
-      android:id="@+id/dialog_launcher_buttons_layout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:padding="@dimen/cat_dialog_demo_padding"
-      android:orientation="vertical">
-  </LinearLayout>
+    android:id="@+id/dialog_launcher_buttons_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/cat_dialog_demo_padding"></LinearLayout>
 </androidx.core.widget.NestedScrollView>

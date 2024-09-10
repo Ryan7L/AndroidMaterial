@@ -26,11 +26,12 @@ open class CatalogApplication : MultiDexApplication(), HasAndroidInjector {
   override fun onCreate() {
     super.onCreate()
     AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-    if (!overrideApplicationComponent(this)){
+    if (!overrideApplicationComponent(this)) {
       DaggerCatalogApplicationComponent.builder().application(this).build().inject(this)
     }
     catalogPreferences.applyPreferences(this)
   }
+
   /**
    * 使用在 AndroidManifest.xml 元数据中指定的键为[COMPONENT_OVERRIDE_KEY]组件替换应用程序组件。如果组件已正确初始化并替换，则返回true ，否则返回false 。
    * 这假设替换组件可以按照与默认组件完全相同的方式进行初始化。

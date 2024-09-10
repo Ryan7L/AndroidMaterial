@@ -3,7 +3,6 @@ package io.material.catalog.feature
 import android.app.ActivityOptions
 import android.content.Intent
 import android.content.res.ColorStateList
-import android.os.Build
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -229,7 +228,7 @@ abstract class DemoLandingFragment : DaggerFragment() {
   }
 
 
-   fun addDemoView(
+  fun addDemoView(
     layoutInflater: LayoutInflater,
     demoContainer: ViewGroup,
     demo: Demo,
@@ -300,7 +299,7 @@ abstract class DemoLandingFragment : DaggerFragment() {
   private fun startDemoActivity(intent: Intent, sharedElement: View?, transitionName: String?) {
     intent.putExtra(DemoActivity.EXTRA_DEMO_TITLE, getString(titleResId))
 
-    if ( sharedElement != null && transitionName != null) {
+    if (sharedElement != null && transitionName != null) {
       intent.putExtra(DemoActivity.EXTRA_TRANSITION_NAME, transitionName)
       //设置共享元素过渡并禁用覆盖，以便视图不会显示在系统栏上方
       activity?.let {

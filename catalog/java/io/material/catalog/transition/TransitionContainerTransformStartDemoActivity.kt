@@ -75,13 +75,14 @@ class TransitionContainerTransformStartDemoActivity : DemoActivity() {
    * 布尔值返回 false 以允许系统处理，返回 true 以在此处理它。
    */
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    if (item.itemId == R.id.configure){
-      configurationHelper?.showConfigurationChooser(this,null)
+    if (item.itemId == R.id.configure) {
+      configurationHelper?.showConfigurationChooser(this, null)
       return true
-    }else{
+    } else {
       return super.onOptionsItemSelected(item)
     }
   }
+
   override val demoTitleResId: Int
     get() = R.string.cat_transition_container_transform_activity_title
 

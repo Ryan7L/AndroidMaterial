@@ -31,7 +31,7 @@ abstract class ColorPaletteDemoFragment : DemoFragment() {
     val rv = view as RecyclerView
     adapter = ColorsAdapter(requireContext(), colorsArrayResId)
     rv.layoutManager = LinearLayoutManager(requireContext())
-    rv.addItemDecoration(ColorSectionsItemDecoration(requireContext(),adapter!!))
+    rv.addItemDecoration(ColorSectionsItemDecoration(requireContext(), adapter!!))
     rv.adapter = adapter
     return view
   }
@@ -40,8 +40,9 @@ abstract class ColorPaletteDemoFragment : DemoFragment() {
     inflater.inflate(R.menu.cat_colors_menu, menu)
     super.onCreateOptionsMenu(menu, inflater)
   }
+
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    if (item.itemId == R.id.copy_colors){
+    if (item.itemId == R.id.copy_colors) {
       val clipboard = requireContext().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
       val clip = ClipData.newPlainText("Colors", generateColorsText(adapter!!))
       clipboard.setPrimaryClip(clip)
@@ -50,8 +51,10 @@ abstract class ColorPaletteDemoFragment : DemoFragment() {
     }
     return super.onOptionsItemSelected(item)
   }
+
   @get:LayoutRes
   protected abstract val colorsLayoutResId: Int
+
   @get:ArrayRes
   protected abstract val colorsArrayResId: Int
   private fun generateColorsText(adapter: ColorsAdapter): String {

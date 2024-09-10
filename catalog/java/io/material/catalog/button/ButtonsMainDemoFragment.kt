@@ -28,27 +28,29 @@ class ButtonsMainDemoFragment : DemoFragment() {
     val iconButtonContent = view.findViewById<ViewGroup>(R.id.iconButtonContent)
     View.inflate(context, iconButtonContentResId, iconButtonContent)
 
-    val buttons = DemoUtils.findViewsWithType(view,MaterialButton::class.java)
+    val buttons = DemoUtils.findViewsWithType(view, MaterialButton::class.java)
     var maxMeasuredWidth = 0
 
     val displayMetrics = resources.displayMetrics
     buttons.forEach {
-      it.measure(displayMetrics.widthPixels,displayMetrics.heightPixels)
-      maxMeasuredWidth = max(maxMeasuredWidth,it.measuredWidth)
-      it.setOnClickListener { v->
-        Snackbar.make(v,R.string.cat_button_clicked,Snackbar.LENGTH_LONG).setAction(R.string.cat_snackbar_action_button_text,{}).show()
+      it.measure(displayMetrics.widthPixels, displayMetrics.heightPixels)
+      maxMeasuredWidth = max(maxMeasuredWidth, it.measuredWidth)
+      it.setOnClickListener { v ->
+        Snackbar.make(v, R.string.cat_button_clicked, Snackbar.LENGTH_LONG)
+          .setAction(R.string.cat_snackbar_action_button_text, {}).show()
       }
     }
 
     val enabledSwitch = view.findViewById<MaterialSwitch>(R.id.cat_button_enabled_switch)
     enabledSwitch.setOnCheckedChangeListener { _, isChecked ->
-      val text = getText(if (isChecked) R.string.cat_button_label_enabled else R.string.cat_button_label_disabled)
+      val text =
+        getText(if (isChecked) R.string.cat_button_label_enabled else R.string.cat_button_label_disabled)
       buttons.forEach {
-        if (it.text.isNotEmpty()){
+        if (it.text.isNotEmpty()) {
           it.text = text
-          }
-          it.isEnabled = isChecked
-          it.isFocusable = isChecked
+        }
+        it.isEnabled = isChecked
+        it.isFocusable = isChecked
       }
     }
 

@@ -18,6 +18,7 @@ class TocAdapter(
   RecyclerView.Adapter<TocViewHolder>(), Filterable {
   //Filterable:定义可过滤行为。可过滤类的数据可受过滤器约束。可过滤类通常是Adapter实现
   private val featureDemoList = featureDemos.toList()
+
   //Filter：过滤器，异步的
   private val featureDemoFilter = object : Filter() {
     /**
@@ -51,6 +52,7 @@ class TocAdapter(
         values = filteredList
       }
     }
+
     /**
      * 在UI线程中调用，将过滤结果发布到用户界面中。子类必须实现此方法才能显示 [performFiltering] 中计算的结果
      *

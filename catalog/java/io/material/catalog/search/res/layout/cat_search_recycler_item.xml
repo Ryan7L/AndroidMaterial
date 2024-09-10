@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2022 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,42 +13,41 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cat_searchbar_recycler_card"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:checkable="true"
-    android:clickable="true"
-    android:focusable="true"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="4dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp">
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/cat_searchbar_recycler_card"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_marginLeft="16dp"
+  android:layout_marginTop="4dp"
+  android:layout_marginRight="16dp"
+  android:layout_marginBottom="4dp"
+  android:checkable="true"
+  android:clickable="true"
+  android:focusable="true">
 
   <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="12dp"
+    android:paddingTop="8dp"
+    android:paddingRight="12dp"
+    android:paddingBottom="64dp">
+
+    <TextView
+      android:id="@+id/cat_searchbar_recycler_title"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:paddingTop="8dp"
-      android:paddingBottom="64dp"
-      android:paddingLeft="12dp"
-      android:paddingRight="12dp"
-      android:orientation="vertical">
+      android:layout_marginBottom="4dp"
+      android:textAppearance="?attr/textAppearanceBody2"
+      tools:text="481 Van Brunt Street" />
 
     <TextView
-        android:id="@+id/cat_searchbar_recycler_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:textAppearance="?attr/textAppearanceBody2"
-        tools:text="481 Van Brunt Street"/>
-
-    <TextView
-        android:id="@+id/cat_searchbar_recycler_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceCaption"
-        tools:text="Brooklyn, NY"/>
+      android:id="@+id/cat_searchbar_recycler_subtitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textAppearance="?attr/textAppearanceCaption"
+      tools:text="Brooklyn, NY" />
   </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

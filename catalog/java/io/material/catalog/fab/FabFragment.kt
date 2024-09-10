@@ -11,7 +11,7 @@ import io.material.catalog.feature.Demo
 import io.material.catalog.feature.DemoLandingFragment
 import io.material.catalog.feature.FeatureDemo
 
-class FabFragment: DemoLandingFragment() {
+class FabFragment : DemoLandingFragment() {
   /**
    * ActionBar 或 ToolBar 的标题的资源ID
    */
@@ -45,21 +45,23 @@ class FabFragment: DemoLandingFragment() {
       }
     )
 }
+
 @dagger.Module
-abstract class FabModule{
+abstract class FabModule {
   @FragmentScope
   @ContributesAndroidInjector
   abstract fun contributeInjector(): FabFragment
-companion object{
-  @JvmStatic
-  @ActivityScope
-  @IntoSet
-  @Provides
-  fun provideFeatureDemo(): FeatureDemo {
-    return object : FeatureDemo(R.string.cat_fab_title, R.drawable.ic_fab) {
-      override val landingFragment: Fragment
-        get() = FabFragment()
+
+  companion object {
+    @JvmStatic
+    @ActivityScope
+    @IntoSet
+    @Provides
+    fun provideFeatureDemo(): FeatureDemo {
+      return object : FeatureDemo(R.string.cat_fab_title, R.drawable.ic_fab) {
+        override val landingFragment: Fragment
+          get() = FabFragment()
+      }
     }
   }
-}
 }

@@ -1,6 +1,5 @@
 package io.material.catalog.tableofcontents
 
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -99,7 +98,7 @@ class TocFragment : DaggerFragment() {
         .setPadding(0, insets.systemWindowInsetTop, 0, 0)
       insets
     }
-      addGridTopDividerVisibilityListener()
+    addGridTopDividerVisibilityListener()
 
     val spanCount = calculateGridSpanCount()
     rv.layoutManager = GridLayoutManager(context, spanCount)
@@ -124,7 +123,7 @@ class TocFragment : DaggerFragment() {
       demoList.forEach {
         Log.d("TAG", "onCreateView: ${it.landingFragment.javaClass.name}")
       }
-    }catch (e: Exception){
+    } catch (e: Exception) {
       Log.d("TAG", "onCreateView: ${e.message}")
     }
 //    demoList.forEach {

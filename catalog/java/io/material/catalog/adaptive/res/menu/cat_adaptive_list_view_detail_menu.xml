@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2021 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,17 +18,17 @@
   xmlns:app="http://schemas.android.com/apk/res-auto">
   <item
     android:id="@+id/button_1"
-    android:title="@string/cat_list_view_menu_archive_button"
     android:icon="@drawable/ic_archive_outline_24dp"
-    app:showAsAction="ifRoom"/>
+    android:title="@string/cat_list_view_menu_archive_button"
+    app:showAsAction="ifRoom" />
   <item
     android:id="@+id/button_2"
-    android:title="@string/cat_list_view_menu_delete_button"
     android:icon="@drawable/ic_delete_outline_24dp"
-    app:showAsAction="ifRoom"/>
+    android:title="@string/cat_list_view_menu_delete_button"
+    app:showAsAction="ifRoom" />
   <item
     android:id="@+id/button_3"
-    android:title="@string/cat_list_view_menu_unread_button"
     android:icon="@drawable/ic_mail_outline_24dp"
-    app:showAsAction="ifRoom"/>
+    android:title="@string/cat_list_view_menu_unread_button"
+    app:showAsAction="ifRoom" />
 </menu>

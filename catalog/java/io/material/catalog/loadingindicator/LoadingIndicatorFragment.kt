@@ -11,7 +11,7 @@ import io.material.catalog.feature.Demo
 import io.material.catalog.feature.DemoLandingFragment
 import io.material.catalog.feature.FeatureDemo
 
-class LoadingIndicatorFragment: DemoLandingFragment() {
+class LoadingIndicatorFragment : DemoLandingFragment() {
   /**
    * ActionBar 或 ToolBar 的标题的资源ID
    */
@@ -28,24 +28,27 @@ class LoadingIndicatorFragment: DemoLandingFragment() {
    * 主要的Demo
    */
   override val mainDemo: Demo
-    get() = object : Demo(){
+    get() = object : Demo() {
       override val fragment: Fragment
         get() = LoadingIndicatorMainDemoFragment()
     }
 }
+
 @dagger.Module
-abstract class LoadingIndicatorModule{
+abstract class LoadingIndicatorModule {
 
   @FragmentScope
   @ContributesAndroidInjector
   abstract fun contributeInjector(): LoadingIndicatorFragment
-  companion object{
+
+  companion object {
     @JvmStatic
     @IntoSet
     @Provides
     @ActivityScope
     fun provideFeatureDemo(): FeatureDemo {
-      return object : FeatureDemo(R.string.cat_loading_indicator_title, R.drawable.ic_progress_activity_24px) {
+      return object :
+        FeatureDemo(R.string.cat_loading_indicator_title, R.drawable.ic_progress_activity_24px) {
         override val landingFragment: Fragment
           get() = LoadingIndicatorFragment()
       }

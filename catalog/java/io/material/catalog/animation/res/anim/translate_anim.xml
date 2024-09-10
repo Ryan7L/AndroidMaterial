@@ -3,8 +3,7 @@
   android:fromXDelta="0"
   android:fromYDelta="0"
   android:toXDelta="100"
-  android:toYDelta="100" />
-  <!--
+  android:toYDelta="100" /><!--
   TranslateAnimation属性：
       fromXDelta:起始位置的X偏移量
       fromYDelta: 起始位置的Y偏移量

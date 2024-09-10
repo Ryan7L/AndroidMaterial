@@ -15,8 +15,7 @@
   ~   See the License for the specific language governing permissions and
   ~  limitations under the License.
   -->
-<ScrollView
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
@@ -26,8 +25,8 @@
     android:id="@+id/main_viewGroup"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/cat_imageview_padding"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/cat_imageview_padding">
 
     <com.google.android.material.button.MaterialButtonToggleGroup
       android:id="@+id/togglegroup"
@@ -37,6 +36,7 @@
       app:checkedButton="@id/button_square"
       app:selectionRequired="true"
       app:singleSelection="true">
+
       <Button
         android:id="@+id/button_square"
         style="?attr/materialButtonOutlinedStyle"
@@ -50,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cat_imageview_diamond" />
+
       <Button
         android:id="@+id/button_circle"
         style="?attr/materialButtonOutlinedStyle"
@@ -61,18 +62,18 @@
 
     <com.google.android.material.imageview.ShapeableImageView
       android:id="@+id/image_view"
-      android:layout_margin="10dp"
-      android:layout_gravity="center"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:scaleType="fitXY"
+      android:layout_gravity="center"
+      android:layout_margin="10dp"
       android:adjustViewBounds="true"
-      app:strokeColor="?attr/colorSecondary"
-      app:shapeAppearance="?attr/shapeAppearanceMediumComponent"
-      app:strokeWidth="1dp"
       android:elevation="5dp"
       android:padding="8dp"
-      app:srcCompat="@drawable/dog_image" />
+      android:scaleType="fitXY"
+      app:shapeAppearance="?attr/shapeAppearanceMediumComponent"
+      app:srcCompat="@drawable/dog_image"
+      app:strokeColor="?attr/colorSecondary"
+      app:strokeWidth="1dp" />
 
 
     <LinearLayout
@@ -88,8 +89,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:scaleType="fitXY"
         android:elevation="5dp"
+        android:scaleType="fitXY"
         app:shapeAppearance="@style/ShapeAppearanceImageLeft"
         app:srcCompat="@drawable/cat_image"
         app:strokeColor="?attr/colorSecondary"
@@ -97,26 +98,26 @@
 
       <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_view_gif"
-        tools:ignore="InefficientWeight"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:adjustViewBounds="true"
-        android:scaleType="fitXY"
         android:elevation="5dp"
+        android:scaleType="fitXY"
         app:shapeAppearance="@style/ShapeAppearanceImageRight"
         app:srcCompat="@drawable/cateyes_image"
         app:strokeColor="?attr/colorSecondary"
-        app:strokeWidth="1dp" />
+        app:strokeWidth="1dp"
+        tools:ignore="InefficientWeight" />
 
     </LinearLayout>
 
     <com.google.android.material.imageview.ShapeableImageView
       android:id="@+id/icon_view"
-      android:layout_margin="10dp"
-      android:layout_gravity="center"
       android:layout_width="40dp"
       android:layout_height="40dp"
+      android:layout_gravity="center"
+      android:layout_margin="10dp"
       android:background="?colorSecondary"
       android:elevation="2dp"
       app:contentPadding="8dp"

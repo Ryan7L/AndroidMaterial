@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2021 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,18 +18,18 @@
   <item
     android:id="@+id/action_page_1"
     android:icon="@drawable/ic_star_checkable_24"
-    android:title="@string/cat_adaptive_menu_page_1_title"/>
+    android:title="@string/cat_adaptive_menu_page_1_title" />
   <item
     android:id="@+id/action_page_2"
     android:icon="@drawable/ic_star_checkable_24"
-    android:title="@string/cat_adaptive_menu_page_2_title"/>
+    android:title="@string/cat_adaptive_menu_page_2_title" />
   <item
     android:id="@+id/action_page_3"
     android:icon="@drawable/ic_star_checkable_24"
-    android:title="@string/cat_adaptive_menu_page_3_title"/>
+    android:title="@string/cat_adaptive_menu_page_3_title" />
   <item
     android:id="@+id/action_page_4"
     android:icon="@drawable/ic_star_checkable_24"
     android:title="@string/cat_adaptive_menu_page_4_title"
-    android:visible="false"/>
+    android:visible="false" />
 </menu>

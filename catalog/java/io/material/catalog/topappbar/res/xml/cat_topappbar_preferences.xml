@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2021 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,77 +37,77 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <PreferenceCategory
-      app:key="category1"
-      app:title="Category 1">
+    app:key="category1"
+    app:title="Category 1">
 
     <Preference
-        app:key="setting1"
-        app:summary="Summary for Setting 1"
-        app:title="Setting 1" />
+      app:key="setting1"
+      app:summary="Summary for Setting 1"
+      app:title="Setting 1" />
 
     <EditTextPreference
-        app:key="setting2"
-        app:summary="Summary for Setting 2"
-        app:title="Setting 2" />
+      app:key="setting2"
+      app:summary="Summary for Setting 2"
+      app:title="Setting 2" />
 
     <SwitchPreferenceCompat
-        app:key="setting3"
-        app:summary="Summary for Setting 3"
-        app:title="Setting 3" />
+      app:key="setting3"
+      app:summary="Summary for Setting 3"
+      app:title="Setting 3" />
 
     <CheckBoxPreference
-        app:key="setting4"
-        app:summary="Summary for Setting 4"
-        app:title="Setting 4" />
+      app:key="setting4"
+      app:summary="Summary for Setting 4"
+      app:title="Setting 4" />
   </PreferenceCategory>
 
   <PreferenceCategory
-      app:key="category2"
-      app:title="Category 2">
+    app:key="category2"
+    app:title="Category 2">
 
     <Preference
-        app:key="setting5"
-        app:summary="Summary for Setting 5"
-        app:title="Setting 5" />
+      app:key="setting5"
+      app:summary="Summary for Setting 5"
+      app:title="Setting 5" />
 
     <EditTextPreference
-        app:key="setting6"
-        app:summary="Summary for Setting 6"
-        app:title="Setting 6" />
+      app:key="setting6"
+      app:summary="Summary for Setting 6"
+      app:title="Setting 6" />
 
     <SwitchPreferenceCompat
-        app:key="setting7"
-        app:summary="Summary for Setting 7"
-        app:title="Setting 7" />
+      app:key="setting7"
+      app:summary="Summary for Setting 7"
+      app:title="Setting 7" />
 
     <CheckBoxPreference
-        app:key="setting8"
-        app:summary="Summary for Setting 8"
-        app:title="Setting 8" />
+      app:key="setting8"
+      app:summary="Summary for Setting 8"
+      app:title="Setting 8" />
   </PreferenceCategory>
 
   <PreferenceCategory
-      app:key="category3"
-      app:title="Category 3">
+    app:key="category3"
+    app:title="Category 3">
 
     <Preference
-        app:key="setting9"
-        app:summary="Summary for Setting 9"
-        app:title="Setting 9" />
+      app:key="setting9"
+      app:summary="Summary for Setting 9"
+      app:title="Setting 9" />
 
     <EditTextPreference
-        app:key="setting10"
-        app:summary="Summary for Setting 10"
-        app:title="Setting 10" />
+      app:key="setting10"
+      app:summary="Summary for Setting 10"
+      app:title="Setting 10" />
 
     <SwitchPreferenceCompat
-        app:key="setting11"
-        app:summary="Summary for Setting 11"
-        app:title="Setting 11" />
+      app:key="setting11"
+      app:summary="Summary for Setting 11"
+      app:title="Setting 11" />
 
     <CheckBoxPreference
-        app:key="setting12"
-        app:summary="Summary for Setting 12"
-        app:title="Setting 12" />
+      app:key="setting12"
+      app:summary="Summary for Setting 12"
+      app:title="Setting 12" />
   </PreferenceCategory>
 </PreferenceScreen>

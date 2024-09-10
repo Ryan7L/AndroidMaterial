@@ -26,7 +26,7 @@ import io.material.catalog.R
 import io.material.catalog.feature.DemoActivity
 import java.util.concurrent.Executor
 
-class AdaptiveListViewDemoActivity: DemoActivity() {
+class AdaptiveListViewDemoActivity : DemoActivity() {
   private lateinit var drawerLayout: DrawerLayout
   private lateinit var modalNavDrawer: NavigationView
   private lateinit var detailViewContainer: View
@@ -94,21 +94,23 @@ class AdaptiveListViewDemoActivity: DemoActivity() {
 
   override fun onStart() {
     super.onStart()
-    windowInfoTracker?.addWindowLayoutInfoListener(this,executor,stateContainer)
+    windowInfoTracker?.addWindowLayoutInfoListener(this, executor, stateContainer)
   }
 
   override fun onStop() {
     super.onStop()
     windowInfoTracker?.removeWindowLayoutInfoListener(stateContainer)
   }
-  private fun updatePortraitLayout(){
+
+  private fun updatePortraitLayout() {
     val listViewFragmentId = R.id.list_view_fragment_container
     guideline.setGuidelineEnd(0)
     detailViewContainer.visibility = View.GONE
     listViewFragment.detailViewContainerId = listViewFragmentId
     fragmentManager.beginTransaction().replace(listViewFragmentId, listViewFragment).commit()
   }
-  private fun updateLandscapeLayout(guidelinePosition: Int, foldWidth: Int){
+
+  private fun updateLandscapeLayout(guidelinePosition: Int, foldWidth: Int) {
     val listViewFragmentId = R.id.list_view_fragment_container
     val detailViewFragmentId = R.id.list_view_detail_fragment_container
     ConstraintSet().apply {
@@ -118,20 +120,21 @@ class AdaptiveListViewDemoActivity: DemoActivity() {
     }
     guideline.setGuidelineEnd(guidelinePosition)
     listViewFragment.detailViewContainerId = detailViewFragmentId
-    fragmentManager.beginTransaction().replace(listViewFragmentId,listViewFragment)
-      .replace(detailViewFragmentId,detailViewFragment)
+    fragmentManager.beginTransaction().replace(listViewFragmentId, listViewFragment)
+      .replace(detailViewFragmentId, detailViewFragment)
       .commit()
   }
-  inner class StateContainer: Consumer<WindowLayoutInfo>{
+
+  inner class StateContainer : Consumer<WindowLayoutInfo> {
     override fun accept(value: WindowLayoutInfo) {
       val displayFeatures = value.displayFeatures
       var hasVerticalFold = false
-      if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+      if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
         updatePortraitLayout()
-      }else{
+      } else {
         displayFeatures.forEach {
-          if (it is FoldingFeature){
-            if (it.orientation == FoldingFeature.Orientation.VERTICAL){
+          if (it is FoldingFeature) {
+            if (it.orientation == FoldingFeature.Orientation.VERTICAL) {
               val foldPosition = it.bounds.left
               val foldWidth = it.bounds.right - foldPosition
               updateLandscapeLayout(foldPosition, foldWidth)
@@ -139,7 +142,7 @@ class AdaptiveListViewDemoActivity: DemoActivity() {
             }
           }
         }
-        if (!hasVerticalFold){
+        if (!hasVerticalFold) {
           updateLandscapeLayout(constraintLayout.width / 2, 0)
         }
       }

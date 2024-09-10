@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2021 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,25 +16,25 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item
-      android:id="@+id/action_alarm"
-      android:enabled="true"
-      android:icon="@drawable/asld_clock_alarm"
-      android:title="@string/cat_navigation_rail_alarm"/>
+    android:id="@+id/action_alarm"
+    android:enabled="true"
+    android:icon="@drawable/asld_clock_alarm"
+    android:title="@string/cat_navigation_rail_alarm" />
   <item
-      android:id="@+id/action_clock"
-      android:enabled="true"
-      android:icon="@drawable/asld_clock_clock"
-      android:title="@string/cat_navigation_rail_clock"/>
+    android:id="@+id/action_clock"
+    android:enabled="true"
+    android:icon="@drawable/asld_clock_clock"
+    android:title="@string/cat_navigation_rail_clock" />
   <item
-      android:id="@+id/action_timer"
-      android:enabled="true"
-      android:icon="@drawable/asld_clock_timer"
-      android:title="@string/cat_navigation_rail_timer"/>
+    android:id="@+id/action_timer"
+    android:enabled="true"
+    android:icon="@drawable/asld_clock_timer"
+    android:title="@string/cat_navigation_rail_timer" />
   <item
-      android:id="@+id/action_stopwatch"
-      android:enabled="true"
-      android:icon="@drawable/asld_clock_stopwatch"
-      android:title="@string/cat_navigation_rail_stopwatch"/>
+    android:id="@+id/action_stopwatch"
+    android:enabled="true"
+    android:icon="@drawable/asld_clock_stopwatch"
+    android:title="@string/cat_navigation_rail_stopwatch" />
 </menu>
 
 

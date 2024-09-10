@@ -10,7 +10,6 @@ import io.material.catalog.application.scope.FragmentScope
 import io.material.catalog.feature.Demo
 import io.material.catalog.feature.DemoLandingFragment
 import io.material.catalog.feature.FeatureDemo
-import io.material.catalog.slider.SliderMainDemoFragment
 
 class SideSheetFragment : DemoLandingFragment() {
   /**

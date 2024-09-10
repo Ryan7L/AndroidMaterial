@@ -9,9 +9,10 @@ import com.google.android.material.card.MaterialCardView
 import io.material.catalog.R
 import io.material.catalog.feature.DemoFragment
 
-class CardStatesFragment: DemoFragment() {
+class CardStatesFragment : DemoFragment() {
   override val demoTitleResId: Int
     get() = R.string.cat_card_states
+
   override fun onCreateDemoView(
     inflater: LayoutInflater,
     container: ViewGroup?,

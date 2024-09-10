@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2021 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,14 +14,14 @@
   ~ limitations under the License.
 -->
 
-<androidx.core.widget.NestedScrollView
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/feed_container"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
   <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/feed_constraint_layout"
     android:layout_width="match_parent"
@@ -34,91 +33,93 @@
       android:layout_height="wrap_content"
       android:layout_marginStart="12dp"
       android:layout_marginLeft="12dp"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
       android:text="@string/cat_feed_fragment_title"
-      android:textAppearance="?attr/textAppearanceDisplayMedium"/>
+      android:textAppearance="?attr/textAppearanceDisplayMedium"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
       android:id="@+id/feed_subhead"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="12dp"
       android:layout_marginLeft="12dp"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/feed_title"
       android:text="@string/cat_feed_fragment_subhead"
-      android:textAppearance="?attr/textAppearanceBodyMedium"/>
+      android:textAppearance="?attr/textAppearanceBodyMedium"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/feed_title" />
 
     <!-- Guide to separate content in large screens/foldable devices. -->
     <androidx.constraintlayout.widget.ReactiveGuide
+      android:id="@+id/fold"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:id="@+id/fold"
       android:orientation="vertical"
-      app:reactiveGuide_valueId="@id/fold"
+      app:layout_constraintGuide_end="0dp"
       app:reactiveGuide_animateChange="false"
       app:reactiveGuide_applyToAllConstraintSets="true"
-      app:layout_constraintGuide_end="0dp"
+      app:reactiveGuide_valueId="@id/fold"
       tools:ignore="MissingConstraints" />
 
     <com.google.android.material.button.MaterialButton
       android:id="@+id/top_button"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:layout_marginTop="12dp"
+      android:layout_gravity="start"
       android:layout_marginStart="12dp"
-      android:layout_marginEnd="12dp"
       android:layout_marginLeft="12dp"
+      android:layout_marginTop="12dp"
+      android:layout_marginEnd="12dp"
       android:layout_marginRight="12dp"
+      android:layout_weight="1"
       android:text="@string/cat_feed_fragment_title"
       android:textAlignment="textStart"
-      android:layout_gravity="start"
-      app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/feed_subhead"/>
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/feed_subhead" />
 
-    <include layout="@layout/cat_adaptive_feed_large_item"
+    <include
       android:id="@+id/highlight_content_card"
+      layout="@layout/cat_adaptive_feed_large_item"
       android:layout_width="match_parent"
       android:layout_height="290dp"
-      android:layout_marginTop="16dp"
       android:layout_marginStart="12dp"
-      android:layout_marginEnd="12dp"
       android:layout_marginLeft="12dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginEnd="12dp"
       android:layout_marginRight="12dp"
-      app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/top_button"/>
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/top_button" />
 
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/large_content_list"
-      android:visibility="gone"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_weight="0.5"
-      android:layout_marginTop="16dp"
       android:layout_marginStart="12dp"
-      android:layout_marginEnd="12dp"
       android:layout_marginLeft="12dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginEnd="12dp"
       android:layout_marginRight="12dp"
-      app:layout_constraintStart_toStartOf="parent"
+      android:layout_weight="0.5"
+      android:visibility="gone"
       app:layout_constraintEnd_toStartOf="@id/fold"
-      app:layout_constraintTop_toBottomOf="@id/feed_subhead"/>
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/feed_subhead" />
 
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/small_content_list"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_weight="0.5"
-      android:layout_marginTop="16dp"
       android:layout_marginStart="12dp"
-      android:layout_marginEnd="12dp"
       android:layout_marginLeft="12dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginEnd="12dp"
       android:layout_marginRight="12dp"
-      app:layout_constraintStart_toStartOf="parent"
+      android:layout_weight="0.5"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/highlight_content_card"/>
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/highlight_content_card" />
 
 
   </androidx.constraintlayout.widget.ConstraintLayout>

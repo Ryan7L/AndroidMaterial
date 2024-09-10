@@ -24,7 +24,8 @@ class AdaptiveMusicPlayerAlbumDemoFragment : MusicPlayerAlbumDemoFragment() {
         }
       }
     }
-     const val TAG = "AdaptiveMusicPlayerAlbumDemoFragment"
+
+    const val TAG = "AdaptiveMusicPlayerAlbumDemoFragment"
 
   }
 

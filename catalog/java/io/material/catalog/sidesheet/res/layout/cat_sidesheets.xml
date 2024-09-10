@@ -16,6 +16,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools">
+
   <FrameLayout
     android:id="@+id/standard_side_sheet_container"
     style="@style/Widget.Material3.SideSheet"
@@ -24,6 +25,7 @@
     android:orientation="vertical"
     app:layout_behavior="@string/side_sheet_behavior"
     tools:targetApi="lollipop">
+
     <include layout="@layout/cat_sidesheet_content" />
   </FrameLayout>
 
@@ -35,6 +37,7 @@
     android:orientation="vertical"
     app:layout_behavior="@string/side_sheet_behavior"
     tools:targetApi="lollipop">
+
     <include layout="@layout/cat_sidesheet_detached_content" />
   </FrameLayout>
 
@@ -46,6 +49,7 @@
     android:orientation="vertical"
     app:layout_behavior="@string/side_sheet_behavior"
     tools:targetApi="lollipop">
+
     <include layout="@layout/cat_sidesheet_content_vertically_scrolling" />
   </FrameLayout>
 
@@ -58,6 +62,7 @@
     app:coplanarSiblingViewId="@id/nested_scroll_view"
     app:layout_behavior="@string/side_sheet_behavior"
     tools:targetApi="lollipop">
+
     <include layout="@layout/cat_sidesheet_content_coplanar" />
   </FrameLayout>
 
@@ -70,6 +75,7 @@
     app:coplanarSiblingViewId="@id/nested_scroll_view"
     app:layout_behavior="@string/side_sheet_behavior"
     tools:targetApi="lollipop">
+
     <include layout="@layout/cat_sidesheet_content_coplanar_detached" />
   </FrameLayout>
 </merge>

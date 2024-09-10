@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2022 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +14,7 @@
   limitations under the License.
   -->
 
-<com.google.android.material.carousel.MaskableFrameLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.carousel.MaskableFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/carousel_item_container"
@@ -26,6 +24,7 @@
   android:layout_marginEnd="4dp"
   android:foreground="?attr/selectableItemBackground"
   app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge">
+
   <ImageView
     android:id="@+id/carousel_image_view"
     android:layout_width="match_parent"

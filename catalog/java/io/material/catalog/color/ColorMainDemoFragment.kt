@@ -145,19 +145,19 @@ class ColorMainDemoFragment : DemoFragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    val view = inflater.inflate(R.layout.cat_colors_fragment,container,false)
+    val view = inflater.inflate(R.layout.cat_colors_fragment, container, false)
     colorsLayoutSurfaces = view.findViewById(R.id.cat_colors_surfaces)
     colorsLayoutContent = view.findViewById(R.id.cat_colors_content)
     colorsLayoutUtility = view.findViewById(R.id.cat_colors_utility)
     colorRolesSurfaces.forEach {
-      it.addTo(inflater,colorsLayoutSurfaces)
+      it.addTo(inflater, colorsLayoutSurfaces)
     }
     colorsRolesContent.forEach {
-      it.addTo(inflater,colorsLayoutContent)
+      it.addTo(inflater, colorsLayoutContent)
     }
 
     colorRolesUtility.forEach {
-      it.addTo(inflater,colorsLayoutUtility)
+      it.addTo(inflater, colorsLayoutUtility)
     }
     return view
   }

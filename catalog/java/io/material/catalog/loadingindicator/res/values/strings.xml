@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2024 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,28 +14,22 @@
   ~ limitations under the License.
   -->
 <resources>
-  <string name="cat_loading_indicator_title"
-    description="Title for the screen that showcases demonstrative usages of the Loading Indicator widget [CHAR LIMIT=NONE]">
+  <string name="cat_loading_indicator_title" description="Title for the screen that showcases demonstrative usages of the Loading Indicator widget [CHAR LIMIT=NONE]">
     Loading Indicator
   </string>
-  <string name="cat_loading_indicator_description"
-    description="Body text describing the LoadingIndicator widget within the design system [CHAR LIMIT=NONE]">
+  <string name="cat_loading_indicator_description" description="Body text describing the LoadingIndicator widget within the design system [CHAR LIMIT=NONE]">
     LoadingIndicator shows an indeterminate undergoing process.
   </string>
-  <string name="cat_loading_indicator_default"
-    description="Text label above a default loading indicator. [CHAR LIMIT=NONE]">
+  <string name="cat_loading_indicator_default" description="Text label above a default loading indicator. [CHAR LIMIT=NONE]">
     Loading indicator
     </string>
-  <string name="cat_loading_indicator_with_container"
-    description="Text label above a loading indicator with a container [CHAR LIMIT=NONE]">
+  <string name="cat_loading_indicator_with_container" description="Text label above a loading indicator with a container [CHAR LIMIT=NONE]">
     Loading indicator with container
   </string>
-  <string name="cat_loading_indicator_with_multiple_colors"
-    description="Text label above a loading indicator with multiple colors [CHAR LIMIT=NONE]">
+  <string name="cat_loading_indicator_with_multiple_colors" description="Text label above a loading indicator with multiple colors [CHAR LIMIT=NONE]">
     Loading indicator with multiple colors
   </string>
-  <string name="cat_loading_indicator_in_a_button"
-    description="Text label above a button with a loading indicator icon [CHAR LIMIT=NONE]">
+  <string name="cat_loading_indicator_in_a_button" description="Text label above a button with a loading indicator icon [CHAR LIMIT=NONE]">
     Loading indicator in a button
   </string>
 </resources>

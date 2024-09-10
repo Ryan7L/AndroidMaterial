@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2021 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,42 +16,42 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item
-      android:id="@+id/action_page_1"
-      android:enabled="true"
-      android:icon="@drawable/ic_star_checkable_24"
-      android:title="@string/cat_navigation_rail_page_1_name"/>
+    android:id="@+id/action_page_1"
+    android:enabled="true"
+    android:icon="@drawable/ic_star_checkable_24"
+    android:title="@string/cat_navigation_rail_page_1_name" />
   <item
-      android:id="@+id/action_page_2"
-      android:enabled="true"
-      android:icon="@drawable/ic_star_checkable_24"
-      android:title="@string/cat_navigation_rail_page_2_name"/>
+    android:id="@+id/action_page_2"
+    android:enabled="true"
+    android:icon="@drawable/ic_star_checkable_24"
+    android:title="@string/cat_navigation_rail_page_2_name" />
   <item
-      android:id="@+id/action_page_3"
-      android:enabled="true"
-      android:icon="@drawable/ic_star_checkable_24"
-      android:title="@string/cat_navigation_rail_page_3_name"/>
+    android:id="@+id/action_page_3"
+    android:enabled="true"
+    android:icon="@drawable/ic_star_checkable_24"
+    android:title="@string/cat_navigation_rail_page_3_name" />
   <item
-      android:id="@+id/action_page_4"
-      android:enabled="true"
-      android:icon="@drawable/ic_star_checkable_24"
-      android:title="@string/cat_navigation_rail_page_4_name"
-      android:visible="false"/>
+    android:id="@+id/action_page_4"
+    android:enabled="true"
+    android:icon="@drawable/ic_star_checkable_24"
+    android:title="@string/cat_navigation_rail_page_4_name"
+    android:visible="false" />
   <item
-      android:id="@+id/action_page_5"
-      android:enabled="true"
-      android:icon="@drawable/ic_star_checkable_24"
-      android:title="@string/cat_navigation_rail_page_5_name"
-      android:visible="false"/>
+    android:id="@+id/action_page_5"
+    android:enabled="true"
+    android:icon="@drawable/ic_star_checkable_24"
+    android:title="@string/cat_navigation_rail_page_5_name"
+    android:visible="false" />
   <item
-      android:id="@+id/action_page_6"
-      android:enabled="true"
-      android:icon="@drawable/ic_star_checkable_24"
-      android:title="@string/cat_navigation_rail_page_6_name"
-      android:visible="false"/>
+    android:id="@+id/action_page_6"
+    android:enabled="true"
+    android:icon="@drawable/ic_star_checkable_24"
+    android:title="@string/cat_navigation_rail_page_6_name"
+    android:visible="false" />
   <item
-      android:id="@+id/action_page_7"
-      android:enabled="true"
-      android:icon="@drawable/ic_star_checkable_24"
-      android:title="@string/cat_navigation_rail_page_7_name"
-      android:visible="false"/>
+    android:id="@+id/action_page_7"
+    android:enabled="true"
+    android:icon="@drawable/ic_star_checkable_24"
+    android:title="@string/cat_navigation_rail_page_7_name"
+    android:visible="false" />
 </menu>

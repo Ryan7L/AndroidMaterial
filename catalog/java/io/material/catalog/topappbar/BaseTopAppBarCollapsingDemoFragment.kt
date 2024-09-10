@@ -19,6 +19,7 @@ import kotlin.math.abs
  * 折叠顶部应用栏演示的基类Fragment。
  */
 private const val TAG = "BaseTopAppBarCollapsing"
+
 abstract class BaseTopAppBarCollapsingDemoFragment : DemoFragment() {
 
   /**
@@ -44,10 +45,10 @@ abstract class BaseTopAppBarCollapsingDemoFragment : DemoFragment() {
     appbarLayout.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
       val totalScrollRange = appBarLayout.totalScrollRange
       val collapsePercentage = abs(verticalOffset) / totalScrollRange
-      if (collapsePercentage == 0){
+      if (collapsePercentage == 0) {
         //完全展开
         Log.i(TAG, "onCreateDemoView: 完全展开")
-      }else{
+      } else {
         //部分折叠或完全折叠
         Log.i(TAG, "onCreateDemoView: 部分折叠或完全折叠")
       }

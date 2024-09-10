@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2019 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,18 +13,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
 
   <LinearLayout
     android:id="@+id/sliderContainer"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:paddingLeft="16dp"
-      android:paddingRight="16dp"
-      android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
 
   </LinearLayout>

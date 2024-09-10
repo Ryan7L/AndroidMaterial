@@ -20,18 +20,20 @@
   android:layout_height="wrap_content"
   android:layout_gravity="center_horizontal"
   android:layout_marginLeft="@dimen/cat_navigation_rail_controls_horizontal_margin"
-  android:layout_marginRight="@dimen/cat_navigation_rail_controls_horizontal_margin"
   android:layout_marginTop="@dimen/cat_navigation_rail_standard_spacing"
+  android:layout_marginRight="@dimen/cat_navigation_rail_controls_horizontal_margin"
   android:layout_marginBottom="@dimen/cat_navigation_rail_standard_spacing"
   android:gravity="center_horizontal"
   android:orientation="vertical">
+
   <Button
     android:id="@+id/add_header_view_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/cat_navigation_rail_standard_spacing"
     android:layout_marginRight="@dimen/cat_navigation_rail_standard_spacing"
-    android:text="@string/cat_navigation_rail_add_header_view"/>
+    android:text="@string/cat_navigation_rail_add_header_view" />
+
   <Button
     android:id="@+id/remove_header_view_button"
     android:layout_width="wrap_content"
@@ -39,28 +41,33 @@
     android:layout_marginLeft="@dimen/cat_navigation_rail_standard_spacing"
     android:layout_marginRight="@dimen/cat_navigation_rail_standard_spacing"
     android:text="@string/cat_navigation_rail_remove_header_view"
-    android:visibility="gone"/>
+    android:visibility="gone" />
+
   <com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_marginTop="@dimen/cat_navigation_rail_standard_spacing"
     android:layout_marginBottom="@dimen/cat_navigation_rail_standard_spacing">
+
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="@dimen/cat_navigation_rail_standard_spacing"
-      android:orientation="vertical">
+      android:orientation="vertical"
+      android:padding="@dimen/cat_navigation_rail_standard_spacing">
+
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:padding="2dp"
           android:text="@string/cat_navigation_rail_icon_size_slider_title"
           android:textAppearance="?attr/textAppearanceSubtitle1" />
+
         <TextView
           android:id="@+id/icon_size_text_view"
           android:layout_width="wrap_content"
@@ -68,46 +75,53 @@
           android:padding="2dp"
           android:text="24dp" />
       </LinearLayout>
+
       <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <SeekBar
           android:id="@+id/icon_size_slider"
           android:layout_width="match_parent"
           android:layout_height="48dp"
-          android:paddingLeft="@dimen/cat_navigation_rail_standard_spacing"
-          android:paddingRight="@dimen/cat_navigation_rail_standard_spacing"
           android:max="48"
           android:maxWidth="300dp"
+          android:paddingLeft="@dimen/cat_navigation_rail_standard_spacing"
+          android:paddingRight="@dimen/cat_navigation_rail_standard_spacing"
           android:progress="24" />
+
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_alignParentLeft="true"
           android:layout_below="@+id/icon_size_slider"
+          android:layout_alignParentLeft="true"
           android:padding="@dimen/cat_navigation_rail_standard_spacing"
           android:text="@string/cat_navigation_rail_slider_min" />
+
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_alignParentRight="true"
           android:layout_below="@+id/icon_size_slider"
+          android:layout_alignParentRight="true"
           android:padding="@dimen/cat_navigation_rail_standard_spacing"
           android:text="@string/cat_navigation_rail_slider_max" />
       </RelativeLayout>
     </LinearLayout>
   </com.google.android.material.card.MaterialCardView>
+
   <com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_marginTop="@dimen/cat_navigation_rail_standard_spacing"
     android:layout_marginBottom="@dimen/cat_navigation_rail_standard_spacing">
+
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical">
+
       <TextView
         android:id="@+id/cat_menu_gravity_control_label"
         android:layout_width="wrap_content"
@@ -115,23 +129,27 @@
         android:padding="@dimen/cat_navigation_rail_standard_spacing"
         android:text="@string/cat_navigation_rail_menu_gravity_control_title"
         android:textAppearance="?attr/textAppearanceSubtitle1" />
+
       <RadioGroup
         android:id="@+id/cat_menu_gravity_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/cat_navigation_rail_standard_spacing"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/cat_navigation_rail_standard_spacing">
+
         <RadioButton
           android:id="@+id/menu_gravity_top_button"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:checked="true"
           android:text="@string/cat_navigation_rail_menu_gravity_top" />
+
         <RadioButton
           android:id="@+id/menu_gravity_center_button"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/cat_navigation_rail_menu_gravity_center" />
+
         <RadioButton
           android:id="@+id/menu_gravity_bottom_button"
           android:layout_width="wrap_content"
@@ -140,16 +158,19 @@
       </RadioGroup>
     </LinearLayout>
   </com.google.android.material.card.MaterialCardView>
+
   <com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_marginTop="@dimen/cat_navigation_rail_standard_spacing"
     android:layout_marginBottom="@dimen/cat_navigation_rail_standard_spacing">
+
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical">
+
       <TextView
         android:id="@+id/cat_radio_group_label"
         android:layout_width="wrap_content"
@@ -157,28 +178,33 @@
         android:padding="@dimen/cat_navigation_rail_standard_spacing"
         android:text="@string/cat_navigation_rail_label_visibility_mode_title"
         android:textAppearance="?attr/textAppearanceSubtitle1" />
+
       <RadioGroup
         android:id="@+id/cat_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/cat_navigation_rail_standard_spacing"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/cat_navigation_rail_standard_spacing">
+
         <RadioButton
           android:id="@+id/label_mode_auto_button"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:checked="true"
           android:text="@string/cat_navigation_rail_label_visibility_mode_auto" />
+
         <RadioButton
           android:id="@+id/label_mode_selected_button"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/cat_navigation_rail_label_visibility_mode_selected" />
+
         <RadioButton
           android:id="@+id/label_mode_labeled_button"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/cat_navigation_rail_label_visibility_mode_labeled" />
+
         <RadioButton
           android:id="@+id/label_mode_unlabeled_button"
           android:layout_width="wrap_content"

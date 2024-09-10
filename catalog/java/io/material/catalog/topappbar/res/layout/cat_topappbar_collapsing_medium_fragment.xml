@@ -26,12 +26,12 @@
     android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.CollapsingToolbarLayout
-      app:toolbarId="@id/toolbar"
       android:id="@+id/collapsingtoolbarlayout"
       style="?attr/collapsingToolbarLayoutMediumStyle"
       android:layout_width="match_parent"
       android:layout_height="?attr/collapsingToolbarLayoutMediumSize"
-      app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+      app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+      app:toolbarId="@id/toolbar">
       <!--
           CollapsingToolbarLayout：于创建可折叠的 App Bar（并不一定要属于AppBarLayout的子view，也可单独使用）。它通常与 AppBarLayout 和 Toolbar 一起使用
           注：CollapsingToolbarLayout的直接子View才收折叠效果影响，间接子view（子view的子view）不会直接受折叠效果影响

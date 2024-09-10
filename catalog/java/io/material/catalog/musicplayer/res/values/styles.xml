@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2021 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,7 +34,9 @@
     <item name="android:paddingRight">16dp</item>
     <item name="iconPadding">0dp</item>
     <item name="iconTint">?attr/colorPrimary</item>
-    <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Catalog.MusicPlayer.Player.Button</item>
+    <item name="shapeAppearanceOverlay">
+      @style/ShapeAppearanceOverlay.Catalog.MusicPlayer.Player.Button
+    </item>
   </style>
 
   <style name="ShapeAppearanceOverlay.Catalog.MusicPlayer.Player.Button" parent="">

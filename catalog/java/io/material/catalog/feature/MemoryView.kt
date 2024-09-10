@@ -10,6 +10,7 @@ import android.util.TypedValue
 import androidx.appcompat.widget.AppCompatTextView
 import com.google.common.collect.EvictingQueue
 import io.material.catalog.R
+
 /**
  * 显示应用程序内存使用情况的小部件。
  */

@@ -25,10 +25,11 @@ class HarmonizableButton private constructor(
       )
     }
   }
-  fun updateColors(harmonize: Boolean){
+
+  fun updateColors(harmonize: Boolean) {
     val maybeHarmonizedColor = if (harmonize) {
       MaterialColors.harmonizeWithPrimary(button.context, colorValue)
-    }else {
+    } else {
       colorValue
     }
     button.setBackgroundColor(maybeHarmonizedColor)

@@ -10,5 +10,5 @@ import io.material.catalog.R
 open class TocResourceProvider {
 
   @LayoutRes
-   open val logoLayout: Int = R.layout.cat_toc_logo
+  open val logoLayout: Int = R.layout.cat_toc_logo
 }

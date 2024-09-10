@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2024 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,102 +19,111 @@
   android:layout_height="wrap_content"
   android:clipChildren="false"
   android:clipToPadding="false"
+  android:divider="@drawable/layout_divider"
   android:orientation="vertical"
   android:padding="16dp"
-  android:showDividers="middle"
-  android:divider="@drawable/layout_divider">
+  android:showDividers="middle">
 
   <com.google.android.material.materialswitch.MaterialSwitch
-      android:id="@+id/determinate_mode_switch"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:checked="true"
-      android:text="@string/cat_progress_indicator_set_to_determinate_mode"/>
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_progress_indicator_determinate_progress"/>
-  <com.google.android.material.slider.Slider
-      android:id="@+id/progress_slider"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:value="50"
-      android:valueFrom="0"
-      android:valueTo="100"
-      android:stepSize="1"/>
+    android:id="@+id/determinate_mode_switch"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:checked="true"
+    android:text="@string/cat_progress_indicator_set_to_determinate_mode" />
 
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_progress_indicator_wave_amplitude"/>
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_progress_indicator_determinate_progress" />
+
   <com.google.android.material.slider.Slider
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/amplitude_slider"
-      android:valueFrom="0"
-      android:valueTo="30"
-      android:stepSize="1"/>
+    android:id="@+id/progress_slider"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stepSize="1"
+    android:value="50"
+    android:valueFrom="0"
+    android:valueTo="100" />
 
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_progress_indicator_wave_length"/>
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_progress_indicator_wave_amplitude" />
+
   <com.google.android.material.slider.Slider
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/wavelength_slider"
-      android:valueFrom="0"
-      android:valueTo="100"
-      android:stepSize="1"/>
+    android:id="@+id/amplitude_slider"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stepSize="1"
+    android:valueFrom="0"
+    android:valueTo="30" />
 
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_progress_indicator_wave_speed"/>
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_progress_indicator_wave_length" />
+
   <com.google.android.material.slider.Slider
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/speed_slider"
-      android:valueFrom="-50"
-      android:valueTo="50"
-      android:value="0"
-      android:stepSize="1"/>
+    android:id="@+id/wavelength_slider"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stepSize="1"
+    android:valueFrom="0"
+    android:valueTo="100" />
 
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_progress_indicator_circular_indicator_size"/>
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_progress_indicator_wave_speed" />
+
   <com.google.android.material.slider.Slider
-      android:id="@+id/circular_size_slider"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:value="40"
-      android:valueFrom="20"
-      android:valueTo="200"
-      android:stepSize="5"/>
+    android:id="@+id/speed_slider"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stepSize="1"
+    android:value="0"
+    android:valueFrom="-50"
+    android:valueTo="50" />
 
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_progress_indicator_circular_animation_mode"/>
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_progress_indicator_circular_indicator_size" />
+
+  <com.google.android.material.slider.Slider
+    android:id="@+id/circular_size_slider"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stepSize="5"
+    android:value="40"
+    android:valueFrom="20"
+    android:valueTo="200" />
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_progress_indicator_circular_animation_mode" />
+
   <com.google.android.material.button.MaterialButtonToggleGroup
-      android:id="@+id/circular_animation_mode"
+    android:id="@+id/circular_animation_mode"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:checkedButton="@id/circular_advance_animation"
+    app:selectionRequired="true"
+    app:singleSelection="true">
+
+    <Button
+      android:id="@+id/circular_advance_animation"
+      style="?attr/materialButtonOutlinedStyle"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      app:singleSelection="true"
-      app:selectionRequired="true"
-      app:checkedButton="@id/circular_advance_animation">
+      android:text="@string/cat_progress_indicator_circular_advance_animation_label" />
+
     <Button
-        android:id="@+id/circular_advance_animation"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cat_progress_indicator_circular_advance_animation_label"/>
-    <Button
-        android:id="@+id/circular_retreat_animation"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cat_progress_indicator_circular_retreat_animation_label"/>
+      android:id="@+id/circular_retreat_animation"
+      style="?attr/materialButtonOutlinedStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_progress_indicator_circular_retreat_animation_label" />
   </com.google.android.material.button.MaterialButtonToggleGroup>
 </LinearLayout>

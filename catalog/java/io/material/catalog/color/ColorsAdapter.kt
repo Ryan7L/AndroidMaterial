@@ -26,7 +26,7 @@ class ColorsAdapter(private val context: Context, @ArrayRes colorItems: Int?) :
       val colorsArray = context.resources.obtainTypedArray(it)
       for (i in 0 until colorsArray.length()) {
         val colors = getColorsFromArrayResource(colorsArray.getResourceId(i, 0))
-        items.add(ColorHeaderItem( colors))
+        items.add(ColorHeaderItem(colors))
         items.addAll(colors)
       }
       colorsArray.recycle()

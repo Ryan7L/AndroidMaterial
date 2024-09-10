@@ -1,6 +1,5 @@
 package io.material.catalog.shapetheming
 
-import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -26,16 +25,16 @@ abstract class ShapeThemingDemoFragment : DemoFragment() {
   ): View? {
     this.wrappedContext = ContextThemeWrapper(context, shapeTheme)
     val layoutInflater = inflater.cloneInContext(wrappedContext)
-      statusBarColor = activity?.window?.statusBarColor ?: 0
-      val value = TypedValue()
-      wrappedContext?.theme?.resolveAttribute(R.attr.colorPrimaryDark, value, true)
-      activity?.window?.statusBarColor = value.data
+    statusBarColor = activity?.window?.statusBarColor ?: 0
+    val value = TypedValue()
+    wrappedContext?.theme?.resolveAttribute(R.attr.colorPrimaryDark, value, true)
+    activity?.window?.statusBarColor = value.data
 
     return super.onCreateView(layoutInflater, container, savedInstanceState)
   }
 
   override fun onDestroyView() {
-      activity?.window?.statusBarColor = statusBarColor
+    activity?.window?.statusBarColor = statusBarColor
 
     super.onDestroyView()
   }

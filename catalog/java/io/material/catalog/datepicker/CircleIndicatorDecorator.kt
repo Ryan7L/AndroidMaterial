@@ -172,6 +172,7 @@ class CircleIndicatorDecorator : DayViewDecorator() {
           setBounds(0, 0, indicatorRadius, indicatorRadius + indicatorMarginBottom)
         }
       }
+
       @JvmField
       val CREATER = object : Creator<CircleIndicatorDecorator> {
         override fun createFromParcel(source: Parcel?): CircleIndicatorDecorator {

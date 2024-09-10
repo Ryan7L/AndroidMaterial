@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2022 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,11 +14,11 @@
   limitations under the License.
   -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="AppCompatResource">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:ignore="AppCompatResource">
   <item
-      android:id="@+id/action_select_all"
-      android:title="@string/cat_searchbar_contextual_toolbar_menu_select_all_title"
-      app:showAsAction="never"/>
+    android:id="@+id/action_select_all"
+    android:title="@string/cat_searchbar_contextual_toolbar_menu_select_all_title"
+    app:showAsAction="never" />
 </menu>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2020 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,17 +15,17 @@
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+  xmlns:app="http://schemas.android.com/apk/res-auto">
   <item
     android:icon="@drawable/ic_accelerator_24px"
     android:title="@string/cat_bottomappbar_accelerator"
-    app:showAsAction="ifRoom"/>
+    app:showAsAction="ifRoom" />
   <item
     android:icon="@drawable/ic_3d_rotation_24px"
     android:title="@string/cat_bottomappbar_3d"
-    app:showAsAction="ifRoom"/>
+    app:showAsAction="ifRoom" />
   <item
     android:icon="@drawable/ic_dashboard_24px"
     android:title="@string/cat_bottomappbar_dashboard"
-    app:showAsAction="ifRoom"/>
+    app:showAsAction="ifRoom" />
 </menu>

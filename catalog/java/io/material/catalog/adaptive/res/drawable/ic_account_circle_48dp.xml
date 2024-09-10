@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2021 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,9 +18,9 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:width="48dp"
   android:height="48dp"
+  android:tint="?attr/colorOnSurface"
   android:viewportWidth="48"
   android:viewportHeight="48"
-  android:tint="?attr/colorOnSurface"
   tools:ignore="NewApi">
 
   <path

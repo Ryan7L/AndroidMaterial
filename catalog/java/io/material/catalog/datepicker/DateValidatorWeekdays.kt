@@ -3,7 +3,6 @@ package io.material.catalog.datepicker
 import android.os.Parcel
 import android.os.Parcelable.Creator
 import com.google.android.material.datepicker.CalendarConstraints.DateValidator
-import java.util.Arrays
 import java.util.Calendar
 import java.util.TimeZone
 

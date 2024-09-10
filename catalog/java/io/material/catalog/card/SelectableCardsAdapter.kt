@@ -19,7 +19,7 @@ class SelectableCardsAdapter : RecyclerView.Adapter<ItemViewHolder>() {
 
   private var selectionTracker: SelectionTracker<Long>? = null
 
-   var items = emptyList<Item>()
+  var items = emptyList<Item>()
 
   override fun getItemViewType(position: Int): Int {
     return 0

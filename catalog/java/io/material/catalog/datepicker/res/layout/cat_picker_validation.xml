@@ -16,54 +16,59 @@
   limitations under the License.
   -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cat_picker_validation"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/cat_picker_demo_padding"
-    android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/cat_picker_validation"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  android:padding="@dimen/cat_picker_demo_padding">
 
   <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_picker_validation"
-      android:textAppearance="?attr/textAppearanceTitleLarge"/>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_picker_validation"
+    android:textAppearance="?attr/textAppearanceTitleLarge" />
+
   <RadioGroup
-      android:id="@+id/cat_picker_validation_group"
-      android:layout_width="match_parent"
+    android:id="@+id/cat_picker_validation_group"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RadioButton
+      android:id="@+id/cat_picker_validation_default"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:orientation="vertical">
+      android:checked="true"
+      android:text="@string/cat_picker_validation_default"
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
+
     <RadioButton
-        android:id="@+id/cat_picker_validation_default"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="@string/cat_picker_validation_default"
-        android:textAppearance="?attr/textAppearanceBodyLarge"/>
+      android:id="@+id/cat_picker_validation_today_onward"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_picker_validation_today_onward"
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
+
     <RadioButton
-        android:id="@+id/cat_picker_validation_today_onward"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cat_picker_validation_today_onward"
-        android:textAppearance="?attr/textAppearanceBodyLarge"/>
-    <RadioButton
-        android:id="@+id/cat_picker_validation_weekdays"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cat_picker_validation_weekdays"
-        android:textAppearance="?attr/textAppearanceBodyLarge"/>
+      android:id="@+id/cat_picker_validation_weekdays"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_picker_validation_weekdays"
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
+
     <RadioButton
       android:id="@+id/cat_picker_validation_last_two_weeks"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/cat_picker_validation_last_two_weeks"
-      android:textAppearance="?attr/textAppearanceBodyLarge"/>
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
+
     <RadioButton
       android:id="@+id/cat_picker_validation_multiple_range"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/cat_picker_validation_multiple_range"
-      android:textAppearance="?attr/textAppearanceBodyLarge"/>
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
   </RadioGroup>
 </LinearLayout>

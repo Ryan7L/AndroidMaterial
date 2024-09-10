@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.material.catalog.R
 
-class AdaptiveSupportingPanelDemoFragment: Fragment() {
+class AdaptiveSupportingPanelDemoFragment : Fragment() {
   private lateinit var fragmentContainer: ConstraintLayout
   private lateinit var portraitLayout: ConstraintSet
   private lateinit var landscapeLayout: ConstraintSet
@@ -27,7 +27,8 @@ class AdaptiveSupportingPanelDemoFragment: Fragment() {
     val view = inflater.inflate(R.layout.cat_adaptive_supporting_panel_fragment, container, false)
     guideline = view.findViewById(R.id.horizontal_fold)
     val supportingPanelRv = view.findViewById<RecyclerView>(R.id.supporting_panel_side_container)
-    supportingPanelRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+    supportingPanelRv.layoutManager =
+      LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     supportingPanelRv.adapter = PanelAdapter()
     ViewCompat.setNestedScrollingEnabled(supportingPanelRv, false)
     fragmentContainer = view.findViewById(R.id.supporting_panel_container)
@@ -37,18 +38,21 @@ class AdaptiveSupportingPanelDemoFragment: Fragment() {
     return view
   }
 
-  fun updatePortraitLayout(){
+  fun updatePortraitLayout() {
     portraitLayout.applyTo(fragmentContainer)
   }
-  fun updateLandscapeLayout(){
+
+  fun updateLandscapeLayout() {
     landscapeLayout.applyTo(fragmentContainer)
   }
-  fun updateTableTopLayout(foldPosition: Int,foldWidth: Int){
+
+  fun updateTableTopLayout(foldPosition: Int, foldWidth: Int) {
     val tableTopLayout = getTableTopLayout(portraitLayout, foldWidth)
     tableTopLayout.applyTo(fragmentContainer)
     guideline.setGuidelineBegin(foldPosition)
   }
-  private fun getLandscapeLayout(constraintLayout: ConstraintLayout): ConstraintSet{
+
+  private fun getLandscapeLayout(constraintLayout: ConstraintLayout): ConstraintSet {
     val marginVertical = resources.getDimensionPixelSize(R.dimen.cat_adaptive_margin_vertical)
     val marginHorizontal = resources.getDimensionPixelSize(R.dimen.cat_adaptive_margin_horizontal)
     return ConstraintSet().apply {
@@ -63,17 +67,19 @@ class AdaptiveSupportingPanelDemoFragment: Fragment() {
         R.id.supporting_panel_main_content,
         ConstraintSet.BOTTOM,
         ConstraintSet.PARENT_ID,
-        ConstraintSet.BOTTOM)
+        ConstraintSet.BOTTOM
+      )
       setMargin(R.id.supporting_panel_main_content, ConstraintSet.TOP, marginVertical)
       setMargin(R.id.supporting_panel_main_content, ConstraintSet.BOTTOM, marginVertical)
       setMargin(R.id.supporting_panel_main_content, ConstraintSet.END, marginHorizontal)
 
-      constrainMinHeight(R.id.supporting_panel_main_content,0)
+      constrainMinHeight(R.id.supporting_panel_main_content, 0)
       connect(
         R.id.supporting_panel_side_container,
         ConstraintSet.TOP,
         ConstraintSet.PARENT_ID,
-        ConstraintSet.TOP)
+        ConstraintSet.TOP
+      )
       connect(
         R.id.supporting_panel_side_container,
         ConstraintSet.START,
@@ -83,14 +89,20 @@ class AdaptiveSupportingPanelDemoFragment: Fragment() {
       constrainPercentWidth(R.id.supporting_panel_side_container, 0.4f)
     }
   }
+
   private fun getTableTopLayout(portraitLayout: ConstraintSet, foldWidth: Int): ConstraintSet {
     val marginVertical = resources.getDimensionPixelSize(R.dimen.cat_adaptive_margin_vertical)
     return ConstraintSet().apply {
       clone(portraitLayout)
       setVisibility(R.id.horizontal_fold, View.VISIBLE)
-      connect(R.id.supporting_panel_main_content, ConstraintSet.BOTTOM, R.id.horizontal_fold, ConstraintSet.TOP)
+      connect(
+        R.id.supporting_panel_main_content,
+        ConstraintSet.BOTTOM,
+        R.id.horizontal_fold,
+        ConstraintSet.TOP
+      )
       setMargin(R.id.supporting_panel_main_content, ConstraintSet.BOTTOM, marginVertical)
-      constrainMinHeight(R.id.supporting_panel_main_content,0)
+      constrainMinHeight(R.id.supporting_panel_main_content, 0)
       connect(
         R.id.supporting_panel_side_container,
         ConstraintSet.TOP,
@@ -100,15 +112,22 @@ class AdaptiveSupportingPanelDemoFragment: Fragment() {
       )
     }
   }
-  private class PanelAdapter: RecyclerView.Adapter<PanelViewHolder>() {
+
+  private class PanelAdapter : RecyclerView.Adapter<PanelViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PanelViewHolder {
-      return PanelViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.cat_adaptive_supporting_panel_item, parent, false))
+      return PanelViewHolder(
+        LayoutInflater.from(parent.context)
+          .inflate(R.layout.cat_adaptive_supporting_panel_item, parent, false)
+      )
     }
+
     override fun onBindViewHolder(holder: PanelViewHolder, position: Int) {
     }
+
     override fun getItemCount(): Int {
       return 10
     }
   }
-  private class PanelViewHolder(view: View): RecyclerView.ViewHolder(view)
+
+  private class PanelViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2017 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,33 +14,33 @@
   limitations under the License.
   -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="AppCompatResource">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:ignore="AppCompatResource">
   <item
     android:id="@+id/cat_topappbar_item_edit"
-      android:title="@string/cat_topappbar_edit_menu_item_title"
-      app:showAsAction="ifRoom"/>
-<!--
-  showAsAction:此属性专为ActionBar或ToolBar设置，如果菜单不是用于ActionBar或 ToolBar，那么此属性将会被忽略
-  用于控制菜单项在 ActionBar (或 Toolbar) 上的显示方式。 它决定了菜单项是否显示为操作按钮，或者是否隐藏在溢出菜单中。
-  可选值：
-    always： 始终将菜单项显示为操作按钮。
-    ifRoom： 如果 ActionBar 上有足够的空间，则将菜单项显示为操作按钮。  否则，将其隐藏在溢出菜单中。
-    never： 始终将菜单项隐藏在溢出菜单中。
-    withText： 将菜单项显示为操作按钮，并显示其标题文本。  通常与 always 或 ifRoom 一起使用。
-    collapseActionView： 将菜单项显示为操作按钮，并在展开时折叠其操作视图。  通常与 always 或 ifRoom 一起使用
+    android:title="@string/cat_topappbar_edit_menu_item_title"
+    app:showAsAction="ifRoom" />
+  <!--
+    showAsAction:此属性专为ActionBar或ToolBar设置，如果菜单不是用于ActionBar或 ToolBar，那么此属性将会被忽略
+    用于控制菜单项在 ActionBar (或 Toolbar) 上的显示方式。 它决定了菜单项是否显示为操作按钮，或者是否隐藏在溢出菜单中。
+    可选值：
+      always： 始终将菜单项显示为操作按钮。
+      ifRoom： 如果 ActionBar 上有足够的空间，则将菜单项显示为操作按钮。  否则，将其隐藏在溢出菜单中。
+      never： 始终将菜单项隐藏在溢出菜单中。
+      withText： 将菜单项显示为操作按钮，并显示其标题文本。  通常与 always 或 ifRoom 一起使用。
+      collapseActionView： 将菜单项显示为操作按钮，并在展开时折叠其操作视图。  通常与 always 或 ifRoom 一起使用
 
--->
+  -->
   <item
-      android:id="@+id/cat_topappbar_item_favorite"
-      android:icon="@drawable/ic_favorite_vd_theme_24px"
-      android:title="@string/cat_topappbar_favorite_menu_item_title"
-      app:showAsAction="ifRoom"/>
+    android:id="@+id/cat_topappbar_item_favorite"
+    android:icon="@drawable/ic_favorite_vd_theme_24px"
+    android:title="@string/cat_topappbar_favorite_menu_item_title"
+    app:showAsAction="ifRoom" />
   <item
-      android:title="@string/cat_topappbar_settings_menu_item_title"
-      app:showAsAction="never"/>
+    android:title="@string/cat_topappbar_settings_menu_item_title"
+    app:showAsAction="never" />
   <item
-      android:title="@string/cat_topappbar_help_and_feedback_menu_item_title"
-      app:showAsAction="never"/>
+    android:title="@string/cat_topappbar_help_and_feedback_menu_item_title"
+    app:showAsAction="never" />
 </menu>

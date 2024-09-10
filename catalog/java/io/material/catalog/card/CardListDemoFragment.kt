@@ -21,6 +21,7 @@ class CardListDemoFragment : DemoFragment() {
   private val CARD_COUNT = 30
   override val demoTitleResId: Int
     get() = R.string.cat_card_list
+
   override fun onCreateDemoView(
     inflater: LayoutInflater,
     container: ViewGroup?,

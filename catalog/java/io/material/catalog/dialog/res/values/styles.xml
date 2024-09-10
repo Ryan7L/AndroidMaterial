@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     Copyright 2021 The Android Open Source Project
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,18 +25,30 @@
   <!-- 带有跨越对话框宽度的按钮的对话框的主题覆盖. -->
   <style name="ThemeOverlay.Catalog.MaterialAlertDialog.FullWidthButtons" parent="ThemeOverlay.Material3.MaterialAlertDialog">
     <item name="materialAlertDialogButtonSpacerVisibility">@integer/mtrl_view_gone</item>
-    <item name="buttonBarPositiveButtonStyle">@style/Widget.Catalog.Button.TextButton.Dialog.FullWidth</item>
-    <item name="buttonBarNegativeButtonStyle">@style/Widget.Catalog.Button.TextButton.Dialog.FullWidth</item>
-    <item name="buttonBarNeutralButtonStyle">@style/Widget.Catalog.Button.TextButton.Dialog.FullWidth</item>
+    <item name="buttonBarPositiveButtonStyle">
+      @style/Widget.Catalog.Button.TextButton.Dialog.FullWidth
+    </item>
+    <item name="buttonBarNegativeButtonStyle">
+      @style/Widget.Catalog.Button.TextButton.Dialog.FullWidth
+    </item>
+    <item name="buttonBarNeutralButtonStyle">
+      @style/Widget.Catalog.Button.TextButton.Dialog.FullWidth
+    </item>
   </style>
 
   <!-- 对话框的主题覆盖层，具有中心对齐的标题文本、图标和跨越对话框宽度的按钮。 -->
   <style name="ThemeOverlay.Catalog.MaterialAlertDialog.Centered.FullWidthButtons" parent="ThemeOverlay.Material3.MaterialAlertDialog.Centered">
     <!-- 显示全宽按钮时将间隔标记为消失 -->
     <item name="materialAlertDialogButtonSpacerVisibility">@integer/mtrl_view_gone</item>
-    <item name="buttonBarPositiveButtonStyle">@style/Widget.Catalog.Button.TextButton.Dialog.FullWidth</item>
-    <item name="buttonBarNegativeButtonStyle">@style/Widget.Catalog.Button.TextButton.Dialog.FullWidth</item>
-    <item name="buttonBarNeutralButtonStyle">@style/Widget.Catalog.Button.TextButton.Dialog.FullWidth</item>
+    <item name="buttonBarPositiveButtonStyle">
+      @style/Widget.Catalog.Button.TextButton.Dialog.FullWidth
+    </item>
+    <item name="buttonBarNegativeButtonStyle">
+      @style/Widget.Catalog.Button.TextButton.Dialog.FullWidth
+    </item>
+    <item name="buttonBarNeutralButtonStyle">
+      @style/Widget.Catalog.Button.TextButton.Dialog.FullWidth
+    </item>
   </style>
 
 </resources>

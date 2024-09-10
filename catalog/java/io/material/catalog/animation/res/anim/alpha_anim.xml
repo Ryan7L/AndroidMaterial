@@ -5,46 +5,46 @@
   android:interpolator="@android:anim/linear_interpolator"
   android:toAlpha="0.2" />
 
-<!--
-  AlphaAnimation属性：
-      fromAlpha：动画开始时的透明度
-      toAlpha：动画结束时的透明度
--->
+  <!--
+    AlphaAnimation属性：
+        fromAlpha：动画开始时的透明度
+        toAlpha：动画结束时的透明度
+  -->
 
-<!--Animation:公用属性：
-  duration：动画时间，毫秒
-  fillEnabled:用于启用或禁用 fillBefore 和 fillAfter 属性。默认值为false，意味着动画结束后，View将回到初始状态
-  fillBefore：用于指定动画开始前是否应用动画的起始状态。 如果 f当设置为 true 或 fillEnabled 未设置为 true 时，则在动画开始前，View 将会立即设置为动画的起始状态。
-              如果 fillBefore 设置为 false，则动画开始前 View 将保持其当前状态。
-              默认值为 true。
-  fillAfter：用于指定动画结束后是否保持动画的最终状态。 如果 fillEnabled 未设置为 true 并且动画未在 View 上设置，则 fillAfter 假定为 true
-             如果 fillAfter 设置为 true，则动画结束后，View 将保持动画的最终状态。
-             如果 fillAfter 设置为 false，则动画结束后，View 将恢复到动画开始前的状态。
-             默认值为 false。
-  repeatCount：动画的重复次数，默认为 0
-              infinite：无限重复
-  repeatMode：动画的重复模式,默认为 restart
-              restart：重新启动动画
-              reverse：反转动画
-  startOffset：动画的开始延迟时间
-  zAdjustment：用于控制动画执行期间 View 的 Z 轴顺序，默认值为normal
-      normal：动画内容保持当前 Z 顺序
-      top：在动画持续期间，正在动画的内容被强制置于所有其他内容之上
-      bottom：在动画持续期间，正在动画的内容被强制置于所有其他内容之下。
-  interpolator：用于指定动画的插值器。
-      线性插值器：
-      LinearInterpolator：动画匀速进行。
-      加速插值器：
-      AccelerateInterpolator：动画开始缓慢，然后逐渐加速。
-      AccelerateDecelerateInterpolator：动画开始和结束都较慢，中间加速。
-      减速插值器：
-      DecelerateInterpolator：动画开始快速，然后逐渐减速。
-      其他插值器：
-      AnticipateInterpolator：动画开始时向后移动一小段距离，然后向前加速， 就像助跑一样。
-      OvershootInterpolator：动画结束时向前移动一小段距离，然后返回最终位置， 就像弹簧一样。
-      AnticipateOvershootInterpolator：结合了 AnticipateInterpolator 和 OvershootInterpolator 的效果。
-      BounceInterpolator：动画结束时像球一样弹跳几次。
-      CycleInterpolator：动画重复指定的次数，并在每次循环中改变速度， 例如先加速后减速。
-      PathInterpolator：允许您使用贝塞尔曲线或路径来定义动画的变化速率， 实现更灵活的动画效果。
+  <!--Animation:公用属性：
+    duration：动画时间，毫秒
+    fillEnabled:用于启用或禁用 fillBefore 和 fillAfter 属性。默认值为false，意味着动画结束后，View将回到初始状态
+    fillBefore：用于指定动画开始前是否应用动画的起始状态。 如果 f当设置为 true 或 fillEnabled 未设置为 true 时，则在动画开始前，View 将会立即设置为动画的起始状态。
+                如果 fillBefore 设置为 false，则动画开始前 View 将保持其当前状态。
+                默认值为 true。
+    fillAfter：用于指定动画结束后是否保持动画的最终状态。 如果 fillEnabled 未设置为 true 并且动画未在 View 上设置，则 fillAfter 假定为 true
+               如果 fillAfter 设置为 true，则动画结束后，View 将保持动画的最终状态。
+               如果 fillAfter 设置为 false，则动画结束后，View 将恢复到动画开始前的状态。
+               默认值为 false。
+    repeatCount：动画的重复次数，默认为 0
+                infinite：无限重复
+    repeatMode：动画的重复模式,默认为 restart
+                restart：重新启动动画
+                reverse：反转动画
+    startOffset：动画的开始延迟时间
+    zAdjustment：用于控制动画执行期间 View 的 Z 轴顺序，默认值为normal
+        normal：动画内容保持当前 Z 顺序
+        top：在动画持续期间，正在动画的内容被强制置于所有其他内容之上
+        bottom：在动画持续期间，正在动画的内容被强制置于所有其他内容之下。
+    interpolator：用于指定动画的插值器。
+        线性插值器：
+        LinearInterpolator：动画匀速进行。
+        加速插值器：
+        AccelerateInterpolator：动画开始缓慢，然后逐渐加速。
+        AccelerateDecelerateInterpolator：动画开始和结束都较慢，中间加速。
+        减速插值器：
+        DecelerateInterpolator：动画开始快速，然后逐渐减速。
+        其他插值器：
+        AnticipateInterpolator：动画开始时向后移动一小段距离，然后向前加速， 就像助跑一样。
+        OvershootInterpolator：动画结束时向前移动一小段距离，然后返回最终位置， 就像弹簧一样。
+        AnticipateOvershootInterpolator：结合了 AnticipateInterpolator 和 OvershootInterpolator 的效果。
+        BounceInterpolator：动画结束时像球一样弹跳几次。
+        CycleInterpolator：动画重复指定的次数，并在每次循环中改变速度， 例如先加速后减速。
+        PathInterpolator：允许您使用贝塞尔曲线或路径来定义动画的变化速率， 实现更灵活的动画效果。
 
--->
+  -->

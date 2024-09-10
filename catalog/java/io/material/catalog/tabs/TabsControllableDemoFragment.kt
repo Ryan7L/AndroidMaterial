@@ -68,13 +68,13 @@ class TabsControllableDemoFragment : DemoFragment() {
     val labelToggle = view.findViewById<SwitchCompat>(R.id.toggle_labels_switch)
     labelToggle.setOnCheckedChangeListener { buttonView, isChecked ->
       showLabels = isChecked
-      if (isChecked){
+      if (isChecked) {
         tabLayouts.forEach {
-          setLabelVisibility(it,TabLayout.TAB_LABEL_VISIBILITY_LABELED)
+          setLabelVisibility(it, TabLayout.TAB_LABEL_VISIBILITY_LABELED)
         }
-      }else{
+      } else {
         tabLayouts.forEach {
-          setLabelVisibility(it,TabLayout.TAB_LABEL_VISIBILITY_UNLABELED)
+          setLabelVisibility(it, TabLayout.TAB_LABEL_VISIBILITY_UNLABELED)
         }
       }
     }
@@ -86,15 +86,18 @@ class TabsControllableDemoFragment : DemoFragment() {
     tabGravityCenterButton.setOnClickListener {
       setAllTabLayoutGravity(TabLayout.GRAVITY_CENTER)
     }
-    val tabAnimationModeLinearButton = view.findViewById<RadioButton>(R.id.tabs_animation_mode_linear_button)
+    val tabAnimationModeLinearButton =
+      view.findViewById<RadioButton>(R.id.tabs_animation_mode_linear_button)
     tabAnimationModeLinearButton.setOnClickListener {
       setAllTabAnimationModes(TabLayout.INDICATOR_ANIMATION_MODE_LINEAR)
     }
-    val tabsAnimationModeElasticButton = view.findViewById<RadioButton>(R.id.tabs_animation_mode_elastic_button)
+    val tabsAnimationModeElasticButton =
+      view.findViewById<RadioButton>(R.id.tabs_animation_mode_elastic_button)
     tabsAnimationModeElasticButton.setOnClickListener {
       setAllTabAnimationModes(TabLayout.INDICATOR_ANIMATION_MODE_ELASTIC)
     }
-    val tabsAnimationModeFadeButton = view.findViewById<RadioButton>(R.id.tabs_animation_mode_fade_button)
+    val tabsAnimationModeFadeButton =
+      view.findViewById<RadioButton>(R.id.tabs_animation_mode_fade_button)
     tabsAnimationModeFadeButton.setOnClickListener {
       setAllTabAnimationModes(TabLayout.INDICATOR_ANIMATION_MODE_FADE)
     }
@@ -115,7 +118,7 @@ class TabsControllableDemoFragment : DemoFragment() {
     )
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     selectedIndicatorSpinner.adapter = adapter
-    selectedIndicatorSpinner.onItemSelectedListener = object : OnItemSelectedListener{
+    selectedIndicatorSpinner.onItemSelectedListener = object : OnItemSelectedListener {
       override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         setAllTabLayoutSelectedIndicators(position)
       }

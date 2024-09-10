@@ -70,25 +70,26 @@ class TopAppBarPreferencesFragment : DemoFragment() {
 
   override val isShouldShowDefaultDemoActionBar: Boolean
     get() = false
-   companion object{
-     class PreferencesFragment : PreferenceFragmentCompat() {
-       /**
-        * 在.onCreate期间调用以提供此片段的偏好设置。子类应直接调用.setPreferenceScreen或通过辅助方法（例如[.addPreferencesFromResource] ）调用。
-        *
-        * @param savedInstanceState 如果片段是从先前保存的状态重新创建的，则这就是状态。这个参数包含了 Fragment 之前的状态信息。 如果 Fragment 曾经被销毁并重建 (例如由于配置更改)，
-        *                           这个 Bundle 就会包含之前保存的状态数据。 您可以使用它来恢复 Fragment 的状态，例如之前选择的偏好设置。
-        * @param rootKey            如果非空，则此首选项片段应以具有此键的 [androidx.preference.PreferenceScreen] 为根，
-        *                           这个参数是偏好设置的根 key。 它用于标识您想要在 Fragment 中显示的偏好设置层次结构的根节点。
-        */
-       override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-         setPreferencesFromResource(R.xml.cat_topappbar_preferences, rootKey)
-         //监听preference
-         findPreference<Preference>("setting1")?.setOnPreferenceClickListener {
-           Log.i(TAG, "onCreatePreferences: $it")
-           return@setOnPreferenceClickListener true
-         }
-       }
 
-     }
-   }
+  companion object {
+    class PreferencesFragment : PreferenceFragmentCompat() {
+      /**
+       * 在.onCreate期间调用以提供此片段的偏好设置。子类应直接调用.setPreferenceScreen或通过辅助方法（例如[.addPreferencesFromResource] ）调用。
+       *
+       * @param savedInstanceState 如果片段是从先前保存的状态重新创建的，则这就是状态。这个参数包含了 Fragment 之前的状态信息。 如果 Fragment 曾经被销毁并重建 (例如由于配置更改)，
+       *                           这个 Bundle 就会包含之前保存的状态数据。 您可以使用它来恢复 Fragment 的状态，例如之前选择的偏好设置。
+       * @param rootKey            如果非空，则此首选项片段应以具有此键的 [androidx.preference.PreferenceScreen] 为根，
+       *                           这个参数是偏好设置的根 key。 它用于标识您想要在 Fragment 中显示的偏好设置层次结构的根节点。
+       */
+      override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.cat_topappbar_preferences, rootKey)
+        //监听preference
+        findPreference<Preference>("setting1")?.setOnPreferenceClickListener {
+          Log.i(TAG, "onCreatePreferences: $it")
+          return@setOnPreferenceClickListener true
+        }
+      }
+
+    }
+  }
 }

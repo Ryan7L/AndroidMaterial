@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2019 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,42 +14,43 @@
   limitations under the License.
   -->
 
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
 
   <FrameLayout
-      android:id="@+id/content"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"/>
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_margin="@dimen/cat_tabs_standard_spacing"
-      android:layout_gravity="center"
-      android:gravity="center"
-      android:text="@string/cat_tabs_auto_scrollable_explanation"/>
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/cat_tabs_standard_spacing"
+    android:gravity="center"
+    android:text="@string/cat_tabs_auto_scrollable_explanation" />
 
   <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|bottom"
+    android:layout_marginBottom="@dimen/cat_tabs_standard_spacing"
+    android:orientation="horizontal">
+
+    <Button
+      android:id="@+id/add_tab_button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="@dimen/cat_tabs_standard_spacing"
-      android:layout_gravity="center|bottom"
-      android:orientation="horizontal">
+      android:layout_marginEnd="@dimen/cat_tabs_small_spacing"
+      android:layout_marginRight="@dimen/cat_tabs_small_spacing"
+      android:text="@string/cat_tabs_add_tab_button_label" />
+
     <Button
-        android:id="@+id/add_tab_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/cat_tabs_small_spacing"
-        android:layout_marginEnd="@dimen/cat_tabs_small_spacing"
-        android:text="@string/cat_tabs_add_tab_button_label"/>
-    <Button
-        android:id="@+id/remove_tab_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cat_tabs_remove_tab_button_label"/>
+      android:id="@+id/remove_tab_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_tabs_remove_tab_button_label" />
   </LinearLayout>
 
 </FrameLayout>

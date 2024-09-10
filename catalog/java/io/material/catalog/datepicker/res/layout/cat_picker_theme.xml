@@ -16,50 +16,53 @@
   limitations under the License.
   -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cat_picker_theme"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/cat_picker_demo_padding"
-    android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/cat_picker_theme"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  android:padding="@dimen/cat_picker_demo_padding">
 
   <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/cat_picker_theme"
-      android:textAppearance="?attr/textAppearanceTitleLarge"/>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/cat_picker_theme"
+    android:textAppearance="?attr/textAppearanceTitleLarge" />
+
   <RadioGroup
-      android:id="@+id/cat_picker_theme_group"
-      android:layout_width="match_parent"
+    android:id="@+id/cat_picker_theme_group"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RadioButton
+      android:id="@+id/cat_picker_theme_default"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:orientation="vertical">
+      android:checked="true"
+      android:text="@string/cat_picker_theme_default"
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
+
     <RadioButton
-        android:id="@+id/cat_picker_theme_default"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="@string/cat_picker_theme_default"
-        android:textAppearance="?attr/textAppearanceBodyLarge"/>
+      android:id="@+id/cat_picker_theme_dialog"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_picker_theme_dialog"
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
+
     <RadioButton
-        android:id="@+id/cat_picker_theme_dialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cat_picker_theme_dialog"
-        android:textAppearance="?attr/textAppearanceBodyLarge"/>
-    <RadioButton
-        android:id="@+id/cat_picker_theme_fullscreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cat_picker_theme_fullscreen"
-        android:textAppearance="?attr/textAppearanceBodyLarge"/>
+      android:id="@+id/cat_picker_theme_fullscreen"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/cat_picker_theme_fullscreen"
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
 
     <RadioButton
       android:id="@+id/cat_picker_theme_custom"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/cat_picker_theme_custom"
-      android:textAppearance="?attr/textAppearanceBodyLarge"/>
+      android:textAppearance="?attr/textAppearanceBodyLarge" />
 
   </RadioGroup>
 </LinearLayout>

@@ -36,6 +36,7 @@ open class MusicPlayerAlbumDemoFragment : DaggerFragment() {
         }
       }
     }
+
     const val TAG = "MusicPlayerAlbumDemoFragment"
   }
 
@@ -60,7 +61,8 @@ open class MusicPlayerAlbumDemoFragment : DaggerFragment() {
     val musicPlayerContainer = view.findViewById<View>(R.id.music_player_container)
 
     appBarLayout.addOnOffsetChangedListener { layout, verticalOffset ->
-      val verticalOffsetPercentage = abs(verticalOffset).toFloat() / layout.totalScrollRange.toFloat()
+      val verticalOffsetPercentage =
+        abs(verticalOffset).toFloat() / layout.totalScrollRange.toFloat()
       if (verticalOffsetPercentage > 0.2f && fab.isOrWillBeShown) {
         fab.hide()
       } else if (verticalOffsetPercentage <= 0.2f && fab.isOrWillBeHidden && musicPlayerContainer.visibility != View.VISIBLE) {

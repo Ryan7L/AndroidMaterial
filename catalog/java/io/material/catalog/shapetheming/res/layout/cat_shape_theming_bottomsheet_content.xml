@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2018 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,25 +13,24 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="600dp"
+  android:orientation="vertical">
+
+  <FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="600dp"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
     <TextView
-        android:id="@+id/bottomsheet_state"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:textColor="?attr/colorOnSurface"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:text="@string/cat_shape_theming_bottomsheet_title"/>
-    </FrameLayout>
+      android:id="@+id/bottomsheet_state"
+      android:layout_width="match_parent"
+      android:layout_height="100dp"
+      android:gravity="center"
+      android:text="@string/cat_shape_theming_bottomsheet_title"
+      android:textColor="?attr/colorOnSurface"
+      android:textSize="20sp" />
+  </FrameLayout>
 
 </LinearLayout>

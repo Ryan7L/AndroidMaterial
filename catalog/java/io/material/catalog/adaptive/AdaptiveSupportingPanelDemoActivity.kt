@@ -47,7 +47,8 @@ class AdaptiveSupportingPanelDemoActivity : DemoActivity() {
     viewGroup: ViewGroup?,
     bundle: Bundle?
   ): View? {
-    val view = layoutInflater.inflate(R.layout.cat_adaptive_supporting_panel_activity, viewGroup, false)
+    val view =
+      layoutInflater.inflate(R.layout.cat_adaptive_supporting_panel_activity, viewGroup, false)
     windowInfoTracker = WindowInfoTrackerCallbackAdapter(WindowInfoTracker.getOrCreate(this))
     drawerLayout = view.findViewById(R.id.drawer_layout)
     modalNavDrawer = view.findViewById(R.id.modal_nav_drawer)

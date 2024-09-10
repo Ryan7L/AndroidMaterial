@@ -6,7 +6,7 @@ import io.material.catalog.R
 import java.util.Locale
 
 class MusicData {
-  companion object{
+  companion object {
     @JvmStatic
     private val TRACKS = listOf(
       Track(1, "First", "3:25", true),
@@ -24,8 +24,9 @@ class MusicData {
       Track(13, "Thirteenth", "7:13", false),
       Track(14, "Fourteenth", "2:43", false)
     )
+
     @JvmField
-     val ALBUMS = listOf(
+    val ALBUMS = listOf(
       Album(
         0L,
         "Metamorphosis",
@@ -62,6 +63,7 @@ class MusicData {
         TRACKS, "55 mins"
       )
     )
+
     @JvmStatic
     fun getAlbumById(albumId: Long): Album {
       return ALBUMS.find { it.id == albumId } ?: throw IllegalArgumentException(

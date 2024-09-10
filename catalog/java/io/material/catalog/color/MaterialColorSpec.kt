@@ -12,18 +12,33 @@ import com.google.android.material.color.MaterialColors
  */
 class MaterialColorSpec(val description: String, @ColorInt val colorValue: Int) {
 
-  companion object{
+  companion object {
     @JvmStatic
-    fun createFromResource(context: Context,@ColorRes colorRes: Int): MaterialColorSpec{
-      return MaterialColorSpec(context.resources.getResourceEntryName(colorRes),ContextCompat.getColor(context,colorRes))
+    fun createFromResource(context: Context, @ColorRes colorRes: Int): MaterialColorSpec {
+      return MaterialColorSpec(
+        context.resources.getResourceEntryName(colorRes),
+        ContextCompat.getColor(context, colorRes)
+      )
     }
+
     @JvmStatic
-    fun createFromColorValue(colorNameResource: String,@ColorInt colorValue: Int): MaterialColorSpec{
-      return MaterialColorSpec(colorNameResource,colorValue)
+    fun createFromColorValue(
+      colorNameResource: String,
+      @ColorInt colorValue: Int
+    ): MaterialColorSpec {
+      return MaterialColorSpec(colorNameResource, colorValue)
     }
+
     @JvmStatic
-    fun createFromAttrResId(context: Context,colorNameResource: String,@AttrRes attrRes: Int): MaterialColorSpec{
-      return createFromColorValue(colorNameResource,MaterialColors.getColor(context,attrRes,colorNameResource + "cannot be resolved."))
+    fun createFromAttrResId(
+      context: Context,
+      colorNameResource: String,
+      @AttrRes attrRes: Int
+    ): MaterialColorSpec {
+      return createFromColorValue(
+        colorNameResource,
+        MaterialColors.getColor(context, attrRes, colorNameResource + "cannot be resolved.")
+      )
     }
   }
 }

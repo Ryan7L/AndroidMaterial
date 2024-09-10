@@ -45,13 +45,15 @@ class ChipFragment : DemoLandingFragment() {
       }
     )
 }
+
 @dagger.Module
-abstract class ChipModule{
+abstract class ChipModule {
 
   @FragmentScope
   @ContributesAndroidInjector
   abstract fun contributeInjector(): ChipFragment
-  companion object{
+
+  companion object {
     @JvmStatic
     @Provides
     @ActivityScope

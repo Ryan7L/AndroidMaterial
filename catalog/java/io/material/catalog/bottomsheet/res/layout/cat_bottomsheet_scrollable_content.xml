@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2019 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,13 +15,13 @@
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  android:orientation="vertical"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
+  android:layout_height="match_parent"
+  android:orientation="vertical">
 
   <com.google.android.material.bottomsheet.BottomSheetDragHandleView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
+    android:layout_height="wrap_content" />
 
   <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
@@ -38,66 +37,66 @@
         style="@style/selectableTextView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:text="@string/cat_bottomsheet_label_add_people"
         app:drawableLeftCompat="@drawable/ic_person_add_24dp"
-        app:drawableStartCompat="@drawable/ic_person_add_24dp"
-        android:text="@string/cat_bottomsheet_label_add_people"/>
+        app:drawableStartCompat="@drawable/ic_person_add_24dp" />
 
       <TextView
         style="@style/selectableTextView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:text="@string/cat_bottomsheet_label_copy_link"
         app:drawableLeftCompat="@drawable/ic_link_24dp"
-        app:drawableStartCompat="@drawable/ic_link_24dp"
-        android:text="@string/cat_bottomsheet_label_copy_link"/>
+        app:drawableStartCompat="@drawable/ic_link_24dp" />
 
       <TextView
         style="@style/selectableTextView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:text="@string/cat_bottomsheet_label_open_in"
         app:drawableLeftCompat="@drawable/ic_open_in_browser_24dp"
-        app:drawableStartCompat="@drawable/ic_open_in_browser_24dp"
-        android:text="@string/cat_bottomsheet_label_open_in"/>
+        app:drawableStartCompat="@drawable/ic_open_in_browser_24dp" />
 
       <TextView
         style="@style/selectableTextView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        app:drawableLeftCompat="@drawable/ic_folder_24dp"
-        app:drawableStartCompat="@drawable/ic_folder_24dp"
         android:gravity="center_vertical"
-        android:text="@string/cat_bottomsheet_label_move"/>
+        android:text="@string/cat_bottomsheet_label_move"
+        app:drawableLeftCompat="@drawable/ic_folder_24dp"
+        app:drawableStartCompat="@drawable/ic_folder_24dp" />
 
       <TextView
         style="@style/selectableTextView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:text="@string/cat_bottomsheet_label_available_offline"
         app:drawableLeftCompat="@drawable/ic_offline_pin_24dp"
-        app:drawableStartCompat="@drawable/ic_offline_pin_24dp"
-        android:text="@string/cat_bottomsheet_label_available_offline"/>
+        app:drawableStartCompat="@drawable/ic_offline_pin_24dp" />
 
       <TextView
         style="@style/selectableTextView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:text="@string/cat_bottomsheet_label_star"
         app:drawableLeftCompat="@drawable/ic_star_24dp"
-        app:drawableStartCompat="@drawable/ic_star_24dp"
-        android:text="@string/cat_bottomsheet_label_star"/>
+        app:drawableStartCompat="@drawable/ic_star_24dp" />
 
       <TextView
         style="@style/selectableTextView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:text="@string/cat_bottomsheet_label_rename"
         app:drawableLeftCompat="@drawable/ic_edit_24dp"
-        app:drawableStartCompat="@drawable/ic_edit_24dp"
-        android:text="@string/cat_bottomsheet_label_rename"/>
+        app:drawableStartCompat="@drawable/ic_edit_24dp" />
 
       <TextView
         style="@style/selectableTextView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:text="@string/cat_bottomsheet_label_remove"
         app:drawableLeftCompat="@drawable/ic_delete_24dp"
-        app:drawableStartCompat="@drawable/ic_delete_24dp"
-        android:text="@string/cat_bottomsheet_label_remove"/>
+        app:drawableStartCompat="@drawable/ic_delete_24dp" />
 
     </LinearLayout>
   </androidx.core.widget.NestedScrollView>

@@ -161,24 +161,26 @@ class ContainerTransformConfigurationHelper {
 
   }
 
-   var arcMotionEnabled = false
-   var enterDuration = NO_DURATION
-   var returnDuration = NO_DURATION
+  var arcMotionEnabled = false
+  var enterDuration = NO_DURATION
+  var returnDuration = NO_DURATION
   var interpolator: Interpolator? = null
-   var fadeModeButtonId = R.id.fade_in_button
-   var drawDebugEnabled = false
+  var fadeModeButtonId = R.id.fade_in_button
+  var drawDebugEnabled = false
   val fadeMode: Int
     get() = FADE_MODE_MAP[fadeModeButtonId]
-  fun showConfigurationChooser(context: Context,onDismissListener: OnDismissListener?){
+
+  fun showConfigurationChooser(context: Context, onDismissListener: OnDismissListener?) {
     BottomSheetDialog(context).run {
-      setContentView(createConfigurationBottomSheetView(context,this))
+      setContentView(createConfigurationBottomSheetView(context, this))
       setOnDismissListener(onDismissListener)
       show()
     }
   }
-  fun configure(transform: MaterialContainerTransform,entering: Boolean){
+
+  fun configure(transform: MaterialContainerTransform, entering: Boolean) {
     val duration = if (entering) enterDuration else returnDuration
-    if (duration != NO_DURATION){
+    if (duration != NO_DURATION) {
       transform.duration = duration
     }
     interpolator?.let {
@@ -190,21 +192,25 @@ class ContainerTransformConfigurationHelper {
     transform.fadeMode = fadeMode
     transform.isDrawDebugEnabled = drawDebugEnabled
   }
-  fun configure(transform: com.google.android.material.transition.platform.MaterialContainerTransform,
-                entering: Boolean){
+
+  fun configure(
+    transform: com.google.android.material.transition.platform.MaterialContainerTransform,
+    entering: Boolean
+  ) {
     val duration = if (entering) enterDuration else returnDuration
-    if (duration != NO_DURATION){
+    if (duration != NO_DURATION) {
       transform.duration = duration
     }
     interpolator?.let {
       transform.interpolator = it
     }
-    if (arcMotionEnabled){
+    if (arcMotionEnabled) {
       transform.pathMotion = MaterialArcMotion()
     }
     transform.fadeMode = fadeMode
     transform.isDrawDebugEnabled = drawDebugEnabled
   }
+
   private fun resetDefaultValues() {
     arcMotionEnabled = false
     enterDuration = NO_DURATION

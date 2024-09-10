@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2021 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -117,10 +116,10 @@
   <string name="cat_blue_button_light" translatable="false">Blue Button 2</string>
 
   <string-array name="cat_error_strings">
-      <item>@string/cat_color_role_error</item>
-      <item>@string/cat_color_role_on_error</item>
-      <item>@string/cat_color_role_error_container</item>
-      <item>@string/cat_color_role_on_error_container</item>
+    <item>@string/cat_color_role_error</item>
+    <item>@string/cat_color_role_on_error</item>
+    <item>@string/cat_color_role_error_container</item>
+    <item>@string/cat_color_role_on_error_container</item>
   </string-array>
 
   <string-array name="cat_yellow_strings">

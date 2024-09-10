@@ -11,23 +11,25 @@ import io.material.catalog.feature.Demo
 import io.material.catalog.feature.DemoLandingFragment
 import io.material.catalog.feature.FeatureDemo
 
-class TimePickerDemoLandingFragment: DemoLandingFragment() {
+class TimePickerDemoLandingFragment : DemoLandingFragment() {
   override val titleResId: Int
     get() = R.string.cat_time_picker_demo_title
   override val descriptionResId: Int
     get() = R.string.cat_time_picker_description
   override val mainDemo: Demo
-    get() = object : Demo(){
+    get() = object : Demo() {
       override val fragment: Fragment
         get() = TimePickerMainDemoFragment()
     }
 }
+
 @dagger.Module
-abstract class TimePickerModule{
+abstract class TimePickerModule {
   @FragmentScope
   @ContributesAndroidInjector
   abstract fun contributeInjector(): TimePickerDemoLandingFragment
-  companion object{
+
+  companion object {
     @ActivityScope
     @IntoSet
     @Provides

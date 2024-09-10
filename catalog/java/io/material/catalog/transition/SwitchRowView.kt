@@ -68,7 +68,7 @@ class SwitchRowView @JvmOverloads constructor(
   }
 
   private fun getSubtitleText(isChecked: Boolean): CharSequence {
-    return when(isChecked){
+    return when (isChecked) {
       true -> subtitleOn ?: subtitle ?: ""
       false -> subtitleOff ?: subtitle ?: ""
     }

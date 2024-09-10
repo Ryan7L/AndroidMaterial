@@ -23,11 +23,11 @@
     </item>
     <item name="textInputSignInStyle">@style/Widget.Material3.TextInputLayout.OutlinedBox</item>
     <item name="windowActionModeOverlay">true</item>
-<!--
-      windowActionModeOverlay 是一个布尔值主题属性，用于控制上下文操作模式 (CAB) 覆盖在 Activity 窗口之上的行为。 作用
-      覆盖模式: 当设置为 true 时，CAB 会覆盖在 Activity 窗口的顶部，而不是将 Activity 窗口的内容向下推。 这使得 CAB 可以覆盖整个屏幕宽度，并提供更沉浸式的体验。
-      推挤模式: 当设置为 false 时（默认行为），CAB 会将 Activity 窗口的内容向下推，为 CAB腾出空间
- -->
+    <!--
+          windowActionModeOverlay 是一个布尔值主题属性，用于控制上下文操作模式 (CAB) 覆盖在 Activity 窗口之上的行为。 作用
+          覆盖模式: 当设置为 true 时，CAB 会覆盖在 Activity 窗口的顶部，而不是将 Activity 窗口的内容向下推。 这使得 CAB 可以覆盖整个屏幕宽度，并提供更沉浸式的体验。
+          推挤模式: 当设置为 false 时（默认行为），CAB 会将 Activity 窗口的内容向下推，为 CAB腾出空间
+     -->
   </style>
 
   <style name="Theme.Catalog.System.ActionBar" parent="Theme.Catalog">
@@ -48,6 +48,7 @@
   <style name="Preference.SwitchPreferenceCompat.Catalog" parent="Preference.SwitchPreferenceCompat.Material">
     <item name="android:widgetLayout">@layout/preference_widget_material_switch</item>
   </style>
+
   <style name="Theme.Catlog.Transition" parent="Theme.Catalog">
     <!--  打开过渡动画，或在 Activity中的onCreate()中调用 getWindow.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)  -->
     <item name="android:windowContentTransitions">true</item>
