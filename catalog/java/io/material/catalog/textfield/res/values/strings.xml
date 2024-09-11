@@ -105,5 +105,12 @@
   <string name="cat_textfield_toast_placeholder_text" description="Announcement for when placeholder text is updated.[CHAR_LIMIT=NONE]">占位符已更新.</string>
   <string name="cat_textfield_toast_error_icon_click" description="Announcement for when error icon is clicked.[CHAR_LIMIT=NONE]">单击了错误图标.</string>
   <string name="cat_textfield_toast_error_icon_long_click" description="Announcement for when error icon is long clicked.[CHAR_LIMIT=NONE]">长按错误图标.</string>
-
+  <string-array name="link_resource_title">
+    <item>属性</item>
+    <item>常用效果</item>
+  </string-array>
+  <string-array name="lin_resource_url">
+    <item>https://m3.material.io/components/text-fields/overview</item>
+    <item>https://m3.material.io/components/text-fields/usage</item>
+  </string-array>
 </resources>

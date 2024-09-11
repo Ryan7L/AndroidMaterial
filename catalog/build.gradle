@@ -107,8 +107,9 @@ def srcDirs = [
   'transition',
   'windowpreferences',
   'animation',
-  'layout',
-  'widget',
+  "mediaclips",
+  "mediaplayback",
+  "mediashooting"
 //  'AndroidRes'
 ]
 

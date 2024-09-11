@@ -14,7 +14,7 @@
     limitations under the License.
 -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
   <style name="Widget.Catalog.Button.TextButton.Dialog.FullWidth" parent="Widget.Material3.Button.TextButton.Dialog">
     <item name="android:layout_width">0dp</item>

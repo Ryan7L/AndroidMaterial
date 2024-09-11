@@ -14,6 +14,7 @@
   limitations under the License.
   -->
 <resources>
+
   <style name="ThemeOverlay.Material3.Catalog.Toolbar.Contextual" parent="">
     <item name="colorControlNormal">?attr/colorPrimary</item>
   </style>
