@@ -37,6 +37,7 @@
     <RadioButton
       android:id="@+id/enabled_selected"
       android:layout_width="match_parent"
+      android:paddingStart="@dimen/cat_radiobutton_indent"
       android:layout_height="match_parent"
       android:enabled="true"
       android:text="@string/cat_radiobutton_enabled" />
@@ -45,6 +46,7 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:checked="false"
+      android:paddingStart="@dimen/cat_radiobutton_indent"
       android:enabled="true"
       android:text="@string/cat_radiobutton_enabled" />
 
@@ -52,6 +54,7 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:checked="false"
+      android:paddingStart="@dimen/cat_radiobutton_indent"
       android:enabled="true"
       android:text="@string/cat_radiobutton_enabled" />
   </RadioGroup>

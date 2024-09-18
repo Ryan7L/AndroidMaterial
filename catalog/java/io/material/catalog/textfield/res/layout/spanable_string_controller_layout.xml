@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2018 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/controller_root"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_absolutesizespan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_AbsoluteSizeSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_absolutesizespan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_BackgroundColorSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_BackgroundColorSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_BackgroundColorSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_ClickableSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_ClickableSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_ClickableSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_ImageSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_ImageSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_ImageSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_ForegroundColorSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_ForegroundColorSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_ForegroundColorSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_LocalSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_LocalSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_LocalSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_MaskFilterSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_MaskFilterSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_MaskFilterSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_RelativeSizeSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_RelativeSizeSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_RelativeSizeSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_ScaleXSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_ScaleXSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_ScaleXSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_StrikethroughSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_StrikethroughSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_StrikethroughSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_StyleSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_StyleSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_StyleSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_SubscriptSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_SubscriptSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_SubscriptSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_SuperscriptSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_SuperscriptSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_SuperscriptSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_TextAppearanceSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_TextAppearanceSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_TextAppearanceSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_URLSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_URLSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_URLSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_UnderlineSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_UnderlineSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_UnderlineSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="8dp"
+      android:text="@string/non_material_spanable_string_span_TypefaceSpan" />
+
+    <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/text_input_TypefaceSpan"
+      android:layout_width="@dimen/material_textinput_default_width"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="4dp"
+      android:layout_marginTop="8dp"
+      android:hint="@string/non_material_spanable_string_span_TypefaceSpan">
+
+      <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+      android:id="@+id/update_button"
+      style="?materialButtonOutlinedStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="更新" />
+  </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

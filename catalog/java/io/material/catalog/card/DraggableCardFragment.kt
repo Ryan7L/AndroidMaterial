@@ -25,7 +25,7 @@ class DraggableCardFragment : DemoFragment() {
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     val view = inflater.inflate(R.layout.cat_card_draggable_fragment, container, false)
     val containerView = view as DraggableCoordinatorLayout
     val transition = (view as CoordinatorLayout).layoutTransition

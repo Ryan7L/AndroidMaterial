@@ -113,4 +113,27 @@
     <item>https://m3.material.io/components/text-fields/overview</item>
     <item>https://m3.material.io/components/text-fields/usage</item>
   </string-array>
+  <string name="non_material_text_view_main_demo_title">TextView</string>
+  <string name="non_material_text_view_spanable_title">SpanableString</string>
+  <string name="non_material_text_view_marquee_example">这是一个跑马灯的示例</string>
+  <string name="non_material_text_view_shadow_example">这是一个阴影的的示例</string>
+  <string name="non_material_spanable_string_span_absolutesizespan">AbsoluteSizeSpan</string>
+  <string name="non_material_spanable_string_span_BackgroundColorSpan">BackgroundColorSpan</string>
+  <string name="non_material_spanable_string_span_ClickableSpan">ClickableSpan</string>
+  <string name="non_material_spanable_string_span_ImageSpan">ImageSpan</string>
+  <string name="non_material_spanable_string_span_ForegroundColorSpan">ForegroundColorSpan</string>
+  <string name="non_material_spanable_string_span_LocalSpan">LocalSpan</string>
+  <string name="non_material_spanable_string_span_MaskFilterSpan">MaskFilterSpan</string>
+  <string name="non_material_spanable_string_span_RelativeSizeSpan">RelativeSizeSpan</string>
+  <string name="non_material_spanable_string_span_ScaleXSpan">ScaleXSpan</string>
+  <string name="non_material_spanable_string_span_StrikethroughSpan">StrikethroughSpan</string>
+  <string name="non_material_spanable_string_span_StyleSpan">StyleSpan</string>
+  <string name="non_material_spanable_string_span_SubscriptSpan">SubscriptSpan</string>
+  <string name="non_material_spanable_string_span_SuperscriptSpan">SuperscriptSpan</string>
+  <string name="non_material_spanable_string_span_TextAppearanceSpan">TextAppearanceSpan</string>
+  <string name="non_material_spanable_string_span_URLSpan">URLSpan</string>
+  <string name="non_material_spanable_string_span_UnderlineSpan">UnderlineSpan</string>
+  <string name="non_material_spanable_string_span_TypefaceSpan">TypefaceSpan</string>
+
+
 </resources>

@@ -40,7 +40,6 @@ class DividerFragment : DemoLandingFragment() {
       }
     )
 }
-
 @dagger.Module
 abstract class DividerModule {
 

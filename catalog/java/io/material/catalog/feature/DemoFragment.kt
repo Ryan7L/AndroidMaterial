@@ -13,6 +13,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.MenuProvider
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.AppBarLayout
@@ -40,7 +41,7 @@ abstract class DemoFragment : Fragment(), PreferencesFragment, HasAndroidInjecto
 
   private lateinit var toolbar: Toolbar
 
-  protected lateinit var demoFragmentContainer: ViewGroup
+  private lateinit var demoFragmentContainer: ViewGroup
 
   private var preferencesDialogHelper: PreferencesDialogHelper? = null
 
@@ -86,6 +87,21 @@ abstract class DemoFragment : Fragment(), PreferencesFragment, HasAndroidInjecto
     return rootView
   }
 
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    requireActivity().addMenuProvider(object : MenuProvider {
+      override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        preferencesDialogHelper?.onCreateOptionsMenu(menu, menuInflater)
+      }
+
+      override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        return preferencesDialogHelper?.onOptionsItemSelected(menuItem) == true || this@DemoFragment.onOptionsItemSelected(
+          menuItem
+        )
+      }
+    })
+  }
+
   override val isShouldShowDefaultDemoActionBar: Boolean = true
 
   /**
@@ -128,18 +144,6 @@ abstract class DemoFragment : Fragment(), PreferencesFragment, HasAndroidInjecto
   }
 
   protected open val defaultDemoTitle = arguments?.getString(ARG_DEMO_TITLE, "") ?: ""
-
-  @Deprecated("Deprecated in Java")
-  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-    @Suppress("DEPRECATION")
-    super.onCreateOptionsMenu(menu, inflater)
-    preferencesDialogHelper?.onCreateOptionsMenu(menu, inflater)
-  }
-
-  @Suppress("DEPRECATION")
-  @Deprecated("Deprecated in Java")
-  override fun onOptionsItemSelected(item: MenuItem): Boolean =
-    preferencesDialogHelper?.onOptionsItemSelected(item) == true || super.onOptionsItemSelected(item)
 
   abstract fun onCreateDemoView(
     inflater: LayoutInflater,

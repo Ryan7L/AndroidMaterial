@@ -41,7 +41,7 @@
     STATE_HALF_EXPANDED\nhalfExpandedRatio = %.2f
   </string>
   <string name="cat_bottomsheet_persistent">
-    Persistent Bottomsheet
+    常驻 Bottomsheet
   </string>
 
   <string name="cat_bottomsheet_textfield_label" description="The label for the bottom sheet text field. [CHAR_LIMIT=100]">

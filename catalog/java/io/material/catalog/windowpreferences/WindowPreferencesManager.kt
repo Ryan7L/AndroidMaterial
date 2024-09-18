@@ -38,7 +38,8 @@ class WindowPreferencesManager(context: Context) {
       leftInset = insets.getInsets(WindowInsets.Type.systemBars()).left
       rightInset = insets.getInsets(WindowInsets.Type.systemBars()).right
     }
-    v.setPadding(leftInset ?: 0, 0, rightInset ?: 0, 0)
+
+    v.setPadding(leftInset, 0, rightInset, 0)
     insets
   }
 

@@ -2,10 +2,13 @@ package io.material.catalog.feature
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.MenuProvider
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.transition.platform.MaterialContainerTransform
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
@@ -65,7 +68,7 @@ abstract class DemoActivity : BaseCatalogActivity() {
   }
 
   /**
-   * 是否应该对容器内的东西设置转换动画效果
+   * 是否应该对容器内的东西设置过渡动画效果
    */
   protected open val isShouldSetUpContainerTransform: Boolean
     get() =
@@ -74,7 +77,7 @@ abstract class DemoActivity : BaseCatalogActivity() {
       ) != null
 
   /**
-   * 是否显示操作栏
+   * 是否显示默认的操作栏
    */
   protected open val isShouldShowDefaultDemoActionBar: Boolean
     get() = true
@@ -92,7 +95,7 @@ abstract class DemoActivity : BaseCatalogActivity() {
     get() = true
 
   /**
-   * 创建转换动画
+   * 创建过渡动画
    * @param entering Boolean 是否是进入效果
    * @return MaterialContainerTransform
    */
@@ -106,6 +109,10 @@ abstract class DemoActivity : BaseCatalogActivity() {
     }
   }
 
+  /**
+   * 初始化默认的操作栏
+   *
+   */
   private fun initDefaultActionBar() {
     if (isShouldShowDefaultDemoActionBar) {
       setSupportActionBar(tootBar)
@@ -115,7 +122,9 @@ abstract class DemoActivity : BaseCatalogActivity() {
         supportActionBar?.title = intent?.extras?.getString(EXTRA_DEMO_TITLE, "") ?: ""
       }
       if (isShouldShowDefaultDemoActionBarCloseButton) {
+        //设置返回指示器
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_vd_theme_24px)
+        //启用返回指示器
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
       }
     } else {

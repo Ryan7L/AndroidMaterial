@@ -10,6 +10,8 @@ import io.material.catalog.application.scope.FragmentScope
 import io.material.catalog.feature.Demo
 import io.material.catalog.feature.DemoLandingFragment
 import io.material.catalog.feature.FeatureDemo
+import io.material.catalog.textfield.non_material.SpanableDemoFragment
+import io.material.catalog.textfield.non_material.TextViewMainDemoFragment
 
 class TextFieldFragment : DemoLandingFragment() {
   /**
@@ -61,6 +63,17 @@ class TextFieldFragment : DemoLandingFragment() {
       object : Demo(R.string.cat_textfield_legacy_demo_title) {
         override val fragment: Fragment
           get() = TextFieldLegacyDemoFragment()
+      }
+    )
+  override val nonMaterialDemos: List<Demo>
+    get() = listOf(
+      object : Demo(R.string.non_material_text_view_main_demo_title) {
+        override val fragment: Fragment
+          get() = TextViewMainDemoFragment()
+      },
+      object : Demo(R.string.non_material_text_view_spanable_title){
+        override val fragment: Fragment
+          get() = SpanableDemoFragment()
       }
     )
 }
