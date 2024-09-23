@@ -87,21 +87,6 @@ abstract class DemoFragment : Fragment(), PreferencesFragment, HasAndroidInjecto
     return rootView
   }
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    requireActivity().addMenuProvider(object : MenuProvider {
-      override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        preferencesDialogHelper?.onCreateOptionsMenu(menu, menuInflater)
-      }
-
-      override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        return preferencesDialogHelper?.onOptionsItemSelected(menuItem) == true || this@DemoFragment.onOptionsItemSelected(
-          menuItem
-        )
-      }
-    })
-  }
-
   override val isShouldShowDefaultDemoActionBar: Boolean = true
 
   /**
@@ -151,4 +136,12 @@ abstract class DemoFragment : Fragment(), PreferencesFragment, HasAndroidInjecto
     savedInstanceState: Bundle?
   ): View?
 
+  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    super.onCreateOptionsMenu(menu, inflater)
+    preferencesDialogHelper?.onCreateOptionsMenu(menu, inflater)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    return super.onOptionsItemSelected(item) || preferencesDialogHelper?.onOptionsItemSelected(item) ?: false
+  }
 }

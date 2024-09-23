@@ -8,9 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsets
 import android.widget.TextView
-import androidx.core.view.MenuProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.slider.Slider
 import io.material.catalog.R
@@ -21,21 +19,35 @@ class TextViewMainDemoFragment : DemoFragment() {
   private val shadowColor = Color.RED
   private val textColor = Color.GREEN
   private lateinit var dialog: BottomSheetDialog
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    requireActivity().addMenuProvider(object : MenuProvider {
-      override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        menuInflater.inflate(R.menu.configure_menu, menu)
-      }
+//  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//    super.onViewCreated(view, savedInstanceState)
+////    requireActivity().addMenuProvider(object : MenuProvider {
+////      override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+////        menuInflater.inflate(R.menu.configure_menu, menu)
+////      }
+////
+////      override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+////        if (menuItem.itemId == R.id.configure) {
+////          dialog.show()
+////          return true
+////        }
+////        return false
+////      }
+////    }, this)
+//  }
 
-      override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        if (menuItem.itemId == R.id.configure) {
-          dialog.show()
-          return true
-        }
-        return false
-      }
-    }, this)
+  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    super.onCreateOptionsMenu(menu, inflater)
+    inflater.inflate(R.menu.configure_menu, menu)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    if (item.itemId == R.id.configure) {
+      dialog.show()
+      return true
+    } else {
+      return super.onOptionsItemSelected(item)
+    }
   }
 
   override fun onCreateDemoView(
