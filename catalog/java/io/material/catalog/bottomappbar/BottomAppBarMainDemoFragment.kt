@@ -84,7 +84,6 @@ class BottomAppBarMainDemoFragment : DemoFragment() {
     //由于 BottomAppBar 被设置为操作栏，因此首选项帮助器以临时方式与工具栏一起使用。
     preferencesDialogHelper = PreferencesDialogHelper.createHelper(parentFragmentManager)
   }
-
   override fun onCreateDemoView(
     inflater: LayoutInflater,
     container: ViewGroup?,

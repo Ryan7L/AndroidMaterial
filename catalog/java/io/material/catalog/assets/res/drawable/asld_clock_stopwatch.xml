@@ -14,18 +14,35 @@
   limitations under the License.
   -->
 
-<animated-selector xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  tools:ignore="NewApi">
-  <item
-    android:id="@+id/state_on"
-    android:drawable="@drawable/vd_clock_stopwatch"
-    android:state_checked="true" />
-  <item
-    android:id="@+id/state_off"
-    android:drawable="@drawable/vd_clock_stopwatch" />
-  <transition
-    android:drawable="@drawable/avd_clock_stopwatch"
-    android:fromId="@id/state_off"
-    android:toId="@id/state_on" />
-</animated-selector>
+<animated-vector
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aapt="http://schemas.android.com/aapt"
+  android:drawable="@drawable/vd_clock_stopwatch">
+
+  <target android:name="hand">
+    <aapt:attr name="android:animation">
+      <objectAnimator
+        android:duration="1333"
+        android:interpolator="@android:interpolator/fast_out_slow_in"
+        android:propertyName="rotation"
+        android:valueFrom="0"
+        android:valueTo="360"/>
+    </aapt:attr>
+  </target>
+
+  <target android:name="button">
+    <aapt:attr name="android:animation">
+      <objectAnimator
+        android:duration="267"
+        android:pathData="M 12,12 c 0,0.16667 0,1 0,1 l 0,-1"
+        android:propertyYName="translateY">
+        <aapt:attr name="android:interpolator">
+          <pathInterpolator
+            android:pathData="M 0,0 C 0.2,0 0.1,0.5 0.5,0.5 C 0.7,0.5 0.6,1 1,1"/>
+        </aapt:attr>
+      </objectAnimator>
+    </aapt:attr>
+  </target>
+
+</animated-vector>
+

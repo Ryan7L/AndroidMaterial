@@ -32,8 +32,6 @@ class BottomAppBarFragment : DemoLandingFragment() {
       override val fragment: Fragment
         get() = BottomAppBarMainDemoFragment()
     }
-
-
 }
 
 @dagger.Module

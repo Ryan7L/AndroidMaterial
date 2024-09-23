@@ -8,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets
 import android.widget.TextView
 import androidx.core.view.MenuProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -25,7 +26,6 @@ class TextViewMainDemoFragment : DemoFragment() {
     requireActivity().addMenuProvider(object : MenuProvider {
       override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.configure_menu, menu)
-
       }
 
       override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

@@ -33,6 +33,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:indeterminate="true"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
     app:indicatorColor="@array/cat_custom_progress_colors" />
 
   <TextView
@@ -44,6 +46,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:indeterminate="true"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
     app:indeterminateAnimationType="contiguous"
     app:indicatorColor="@array/cat_custom_progress_colors" />
 

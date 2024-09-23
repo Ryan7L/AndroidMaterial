@@ -104,7 +104,6 @@ abstract class BaseTopAppBarActionBarDemoActivity : DemoActivity() {
       } else {
         actionMode?.finish()
       }
-
     }
     return view
   }

@@ -42,6 +42,10 @@ class NavigationRailFragment : DemoLandingFragment() {
       object : Demo(R.string.cat_navigation_rail_animated_demo_title) {
         override val fragment: Fragment
           get() = NavigationRailAnimatedDemoFragment()
+      },
+      object : Demo(R.string.cat_navigation_rail_submenus_demo_title) {
+        override val fragment: Fragment
+          get() = NavigationRailSubMenuDemoFragment()
       }
     )
 }

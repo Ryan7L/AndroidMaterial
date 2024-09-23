@@ -18,9 +18,7 @@
 
   <string name="cat_bottomappbar_title">Bottom App Bar</string>
   <string name="cat_bottomappbar_description">
-    A bottom app bar provides a docked bar at the bottom of the screen for common application
-    actions. The bottom app bar includes a floating button for a primary action and a navigation bar
-    area for secondary actions.
+    底部应用程序栏在屏幕底部提供一个停靠栏，用于执行常见的应用程序操作。底部应用栏包括用于主要操作的浮动按钮和用于辅助操作的导航栏区域.
   </string>
   <string name="cat_bottomappbar_lorem_ipsum" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a, ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
 Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae, molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor bibendum, vel congue leo egestas.\n\n

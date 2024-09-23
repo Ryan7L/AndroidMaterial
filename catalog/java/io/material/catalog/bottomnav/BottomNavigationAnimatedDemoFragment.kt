@@ -30,7 +30,7 @@ class BottomNavigationAnimatedDemoFragment : DemoFragment() {
     val animatedContainer =
       coordinatorLayout?.findViewById<View>(R.id.cat_bottom_navs_animated_container)
     val layoutParams = animatedContainer?.layoutParams as CoordinatorLayout.LayoutParams
-    layoutParams?.let {
+    layoutParams.let {
       it.behavior = null
       it.gravity = Gravity.BOTTOM
     }
